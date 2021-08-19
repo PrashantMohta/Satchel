@@ -169,6 +169,7 @@ namespace DandyCore{
             GameObject bench = GameObject.Instantiate(benchPrefab);
             bench.transform.position = pos;
             bench.name = benchName;
+            bench.tag = "RespawnPoint";
             bench.SetActive(true);
             var benchFsm = bench.LocateMyFSM("Bench Control");
             benchFsm.FsmVariables.FindFsmString("Scene Name").Value = sceneName;

@@ -113,7 +113,6 @@ namespace DandyCore{
                 foreach(BenchParams bench in Benches){   
                     SceneUtils.CreateBenchFromPrefab(bench);
                 }
-                SceneUtils.FixMaterials();
             }
             if (currentScene == sceneName)
             {       

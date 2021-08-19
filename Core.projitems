@@ -17,11 +17,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\GameObjectUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\PlayerDataUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\FsmUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\EnemyUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Singleton.cs" />
 
-    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\WhoAmI.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\ChangeMeshColor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\SpriteRendererMaterial.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\Unity\WhoAmI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\Unity\ChangeMeshColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\Unity\SpriteRendererMaterial.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\Unity\CustomEnemyMarker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\Unity\AlertRangeMarker.cs" />
+
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomEnemy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomEnemyManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomDreamNailManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomMapManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomSaveSlotsManager.cs" />

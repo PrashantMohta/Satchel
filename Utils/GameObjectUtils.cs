@@ -3,6 +3,15 @@ using UnityEngine;
 using static Modding.Logger;
 namespace DandyCore {
     public static class GameObjectUtils{
+
+        public static T  GetAddComponent<T>(this GameObject go) where T : Component {
+            T comp = go.GetComponent<T>();
+            if(comp == null){
+                comp = go.AddComponent<T>();
+            }
+            return comp;
+        }
+
         public static void SetScale(this GameObject gameObject,float scaleX, float scaleY){
             Vector3 localScale = gameObject.transform.localScale;
             localScale.x = scaleX;
