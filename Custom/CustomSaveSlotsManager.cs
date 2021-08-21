@@ -37,7 +37,6 @@ namespace DandyCore{
         public void OnGetSaveStatsForSlot(On.GameManager.orig_GetSaveStatsForSlot orig,GameManager self,int SaveSlot,Action<SaveStats> Callback){
            PlayerDataUtils.GetPlayerDataForSlot(SaveSlot, pd => { 
                RespawnScene[SaveSlot] = pd.respawnScene;
-               Log("save stats of slot "+ SaveSlot + " - " + pd.respawnScene);
             });
            orig(self,SaveSlot,Callback);
         }

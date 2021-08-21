@@ -24,7 +24,6 @@ namespace DandyCore{
         public string LanguageGet( string key, string sheet){
             string orig = Language.Language.GetInternal(key, sheet);
             if(key.StartsWith(Convo.prefix)){
-                Log(key);
                 var dnkey = key.Replace(Convo.prefix,"");
                 if(DNdialog.TryGetValue(dnkey, out var dntext)){
                     if(dntext != "" && dntext != null) {

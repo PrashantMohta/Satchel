@@ -8,7 +8,5 @@ namespace DandyCore{
 
     // todo refactor this to not be a static class and manage Gos Internally
     public static class Singles {
-        public static string version =  AssemblyUtils.Version();
-
     } 
 }

@@ -50,6 +50,10 @@ namespace DandyCore{
         private Coroutine _flashRoutine;
         public void StartFlashColor(float time)
         {
+            if(sr.material.shader != Core.spriteFlash) { 
+                Debug.Log("Cannot FlashSprite because the spriteFlash shader is not being used");
+                return;
+            } 
             IEnumerator Flash()
             {
                 float flashAmount = 1.0f;

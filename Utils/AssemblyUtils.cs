@@ -20,7 +20,7 @@ namespace DandyCore{
         //Application.runInBackground = true;
         public static string GetAssemblyVersionHash()
         {
-            var asm = Assembly.GetExecutingAssembly();
+            var asm = Assembly.GetCallingAssembly();
             var ver = asm.GetName().Version.ToString();
             var sha1 = SHA1.Create();
             var stream = File.OpenRead(asm.Location);
@@ -32,10 +32,9 @@ namespace DandyCore{
         }
 
         public static string getCurrentDirectory(){
-           return Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+           return Path.GetDirectoryName(System.Reflection.Assembly.GetCallingAssembly().Location);
         }
-        public static byte[] GetBytesFromResources(string fileName){
-            Assembly asm = Assembly.GetExecutingAssembly();
+        public static byte[] GetBytesFromResources(this Assembly asm,string fileName){
             foreach (string res in asm.GetManifestResourceNames())
             {   
                 if(!res.EndsWith(fileName)) { continue; } 
@@ -50,22 +49,25 @@ namespace DandyCore{
             }
             return null;
         }
+        public static byte[] GetBytesFromResources(string fileName){
+            return Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
+        }
 
         public static Sprite GetSpriteFromResources(string fileName){
             Texture2D tex = new Texture2D(2, 2);
-            byte[] buffer = GetBytesFromResources(fileName);
+            byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
             tex.LoadImage(buffer);
             tex.Apply();    
             Sprite sprite = Sprite.Create(tex,new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),64f); 
             return sprite;
         }
         public static AssetBundle GetAssetBundleFromResources(string fileName){  
-            byte[] buffer = GetBytesFromResources(fileName);
+            byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
             AssetBundle bundle = AssetBundle.LoadFromMemory(buffer); 
             return bundle;
         }
 
-        public static Shader GetShader(this AssetBundle bundle,string shader){//"spriteflash","spriteflash.shader"
+        public static Shader GetShader(this AssetBundle bundle,string shader){
             return bundle.LoadAsset<Shader>(shader);
         }
 

@@ -14,11 +14,25 @@ using static DandyCore.SceneUtils;
 using static Modding.Logger;
 
 namespace DandyCore{
+
+    public class customMapZone{
+        public string ZoneName;
+        public string mapZoneTitle;
+
+        public List<string> sceneNames;
+        public Dictionary<string,customMap> scenes;
+        public Func<bool> hasMap;
+        public Func<bool> hasFullMap;
+        public GameObject areaCustomMap;
+        public Vector2 position;
+        public Vector2 titleOffset;
+    }
     public class customMap{
+        public string ZoneName;
         public string sceneName;
         public string sceneTitle;
         public Func<bool> hasMap;
-        public GameObject areaCustomMap;
+        //public GameObject areaCustomMap;
         public Vector2 position;
         public Vector2 titleOffset;
         public Func<Sprite> GetSprite;
@@ -26,6 +40,8 @@ namespace DandyCore{
     public class CustomMapManager
     {
         private Dictionary<string,customMap> Maps = new Dictionary<string,customMap>();
+        private Dictionary<string,customMapZone> Zones = new Dictionary<string,customMapZone>();
+
         private List<string> MapAreas = new List<string>{"mapCrossroads", "mapGreenpath", "mapFogCanyon", "mapRoyalGardens", "mapFungalWastes", "mapCity", "mapWaterways", "mapMines", "mapDeepnest", "mapCliffs", "mapOutskirts", "mapRestingGrounds", "mapAbyss"};
 
         private GameMap gameMapComponent;
@@ -40,16 +56,39 @@ namespace DandyCore{
                 On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.OnEnter += HandlePlayerDataBoolTest;
                 ModHooks.Instance.LanguageGetHook += LanguageGet;
         }
-        
-        public void Add(customMap map){
+        public void AddZone(customMapZone newZone){
+            Zones.Add(newZone.ZoneName,newZone);
+        }
+        public void AddScene( customMap map){
             Maps.Add(map.sceneName,map);
+            if(Zones.TryGetValue(map.ZoneName, out var zone)){
+                // if zone exists add scene to zone
+                if(!zone.sceneNames.Contains(map.sceneName)){
+                    zone.sceneNames.Add(map.sceneName);
+                }
+                zone.scenes[map.sceneName] = map;
+            } else {
+                // if zone does not exist create a zone with the scene map's parameters
+                zone = new customMapZone(){
+                    ZoneName=map.ZoneName,
+                    mapZoneTitle=map.ZoneName,
+                    sceneNames= new List<string>(){map.sceneName},
+                    scenes= new Dictionary<string,customMap>(),
+                    hasMap= map.hasMap,
+                    position= new Vector2(map.position.x,map.position.y),
+                    titleOffset=map.titleOffset,
+                };
+                map.position = new Vector2(0,0);
+                zone.scenes.Add(map.sceneName,map);
+                Zones.Add(zone.ZoneName,zone);
+            }
             GameManager.instance.StartCoroutine(generateCustomMap(map));
         }
 
         public void Remove(string sceneName){
-            Maps.TryGetValue(sceneName,out var oldCustomMap);
-            GameObject.Destroy(oldCustomMap.areaCustomMap);
-            Maps.Remove(sceneName);
+            //Maps.TryGetValue(sceneName,out var oldCustomMap);
+            //GameObject.Destroy(oldCustomMap.areaCustomMap);
+            //Maps.Remove(sceneName);
         }
 
         public GameObject GetAreaNameTxt(){
@@ -62,51 +101,53 @@ namespace DandyCore{
             return AreaNameTxt;
         }
 
+        private void AddSceneToZone(customMapZone Zone,customMap map){
+            var newZone = Zones[map.ZoneName];
+            var tmpChildZ = gameMapComponent.areaCliffs.transform.GetChild(6).localPosition.z;
+            var roomMat = UnityEngine.Object.Instantiate(gameMapComponent.areaCliffs.transform.GetChild(1).GetComponent<SpriteRenderer>().material);
+
+            var mapSceneObj = new GameObject(map.sceneName);
+            mapSceneObj.transform.SetParent(newZone.areaCustomMap.transform);
+            mapSceneObj.name = map.sceneName;
+            mapSceneObj.transform.localPosition = new Vector3(0,0,tmpChildZ);
+            mapSceneObj.layer = 5;
+            mapSceneObj.transform.localScale = Vector3.one;
+
+            var sr = mapSceneObj.AddComponent<SpriteRenderer>();
+            sr.material = roomMat;
+            sr.sprite = map.GetSprite();
+            sr.sortingLayerID = 629535577;
+            sr.sortingOrder = 0;
+            mapSceneObj.SetActive(false);
+        }
         public IEnumerator generateCustomMap(customMap map){
             yield return new WaitWhile(()=> gameMapComponent == null);
-            var areaNamePrefab = GameObject.Instantiate(gameMapComponent.areaCliffs.transform.GetChild(0).gameObject);
-            areaNamePrefab.SetActive(false);
-            var roomMat = UnityEngine.Object.Instantiate(gameMapComponent.areaCliffs.transform.GetChild(1).GetComponent<SpriteRenderer>().material);
-            var tmpChildZ = gameMapComponent.areaCliffs.transform.GetChild(6).localPosition.z;
-
-            if(map.areaCustomMap == null){
-                map.areaCustomMap = GameObject.Instantiate(gameMapComponent.areaCliffs, gameMapComponent.transform);
+            var newZone = Zones[map.ZoneName];
+            if(Zones[map.ZoneName].areaCustomMap == null){
+                //Need to create Mapzone
+                var areaNamePrefab = GameObject.Instantiate(gameMapComponent.areaCliffs.transform.GetChild(0).gameObject);
+                areaNamePrefab.SetActive(false);
+                newZone.areaCustomMap =  GameObject.Instantiate(gameMapComponent.areaCliffs, gameMapComponent.transform);
+                newZone.areaCustomMap.SetActive(true);
+                for (int i = 0; i < newZone.areaCustomMap.transform.childCount; i++)
+                {
+                    GameObject.Destroy(newZone.areaCustomMap.transform.GetChild(i).gameObject);
+                }
+                newZone.areaCustomMap.name = "dc_custom_mapzone_" + newZone.ZoneName;
+                newZone.areaCustomMap.layer = 5;
+                newZone.areaCustomMap.transform.localScale = Vector3.one;
+                newZone.areaCustomMap.transform.localPosition = new Vector3(newZone.position.x, newZone.position.y , gameMapComponent.areaCliffs.transform.localPosition.z);
+            
+                var zoneCustomName = GameObject.Instantiate(areaNamePrefab, newZone.areaCustomMap.transform);
+                zoneCustomName.transform.position = new Vector3(0,0,0);
+                zoneCustomName.transform.localPosition = new Vector3(5f + newZone.titleOffset.x, -0.5f + newZone.titleOffset.y, zoneCustomName.transform.localPosition.z - 0.002f);
+                zoneCustomName.GetComponent<SetTextMeshProGameText>().convName = "dc_custom_mapzone_" + newZone.ZoneName;
+                zoneCustomName.SetActive(true);
+                newZone.areaCustomMap.SetActive(false);
+                GameObject.DontDestroyOnLoad(newZone.areaCustomMap);
             }
-            map.areaCustomMap.SetActive(true);
-
-            for (int i = 0; i < map.areaCustomMap.transform.childCount; i++)
-            {
-                GameObject.Destroy(map.areaCustomMap.transform.GetChild(i).gameObject);
-            }
-
-            map.areaCustomMap.name = "dc_custom_map_" + map.sceneName;
-            map.areaCustomMap.layer = 5;
-            map.areaCustomMap.transform.localScale = Vector3.one;
-            var pls = map.areaCustomMap.transform.parent.localScale;
-            map.areaCustomMap.transform.localPosition = new Vector3(map.position.x, map.position.y , gameMapComponent.areaCliffs.transform.localPosition.z);
-
-            if (map.areaCustomMap != null){
-                var mapSceneObj = new GameObject(map.sceneName);
-                mapSceneObj.transform.SetParent(map.areaCustomMap.transform);
-                mapSceneObj.name = map.sceneName;
-
-                mapSceneObj.transform.localPosition = new Vector3(0,0,tmpChildZ);
-                mapSceneObj.layer = 5;
-                mapSceneObj.transform.localScale = Vector3.one;
-                var sr = mapSceneObj.AddComponent<SpriteRenderer>();
-                sr.material = roomMat;
-                sr.sprite = map.GetSprite();
-                sr.sortingLayerID = 629535577;
-                sr.sortingOrder = 0;
-
-                var areaCustomName = GameObject.Instantiate(areaNamePrefab, map.areaCustomMap.transform);
-                areaCustomName.transform.position = new Vector3(0,0,0);
-                areaCustomName.transform.localPosition = new Vector3(5f + map.titleOffset.x, -0.5f + map.titleOffset.y, areaCustomName.transform.localPosition.z - 0.002f);
-                areaCustomName.GetComponent<SetTextMeshProGameText>().convName = "dc_custom_map_" + map.sceneName;
-                areaCustomName.SetActive(true);
-            }
-            map.areaCustomMap.SetActive(false);
-            GameObject.DontDestroyOnLoad(map.areaCustomMap);
+            // Map zone will always exist now, so add your scene map
+            AddSceneToZone(newZone,map);
         }
         
         protected void EditQuickMapFsm(GameObject gameMapGameObject)
@@ -161,12 +202,19 @@ namespace DandyCore{
                 gm.areaDirtmouth.SetActive(false);
                 gm.areaWaterways.SetActive(false);
 
-                foreach(var kvp in Maps){
-                    kvp.Value.areaCustomMap.SetActive(kvp.Key == currentSceneName);
+                resetMapVisibility();
+                foreach(var kvp in Zones){
+                    if(kvp.Value.sceneNames.Contains(currentSceneName)){
+                        kvp.Value.areaCustomMap.SetActive(true);
+                    }
                 }
                 var areaTxt = GetAreaNameTxt();
-                areaTxt.GetComponent<TextMeshPro>().text = currentScene.sceneTitle;
-                MoveMapTo(gm,new Vector2(currentScene.position.x*(-1.5365f), currentScene.position.y*(-1.5365f)));//*4
+                areaTxt.GetComponent<TextMeshPro>().text = Zones[currentScene.ZoneName].mapZoneTitle != "" ? Zones[currentScene.ZoneName].mapZoneTitle : Zones[currentScene.ZoneName].ZoneName;
+                MoveMapTo(gm,
+                new Vector2(
+                    (Zones[currentScene.ZoneName].position.x*(-1.5365f) +currentScene.position.x),
+                    (Zones[currentScene.ZoneName].position.y*(-1.5365f) +currentScene.position.y)
+                     ));
             }
         }
         public void MoveMapTo(GameMap gm, Vector2 point){
@@ -179,17 +227,24 @@ namespace DandyCore{
 
         public string LanguageGet( string key, string sheet){
             string orig = Language.Language.GetInternal(key, sheet);
+
             if(key.StartsWith("dc_custom_map_")){
                 var sceneName = key.Replace("dc_custom_map_","");
                 if(Maps.TryGetValue(sceneName, out var map)){
                     return map.sceneTitle != "" ? map.sceneTitle : map.sceneName;
                 }
             }
+            if(key.StartsWith("dc_custom_mapzone_")){
+                var ZoneName = key.Replace("dc_custom_mapzone_","");
+                if(Zones.TryGetValue(ZoneName, out var zone)){
+                    return zone.mapZoneTitle != "" ? zone.mapZoneTitle : zone.ZoneName;
+                }
+            }
             return orig;
         }
         public void HandlePlayerDataBoolTest(On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.orig_OnEnter orig, HutongGames.PlayMaker.Actions.PlayerDataBoolTest self){
             if(MapAreas.Contains(self.boolName.Value) && Maps.TryGetValue(SceneUtils.getCurrentScene().name,out var currentMap)){
-                if(currentMap.hasMap())
+                if(currentMap.hasMap() || Zones[currentMap.ZoneName].hasFullMap())
                 {
                     ((FsmStateAction)self).Fsm.Event(self.isTrue);
                 } else {
@@ -219,19 +274,26 @@ namespace DandyCore{
 
         var pd = PlayerData.instance;
         if (pd.GetBool("equippedCharm_2")){
-            foreach(var kvp in Maps){
+            foreach(var kvp in Zones){
                 kvp.Value.areaCustomMap.SetActive(kvp.Value.hasMap());
             }
         }
               
     }
-    
+
+        public void resetMapVisibility(){
+            foreach(var kvp in Zones){
+                foreach(var scene in kvp.Value.sceneNames){
+                   var sceneObj = kvp.Value.areaCustomMap.FindGameObjectInChildren(scene);
+                   sceneObj.SetActive(kvp.Value.scenes[scene].hasMap() || kvp.Value.hasFullMap());
+                }
+                kvp.Value.areaCustomMap.SetActive(false);
+            }
+        }
         protected void NewCloseQuickMap(On.GameMap.orig_CloseQuickMap orig, GameMap self)
         {
             orig(self);
-            foreach(var kvp in Maps){
-                kvp.Value.areaCustomMap.SetActive(false);
-            }
+            resetMapVisibility();
         }
 
          protected void NewPositionCompass(On.GameMap.orig_PositionCompass orig, GameMap self, bool posShade)
@@ -326,9 +388,8 @@ namespace DandyCore{
             if (Maps.TryGetValue(sceneName, out var map))
             {
                 //this is custom scene
-                gameObject = map.areaCustomMap;
+                gameObject = Zones[map.ZoneName].areaCustomMap;
                 self.currentScene = gameObject.FindGameObjectInChildren(sceneName);
-                self.currentScene.SetActive(true);
             }
 
             if (self.currentScene != null)

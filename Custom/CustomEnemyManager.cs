@@ -12,6 +12,7 @@ namespace DandyCore{
         private GameObject defaultInfectedEnemyPrefab;
         private GameObject defaultUnInfectedEnemyPrefab;
         private List<GameObject> customEnemies = new List<GameObject>();
+
         private List<Action<List<GameObject>>> enemyCreatedCallbacks = new List<Action<List<GameObject>>>();
         public CustomEnemyManager(){
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnSceneChanged;
@@ -73,10 +74,6 @@ namespace DandyCore{
                         enemy.gameObject.layer = 26;
                     };
 
-                }
-                SpriteRenderer Sr = enemy.gameObject.GetComponent<SpriteRenderer>();
-                if(Sr != null){
-                    Sr.material = new Material(Core.spriteFlash);
                 }
                 
             }
