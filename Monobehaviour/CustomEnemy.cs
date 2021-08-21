@@ -11,6 +11,10 @@ namespace DandyCore{
 
         public SpriteRenderer sr;
 
+        private Color UnInfected = new Color(1f,1f,1f,1);
+        private Color Infected = new Color(1f,0.5f,0,1);
+        public Color FlashColor = new Color(1,1,1,1);
+        
         void Start(){
             if(sr == null){
                 sr = GetComponent<SpriteRenderer>();
@@ -22,6 +26,11 @@ namespace DandyCore{
                 dh.hazardType = dhm.hazardType;
                 dh.shadowDashHazard = dhm.shadowDashHazard;
                 dh.resetOnEnable = dhm.resetOnEnable;
+                if(dhm.isInfected){
+                    FlashColor = Infected;
+                } else {
+                    FlashColor = UnInfected;
+                }
             }
             if(rb == null){
                 rb = gameObject.GetComponent<Rigidbody2D>();
@@ -39,7 +48,7 @@ namespace DandyCore{
 
         }
         private Coroutine _flashRoutine;
-        public void FlashWhite(float time)
+        public void StartFlashColor(float time)
         {
             IEnumerator Flash()
             {
@@ -48,9 +57,17 @@ namespace DandyCore{
                 while (flashAmount > 0)
                 {
                     material.SetFloat("_FlashAmount", flashAmount);
+                    material.SetColor("_Color",FlashColor);
+                    material.SetFloat("_SelfIllum",0.4f);
                     flashAmount -= 0.01f;
+                    if(flashAmount <= 0){
+                        material.SetFloat("_FlashAmount", 0f);
+                        material.SetColor("_Color", new Color(1,1,1,1));
+                        material.SetFloat("_SelfIllum",0f);
+                    }
                     yield return new WaitForSeconds(0.01f * time);
                 }
+
                 yield return null;
             }
             
@@ -76,18 +93,15 @@ namespace DandyCore{
             orig(self,attack_direction);
             //if names match then do our custom stuff
             if (self.name != gameObject.name) { return; }
-            Log("flashing sprite");
-            FlashWhite(0.1f);
+            StartFlashColor(0.1f);
         }
         private void ReceiveHit(On.EnemyHitEffectsUninfected.orig_RecieveHitEffect orig, EnemyHitEffectsUninfected self, float attack_direction)
         {
             //do orig stuff
             orig(self,attack_direction);
-            // return
             //if names match then do our custom stuff
             if (self.name != gameObject.name) { return; }
-            Log("flashing sprite");
-            FlashWhite(0.1f);
+            StartFlashColor(0.1f);
         }
 
         private void OnDestroy()

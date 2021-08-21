@@ -10,12 +10,12 @@ using static Modding.Logger;
 
 namespace DandyCore{
 
-    public class CustomSaveSlotsManager : MonoBehaviour
+    public class CustomSaveSlotsManager
     {
         public Dictionary<int,string> RespawnScene = new Dictionary<int,string>();
         public Dictionary<string,CustomSaveSlotParams> CustomSaveSlots = new Dictionary<string,CustomSaveSlotParams>();
 
-        public void Start(){
+        public CustomSaveSlotsManager(){
             On.GameManager.GetSaveStatsForSlot += OnGetSaveStatsForSlot;
             On.UnityEngine.UI.SaveSlotButton.PresentSaveSlot += OnPresetSaveSlot;
         }

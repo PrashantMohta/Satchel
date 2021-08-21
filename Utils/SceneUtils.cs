@@ -74,29 +74,6 @@ namespace DandyCore{
         public static UnityEngine.SceneManagement.Scene getCurrentScene(){
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
-        public static CustomScene GetCustomScene(string sceneName){
-            GameObject go = GameObject.Find("dc_"+sceneName);
-            if(go != null){
-                return go.GetComponent<CustomScene>();
-            }
-            return null;
-        }
-        public static CustomScene GetCustomScene(string sceneName,GameObject TileMap,GameObject SceneManager){
-            GameObject go = GameObject.Find("dc_"+sceneName);
-            if(go == null){
-                go = new GameObject("dc_"+sceneName);
-                go.AddComponent<CustomScene>();
-            } 
-            var customScene = go.GetComponent<CustomScene>();
-            if(customScene != null){
-                customScene.sceneName = sceneName;
-                customScene.TileMap = TileMap;
-                customScene.SceneManager = SceneManager;
-            } else {
-                Log("Error Creating scene : " + sceneName + " probably a scene with the same name already exists");
-            }
-            return customScene;
-        }
 
         public static void FixMaterials(){
             foreach(GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())

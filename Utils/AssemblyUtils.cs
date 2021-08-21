@@ -9,12 +9,12 @@ using UnityEngine.SceneManagement;
 using static Modding.Logger;
 
 namespace DandyCore{
-    public class AssemblyUtils{
+    public static class AssemblyUtils{
 
         public static string Version(){
             var version = "1.0";
             var verStr = $"DandyCore v{version}";
-            Log($"{verStr}\n{new AssemblyUtils().GetType().AssemblyQualifiedName}");
+            Log($"{verStr}\n{Assembly.GetExecutingAssembly().GetName()}");
             return verStr;
         }
         //Application.runInBackground = true;
@@ -63,6 +63,10 @@ namespace DandyCore{
             byte[] buffer = GetBytesFromResources(fileName);
             AssetBundle bundle = AssetBundle.LoadFromMemory(buffer); 
             return bundle;
+        }
+
+        public static Shader GetShader(this AssetBundle bundle,string shader){//"spriteflash","spriteflash.shader"
+            return bundle.LoadAsset<Shader>(shader);
         }
 
     }

@@ -9,6 +9,8 @@
     <Import_RootNamespace>DandyCore</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Core.cs" />
+
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AssemblyUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\WavUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\TextureUtils.cs" />
@@ -27,10 +29,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\Unity\AlertRangeMarker.cs" />
 
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomEnemy.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomEnemyManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomDreamNailManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomScene.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomMapManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomSaveSlotsManager.cs" />
+
+    <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomEnemyManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomDreamNailManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomMapManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomSaveSlotsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomScene.cs" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\mac\shaders" />
+    <EmbeddedResource Include="res\lin\shaders" />
+    <EmbeddedResource Include="res\win\shaders" />
   </ItemGroup>
 </Project>

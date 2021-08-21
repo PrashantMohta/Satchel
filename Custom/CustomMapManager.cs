@@ -23,7 +23,7 @@ namespace DandyCore{
         public Vector2 titleOffset;
         public Func<Sprite> GetSprite;
     }
-    public class CustomMapManager : MonoBehaviour
+    public class CustomMapManager
     {
         private Dictionary<string,customMap> Maps = new Dictionary<string,customMap>();
         private List<string> MapAreas = new List<string>{"mapCrossroads", "mapGreenpath", "mapFogCanyon", "mapRoyalGardens", "mapFungalWastes", "mapCity", "mapWaterways", "mapMines", "mapDeepnest", "mapCliffs", "mapOutskirts", "mapRestingGrounds", "mapAbyss"};
@@ -32,7 +32,7 @@ namespace DandyCore{
 
         private GameObject AreaNameTxt;
 
-        public void Start(){
+        public CustomMapManager(){
                 On.GameManager.SetGameMap += OnGameManagerSetGameMap;
                 On.GameMap.WorldMap += NewWorldMap;
                 On.GameMap.CloseQuickMap += NewCloseQuickMap;

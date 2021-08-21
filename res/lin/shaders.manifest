@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 80126521
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f8ebd32b967efa090c2de9921a7e0f2f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6370d3f9de9eca57f523bce048404a46
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/spriteflash.shader
+Dependencies: []

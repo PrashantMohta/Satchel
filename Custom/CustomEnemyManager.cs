@@ -8,14 +8,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace DandyCore{
-    public class CustomEnemyManager : MonoBehaviour{
+    public class CustomEnemyManager{
         private GameObject defaultInfectedEnemyPrefab;
         private GameObject defaultUnInfectedEnemyPrefab;
-
         private List<GameObject> customEnemies = new List<GameObject>();
-
         private List<Action<List<GameObject>>> enemyCreatedCallbacks = new List<Action<List<GameObject>>>();
-        void Start(){
+        public CustomEnemyManager(){
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnSceneChanged;
         }
 
@@ -38,7 +36,8 @@ namespace DandyCore{
         public void OnSceneChanged(Scene from, Scene to){
             customEnemies = new List<GameObject>();
             foreach(CustomEnemyMarker enemy in GameObject.FindObjectsOfType<CustomEnemyMarker>())
-            {    
+            {  
+               if(enemy == null && enemy.gameObject == null) {continue;}
                // process an enemy only once
                if(enemy.isProcessed()) {continue;}
                enemy.setProcessed();
@@ -75,14 +74,18 @@ namespace DandyCore{
                     };
 
                 }
+                SpriteRenderer Sr = enemy.gameObject.GetComponent<SpriteRenderer>();
+                if(Sr != null){
+                    Sr.material = new Material(Core.spriteFlash);
+                }
                 
             }
-            foreach(var callback in enemyCreatedCallbacks){
-               callback(customEnemies);
+            if(customEnemies.Count > 0){
+                foreach(var callback in enemyCreatedCallbacks){
+                    callback(customEnemies);
+                }
             }
 
         }
-
-
     }
 }

@@ -15,7 +15,7 @@ using CustomSceneManagerSettings = DandyCore.SceneUtils.CustomSceneManagerSettin
 //playerData.respawnScene
 namespace DandyCore{
 
-    public class CustomScene : MonoBehaviour
+    public class CustomScene 
     {
 
         //todo create a nice setter for default vaues here
@@ -33,7 +33,7 @@ namespace DandyCore{
         public List<BenchParams> Benches = new List<BenchParams>();
         public List<GatewayParams> gatesToScene = new List<GatewayParams>();
         public List<GatewayParams> gatesFromScene = new List<GatewayParams>();
-        public void Start()
+        public CustomScene()
         {
             On.GameManager.RefreshTilemapInfo += OnGameManagerRefreshTilemapInfo;
             On.GameManager.EnterHero += OnGameManagerEnterHero;

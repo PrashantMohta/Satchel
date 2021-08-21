@@ -6,11 +6,11 @@ using static Modding.Logger;
 using UnityEngine;
 
 namespace DandyCore{
-    public class CustomDreamNailManager : MonoBehaviour{
+    public class CustomDreamNailManager {
 
         public Dictionary<string,string> DNdialog = new Dictionary<string,string>();
     
-        void Start(){
+        public CustomDreamNailManager(){
             ModHooks.Instance.LanguageGetHook += LanguageGet;
         }
 
