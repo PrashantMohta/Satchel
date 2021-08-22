@@ -142,15 +142,24 @@ namespace DandyCore{
         //iTween retrieve args break
         public static GameObject CreateBenchFromPrefab(GameObject benchPrefab,string benchName, Vector3 pos, string sceneName)
         {
-            if(GameObject.Find(benchName) != null) { return null; }
+            if(GameObject.Find(benchName) != null) { 
+                return null; 
+            }
+            /*GameObject marker = new GameObject();
+            marker.transform.position = new Vector3(pos.x, pos.y, 7.4f);
+            marker.tag = "RespawnPoint";
+            marker.name = benchName;
+            marker.SetActive(true);
+            GameObject.DontDestroyOnLoad(marker);*/
+
             GameObject bench = GameObject.Instantiate(benchPrefab);
             bench.transform.position = pos;
             bench.name = benchName;
-            bench.tag = "RespawnPoint";
-            bench.SetActive(true);
             var benchFsm = bench.LocateMyFSM("Bench Control");
             benchFsm.FsmVariables.FindFsmString("Scene Name").Value = sceneName;
-            benchFsm.FsmVariables.FindFsmString("Spawn Name").Value = benchName;
+            benchFsm.FsmVariables.FindFsmString("Spawn Name").Value = bench.name;
+            bench.SetActive(true);
+            GameObject.DontDestroyOnLoad(bench);
             return bench;
         }
 

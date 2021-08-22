@@ -19,8 +19,8 @@ namespace DandyCore{
         public string ZoneName;
         public string mapZoneTitle;
 
-        public List<string> sceneNames;
-        public Dictionary<string,customMap> scenes;
+        public List<string> sceneNames = new List<string>();
+        public Dictionary<string,customMap> scenes = new Dictionary<string,customMap>();
         public Func<bool> hasMap;
         public Func<bool> hasFullMap;
         public GameObject areaCustomMap;
@@ -102,6 +102,7 @@ namespace DandyCore{
         }
 
         private void AddSceneToZone(customMapZone Zone,customMap map){
+            Log($"processing scene {map.sceneName} for map");
             var newZone = Zones[map.ZoneName];
             var tmpChildZ = gameMapComponent.areaCliffs.transform.GetChild(6).localPosition.z;
             var roomMat = UnityEngine.Object.Instantiate(gameMapComponent.areaCliffs.transform.GetChild(1).GetComponent<SpriteRenderer>().material);
@@ -109,7 +110,7 @@ namespace DandyCore{
             var mapSceneObj = new GameObject(map.sceneName);
             mapSceneObj.transform.SetParent(newZone.areaCustomMap.transform);
             mapSceneObj.name = map.sceneName;
-            mapSceneObj.transform.localPosition = new Vector3(0,0,tmpChildZ);
+            mapSceneObj.transform.localPosition = new Vector3(map.position.x,map.position.y,tmpChildZ);
             mapSceneObj.layer = 5;
             mapSceneObj.transform.localScale = Vector3.one;
 
@@ -118,12 +119,12 @@ namespace DandyCore{
             sr.sprite = map.GetSprite();
             sr.sortingLayerID = 629535577;
             sr.sortingOrder = 0;
-            mapSceneObj.SetActive(false);
+            mapSceneObj.SetActive(true);
         }
         public IEnumerator generateCustomMap(customMap map){
             yield return new WaitWhile(()=> gameMapComponent == null);
             var newZone = Zones[map.ZoneName];
-            if(Zones[map.ZoneName].areaCustomMap == null){
+            if(newZone.areaCustomMap == null){
                 //Need to create Mapzone
                 var areaNamePrefab = GameObject.Instantiate(gameMapComponent.areaCliffs.transform.GetChild(0).gameObject);
                 areaNamePrefab.SetActive(false);

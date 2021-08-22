@@ -12,7 +12,7 @@ namespace DandyCore{
     public static class AssemblyUtils{
 
         public static string Version(){
-            var version = "1.0";
+            var version = "0.5";
             var verStr = $"DandyCore v{version}";
             Log($"{verStr}\n{Assembly.GetExecutingAssembly().GetName()}");
             return verStr;

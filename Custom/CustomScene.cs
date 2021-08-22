@@ -113,6 +113,14 @@ namespace DandyCore{
                 foreach(BenchParams bench in Benches){   
                     SceneUtils.CreateBenchFromPrefab(bench);
                 }
+            } else {
+                var benchesInScene = GameObject.FindGameObjectsWithTag("RespawnPoint");
+                foreach(var bench in benchesInScene){
+                    var benchFsm = bench.LocateMyFSM("Bench Control");
+                    if(benchFsm != null && benchFsm.FsmVariables.FindFsmString("Scene Name").Value == sceneName){
+                        GameObject.Destroy(bench);
+                    }
+                }
             }
             if (currentScene == sceneName)
             {       
