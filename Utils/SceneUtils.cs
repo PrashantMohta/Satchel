@@ -185,14 +185,14 @@ namespace DandyCore{
             List<MusicCue.MusicChannelInfo> channelInfos = new List<MusicCue.MusicChannelInfo>();
             MusicCue.MusicChannelInfo channelInfo = new MusicCue.MusicChannelInfo();
 
-            ReflectionHelper.SetAttr(channelInfo,"clip", clip);
+            ReflectionHelper.SetField(channelInfo,"clip", clip);
             channelInfos.Add(channelInfo);
             channelInfos.Add(null);
             channelInfos.Add(null);
             channelInfos.Add(null);
             channelInfos.Add(null);
             channelInfos.Add(null);
-            ReflectionHelper.SetAttr(musicCue,"channelInfos", channelInfos.ToArray());
+            ReflectionHelper.SetField(musicCue,"channelInfos", channelInfos.ToArray());
             var objs = Resources.FindObjectsOfTypeAll<AudioMixer>();
             foreach(var x in objs){
                 if(x.name == "Music"){

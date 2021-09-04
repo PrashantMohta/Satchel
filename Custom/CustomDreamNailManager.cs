@@ -11,7 +11,7 @@ namespace DandyCore{
         public Dictionary<string,string> DNdialog = new Dictionary<string,string>();
     
         public CustomDreamNailManager(){
-            ModHooks.Instance.LanguageGetHook += LanguageGet;
+            ModHooks.LanguageGetHook += LanguageGet;
         }
 
         // will add or update dn text for id
@@ -21,8 +21,8 @@ namespace DandyCore{
             return conv;
         }
 
-        public string LanguageGet( string key, string sheet){
-            string orig = Language.Language.GetInternal(key, sheet);
+        public string LanguageGet( string key, string sheet, string orig){
+            //string orig = Language.Language.GetInternal(key, sheet);
             if(key.StartsWith(Convo.prefix)){
                 var dnkey = key.Replace(Convo.prefix,"");
                 if(DNdialog.TryGetValue(dnkey, out var dntext)){
@@ -35,7 +35,7 @@ namespace DandyCore{
         }
         private void OnDestroy()
         {
-            ModHooks.Instance.LanguageGetHook -= LanguageGet;
+            ModHooks.LanguageGetHook -= LanguageGet;
         }
 
     }
