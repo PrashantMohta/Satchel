@@ -10,7 +10,7 @@ using GlobalEnums;
 using HutongGames.PlayMaker.Actions;
 using Modding;
 using static Modding.Logger;
-namespace DandyCore{
+namespace Satchel{
     public class SceneUtils{
 
         public struct CustomSaveSlotParams {

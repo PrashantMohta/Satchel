@@ -1,7 +1,7 @@
 using Modding;
 using UnityEngine;
 
-namespace DandyCore{
+namespace Satchel{
     public class AlertRangeMarker : MonoBehaviour{
 
         // dont show in editer

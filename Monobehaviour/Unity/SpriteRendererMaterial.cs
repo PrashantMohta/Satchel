@@ -2,7 +2,7 @@ using static Modding.Logger;
 using System;
 using UnityEngine;
 
-namespace DandyCore{
+namespace Satchel{
     public class SpriteRendererMaterial : MonoBehaviour {
 
         public bool enableFlash = false;

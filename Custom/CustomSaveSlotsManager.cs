@@ -5,10 +5,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-using static DandyCore.SceneUtils;
+using static Satchel.SceneUtils;
 using static Modding.Logger;
 
-namespace DandyCore{
+namespace Satchel{
 
     public class CustomSaveSlotsManager
     {

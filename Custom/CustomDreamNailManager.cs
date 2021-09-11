@@ -5,7 +5,7 @@ using Modding;
 using static Modding.Logger;
 using UnityEngine;
 
-namespace DandyCore{
+namespace Satchel{
     public class CustomDreamNailManager {
 
         public Dictionary<string,string> DNdialog = new Dictionary<string,string>();

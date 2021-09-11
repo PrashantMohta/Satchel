@@ -10,10 +10,10 @@ using TMPro;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 
-using static DandyCore.SceneUtils;
+using static Satchel.SceneUtils;
 using static Modding.Logger;
 
-namespace DandyCore{
+namespace Satchel{
 
     public class customMapZone{
         public string ZoneName;

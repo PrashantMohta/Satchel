@@ -8,12 +8,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Modding.Logger;
 
-namespace DandyCore{
+namespace Satchel{
     public static class AssemblyUtils{
 
         public static string Version(){
             var version = "0.5";
-            var verStr = $"DandyCore v{version}";
+            var verStr = $"Satchel v{version}";
             Log($"{verStr}\n{Assembly.GetExecutingAssembly().GetName()}");
             return verStr;
         }

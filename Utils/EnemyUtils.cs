@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Modding;
-namespace DandyCore{
+namespace Satchel{
     public class Convo {
         public static string prefix = "dc_custom_dn_";
         public string Id;

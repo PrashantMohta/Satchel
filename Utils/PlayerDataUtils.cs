@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 using Modding;
 using Modding.Patches;
 
-namespace DandyCore{
+namespace Satchel{
     public class PlayerDataUtils{
 
         public static int ConvertSlotToNumber(SaveSlotButton.SaveSlot saveSlot)

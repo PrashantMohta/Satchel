@@ -7,7 +7,7 @@ using static Modding.Logger;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace DandyCore{
+namespace Satchel{
     public class CustomEnemyManager{
         private GameObject defaultInfectedEnemyPrefab;
         private GameObject defaultUnInfectedEnemyPrefab;

@@ -5,7 +5,7 @@ using HutongGames.PlayMaker;
 using UnityEngine;
 using Logger = Modding.Logger;
 
-namespace DandyCore
+namespace Satchel
 {
     public class ActionArg
     {

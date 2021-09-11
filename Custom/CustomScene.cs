@@ -9,11 +9,11 @@ using GlobalEnums;
 using Modding;
 using static Modding.Logger;
 
-using GatewayParams = DandyCore.SceneUtils.GatewayParams;
-using BenchParams = DandyCore.SceneUtils.BenchParams;
-using CustomSceneManagerSettings = DandyCore.SceneUtils.CustomSceneManagerSettings;
+using GatewayParams = Satchel.SceneUtils.GatewayParams;
+using BenchParams = Satchel.SceneUtils.BenchParams;
+using CustomSceneManagerSettings = Satchel.SceneUtils.CustomSceneManagerSettings;
 //playerData.respawnScene
-namespace DandyCore{
+namespace Satchel{
 
     public class CustomScene 
     {

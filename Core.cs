@@ -6,7 +6,7 @@ using System.IO;
 using UnityEngine;
 using static Modding.Logger;
 
-namespace DandyCore{
+namespace Satchel{
     public class Core{
 
         public static AssetBundle shaderBundle;
