@@ -7,8 +7,8 @@
     <ProjectGuid>{A658D7A5-E9F4-4BE4-84EC-711FDA93F17C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DandyCore</RootNamespace>
-    <AssemblyName>DandyCore</AssemblyName>
+    <RootNamespace>Satchel</RootNamespace>
+    <AssemblyName>Satchel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -42,7 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
+
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(ModdingAPi)\Assembly-CSharp.dll</HintPath>
     </Reference>
@@ -72,6 +74,9 @@
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
       <HintPath>$(VanillaFiles)\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(VanillaFiles)\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
 
     <Reference Include="UnityEngine.UI">

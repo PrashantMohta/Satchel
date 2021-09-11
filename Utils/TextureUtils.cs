@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 using System.IO;
+using static Modding.Logger;
 
-namespace DandyCore {
-    public class TextureUtils{
+namespace Satchel {
+    public static class TextureUtils{
         public static Texture2D createTextureOfColor(int width, int height, Color color){
             Texture2D tex = new Texture2D(width,height);
             for (int i = 0; i < width; i++)
@@ -49,7 +50,45 @@ namespace DandyCore {
             RenderTexture.ReleaseTemporary(renderTex);
             return readableText;
         }
+        public static Texture2D Flip(this Texture2D original,bool horizontal = true,bool vertical = false)
+        {
+            Texture2D flip = new Texture2D(original.width,original.height);
+            if(horizontal){
+                for(int i=0; i < flip.width; i++) {
+                    for(int j=0; j < flip.height; j++) {
+                        flip.SetPixel(flip.width-i-1, j, original.GetPixel(i,j));
+                    }
+                }
+            }
+            if(vertical){
+                for(int i=0; i < flip.width; i++) {
+                    for(int j=0; j < flip.height; j++) {
+                        flip.SetPixel(i, flip.height-j-1, original.GetPixel(i,j));
+                    }
+                }
+            }
+            flip.Apply();
+            return flip;
+        }
 
+        public static Texture2D GetRegion(this Texture2D original,Rect region)
+        {
+            // We create a new texture so we don't change the old one!
+            Texture2D outTex = new Texture2D(original.width,original.height);
+
+            Log("regin x = " + region.xMin + "," + region.xMax);
+            Log("regin y = " + region.yMin + "," + region.yMax);
+
+            // These for loops are for running through each individual pixel and then replacing them in the new texture.
+            for(int i=(int)region.xMin; i < (int)region.xMax; i++) {
+                for(int j=(int)region.yMin; j < (int)region.yMax; j++) {
+                    outTex.SetPixel(i, j, original.GetPixel(i,j));
+                }
+            }
+            
+            outTex.Apply();
+            return outTex;
+        }
 
     }
 }

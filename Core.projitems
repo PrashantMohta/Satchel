@@ -6,13 +6,14 @@
     <SharedGUID>28A5F3C0-2F3D-40FA-BF50-3A8AEEFDC54D</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>DandyCore</Import_RootNamespace>
+    <Import_RootNamespace>Satchel</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Core.cs" />
 
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AssemblyUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\WavUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\TextureUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\SpriteUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\SceneUtils.cs" />
@@ -29,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\Unity\AlertRangeMarker.cs" />
 
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomEnemy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomAnimationFrames.cs" />
 
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomEnemyManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomDreamNailManager.cs" />

@@ -3,7 +3,7 @@ using static Modding.Logger;
 using UnityEngine;
 using System.Collections;
 
-namespace DandyCore{
+namespace Satchel{
     public class CustomEnemy : MonoBehaviour{
         public DamageHero dh;
         public Rigidbody2D rb;
