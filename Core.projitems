@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Core.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mod.cs" />
 
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AssemblyUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\WavUtils.cs" />
@@ -21,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\PlayerDataUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\FsmUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\EnemyUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\IoUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Singleton.cs" />
 
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\Unity\WhoAmI.cs" />

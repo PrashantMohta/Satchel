@@ -42,9 +42,9 @@ namespace Satchel{
                         Directory.CreateDirectory(path);
                     }
                     var filePath = Path.Combine(path,fileName);
-                    if(!File.Exists(path)){
+                    if(!File.Exists(filePath)){
                         var texture = SpriteUtils.ExtractTextureFromSprite(sr.sprite);
-                        TextureUtils.WriteTextureToFile(texture,path);
+                        TextureUtils.WriteTextureToFile(texture,filePath);
                     }
                 }
                 return;

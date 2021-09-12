@@ -1,16 +1,17 @@
 ManifestFileVersion: 0
-CRC: 97675277
+CRC: 4410255
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 26955016da2512e5a0033e522aabcb51
+    Hash: 04bbae55cab28e9a2c2e2903d0408f92
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6370d3f9de9eca57f523bce048404a46
+    Hash: 79f786ec140312af9ec009eebd4de22e
 HashAppended: 0
 ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/spriteflash.shader
 Dependencies: []
