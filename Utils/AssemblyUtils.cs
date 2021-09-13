@@ -29,9 +29,19 @@ namespace Satchel{
             return $"{hash.Substring(0, 6)}";
         }
 
+        public static string GetAssemblyVersionHash()
+        {
+            var asm = Assembly.GetCallingAssembly();
+            return asm.GetAssemblyVersionHash("");
+        }
+
         public static string GetAssemblyVersionHash(string version = "")
         {
             var asm = Assembly.GetCallingAssembly();
+            return asm.GetAssemblyVersionHash(version);
+        }
+        public static string GetAssemblyVersionHash(this Assembly asm,string version = "")
+        {
             var ver = version == "" ? asm.GetName().Version.ToString() : version;
             var hash = asm.GetAssemblyHash();
             return $"{ver}-{hash}";
