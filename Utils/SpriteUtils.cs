@@ -5,7 +5,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace DandyCore {
+using static Modding.Logger;
+namespace Satchel {
 
     public class SpriteUtils{
 
@@ -33,6 +34,24 @@ namespace DandyCore {
             return Mathf.Abs(((a.x * (b.y - c.y)) + (b.x * (c.y - a.y)) + (c.x * (a.y - b.y))) / 2f);
         }
 
+        public static Vector2 GetSpriteOrigin(Sprite testSprite){
+            var testSpriteRect = (testSprite.texture.width, testSprite.texture.height);
+            List<Vector2Int> texUVs = new List<Vector2Int>();
+            int width, height;
+
+            foreach (var item in testSprite.uv)
+            {
+                texUVs.Add(new Vector2Int(Mathf.RoundToInt(item.x * (testSpriteRect.width - 1)), Mathf.RoundToInt(item.y * (testSpriteRect.height - 1))));
+            }
+
+            var minX = texUVs.Select(uv => uv.x).ToList().Min();
+            var maxX = texUVs.Select(uv => uv.x).ToList().Max();
+            var minY = texUVs.Select(uv => uv.y).ToList().Min();
+            var maxY = texUVs.Select(uv => uv.y).ToList().Max();
+            
+            return new Vector2(minX,minY);
+        }
+
         public static Texture2D ExtractTextureFromSprite(Sprite testSprite, bool saveTriangles = false)
         {
             var testSpriteRect = (testSprite.texture.width, testSprite.texture.height);
@@ -48,6 +67,7 @@ namespace DandyCore {
             int minX, maxX, minY, maxY;
             int width, height;
             Texture2D origTex, outTex;
+            Vector2 pivot;
 
             foreach (var item in testSprite.uv)
             {
@@ -93,20 +113,91 @@ namespace DandyCore {
                 saveTriangle(contents, testSprite.name, 1000000);
 
 
+            //get current sprite texture
             origTex = TextureUtils.duplicateTexture(testSprite.texture);
-            outTex = new Texture2D(width, height);
-
+            Texture2D currentSpriteTexture = new Texture2D(width,height);
             for (x = 0; x < width; x++)
             {
                 for (y = 0; y < height; y++)
                 {
-                    if (!contents[y][x])
-                        outTex.SetPixel(x, y, new Color(0, 0, 0, 0));
-                    else
-                        outTex.SetPixel(x, y, origTex.GetPixel(minX + x, minY + y));
+                    if (contents[y][x]) {
+                        currentSpriteTexture.SetPixel(x, y, origTex.GetPixel(minX + x, minY + y));
+                    } else {
+                        currentSpriteTexture.SetPixel(x, y, new Color(0,0,0,0));
+                    }
+                }
+            }
+            currentSpriteTexture.Apply();
+            
+
+            // take care of rotations
+            var horizontal = false;
+            var vertical = false;
+            if(testSprite.packed){
+                horizontal = (testSprite.packingRotation == SpritePackingRotation.FlipHorizontal || testSprite.packingRotation == SpritePackingRotation.Rotate180);
+                vertical = (testSprite.packingRotation == SpritePackingRotation.FlipVertical || testSprite.packingRotation == SpritePackingRotation.Rotate180);
+            }
+            Log($"rHorizontal : {horizontal}");
+            Log($"rvertical : {vertical}");
+            
+            if(horizontal || vertical){
+                origTex = currentSpriteTexture.Flip(horizontal,vertical);
+            } else {
+                origTex = currentSpriteTexture;
+            }
+
+            // render on a new texture such that pivot is always at (50%,50%)
+            pivot = testSprite.pivot;
+            Log("pivot " + pivot);
+
+            var newSize = new Vector2Int(width,height);
+            Vector2 pivotRatio =  new Vector2(0,0);
+            pivotRatio.x =  pivot.x / (float)newSize.x; 
+            pivotRatio.y = pivot.y / (float)newSize.y; 
+            Log("pivotRatio " + pivotRatio);
+
+            var offset = new Vector2Int(0,0);
+
+        
+            var deltaX = 0.5f - pivotRatio.x; 
+            var deltaY = 0.5f - pivotRatio.y; 
+
+            // if delta is < 0 = add 2x pixels at end , if delta is > 0 add 2x at the start
+
+            if(deltaX > 0) {
+                // add at start
+                offset.x = (int)(2f*Mathf.Abs(deltaX)*width);
+                newSize.x = (int)(width + offset.x);
+            } else {
+                // add at end
+                offset.x = 0;
+                newSize.x = (int)(width + (int)(2f*Mathf.Abs(deltaX)*width));
+            }
+
+            if(deltaY < 0) { //Y coordinate starts from bottom in unity
+                // add at start ()
+                offset.y = (int)(2f*Mathf.Abs(deltaY)*height);
+                newSize.y = (int)(height + offset.y);
+            } else {
+                // add at end
+                offset.y = 0;
+                newSize.y = (int)(height + (int)(2f*Mathf.Abs(deltaY)*height));
+            }
+
+            Log("offset " + offset);
+            Log("size " + new Vector2Int(width,height));
+            Log("newSize " + newSize);
+        
+            outTex = TextureUtils.createTextureOfColor(newSize.x,newSize.y,new Color(0,0,0,0));
+            for (x = 0; x < width; x++)
+            {
+                for (y = 0; y < height; y++)
+                {
+                    outTex.SetPixel(offset.x + x, offset.y + y, origTex.GetPixel(x,y));
                 }
             }
             outTex.Apply();
+            
             Texture2D.DestroyImmediate(origTex);
             return outTex;
         }

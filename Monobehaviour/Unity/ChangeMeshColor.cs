@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using static DandyCore.TextureUtils;
+using static Satchel.TextureUtils;
 
-namespace DandyCore{
+namespace Satchel{
     class ChangeMeshColor : MonoBehaviour
     {
         private Material mat;

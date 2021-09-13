@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Modding;
-namespace DandyCore{
+namespace Satchel{
     public class Convo {
         public static string prefix = "dc_custom_dn_";
         public string Id;
@@ -94,11 +94,11 @@ namespace DandyCore{
         public static void addRecoil(this GameObject enemy,
                bool freezeInPlace, bool stopVelocityXWhenRecoilingUp, bool preventRecoilUp,float recoilSpeedBase,float recoilDuration){
                var recoil = enemy.gameObject.GetAddComponent<Recoil>();
-               ReflectionHelper.SetAttr<Recoil,bool>(recoil,"freezeInPlace", freezeInPlace);
-               ReflectionHelper.SetAttr<Recoil,bool>(recoil,"stopVelocityXWhenRecoilingUp", stopVelocityXWhenRecoilingUp);
-               ReflectionHelper.SetAttr<Recoil,bool>(recoil,"preventRecoilUp", preventRecoilUp);
-               ReflectionHelper.SetAttr<Recoil,float>(recoil,"recoilSpeedBase", recoilSpeedBase);
-               ReflectionHelper.SetAttr<Recoil,float>(recoil,"recoilDuration", recoilDuration);
+               ReflectionHelper.SetField<Recoil,bool>(recoil,"freezeInPlace", freezeInPlace);
+               ReflectionHelper.SetField<Recoil,bool>(recoil,"stopVelocityXWhenRecoilingUp", stopVelocityXWhenRecoilingUp);
+               ReflectionHelper.SetField<Recoil,bool>(recoil,"preventRecoilUp", preventRecoilUp);
+               ReflectionHelper.SetField<Recoil,float>(recoil,"recoilSpeedBase", recoilSpeedBase);
+               ReflectionHelper.SetField<Recoil,float>(recoil,"recoilDuration", recoilDuration);
                recoil.enabled = true;
         }
 
@@ -111,7 +111,7 @@ namespace DandyCore{
             var _dnReaction = enemy.gameObject.GetAddComponent<EnemyDreamnailReaction>();
             _dnReaction.enabled = true;
             _dnReaction.SetConvoTitle(key);
-            ReflectionHelper.SetAttr<EnemyDreamnailReaction,int>(_dnReaction,"convoAmount", Amount);
+            ReflectionHelper.SetField<EnemyDreamnailReaction,int>(_dnReaction,"convoAmount", Amount);
             return _dnReaction;
         }
 

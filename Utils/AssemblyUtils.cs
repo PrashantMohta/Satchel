@@ -8,19 +8,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Modding.Logger;
 
-namespace DandyCore{
+namespace Satchel{
     public static class AssemblyUtils{
-
+        public static string name = "Satchel";
+        public static string ver = "0.6.0";
         public static string Version(){
-            var version = "0.5";
-            var verStr = $"DandyCore v{version}";
-            Log($"{verStr}\n{Assembly.GetExecutingAssembly().GetName()}");
+            var verStr = $"name v{ver}";
             return verStr;
         }
         //Application.runInBackground = true;
-        public static string GetAssemblyVersionHash()
-        {
-            var asm = Assembly.GetCallingAssembly();
+
+        public static string GetAssemblyHash(this Assembly asm){
             var ver = asm.GetName().Version.ToString();
             var sha1 = SHA1.Create();
             var stream = File.OpenRead(asm.Location);
@@ -28,7 +26,25 @@ namespace DandyCore{
             var hash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
             stream.Close();
             sha1.Clear();
-            return $"{ver}-{hash.Substring(0, 6)}";
+            return $"{hash.Substring(0, 6)}";
+        }
+
+        public static string GetAssemblyVersionHash()
+        {
+            var asm = Assembly.GetCallingAssembly();
+            return asm.GetAssemblyVersionHash("");
+        }
+
+        public static string GetAssemblyVersionHash(string version = "")
+        {
+            var asm = Assembly.GetCallingAssembly();
+            return asm.GetAssemblyVersionHash(version);
+        }
+        public static string GetAssemblyVersionHash(this Assembly asm,string version = "")
+        {
+            var ver = version == "" ? asm.GetName().Version.ToString() : version;
+            var hash = asm.GetAssemblyHash();
+            return $"{ver}-{hash}";
         }
 
         public static string getCurrentDirectory(){
