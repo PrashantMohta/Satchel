@@ -67,7 +67,7 @@ namespace Satchel
             list.Add(new FsmTransition
             {
                 ToState = toState,
-                //ToFsmState = fsm.GetState(toState),
+                ToFsmState = fsm.GetState(toState),
                 FsmEvent = ret
             });
             state.Transitions = list.ToArray();
@@ -81,7 +81,7 @@ namespace Satchel
             tmpFsmGlobalTransitions.Add(new FsmTransition
             {
                 ToState = toState,
-                //ToFsmState = fsm.GetState(toState),
+                ToFsmState = fsm.GetState(toState),
                 FsmEvent = ret
             });
             fsm.Fsm.GlobalTransitions = tmpFsmGlobalTransitions.ToArray();
@@ -93,7 +93,7 @@ namespace Satchel
             var state = fsm.Fsm.GetState(stateName);
             var transition = state.Transitions.First(t => t.EventName.Equals(eventName));
             transition.ToState = toState;
-            //transition.ToFsmState = fsm.GetState(toState);
+            transition.ToFsmState = fsm.GetState(toState);
         }
 
         public static FsmState GetState(this PlayMakerFSM fsm, string stateName)
@@ -107,10 +107,10 @@ namespace Satchel
             {
                 Name = toState
             };
-            //foreach (var t in copy.Transitions)
-            //{
-            //    t.ToFsmState = fsm.GetState(t.ToState);
-            //}
+            foreach (var t in copy.Transitions)
+            {
+                t.ToFsmState = fsm.GetState(t.ToState);
+            }
             List<FsmState> tmpList = new List<FsmState>(fsm.FsmStates);
             tmpList.Add(copy);
             fsm.Fsm.States = tmpList.ToArray();
