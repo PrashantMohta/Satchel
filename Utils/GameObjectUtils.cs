@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Text.RegularExpressions; 
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using System.Text;
 
@@ -20,6 +21,26 @@ namespace Satchel {
             return comp;
         }
 
+        public static bool RemoveComponent<T>(this GameObject go) where T : Component{
+            T comp = go.GetComponent<T>();
+            if(comp != null){
+                GameObject.DestroyImmediate(comp);
+                return true;
+            }
+            return false;
+        }
+
+        public static T copyComponent<T>(this GameObject to,GameObject from) where T : Component {
+            if(from == null) {return null;}
+            var fromComponent = from.GetComponent<T>();
+            var toComponent = to.GetAddComponent<T>();
+            if(fromComponent == null) {return null;}
+            foreach (FieldInfo fi in typeof(T).GetFields(BindingFlags.Default | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.CreateInstance | BindingFlags.DeclaredOnly | BindingFlags.ExactBinding | BindingFlags.FlattenHierarchy | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.IgnoreCase | BindingFlags.IgnoreReturn | BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.SetField | BindingFlags.SetProperty | BindingFlags.OptionalParamBinding | BindingFlags.PutDispProperty | BindingFlags.SuppressChangeType | BindingFlags.PutRefDispProperty))
+            {   
+                fi.SetValue(toComponent, fi.GetValue(fromComponent));
+            }
+            return toComponent;
+        }
         public static void SetScale(this GameObject gameObject,float scaleX, float scaleY){
             Vector3 localScale = gameObject.transform.localScale;
             localScale.x = scaleX;
@@ -90,6 +111,14 @@ namespace Satchel {
             for (int i = 0; i < go.transform.childCount; i++)
             {
                 go.transform.GetChild(i).gameObject.FindAllChildren(allGoList);
+            }
+        }
+
+        public static void DisableChildren(this GameObject go){
+            for (int i = 0; i < go.transform.childCount; i++)
+            {
+                var child = go.transform.GetChild(i).gameObject;
+                child.SetActive(false);
             }
         }
         public static List<GameObject> GetAllGameObjects(this UScene scene)

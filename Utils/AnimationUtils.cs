@@ -1,9 +1,14 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GlobalEnums;
 
 using Modding;
+using static Modding.Logger;
+
 namespace Satchel{
 
     public static class AnimationUtils {
@@ -73,6 +78,33 @@ namespace Satchel{
             AnimatorClipInfo att = anim.GetCurrentAnimatorClipInfo(0)[0];
             float normTime = frame / (att.clip.length * att.clip.frameRate);
             anim.Play(name, 0, normTime);
+        }
+
+        /// <summary>
+        /// Logs All tk2d animation clips.
+        /// </summary>
+        public static void logTk2dAnimationClips(this GameObject go) {
+            tk2dSpriteAnimator spriteAnimator = go.GetComponent<tk2dSpriteAnimator>();
+            Log($"clip.names for {go.name}");
+            foreach(var clip in spriteAnimator.Library.clips){
+                Log(clip.name);
+            }
+        }
+
+        /// <summary>
+        /// Plays All tk2d animation clips.
+        /// </summary>
+        public static IEnumerator playAllAnim(this GameObject go,int i = 0) {
+            tk2dSpriteAnimator spriteAnimator = go.GetComponent<tk2dSpriteAnimator>();
+            var clips = spriteAnimator.Library.clips;
+            i++;
+            if(clips.Length <= i){
+                i=0;
+            } 
+            spriteAnimator.PlayFromFrame(clips[i], 0);
+            Log(clips[i].name);
+            yield return new WaitForSeconds(2f);
+            GameManager.instance.StartCoroutine(go.playAllAnim(i));
         }
     
     } 

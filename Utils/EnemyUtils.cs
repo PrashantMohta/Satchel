@@ -21,19 +21,27 @@ namespace Satchel{
     }
     public static class EnemyUtils{
     
-        /*public static void enableCustomEnemies(){ 
-            foreach(CustomEnemyMarker enemy in GameObject.FindObjectsOfType<CustomEnemyMarker>())
-            {    
-               enemy.gameObject.AddComponent<CustomEnemy>();
-            }
-        }*/
+        
+        public static GameObject createCompanionFromPrefab(this GameObject CompanionPrefab){
+            GameObject Companion = GameObject.Instantiate(CompanionPrefab);
+            Companion.DisableChildren();
+            Companion.SetActive(false);
+            // remove extra things that the prefab might have
+            while(Companion.RemoveComponent<PlayMakerFSM>()){};
+            Companion.RemoveComponent<PlayMakerUnity2DProxy>();
+            Companion.RemoveComponent<Recoil>();
+            Companion.RemoveComponent<EnemyDreamnailReaction>();
+            Companion.RemoveComponent<EnemyHitEffectsUninfected>();
+            Companion.RemoveComponent<EnemyDeathEffectsUninfected>();
+            Companion.RemoveComponent<HealthManager>();
+            Companion.RemoveComponent<ExtraDamageable>();
+            Companion.RemoveComponent<DamageHero>();
+            Companion.RemoveComponent<ConstrainPosition>();
 
-        /*private void OnCollisionEnter2D(Collider2D other)
-        {   
-            Vector2 force = transform.position - other.transform.position;
-            force.Normalize();
-            rb.AddForce(-force*30);
-        }*/
+            UnityEngine.Object.DontDestroyOnLoad(Companion);
+            return Companion;
+        }
+
         public static void activateAlertRanges(this GameObject enemy){
             foreach(var arm in enemy.GetComponentsInChildren<AlertRangeMarker>(true)){
                 arm.gameObject.AddComponent<AlertRange>();
