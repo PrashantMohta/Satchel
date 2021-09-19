@@ -28,26 +28,6 @@ namespace Satchel
 		/// </summary>
 		/// <returns>The AudioClip.</returns>
 		/// <param name="filePath">Local file path to .wav file</param>
-
-		public static AudioClip ConvertFile(string name)
-        	{
-			foreach (string res in Assembly.GetExecutingAssembly().GetManifestResourceNames())
-			{
-				if (!res.Contains(name)) continue;
-
-				Stream audioStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(res);
-				if (audioStream != null)
-				{
-					byte[] buffer = new byte[audioStream.Length];
-					audioStream.Read(buffer, 0, buffer.Length);
-					audioStream.Dispose();
-					Modding.Logger.Log("Loaded Clip " + name);
-					return WavUtils.ToAudioClip(buffer);
-
-				}
-			}
-			return null;
-		}
 		
 		public static AudioClip ToAudioClip(string filePath)
 		{
