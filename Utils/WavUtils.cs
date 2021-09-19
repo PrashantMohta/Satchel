@@ -28,6 +28,7 @@ namespace Satchel
 		/// </summary>
 		/// <returns>The AudioClip.</returns>
 		/// <param name="filePath">Local file path to .wav file</param>
+		
 		public static AudioClip ToAudioClip(string filePath)
 		{
 			if (!filePath.StartsWith(Application.persistentDataPath) && !filePath.StartsWith(Application.dataPath))
@@ -83,7 +84,7 @@ namespace Satchel
 					throw new Exception(bitDepth + " bit depth is not supported.");
 			}
 
-			AudioClip audioClip = AudioClip.Create(name, data.Length, (int) channels, sampleRate, false);
+			AudioClip audioClip = AudioClip.Create(name, data.Length / channels, (int)channels, sampleRate, false);
 			audioClip.SetData(data, 0);
 			return audioClip;
 		}
@@ -228,7 +229,7 @@ namespace Satchel
 			//Debug.AssertFormat (bitDepth == 16, "Only converting 16 bit is currently supported. The audio clip data is {0} bit.", bitDepth);
 
 			// total file size = 44 bytes for header format and audioClip.samples * factor due to float to Int16 / sbyte conversion
-			int fileSize = audioClip.samples * BlockSize_16Bit + headerSize; // BlockSize (bitDepth)
+			int fileSize = audioClip.samples * BlockSize_16Bit * audioClip.channels + headerSize; // BlockSize (bitDepth) 
 
 			// chunk descriptor (riff)
 			WriteFileHeader(ref stream, fileSize);
@@ -333,7 +334,7 @@ namespace Satchel
 			byte[] id = Encoding.ASCII.GetBytes("data");
 			count += WriteBytesToMemoryStream(ref stream, id, "DATA_ID");
 
-			int subchunk2Size = Convert.ToInt32(audioClip.samples * BlockSize_16Bit); // BlockSize (bitDepth)
+			int subchunk2Size = Convert.ToInt32(audioClip.samples * BlockSize_16Bit * audioClip.channels); // BlockSize (bitDepth)
 			count += WriteBytesToMemoryStream(ref stream, BitConverter.GetBytes(subchunk2Size), "SAMPLES");
 
 			// Validate header
