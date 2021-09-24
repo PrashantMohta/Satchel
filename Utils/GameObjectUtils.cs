@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Linq;
 using System.Text;
 
+
 using UnityEngine;
 using UScene = UnityEngine.SceneManagement.Scene;
 using static Modding.Logger;
@@ -62,6 +63,7 @@ namespace Satchel {
         {
             if( gameObject == null ){ return; }
             Modding.Logger.Log(gameObject.name);
+            Modding.Logger.Log("Layer : " + gameObject.layer);
             Modding.Logger.Log("Position : " + gameObject.transform.position.ToString());
             Modding.Logger.Log("Rotation : " + gameObject.transform.rotation.ToString());
             Modding.Logger.Log("Scale : " + gameObject.transform.localScale.ToString());

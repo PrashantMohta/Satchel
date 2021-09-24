@@ -24,11 +24,14 @@ namespace Satchel{
         
         public static GameObject createCompanionFromPrefab(this GameObject CompanionPrefab){
             GameObject Companion = GameObject.Instantiate(CompanionPrefab);
+            Companion.name = "Companion";
+            Companion.layer = 18;
             Companion.DisableChildren();
             Companion.SetActive(false);
             // remove extra things that the prefab might have
             while(Companion.RemoveComponent<PlayMakerFSM>()){};
             Companion.RemoveComponent<PlayMakerUnity2DProxy>();
+            Companion.RemoveComponent<PlayMakerFixedUpdate>();
             Companion.RemoveComponent<Recoil>();
             Companion.RemoveComponent<EnemyDreamnailReaction>();
             Companion.RemoveComponent<EnemyHitEffectsUninfected>();

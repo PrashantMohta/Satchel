@@ -11,7 +11,7 @@ using static Modding.Logger;
 namespace Satchel{
     public static class AssemblyUtils{
         public static string name = "Satchel";
-        public static string ver = "0.6.0";
+        public static string ver = "0.6.6";
         public static string Version(){
             var verStr = $"name v{ver}";
             return verStr;
@@ -76,6 +76,14 @@ namespace Satchel{
             tex.Apply();    
             Sprite sprite = Sprite.Create(tex,new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),64f); 
             return sprite;
+        }
+
+        public static Texture2D GetTextureFromResources(string fileName){
+            Texture2D tex = new Texture2D(2, 2);
+            byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
+            tex.LoadImage(buffer);
+            tex.Apply();    
+            return tex;
         }
         public static AssetBundle GetAssetBundleFromResources(string fileName){  
             byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
