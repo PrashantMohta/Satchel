@@ -77,6 +77,14 @@ namespace Satchel{
             Sprite sprite = Sprite.Create(tex,new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),64f); 
             return sprite;
         }
+        public static Sprite GetSpriteFromResources(string fileName, float pixelsPerUnit){
+            Texture2D tex = new Texture2D(2, 2);
+            byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
+            tex.LoadImage(buffer);
+            tex.Apply();    
+            Sprite sprite = Sprite.Create(tex,new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),pixelsPerUnit); 
+            return sprite;
+        }
 
         public static Texture2D GetTextureFromResources(string fileName){
             Texture2D tex = new Texture2D(2, 2);

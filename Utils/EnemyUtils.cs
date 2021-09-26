@@ -51,7 +51,6 @@ namespace Satchel{
             GameObject dialog = GameObject.Instantiate(prefab);
             dialog.name = "CustomDialog";
             dialog.SetActive(false);
-
             // remove extra things that the prefab might have
             var fsms = dialog.GetComponents<PlayMakerFSM>();
             foreach(var fsm in fsms){

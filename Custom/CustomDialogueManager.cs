@@ -13,7 +13,7 @@ namespace Satchel{
         
         public string prefix = "SatchelCustomDialogue";
         public Dictionary<string,string> Conversations = new Dictionary<string,string>();
-        public bool isDialogueBoxOpen = false;
+        public bool isDialogueBoxOpen = false,takenControl = false;
         public string currentDialog;
         public GameObject DialogManager,DialogTextBox,DialogBox;
         public DialogueBox dboxComponent; 
@@ -67,13 +67,16 @@ namespace Satchel{
             }
             conversationControl.Fsm.Event(boxEventTarget,"BOX DOWN");
             isDialogueBoxOpen = false;
-            HeroController.instance.RegainControl();
+            if(takenControl){
+                HeroController.instance.RegainControl();
+                takenControl = false;
+            }
         }
 
         public void AddConversation(string name,string conversation){
             Conversations[prefix+name] = conversation;
         }
-        public void ShowDialogue(string name){
+        public void ShowDialogue(string name,bool takeControl = true){
             if(isDialogueBoxOpen){ return; }
             currentDialog = name;
             if(dboxComponent == null){
@@ -83,7 +86,10 @@ namespace Satchel{
                 dboxComponent.StartConversation(prefix+name,prefix);
                 conversationControl.Fsm.Event(boxEventTarget,"BOX UP");
                 isDialogueBoxOpen = true;
-                HeroController.instance.RelinquishControl();
+                if(takeControl){
+                    takenControl = true;
+                    HeroController.instance.RelinquishControl();
+                }
             } else {
                 Log("Component is null");
             }
