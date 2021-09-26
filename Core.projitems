@@ -35,6 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Monobehaviour\CustomAnimationFrames.cs" />
 
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomEnemyManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomDialogueManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomDreamNailManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomMapManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomSaveSlotsManager.cs" />

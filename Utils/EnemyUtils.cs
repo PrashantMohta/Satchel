@@ -4,8 +4,10 @@ using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using HutongGames.PlayMaker;
+using HutongGames.PlayMaker.Actions;
 using Modding;
+using static Modding.Logger;
 namespace Satchel{
     public class Convo {
         public static string prefix = "dc_custom_dn_";
@@ -43,6 +45,24 @@ namespace Satchel{
 
             UnityEngine.Object.DontDestroyOnLoad(Companion);
             return Companion;
+        }
+
+        public static GameObject createCustomDialogFromPrefab(this GameObject prefab){
+            GameObject dialog = GameObject.Instantiate(prefab);
+            dialog.name = "CustomDialog";
+            dialog.SetActive(false);
+
+            // remove extra things that the prefab might have
+            var fsms = dialog.GetComponents<PlayMakerFSM>();
+            foreach(var fsm in fsms){
+                if(fsm.FsmName != "Conversation Control"){
+                    GameObject.DestroyImmediate(fsm);
+                }
+            }
+            dialog.RemoveComponent<PlayMakerUnity2DProxy>();
+            dialog.RemoveComponent<PlayMakerFixedUpdate>();
+            UnityEngine.Object.DontDestroyOnLoad(dialog);
+            return dialog;
         }
 
         public static void activateAlertRanges(this GameObject enemy){

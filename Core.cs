@@ -45,6 +45,13 @@ namespace Satchel{
             return customSaveSlotsManager;
         }
 
+        public CustomDialogueManager customDialogueManager;
+        public CustomDialogueManager GetCustomDialogueManager(GameObject CardPrefab){
+            if(customDialogueManager == null){
+                customDialogueManager = new CustomDialogueManager(CardPrefab);
+            }
+            return customDialogueManager;
+        }
         public CustomMapManager customMapManager;
         public CustomMapManager GetCustomMapManager(){
             if(customMapManager == null){

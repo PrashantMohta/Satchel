@@ -70,6 +70,14 @@ namespace Satchel {
             
             foreach(Component comp in gameObject.GetComponents<Component>()){
                 Modding.Logger.Log("Component : "+ comp.GetType());
+                if(comp is PlayMakerFSM){
+                    Modding.Logger.Log("---- Fsm name :" + ( comp as PlayMakerFSM ).FsmName);
+                }
+                /*
+                if(comp.GetType().GetProperty("name") != null){
+                    Modding.Logger.Log("---- name :" + comp.name);
+                } else 
+                */
             }
         }
         public static void LogWithChildren(this GameObject gameObject)
