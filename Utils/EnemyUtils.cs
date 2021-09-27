@@ -24,7 +24,7 @@ namespace Satchel{
     public static class EnemyUtils{
     
         
-        public static GameObject createCompanionFromPrefab(this GameObject CompanionPrefab){
+        public static GameObject createCompanionFromPrefab(this GameObject CompanionPrefab,bool DestroyOnLoad = false){
             GameObject Companion = GameObject.Instantiate(CompanionPrefab);
             Companion.name = "Companion";
             Companion.layer = 18;
@@ -42,8 +42,9 @@ namespace Satchel{
             Companion.RemoveComponent<ExtraDamageable>();
             Companion.RemoveComponent<DamageHero>();
             Companion.RemoveComponent<ConstrainPosition>();
-
-            UnityEngine.Object.DontDestroyOnLoad(Companion);
+            if(!DestroyOnLoad){
+                UnityEngine.Object.DontDestroyOnLoad(Companion);
+            }
             return Companion;
         }
 
