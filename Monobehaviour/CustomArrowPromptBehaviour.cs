@@ -58,7 +58,6 @@ namespace Satchel{
                     promptMarker.SetLabel("Sit");
                     promptMarker.SetOwner(gameObject);
                     promptMarker.Show();
-                    prompt.LogWithChildren();
                 }
                 showing = true;
             }
