@@ -62,7 +62,8 @@ namespace Satchel {
         public static void Log(this GameObject gameObject)
         {
             if( gameObject == null ){ return; }
-            Modding.Logger.Log(gameObject.name);
+            Modding.Logger.Log(gameObject.GetName());
+            Modding.Logger.Log(gameObject.GetPath());
             Modding.Logger.Log("Layer : " + gameObject.layer);
             Modding.Logger.Log("Position : " + gameObject.transform.position.ToString());
             Modding.Logger.Log("Rotation : " + gameObject.transform.rotation.ToString());

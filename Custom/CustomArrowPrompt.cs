@@ -23,8 +23,13 @@ namespace Satchel{
             return go;
         }
 
+
         public static void GetAddCustomArrowPrompt(this GameObject go,Action OnPromptTrigger){
+            go.GetAddCustomArrowPrompt("Listen",OnPromptTrigger);
+        }
+        public static void GetAddCustomArrowPrompt(this GameObject go,string PromptText,Action OnPromptTrigger){
             var ap = go.GetAddComponent<CustomArrowPromptBehaviour>();
+            ap.PromptText = PromptText;
             ap.OnPromptTrigger = OnPromptTrigger;
         }
 
