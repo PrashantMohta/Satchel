@@ -136,9 +136,7 @@ namespace Satchel {
             if(testSprite.packed){
                 horizontal = (testSprite.packingRotation == SpritePackingRotation.FlipHorizontal || testSprite.packingRotation == SpritePackingRotation.Rotate180);
                 vertical = (testSprite.packingRotation == SpritePackingRotation.FlipVertical || testSprite.packingRotation == SpritePackingRotation.Rotate180);
-            }
-            Log($"rHorizontal : {horizontal}");
-            Log($"rvertical : {vertical}");
+            };
             
             if(horizontal || vertical){
                 origTex = currentSpriteTexture.Flip(horizontal,vertical);
@@ -148,13 +146,11 @@ namespace Satchel {
 
             // render on a new texture such that pivot is always at (50%,50%)
             pivot = testSprite.pivot;
-            Log("pivot " + pivot);
 
             var newSize = new Vector2Int(width,height);
             Vector2 pivotRatio =  new Vector2(0,0);
             pivotRatio.x =  pivot.x / (float)newSize.x; 
             pivotRatio.y = pivot.y / (float)newSize.y; 
-            Log("pivotRatio " + pivotRatio);
 
             var offset = new Vector2Int(0,0);
 
@@ -184,9 +180,6 @@ namespace Satchel {
                 newSize.y = (int)(height + (int)(2f*Mathf.Abs(deltaY)*height));
             }
 
-            Log("offset " + offset);
-            Log("size " + new Vector2Int(width,height));
-            Log("newSize " + newSize);
         
             outTex = TextureUtils.createTextureOfColor(newSize.x,newSize.y,new Color(0,0,0,0));
             for (x = 0; x < width; x++)

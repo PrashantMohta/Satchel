@@ -76,8 +76,6 @@ namespace Satchel {
             // We create a new texture so we don't change the old one!
             Texture2D outTex = new Texture2D(original.width,original.height);
 
-            Log("regin x = " + region.xMin + "," + region.xMax);
-            Log("regin y = " + region.yMin + "," + region.yMax);
 
             // These for loops are for running through each individual pixel and then replacing them in the new texture.
             for(int i=(int)region.xMin; i < (int)region.xMax; i++) {
