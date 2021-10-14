@@ -23,7 +23,9 @@ namespace Satchel{
     }
     public static class EnemyUtils{
     
-        
+        public static GameObject createCompanionFromPrefab(this GameObject CompanionPrefab){
+                return CompanionPrefab.createCompanionFromPrefab(false);
+        }        
         public static GameObject createCompanionFromPrefab(this GameObject CompanionPrefab,bool DestroyOnLoad = false){
             GameObject Companion = GameObject.Instantiate(CompanionPrefab);
             Companion.name = "Companion";

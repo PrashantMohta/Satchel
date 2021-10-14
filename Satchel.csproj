@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <VanillaFiles>.\Vanilla</VanillaFiles>
+    <VanillaFiles>..\Vanilla</VanillaFiles>
     <ModdingAPi>..\HollowKnight.Modding\OutputFinal</ModdingAPi>
     <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
   </PropertyGroup>
