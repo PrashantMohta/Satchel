@@ -118,10 +118,9 @@ namespace Satchel
             return copy;
         }
 
-        public static TAction GetAction<TAction>(this PlayMakerFSM self, string state, int index)
-            where TAction : FsmStateAction
+        public static TAction GetAction<TAction>(this PlayMakerFSM self, string state, int index) where TAction : FsmStateAction
         {
-            return (TAction) self.FsmStates.First(s => s.Name.Equals(state)).Actions[index];
+            return self.GetAction(state,index) as TAction;
         }
 
         public static FsmStateAction GetAction(this PlayMakerFSM self, string state, int index)
