@@ -124,6 +124,10 @@ namespace Satchel
             return (TAction) self.FsmStates.First(s => s.Name.Equals(state)).Actions[index];
         }
 
+        public static FsmStateAction GetAction(this PlayMakerFSM self, string state, int index)
+        {
+            return self.FsmStates.First(s => s.Name.Equals(state)).Actions[index];
+        }
         public static void AddAction(this PlayMakerFSM self, string state, FsmStateAction action)
         {
             FsmState fsmState = self.FsmStates.First(s => s.Name.Equals(state));
