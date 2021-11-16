@@ -19,6 +19,16 @@ namespace Satchel{
             { 
                 Instance = this;
             }
+            ModHooks.LanguageGetHook += LanguageGet;
+        }
+        
+        private static string LanguageGet(string key, string sheetTitle, string orig)
+        {
+            foreach (var KeyValue in CustomModMenuUtils.LanguageKeys)
+            {
+                if (key == KeyValue.Item1) return KeyValue.Item2;
+            }
+            return orig;
         }
     }
 }
