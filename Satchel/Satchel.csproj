@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{A67E8362-108D-4FDF-85F5-B8A482CA38D7}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Satchel</RootNamespace>
+        <AssemblyName>Satchel</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <HollowKnightFolder>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed</HollowKnightFolder>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+
+        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(HollowKnightFolder)\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="MMHOOK_Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(HollowKnightFolder)\MMHOOK_Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="MMHOOK_PlayMaker, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(HollowKnightFolder)\MMHOOK_PlayMaker.dll</HintPath>
+        </Reference>
+        <Reference Include="Mono.Cecil, Version=0.11.3.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
+            <HintPath>$(HollowKnightFolder)\Mono.Cecil.dll</HintPath>
+        </Reference>
+        <Reference Include="MonoMod.Utils, Version=21.4.29.1, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(HollowKnightFolder)\MonoMod.Utils.dll</HintPath>
+        </Reference>
+        <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(HollowKnightFolder)\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>$(HollowKnightFolder)\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(HollowKnightFolder)\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AssetBundleModule">
+            <HintPath>$(HollowKnightFolder)\UnityEngine.AssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+            <HintPath>$(HollowKnightFolder)\UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule">
+            <HintPath>$(HollowKnightFolder)\UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>$(HollowKnightFolder)\UnityEngine.TextCoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>$(HollowKnightFolder)\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(HollowKnightFolder)\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.JSONSerializeModule">
+            <HintPath>$(HollowKnightFolder)\UnityEngine.JSONSerializeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(HollowKnightFolder)\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+            <SpecificVersion>False</SpecificVersion>
+            <HintPath>$(HollowKnightFolder)\UnityEngine.ImageConversionModule.dll</HintPath>
+        </Reference>
+        <Reference Include="PlayMaker">
+            <HintPath>$(HollowKnightFolder)\PlayMaker.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>$(HollowKnightFolder)\UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Include="Core.cs" />
+      <Compile Include="Custom\CustomArrowPrompt.cs" />
+      <Compile Include="Custom\CustomDialogueManager.cs" />
+      <Compile Include="Custom\CustomDreamNailManager.cs" />
+      <Compile Include="Custom\CustomEnemyManager.cs" />
+      <Compile Include="Custom\CustomMapManager.cs" />
+      <Compile Include="Custom\CustomSaveSlotsManager.cs" />
+      <Compile Include="Custom\CustomScene.cs" />
+      <Compile Include="Mod.cs" />
+      <Compile Include="Monobehaviour\CustomAnimationFrames.cs" />
+      <Compile Include="Monobehaviour\CustomArrowPromptBehaviour.cs" />
+      <Compile Include="Monobehaviour\CustomEnemy.cs" />
+      <Compile Include="Monobehaviour\Unity\AlertRangeMarker.cs" />
+      <Compile Include="Monobehaviour\Unity\ChangeMeshColor.cs" />
+      <Compile Include="Monobehaviour\Unity\CustomEnemyMarker.cs" />
+      <Compile Include="Monobehaviour\Unity\SpriteRendererMaterial.cs" />
+      <Compile Include="Monobehaviour\Unity\WhoAmI.cs" />
+      <Compile Include="Utils\AnimationUtils.cs" />
+      <Compile Include="Utils\AssemblyUtils.cs" />
+      <Compile Include="Utils\CustomModMenuUtils.cs" />
+      <Compile Include="Utils\EnemyUtils.cs" />
+      <Compile Include="Utils\FsmUtils.cs" />
+      <Compile Include="Utils\GameObjectUtils.cs" />
+      <Compile Include="Utils\IoUtils.cs" />
+      <Compile Include="Utils\ISlighlyBetterMenuMod.cs" />
+      <Compile Include="Utils\MenuOptions.cs" />
+      <Compile Include="Utils\PlayerDataUtils.cs" />
+      <Compile Include="Utils\SceneUtils.cs" />
+      <Compile Include="Utils\Singleton.cs" />
+      <Compile Include="Utils\SpriteUtils.cs" />
+      <Compile Include="Utils\TextureUtils.cs" />
+      <Compile Include="Utils\WavUtils.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="README.md" />
+      <Content Include="res\lin\shaders" />
+      <Content Include="res\lin\shaders.manifest" />
+      <Content Include="res\mac\shaders" />
+      <Content Include="res\mac\shaders.manifest" />
+      <Content Include="res\saveartmask.png" />
+      <Content Include="res\saveartmask.png.kra" />
+      <Content Include="res\win\shaders" />
+      <Content Include="res\win\shaders.manifest" />
+    </ItemGroup>
+
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(HollowKnightFolder)\Mods\Satchel" />
+    </Target>
+</Project>
