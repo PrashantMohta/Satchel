@@ -122,7 +122,7 @@
       <Compile Include="Utils\FsmUtils.cs" />
       <Compile Include="Utils\GameObjectUtils.cs" />
       <Compile Include="Utils\IoUtils.cs" />
-      <Compile Include="Utils\ISlighlyBetterMenuMod.cs" />
+      <Compile Include="Utils\ISlightlyBetterMenuMod.cs" />
       <Compile Include="Utils\MenuOptions.cs" />
       <Compile Include="Utils\PlayerDataUtils.cs" />
       <Compile Include="Utils\SceneUtils.cs" />
