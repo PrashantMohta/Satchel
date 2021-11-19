@@ -21,9 +21,11 @@ namespace Satchel
         };
 
         //list that stores the order. max items per column is 2 thats why we use tuple
-        private List<(GameObject, GameObject)> MenuOrder = new List<(GameObject, GameObject)>();
+        internal List<GameObjectPair> MenuOrder = new List<GameObjectPair>();
 
         private ISlightlyBetterMenuMod Instance;
+
+        internal static GameObject TempObj = new GameObject("SatchelTempObj");
         
         //not really sure if we need this or not
         public ISlightlyBetterMenuMod()
@@ -80,16 +82,7 @@ namespace Satchel
             //go through the list given to us by user
             foreach (var menuOption in AllMenuOptions)
             {
-                menuOption.CreateMenuOption(c, modListMenu, Instance, out var go, out var listSubOptions);
-                Instance.MenuOrder.Add(go);
-                
-                if (listSubOptions != null)
-                {
-                    foreach (var gos in listSubOptions)
-                    {
-                        Instance.MenuOrder.Add(gos);
-                    }
-                }
+                menuOption.CreateMenuOption(c, modListMenu, Instance);
             }
         }
 
@@ -118,20 +111,20 @@ namespace Satchel
 
         public void Reorder()
         {
-            foreach ((GameObject,GameObject) go in Instance.MenuOrder)
+            foreach (GameObjectPair pair in Instance.MenuOrder)
             {
-                if (go.Item2 == null)
+                if (pair.RightGo == TempObj)
                 {
-                    ModifyNext(go.Item1);
+                    ModifyNext(pair.LeftGo);
                 }
-                else if (go.Item1 != null && go.Item2 != null)
+                else if (pair.LeftGo != TempObj && pair.RightGo != TempObj)
                 {
                     var l = ItemAdvance;
                     l.x = new RelLength(750f);
                     ChangeColumns(2, 0.5f, l, 0.5f);
 
-                    ModifyNext(go.Item1);
-                    ModifyNext(go.Item2);
+                    ModifyNext(pair.LeftGo);
+                    ModifyNext(pair.RightGo);
 
                     var k = ItemAdvance;
                     k.x = new RelLength(1920f);
@@ -158,6 +151,19 @@ namespace Satchel
             Columns = columns;
             Start += new RelVector2(x, y);
             ItemAdvance = relVector2;
+        }
+
+        public List<GameObject> GetGameObjectList()
+        {
+            List<GameObject> GoList = new List<GameObject>();
+            foreach (var menuOptionGos in MenuOrder)
+            {
+                if (menuOptionGos.LeftGo != TempObj) GoList.Add(menuOptionGos.LeftGo);
+                if (menuOptionGos.RightGo != TempObj) GoList.Add(menuOptionGos.RightGo);
+                
+            }
+
+            return GoList;
         }
 
     }

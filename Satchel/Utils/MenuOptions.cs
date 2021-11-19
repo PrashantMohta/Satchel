@@ -7,69 +7,57 @@ using UnityEngine;
 
 namespace Satchel.MenuOptions
 {
-    //just a bunch of classes we need
-    public abstract class MenuOption
-    {
-        public string Name;
 
-        public abstract void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject, GameObject)> ListSubOptions);
+    public class GameObjectPair
+    {
+        public GameObject LeftGo;
+        public GameObject RightGo;
+
+        public GameObjectPair(GameObject go1, GameObject RightGo)
+        {
+            this.LeftGo = LeftGo;
+            this.RightGo = RightGo;
+        }
+        
+        public GameObjectPair(GameObject LeftGo)
+        {
+            this.LeftGo = LeftGo;
+            this.RightGo = ISlightlyBetterMenuMod.TempObj;
+        }
+        public GameObjectPair(GameObjectPair menuOptionGos)
+        {
+            this.LeftGo = menuOptionGos.LeftGo;
+            this.RightGo = menuOptionGos.RightGo;
+        }
+        public GameObjectPair(GameObjectPair LeftOptionGo, GameObjectPair RightOptionGo)
+        {
+            this.LeftGo = LeftOptionGo.LeftGo;
+            this.RightGo = RightOptionGo.LeftGo;
+        }
+        public GameObjectPair()
+        {
+            this.LeftGo = ISlightlyBetterMenuMod.TempObj;
+            this.RightGo = ISlightlyBetterMenuMod.TempObj;
+        }
+    }
+    //just a bunch of classes we need
+    public interface MenuOption
+    {
+        string Name { get; }
+
+        public abstract GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true);
     }
 
     public interface PrimaryMenuOption
     {
-        public abstract void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject, GameObject)> ListSubOptions);
-        public abstract void AddUpdateMenu(Action UpdateMenu);
+        public abstract GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true);
+        public abstract void AddUpdateMenuAction(Action UpdateMenu);
     }
-    public class KeyAndButtonBind : MenuOption
-    {
-        public string KeyBindName;
-        public InControl.PlayerAction KeyBindAction;
-        public string ButtonBindName;
-        public InControl.PlayerAction ButtonBindAction;
-        
-        public KeyAndButtonBind(string keyBindName, InControl.PlayerAction keyBindAction, string buttonBindName, InControl.PlayerAction buttonBindAction)
-        {
-            KeyBindName = keyBindName;
-            KeyBindAction = keyBindAction;
-            ButtonBindName = buttonBindName;
-            ButtonBindAction = buttonBindAction;
-        }
-        
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
-        {
-            var layout = c.Layout as RegularGridLayout;
-            var l = layout.ItemAdvance;
-            l.x = new RelLength(750f);
-            layout.ChangeColumns(2, newSize: l);
-            
-            c.AddKeybind(
-                KeyBindName,
-                KeyBindAction,
-                new KeybindConfig
-                {
-                    CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
-                    Label = KeyBindName,
-                }, out var option);
-
-            c.AddButtonBind(
-                ButtonBindName,
-                ButtonBindAction,
-                new ButtonBindConfig
-                {
-                    CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
-                    Label = ButtonBindName,
-                }, out var option2);
-            
-            l.x = new RelLength(1920f);
-            layout.ChangeColumns(1, 0.25f, l);
-            
-            go = (option.gameObject, option2.gameObject);
-            ListSubOptions = null;
-        }
-    }
+   
     public class KeyBind : MenuOption
     {
         public InControl.PlayerAction PlayerAction;
+        public string Name { get; }
 
         public KeyBind(string name,InControl.PlayerAction playerAction)
         {
@@ -77,7 +65,7 @@ namespace Satchel.MenuOptions
             PlayerAction = playerAction;
         }
 
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddKeybind(
                 Name,
@@ -87,20 +75,25 @@ namespace Satchel.MenuOptions
                     CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
                     Label = Name,
                 }, out var option);
-            go = (option.gameObject, null);
-            ListSubOptions = null;
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+            }
+
+            return new GameObjectPair(option.gameObject);
         }
     }
     public class ButtonBind : MenuOption
     {
         public InControl.PlayerAction PlayerAction;
+        public string Name { get; }
 
         public ButtonBind(string name, InControl.PlayerAction playerAction)
         {
             Name = name;
             PlayerAction = playerAction;
         }
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddButtonBind(
                 Name,
@@ -110,14 +103,20 @@ namespace Satchel.MenuOptions
                     CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
                     Label = Name,
                 }, out var option);
-            go = (option.gameObject, null);
-            ListSubOptions = null;
+            
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+            }
+
+            return new GameObjectPair(option.gameObject);
         }
     }
     
     //plagerism isnt bad if its used in a good way OK!!!!!!
     public class HorizontalOption : MenuOption, PrimaryMenuOption
     {
+        public string Name { get; }
         public string Description;
         public string[] Values;
         public Action<int> ApplySetting;
@@ -132,7 +131,7 @@ namespace Satchel.MenuOptions
             LoadSetting= loadSetting;
         }
 
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddHorizontalOption(
                 Name,
@@ -150,11 +149,15 @@ namespace Satchel.MenuOptions
                     Style = HorizontalOptionStyle.VanillaStyle
                 },
                 out var option);
-            go = (option.gameObject, null);
-            ListSubOptions = null;
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+            }
+
+            return new GameObjectPair(option.gameObject);
         }
 
-        public void AddUpdateMenu(Action UpdateMenu)
+        public void AddUpdateMenuAction(Action UpdateMenu)
         {
             ApplySetting += _ => UpdateMenu.Invoke();
         }
@@ -163,7 +166,8 @@ namespace Satchel.MenuOptions
     {
         public Action<UnityEngine.UI.MenuButton> SubmitAction;
         public string Description;
-
+        public string Name { get; }
+        
         public MenuButton(string name, string description, Action<UnityEngine.UI.MenuButton> submitAction)
         {
             Name = name;
@@ -171,7 +175,7 @@ namespace Satchel.MenuOptions
             SubmitAction = submitAction;
         }
         
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddMenuButton(
                 Name,
@@ -187,11 +191,15 @@ namespace Satchel.MenuOptions
                     SubmitAction = SubmitAction,
                 }, out var option);
 
-            go = (option.gameObject, null);
-            ListSubOptions = null;
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+            }
+
+            return new GameObjectPair(option.gameObject);
         }
 
-        public void AddUpdateMenu(Action UpdateMenu)
+        public void AddUpdateMenuAction(Action UpdateMenu)
         {
             SubmitAction += _ => UpdateMenu.Invoke();
         }
@@ -199,6 +207,7 @@ namespace Satchel.MenuOptions
     public class TextPanel : MenuOption
     {
         public float Width;
+        public string Name { get; }
 
         public TextPanel(string name, float width = 1500f)
         {
@@ -206,7 +215,7 @@ namespace Satchel.MenuOptions
             Width = width;
         }
 
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddTextPanel(
                 Name,
@@ -218,8 +227,12 @@ namespace Satchel.MenuOptions
                     Size = 46,
                     Text = Name
                 }, out var option);
-            go = (option.gameObject, null);
-            ListSubOptions = null;
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+            }
+
+            return new GameObjectPair(option.gameObject);
         }
     }
     public class StaticPanel: MenuOption
@@ -227,6 +240,9 @@ namespace Satchel.MenuOptions
         //the paramater that will be passed in is the static panel that you'll have to make the new object the parent of
         public Action<GameObject> CreateCustomItem;
         public float Width;
+        public string Name { get; }
+        
+        
         public StaticPanel(string name, Action<GameObject> createCustomItem, float width = 1500f)
         {
             Name = name;
@@ -234,87 +250,128 @@ namespace Satchel.MenuOptions
             Width = width;
         }
 
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddStaticPanel(
                 Name,
                 new RelVector2(new Vector2(Width, 105f)),
                 out var option);
             CreateCustomItem.Invoke(option);
-            go = (option.gameObject, null);
-            ListSubOptions = null;
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+            }
+
+            return new GameObjectPair(option.gameObject);
         }
     }
 
-    public class ModToggleOption: MenuOption, PrimaryMenuOption
+    public class ModToggleOption: MenuOption
     {
         public ModToggleDelegates ToggleDelegates;
         public string Description;
-        private Action<int> ApplySetting;
+        public string Name { get; }
         
         public ModToggleOption(string name, ModToggleDelegates toggleDelegates, string description)
         {
             Name = name;
             ToggleDelegates = toggleDelegates;
             Description = description;
-            ApplySetting = i => toggleDelegates.SetModEnabled(i == 0);
-            
         }
 
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             var horizontalOption = new HorizontalOption(Name, new[] {"On", "Off"}, Description,
-                i => { ToggleDelegates.SetModEnabled(i == 0);}, 
-                () => ToggleDelegates.GetModEnabled() ? 0 : 1);
+                i =>
+                {
+                    ToggleDelegates.SetModEnabled(i == 0);
+                }, () => ToggleDelegates.GetModEnabled() ? 0 : 1);
             
-            horizontalOption.CreateMenuOption(c, modlistMenu, Instance,out go, out ListSubOptions);
-        }
+            var option = horizontalOption.CreateMenuOption(c, modlistMenu, Instance, false);
+            
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(option);
+            }
 
-        public void AddUpdateMenu(Action UpdateMenu)
-        {
-            ApplySetting +=  _ => UpdateMenu.Invoke();
+            return new GameObjectPair(option);
         }
     }
 
     public class HideableMenuOption : MenuOption
     {
-        public PrimaryMenuOption MainOption;
+        public PrimaryMenuOption PrimaryOption;
         public List<MenuOption> SubOptions;
         //the function that will return a bool. the bool will determine whether the sub options should show or not
         public Func<bool> EnableSubOptions;
+        public string Name { get; }
         
-        private List<(GameObject,GameObject)> AllSubOptions = new List<(GameObject,GameObject)>();
+        private List<GameObjectPair> AllSubOptions = new List<GameObjectPair>();
 
-        public HideableMenuOption(PrimaryMenuOption mainOption, List<MenuOption> subOptions,Func<bool> enableSubOptions)
+        public HideableMenuOption(PrimaryMenuOption primaryOption, List<MenuOption> subOptions,Func<bool> enableSubOptions)
         {
-            MainOption = mainOption;
+            PrimaryOption = primaryOption;
             SubOptions = subOptions;
             EnableSubOptions = enableSubOptions;
         }
 
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
-            MainOption.AddUpdateMenu(() =>
+            PrimaryOption.AddUpdateMenuAction(() =>
             {
                 bool enable = EnableSubOptions.Invoke();
-                foreach ((GameObject,GameObject) go in AllSubOptions)
+                foreach (GameObjectPair gos in AllSubOptions)
                 {
-                    go.Item1.SetActive(enable);
-                    if (go.Item2 != null) go.Item2.SetActive(enable);
+                    if (gos.LeftGo != ISlightlyBetterMenuMod.TempObj ) gos.LeftGo.SetActive(enable);
+                    if (gos.RightGo != ISlightlyBetterMenuMod.TempObj ) gos.RightGo.SetActive(enable);
                 }
                 Instance.Reorder();
             });
             
-            MainOption.CreateMenuOption(c, modlistMenu, Instance, out var primaryoption, out _);
+            var primaryoption = PrimaryOption.CreateMenuOption(c, modlistMenu, Instance, false);
+            
+            Instance.MenuOrder.Add(primaryoption);
             
             foreach (MenuOption menuOption in SubOptions)
             {
-                menuOption.CreateMenuOption(c, modlistMenu,Instance,out var option, out _);
+                var option = menuOption.CreateMenuOption(c, modlistMenu,Instance, false);
                 AllSubOptions.Add(option);
+                Instance.MenuOrder.Add(option);
             }
 
-            go = primaryoption;
-            ListSubOptions = AllSubOptions;
+            return primaryoption;
+        }
+    }
+    
+    public class KeyAndButtonBind : MenuOption
+    {
+        public string KeyBindName;
+        public InControl.PlayerAction KeyBindAction;
+        public string ButtonBindName;
+        public InControl.PlayerAction ButtonBindAction;
+        public string Name { get; }
+        
+        public KeyAndButtonBind(string keyBindName, InControl.PlayerAction keyBindAction, string buttonBindName, InControl.PlayerAction buttonBindAction)
+        {
+            KeyBindName = keyBindName;
+            KeyBindAction = keyBindAction;
+            ButtonBindName = buttonBindName;
+            ButtonBindAction = buttonBindAction;
+        }
+        
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
+        {
+
+            var NewOption = new SideBySideOptions(new KeyBind(KeyBindName, KeyBindAction),
+                new ButtonBind(ButtonBindName, ButtonBindAction));
+
+            var option = NewOption.CreateMenuOption(c, modlistMenu, Instance, false);
+            
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(option);
+            }
+            return new GameObjectPair(option);
         }
     }
 
@@ -322,6 +379,7 @@ namespace Satchel.MenuOptions
     {
         public MenuOption LeftOption;
         public MenuOption RightOption;
+        public string Name { get; }
 
         public SideBySideOptions(MenuOption leftOption, MenuOption rightOption)
         {
@@ -329,31 +387,33 @@ namespace Satchel.MenuOptions
             RightOption = rightOption;
         }
 
-        public override void CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, out (GameObject, GameObject) go, out List<(GameObject,GameObject)> ListSubOptions)
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu,
+            ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
-            
+
             if (LeftOption is KeyAndButtonBind or SideBySideOptions ||
                 RightOption is KeyAndButtonBind or SideBySideOptions)
             {
-                go = (null, null);
-                ListSubOptions = null;
                 Modding.Logger.LogError("[Satchel] - You cannot create Side by side options inside itself");
-                return;
+                return new GameObjectPair();
             }
-            
+
             var layout = c.Layout as RegularGridLayout;
             var l = layout.ItemAdvance;
             l.x = new RelLength(750f);
             layout.ChangeColumns(2, newSize: l);
 
-            LeftOption.CreateMenuOption(c,modlistMenu,Instance,out var option1, out _);
-            RightOption.CreateMenuOption(c, modlistMenu,Instance ,out var option2, out _);
-            
+            var option1 = LeftOption.CreateMenuOption(c, modlistMenu, Instance, false);
+            var option2 = RightOption.CreateMenuOption(c, modlistMenu, Instance, false);
+
             l.x = new RelLength(1920f);
             layout.ChangeColumns(1, 0.25f, l);
 
-            go = (option1.Item1, option2.Item2);
-            ListSubOptions = null;
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(new GameObjectPair(option1, option2));
+            }
+            return new GameObjectPair(option1, option2);
         }
     }
 }
