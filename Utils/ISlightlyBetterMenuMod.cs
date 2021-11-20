@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Modding.Menu;
 using Modding.Menu.Config;
 using Satchel.MenuOptions;
@@ -35,13 +36,13 @@ namespace Satchel
             ResetPositioners();
         }
 
-        public MenuScreen GetMenuScreen(string Title, MenuScreen modListMenu, List<MenuOption> AllMenuOptions)
+        public MenuScreen GetMenuScreen(string Title, MenuScreen modListMenu, IMenuOption[] AllMenuOptions)
         {
             MenuBuilder Menu = CustomModMenuUtils.CreateMenuBuilder(Title); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
             
             //mapi code from IMenuMod
-            if (AllMenuOptions.Count > 5)
+            if (AllMenuOptions.Count() > 5)
             {
                 Menu.AddContent(new NullContentLayout(), c => c.AddScrollPaneContent(
                     new ScrollbarConfig
@@ -60,7 +61,7 @@ namespace Satchel
                             Offset = new Vector2(-310f, 0f)
                         }
                     },
-                    new RelLength(AllMenuOptions.Count * 105f),
+                    new RelLength(AllMenuOptions.Count() * 105f),
                     RegularGridLayout.CreateVerticalLayout(105f),
                     d => AddModMenuContent(AllMenuOptions, d, modListMenu)
                 ));
@@ -77,7 +78,7 @@ namespace Satchel
             return Menu.Build();
         }
 
-        private void AddModMenuContent(List<MenuOption> AllMenuOptions, ContentArea c, MenuScreen modListMenu)
+        private void AddModMenuContent(IMenuOption[] AllMenuOptions, ContentArea c, MenuScreen modListMenu)
         {
             //go through the list given to us by user
             foreach (var menuOption in AllMenuOptions)
