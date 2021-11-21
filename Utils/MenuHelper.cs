@@ -26,7 +26,16 @@ namespace Satchel.Utils.MenuHelper
             betterMenuMod = new ISlightlyBetterMenuMod();
             return betterMenuMod.GetMenuScreen(Title, modListMenu, MenuOptions); 
         }
-        #pragma warning restore CS0618 // Type or member is obsolete
+        /// <summary>
+        /// Generates a new MenuScreen.
+        /// </summary>
+        /// <param name="Title">The title to be displayed.</param>
+        /// <param name="modListMenu">The MenuScreen to add.</param>
+        /// <param name="MenuOptions">The IMenuOptions to add.</param>
+        /// <returns>The generated MenuScreen.</returns>
+        public static MenuScreen CreateMenuScreen(string Title, MenuScreen modListMenu, IMenuOption[] MenuOptions) =>
+            new ISlightlyBetterMenuMod().GetMenuScreen(Title, modListMenu, MenuOptions);
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
 #nullable enable
@@ -484,9 +493,10 @@ namespace Satchel.Utils.MenuHelper
     [Obsolete("This is an example, and is not to be used in any way.", true)]
     internal sealed class BuildExample
     {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public MenuScreen GetMenuScreen(MenuScreen modListMenu, ModToggleDelegates? toggleDelegates)
         {
-            return new ISlightlyBetterMenuMod().GetMenuScreen("", modListMenu, new MenuOptionBuilder()
+            return MenuHelper.CreateMenuScreen("", modListMenu, new MenuOptionBuilder()
                 .AddKeyBind("Test", null, out _) //Will add a KeyBind.
                 .AddKeyBind("Test2", null, out var Bind) //Will add a KeyBind and store it.
                 .AddTextPanel("Test3", out _, 1000f) //Will add a TextPanel.
@@ -497,6 +507,7 @@ namespace Satchel.Utils.MenuHelper
                 .AddTextPanel("", out _) //Will log an error saying the TextPanel couldn't be added. (Because the name value is an empty string.)
                 .Build()); //Builds the MenuOptionBuilder.
         }
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     }
 #nullable restore
 }
