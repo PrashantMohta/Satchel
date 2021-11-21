@@ -137,9 +137,9 @@
     <Compile Include="Custom\CustomScene.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="res\mac\shaders" />
-    <EmbeddedResource Include="res\lin\shaders" />
-    <EmbeddedResource Include="res\win\shaders" />
+    <EmbeddedResource Include="Assets\Build\mac\shaders" />
+    <EmbeddedResource Include="Assets\Build\lin\shaders" />
+    <EmbeddedResource Include="Assets\Build\win\shaders" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
