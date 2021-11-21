@@ -394,6 +394,35 @@ namespace Satchel.Utils.MenuHelper
                 options.Add(option);
             }
             return this;
+        } 
+        
+        /// <summary>
+        /// Adds the provided VolumeSlider to the MenuOptionBuilder.
+        /// </summary>
+        /// <param name="slider">The Slider to add.</param>
+        /// <returns>The current MenuOptionBuilder.</returns>
+        public override MenuOptionBuilder AddVolumeSlider(VolumeSlider slider)
+        {
+            if (!disposedValue && options != null) this.options.Add(slider);
+            else Modding.Logger.LogError("[Satchel] - Couldn't create Volume Slider.");
+            return this;
+        }
+        
+        /// <summary>
+        /// Creates a new VolumeSlider instance.
+        /// </summary>
+        /// <param name="name">The name to be displayed.</param>
+        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
+        /// <param name="savedValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
+        public override MenuOptionBuilder AddVolumeSlider(string name, Action<float> storeValue, Func<int> savedValue, out VolumeSlider? option)
+        {
+            option = default;
+            if (!disposedValue && !string.IsNullOrEmpty(name))
+            {
+                option = new VolumeSlider(name,storeValue,savedValue);
+                options.Add(option);
+            }
+            return this;
         }
         #endregion
 
@@ -484,6 +513,8 @@ namespace Satchel.Utils.MenuHelper
         public abstract MenuOptionBuilder AddStaticPanel(string name, Action<GameObject> createCustomItem, out StaticPanel? panel, float width = 1500f);
         public abstract MenuOptionBuilder AddTextPanel(TextPanel panel);
         public abstract MenuOptionBuilder AddTextPanel(string name, out TextPanel? panel, float width = 1500f);
+        public abstract MenuOptionBuilder AddVolumeSlider(VolumeSlider slider);
+        public abstract MenuOptionBuilder AddVolumeSlider(string name, Action<float> storeValue, Func<int> savedValue, out VolumeSlider? option);
         public abstract IMenuOption[]? Build();
         public abstract object Clone();
         public abstract MenuOptionBuilder Reset();
