@@ -12,10 +12,21 @@ namespace Satchel.Utils.MenuHelper
 {
     public class MenuHelper
     {
-#pragma warning disable CS0618 // Type or member is obsolete
-        public static MenuScreen CreateMenuScreen(string Title, MenuScreen modListMenu, IMenuOption[] MenuOptions)
-            => new ISlightlyBetterMenuMod().GetMenuScreen(Title, modListMenu, MenuOptions);
-#pragma warning restore CS0618 // Type or member is obsolete
+        #pragma warning disable CS0618 // Type or member is obsolete
+        /// <summary>
+        /// Generates a new MenuScreen.
+        /// </summary>
+        /// <param name="Title">The title to be displayed.</param>
+        /// <param name="modListMenu">The MenuScreen to add.</param>
+        /// <param name="MenuOptions">The IMenuOptions to add.</param>
+        /// <param name="betterMenuMod">The created ISlightlyBetterMenuMod. (Can in most cases be assigned to discard.)</param>
+        /// <returns>The generated MenuScreen.</returns>
+        public static MenuScreen CreateMenuScreen(string Title, MenuScreen modListMenu, IMenuOption[] MenuOptions, out ISlightlyBetterMenuMod betterMenuMod)
+        {
+            betterMenuMod = new ISlightlyBetterMenuMod();
+            return betterMenuMod.GetMenuScreen(Title, modListMenu, MenuOptions); 
+        }
+        #pragma warning restore CS0618 // Type or member is obsolete
     }
 
 #nullable enable
@@ -23,7 +34,7 @@ namespace Satchel.Utils.MenuHelper
     /// A class used to build MenuOptions.
     /// </summary>
     [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
-    public class MenuOptionBuilder : MenuOptionBuilderBase, ICloneable
+    public class MenuOptionBuilder: MenuOptionBuilderBase, ICloneable
     {
 
         private readonly List<IMenuOption> options = new();
