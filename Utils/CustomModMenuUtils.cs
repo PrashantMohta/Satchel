@@ -103,6 +103,7 @@ namespace Satchel
         private static void GetMusicSlider(string TextToShow, GameObject Parent, Action<float> StoreValue, Func<int> SaveValue)
         {
             string key = $"Satchel_Music_Slider_Key_For_{TextToShow}_{LanguageKeys.Count}";
+            LanguageKeys.Add((key, TextToShow));
             GameObject MusicSlider = UIManager.instance.gameObject.transform.Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject;
             GameObject VolumeSlider = Object.Instantiate(MusicSlider, Parent.transform);
             MenuAudioSlider VolumeSlider_MenuAudioSlider = VolumeSlider.GetComponent<MenuAudioSlider>();
