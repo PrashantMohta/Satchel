@@ -1,20 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Modding.Menu;
 using Modding.Menu.Config;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
-using System;
-using System.IO;
-using System.Diagnostics;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using GlobalEnums;
 using Modding;
-using static Modding.Logger;
 
 namespace Satchel
 {
@@ -112,6 +103,7 @@ namespace Satchel
         private static void GetMusicSlider(string TextToShow, GameObject Parent, Action<float> StoreValue, Func<int> SaveValue)
         {
             string key = $"Satchel_Music_Slider_Key_For_{TextToShow}_{LanguageKeys.Count}";
+            LanguageKeys.Add((key, TextToShow));
             GameObject MusicSlider = UIManager.instance.gameObject.transform.Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject;
             GameObject VolumeSlider = Object.Instantiate(MusicSlider, Parent.transform);
             MenuAudioSlider VolumeSlider_MenuAudioSlider = VolumeSlider.GetComponent<MenuAudioSlider>();
