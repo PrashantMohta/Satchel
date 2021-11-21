@@ -1,20 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Modding.Menu;
 using Modding.Menu.Config;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
-using System;
-using System.IO;
-using System.Diagnostics;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using GlobalEnums;
 using Modding;
-using static Modding.Logger;
 
 namespace Satchel
 {

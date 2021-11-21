@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Modding.Menu;
@@ -36,6 +37,7 @@ namespace Satchel
             ResetPositioners();
         }
 
+        [Obsolete("Use CreateMenuScreen instead.", false)]
         public MenuScreen GetMenuScreen(string Title, MenuScreen modListMenu, IMenuOption[] AllMenuOptions)
         {
             MenuBuilder Menu = CustomModMenuUtils.CreateMenuBuilder(Title); //create main screen
