@@ -103,14 +103,10 @@
 
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
-    <Compile Include="Utils\MenuHelper.cs" />
-    <Compile Include="Utils\CustomModMenuUtils.cs" />
     <Compile Include="Utils\EnemyUtils.cs" />
     <Compile Include="Utils\FsmUtils.cs" />
     <Compile Include="Utils\GameObjectUtils.cs" />
     <Compile Include="Utils\IoUtils.cs" />
-    <Compile Include="Utils\ISlightlyBetterMenuMod.cs" />
-    <Compile Include="Utils\MenuOptions.cs" />
     <Compile Include="Utils\PlayerDataUtils.cs" />
     <Compile Include="Utils\SceneUtils.cs" />
     <Compile Include="Utils\Singleton.cs" />
@@ -135,6 +131,11 @@
     <Compile Include="Custom\CustomMapManager.cs" />
     <Compile Include="Custom\CustomSaveSlotsManager.cs" />
     <Compile Include="Custom\CustomScene.cs" />
+
+    <Compile Include="BetterMenus\MenuOptions.cs" />
+    <Compile Include="BetterMenus\MenuHelper.cs" />
+    <Compile Include="BetterMenus\ISlightlyBetterMenuMod.cs" />
+    <Compile Include="BetterMenus\CustomModMenuUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Build\mac\shaders" />
