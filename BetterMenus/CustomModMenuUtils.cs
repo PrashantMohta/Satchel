@@ -92,15 +92,14 @@ namespace Satchel
                     }));
         }
 
-        public static ContentArea AddVolumeSlider(this ContentArea content, string TextToShow, float height, Action<float> StoreValue, Func<int> SaveValue, out GameObject obj)
+        public static ContentArea AddVolumeSlider(this ContentArea content, string TextToShow, float height, Action<float> StoreValue, Func<int> SavedValue, out GameObject obj)
         {
             content.AddStaticPanel(TextToShow, new RelVector2(new Vector2(200f, height)), out GameObject parent);
-            GetMusicSlider(TextToShow, parent, StoreValue, SaveValue);
-            obj = parent;
+            obj = GetMusicSlider(TextToShow, parent, StoreValue, SavedValue);
             return content;
         }
 
-        private static void GetMusicSlider(string TextToShow, GameObject Parent, Action<float> StoreValue, Func<int> SaveValue)
+        private static GameObject GetMusicSlider(string TextToShow, GameObject Parent, Action<float> StoreValue, Func<int> SavedValue)
         {
             string key = $"Satchel_Music_Slider_Key_For_{TextToShow}_{LanguageKeys.Count}";
             LanguageKeys.Add((key, TextToShow));
@@ -122,9 +121,11 @@ namespace Satchel
             VolumeSlider.transform.Find("Label").GetComponent<AutoLocalizeTextUI>().textKey = key;
             VolumeSlider.SetActive(true);
             //to make sure when go is cloned, it gets the value of the previous session not the value of the music slider
-            int currentValue = SaveValue.Invoke();
+            int currentValue = SavedValue.Invoke();
             VolumeSlider_MenuAudioSlider.UpdateTextValue(currentValue);
             VolumeSlider_Slider.value = currentValue;
+
+            return VolumeSlider;
         }
 
 

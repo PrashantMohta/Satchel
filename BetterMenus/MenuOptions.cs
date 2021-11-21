@@ -34,7 +34,7 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Generates a GameObjectPair from the provided left GameObject. <para>The right GameObject is gotten from temp.</para>
+        /// Generates a GameObjectPair when there is only 1 GameObject
         /// </summary>
         /// <param name="LeftGo">The left GameObject to add.</param>
         public GameObjectPair(GameObject LeftGo)
@@ -52,7 +52,7 @@ namespace Satchel.MenuOptions
             RightGo = menuOptionGos.RightGo;
         }
         /// <summary>
-        /// Generates a new GameObjectPair from 2 GameObjectPairs. <para>The left GameObject is gotten from LeftOptionGo and vice versa.</para>
+        /// Generates a new GameObjectPair from 2 GameObjectPairs that contain 1 Real GameObject each
         /// </summary>
         /// <param name="LeftOptionGo">The left GameObjectPair.</param>
         /// <param name="RightOptionGo">The right GameObjectPair.</param>
@@ -62,7 +62,7 @@ namespace Satchel.MenuOptions
             RightGo = RightOptionGo.LeftGo;
         }
         /// <summary>
-        /// Generates a new GameObjectPair from temp.
+        /// Generates an empty GameObjectPair. To be used as instead of null
         /// </summary>
         public GameObjectPair()
         {
@@ -112,9 +112,9 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddKeybind(
@@ -155,9 +155,9 @@ namespace Satchel.MenuOptions
             PlayerAction = playerAction;
         }
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddButtonBind(
@@ -178,7 +178,6 @@ namespace Satchel.MenuOptions
         }
     }
     
-    //plagerism isnt bad if its used in a good way OK!!!!!!
     /// <summary>
     /// A horizontal option.
     /// </summary>
@@ -223,9 +222,9 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddHorizontalOption(
@@ -293,9 +292,9 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddMenuButton(
@@ -355,9 +354,9 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddTextPanel(
@@ -383,9 +382,8 @@ namespace Satchel.MenuOptions
     /// </summary>
     public class StaticPanel: IMenuOption
     {
-        //the paramater that will be passed in is the static panel that you'll have to make the new object the parent of
         /// <summary>
-        /// The Action(GameObject) te be called on creation.
+        /// Use this Action to create the Custom Object you want to add. The GameObject paramater in the action is the GameObject that will be the parent of of custom object
         /// </summary>
         public Action<GameObject> CreateCustomItem;
         /// <summary>
@@ -411,9 +409,9 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             c.AddStaticPanel(
@@ -462,9 +460,9 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             var horizontalOption = new HorizontalOption(Name, new[] {"On", "Off"}, Description,
@@ -523,9 +521,9 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
             PrimaryOption.AddUpdateMenuAction(() =>
@@ -596,9 +594,9 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
         {
 
@@ -624,10 +622,12 @@ namespace Satchel.MenuOptions
         /// The left options.
         /// </summary>
         public IMenuOption LeftOption;
+
         /// <summary>
         /// The right options.
         /// </summary>
         public IMenuOption RightOption;
+
         /// <summary>
         /// The name to be displayed.
         /// </summary>
@@ -645,13 +645,15 @@ namespace Satchel.MenuOptions
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Adds the MenuOption into the ModMenu.
         /// </summary>
-        /// <returns>The created GameObjectPair.</returns>
-        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance,
+            bool AddToList = true)
         {
 
-            if (LeftOption is KeyAndButtonBind or SideBySideOptions || RightOption is KeyAndButtonBind or SideBySideOptions)
+            if (LeftOption is KeyAndButtonBind or SideBySideOptions ||
+                RightOption is KeyAndButtonBind or SideBySideOptions)
             {
                 Modding.Logger.LogError("[Satchel] - You cannot create Side by side options inside itself");
                 return new GameObjectPair();
@@ -672,7 +674,51 @@ namespace Satchel.MenuOptions
             {
                 Instance.MenuOrder.Add(new GameObjectPair(option1, option2));
             }
+
             return new GameObjectPair(option1, option2);
+        }
+    }
+    public class VolumeSlider : IMenuOption
+    {
+        /// <summary>
+        /// The name to be displayed.
+        /// </summary>
+        public string Name { get; }
+        
+        /// <summary>
+        /// The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.
+        /// </summary>
+        public Action<float> StoreValue;
+        
+        /// <summary>
+        /// The initial value that you need the volume slider to be, probably from previous session or a default
+        /// </summary>
+        public Func<int> SavedValue;
+
+
+        /// <summary>
+        /// Creates a new VolumeSlider instance.
+        /// </summary>
+        /// <param name="name">The name to be displayed.</param>
+        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
+        /// <param name="savedValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
+        public VolumeSlider(string name, Action<float> storeValue, Func<int> savedValue)
+        {
+            Name = name;
+            StoreValue = storeValue;
+            SavedValue = savedValue;
+        }
+
+        public GameObjectPair CreateMenuOption(ContentArea c, MenuScreen modlistMenu, ISlightlyBetterMenuMod Instance, bool AddToList = true)
+        {
+            c.AddVolumeSlider(Name, 105f, StoreValue, SavedValue, out var option);
+
+            if (AddToList)
+            {
+                Instance.MenuOrder.Add(new GameObjectPair(option));
+            }
+
+            return new GameObjectPair(option);
         }
     }
 }
