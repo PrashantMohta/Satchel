@@ -1,21 +1,23 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
-using Satchel.MenuOptions;
+using Satchel.BetterMenus;
 using UnityEngine;
 using UnityEngine.UI;
+namespace Satchel.BetterMenus{
+    public class Menu : MenuElement{
+        private readonly List<Element> Elements = new();
 
-namespace Satchel
-{
-    public class ISlightlyBetterMenuMod
-    {
+
         #region Fields
         //some private atributes we need because we intent to reorder the menu
         private int Columns = 1;
         private int Index = 0;
-        private ISlightlyBetterMenuMod Instance;
+        private Menu Instance;
         private RelVector2 ItemAdvance = new RelVector2(new Vector2(0.0f, -105f));
         private AnchoredPosition Start = new AnchoredPosition
         {
@@ -31,11 +33,14 @@ namespace Satchel
 
         //not really sure if we need this or not
         /// <summary>
-        /// Creates a new ISlightlyBetterMenuMod instance. Generally, this is not needed.
-        /// <para/>Use MenuHelper.CreateMenuScreen for creating custom menus instead.
+        /// Creates a new Menu instance. Generally, this is not needed.
+        /// <para/>Use Menu.Create for creating custom menus instead.
         /// </summary>
-        public ISlightlyBetterMenuMod()
+        public Menu()
         {
+            Parent = null; // menu has no Parent
+            gameObject = null; // no go
+
             Instance = this;
             MenuOrder.Clear();
             ResetPositioners();
@@ -46,12 +51,11 @@ namespace Satchel
         /// </summary>
         /// <param name="Title">The title that should be displayed.</param>
         /// <param name="modListMenu">The MenuScreen to add.</param>
-        /// <param name="AllMenuOptions">All the IMenuOptions that should be added.</param>
+        /// <param name="AllMenuOptions">All the Elements that should be added.</param>
         /// <returns>The created MenuScreen.</returns>
-        [Obsolete("Use MenuHelper.CreateMenuScreen instead.", false)]
-        public MenuScreen GetMenuScreen(string Title, MenuScreen modListMenu, IMenuOption[] AllMenuOptions)
+        public MenuScreen GetMenuScreen(string Title, MenuScreen modListMenu, Element[] AllMenuOptions)
         {
-            MenuBuilder Menu = CustomModMenuUtils.CreateMenuBuilder(Title); //create main screen
+            MenuBuilder Menu = Utils.CreateMenuBuilder(Title); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
             
             //mapi code from IMenuMod
@@ -91,12 +95,12 @@ namespace Satchel
             return Menu.Build();
         }
 
-        private void AddModMenuContent(IMenuOption[] AllMenuOptions, ContentArea c, MenuScreen modListMenu)
+        private void AddModMenuContent(Element[] AllMenuOptions, ContentArea c, MenuScreen modListMenu)
         {
             //go through the list given to us by user
             foreach (var menuOption in AllMenuOptions)
             {
-                menuOption.CreateMenuOption(c, modListMenu, Instance);
+                menuOption.Create(c, modListMenu, Instance);
             }
         }
 
@@ -170,7 +174,7 @@ namespace Satchel
         }
 
         /// <summary>
-        /// Gets all the GameObjects in this ISlightlyBetterMenuMod instance.
+        /// Gets all the GameObjects in this Menu instance.
         /// </summary>
         /// <returns>The List of GameObjects.</returns>
         public List<GameObject> GetGameObjectList()
@@ -183,6 +187,30 @@ namespace Satchel
                 
             }
             return GoList;
+        }
+        
+        /// <summary>
+        /// Generates a new MenuScreen.
+        /// </summary>
+        /// <param name="Title">The title to be displayed.</param>
+        /// <param name="modListMenu">The MenuScreen to add.</param>
+        /// <param name="MenuOptions">The Elements to add.</param>
+        /// <param name="betterMenuMod">The created Menu. (Can in most cases be assigned to discard.)</param>
+        /// <returns>The generated MenuScreen.</returns>
+        public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions, out Menu betterMenuMod)
+        {
+            betterMenuMod = new Menu();
+            return betterMenuMod.GetMenuScreen(Title, modListMenu, MenuOptions); 
+        }
+        /// <summary>
+        /// Generates a new MenuScreen.
+        /// </summary>
+        /// <param name="Title">The title to be displayed.</param>
+        /// <param name="modListMenu">The MenuScreen to add.</param>
+        /// <param name="MenuOptions">The Elements to add.</param>
+        /// <returns>The generated MenuScreen.</returns>
+        public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions) {
+            return new Menu().GetMenuScreen(Title, modListMenu, MenuOptions);
         }
     }
 }

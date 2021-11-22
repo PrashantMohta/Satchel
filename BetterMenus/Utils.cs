@@ -7,18 +7,18 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Modding;
 
-namespace Satchel
+namespace Satchel.BetterMenus
 {
-    public static class CustomModMenuUtils
+    public static class Utils
     {
-        static CustomModMenuUtils()
+        static Utils()
         {
             ModHooks.LanguageGetHook += LanguageGet;
         }
 
         private static string LanguageGet(string key, string sheetTitle, string orig)
         {
-            foreach (var KeyValue in CustomModMenuUtils.LanguageKeys)
+            foreach (var KeyValue in Utils.LanguageKeys)
             {
                 if (key == KeyValue.Item1) return KeyValue.Item2;
             }

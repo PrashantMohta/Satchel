@@ -1,5 +1,4 @@
-﻿using Modding;
-using Satchel.MenuOptions;
+using Modding;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,37 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Satchel.BetterMenus;
 
-namespace Satchel.Utils.MenuHelper
+namespace Satchel.BetterMenus
 {
-    public class MenuHelper
-    {
-        #pragma warning disable CS0618 // Type or member is obsolete
-        /// <summary>
-        /// Generates a new MenuScreen.
-        /// </summary>
-        /// <param name="Title">The title to be displayed.</param>
-        /// <param name="modListMenu">The MenuScreen to add.</param>
-        /// <param name="MenuOptions">The IMenuOptions to add.</param>
-        /// <param name="betterMenuMod">The created ISlightlyBetterMenuMod. (Can in most cases be assigned to discard.)</param>
-        /// <returns>The generated MenuScreen.</returns>
-        public static MenuScreen CreateMenuScreen(string Title, MenuScreen modListMenu, IMenuOption[] MenuOptions, out ISlightlyBetterMenuMod betterMenuMod)
-        {
-            betterMenuMod = new ISlightlyBetterMenuMod();
-            return betterMenuMod.GetMenuScreen(Title, modListMenu, MenuOptions); 
-        }
-        /// <summary>
-        /// Generates a new MenuScreen.
-        /// </summary>
-        /// <param name="Title">The title to be displayed.</param>
-        /// <param name="modListMenu">The MenuScreen to add.</param>
-        /// <param name="MenuOptions">The IMenuOptions to add.</param>
-        /// <returns>The generated MenuScreen.</returns>
-        public static MenuScreen CreateMenuScreen(string Title, MenuScreen modListMenu, IMenuOption[] MenuOptions) =>
-            new ISlightlyBetterMenuMod().GetMenuScreen(Title, modListMenu, MenuOptions);
-#pragma warning restore CS0618 // Type or member is obsolete
-    }
-
 #nullable enable
     /// <summary>
     /// A class used to build MenuOptions.
@@ -46,7 +18,7 @@ namespace Satchel.Utils.MenuHelper
     public class MenuOptionBuilder: MenuOptionBuilderBase, ICloneable
     {
 
-        private readonly List<IMenuOption> options = new();
+        private readonly List<Element> options = new();
         private bool disposedValue;
 
         /// <summary>
@@ -54,17 +26,17 @@ namespace Satchel.Utils.MenuHelper
         /// </summary>
         public MenuOptionBuilder() { }
 
-        internal MenuOptionBuilder(List<IMenuOption> _options) =>
+        internal MenuOptionBuilder(List<Element> _options) =>
             options = _options;
 
         #region Add
 
         /// <summary>
-        /// Adds a custom IMenuOption to the current MenuOptionBuilder.
+        /// Adds a custom Element to the current MenuOptionBuilder.
         /// </summary>
         /// <param name="option">The custom option to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddOption(IMenuOption option)
+        public override MenuOptionBuilder AddOption(Element option)
         {
             if (!disposedValue && option != null) options.Add(option);
             else Modding.Logger.LogError("Could not add custom item.");
@@ -72,11 +44,11 @@ namespace Satchel.Utils.MenuHelper
         }
 
         /// <summary>
-        /// Adds the List(IMenuOption) to the current MenuOptionBuilder.
+        /// Adds the List(Element) to the current MenuOptionBuilder.
         /// </summary>
         /// <param name="customOptions">The list to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddList(List<IMenuOption> customOptions)
+        public override MenuOptionBuilder AddList(List<Element> customOptions)
         {
             if (!disposedValue && customOptions.Count > 0)
                 foreach (var option in customOptions) options.Add(option);
@@ -321,7 +293,7 @@ namespace Satchel.Utils.MenuHelper
         /// <param name="enableSubOptions">The Func(bool) that determines whether to show the suboptions.</param>
         /// <param name="option">The HideableMenuOption created. Null if the option could not be added.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddHideableMenuOption(IPrimaryMenuOption primaryOption, List<IMenuOption> subOptions, Func<bool> enableSubOptions, out HideableMenuOption? option)
+        public override MenuOptionBuilder AddHideableMenuOption(IPrimaryMenuOption primaryOption, List<Element> subOptions, Func<bool> enableSubOptions, out HideableMenuOption? option)
         {
             option = default;
             if (!disposedValue && primaryOption != null && subOptions.Count > 0 && enableSubOptions != null)
@@ -385,7 +357,7 @@ namespace Satchel.Utils.MenuHelper
         /// <param name="rightOption">The right option to add.</param>
         /// <param name="option">The created SideBySideOptions. Null if the options could not be added.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddSideBySideOptions(IMenuOption leftOption, IMenuOption rightOption, out SideBySideOptions? option)
+        public override MenuOptionBuilder AddSideBySideOptions(Element leftOption, Element rightOption, out SideBySideOptions? option)
         {
             option = default;
             if (!disposedValue && leftOption != null & rightOption != null)
@@ -430,7 +402,7 @@ namespace Satchel.Utils.MenuHelper
         /// Build the current MenuOptionBuilder into an array of MenuOptions.
         /// </summary>
         /// <returns>The array of MenuOptions created.</returns>
-        public override IMenuOption[]? Build()
+        public override Element[]? Build()
         {
             if (disposedValue || options.Count <= 0) Modding.Logger.LogError("[Satchel] - There is nothing to build!");
             else
@@ -447,7 +419,7 @@ namespace Satchel.Utils.MenuHelper
         /// </summary>
         /// <param name="builder">The MenuOptionBuilder to build.</param>
         /// <returns>The built MenuOptionBuilder.</returns>
-        public new IMenuOption[]? Build(MenuOptionBuilder builder) =>
+        public new Element[]? Build(MenuOptionBuilder builder) =>
             builder.Build();
 
         protected override void Dispose(bool disposing)
@@ -489,14 +461,14 @@ namespace Satchel.Utils.MenuHelper
     public abstract class MenuOptionBuilderBase
     {
         //For context, I (Ruttie) made this, so it's probably bad.
-        public static IMenuOption[]? Build(MenuOptionBuilder builder) =>
+        public static Element[]? Build(MenuOptionBuilder builder) =>
             builder.Build();
-        public abstract MenuOptionBuilder AddList(List<IMenuOption> customOptions);
-        public abstract MenuOptionBuilder AddOption(IMenuOption option);
+        public abstract MenuOptionBuilder AddList(List<Element> customOptions);
+        public abstract MenuOptionBuilder AddOption(Element option);
         public abstract MenuOptionBuilder AddButtonBind(ButtonBind button);
         public abstract MenuOptionBuilder AddButtonBind(string name, InControl.PlayerAction playerAction, out ButtonBind? bind);
         public abstract MenuOptionBuilder AddHideableMenuOption(HideableMenuOption option);
-        public abstract MenuOptionBuilder AddHideableMenuOption(IPrimaryMenuOption primaryOption, List<IMenuOption> subOptions, Func<bool> enableSubOptions, out HideableMenuOption? option);
+        public abstract MenuOptionBuilder AddHideableMenuOption(IPrimaryMenuOption primaryOption, List<Element> subOptions, Func<bool> enableSubOptions, out HideableMenuOption? option);
         public abstract MenuOptionBuilder AddHorizontalOption(HorizontalOption option);
         public abstract MenuOptionBuilder AddHorizontalOption(string name, string[] values, string description, Action<int> applySetting, Func<int> loadSetting, out HorizontalOption option);
         public abstract MenuOptionBuilder AddKeyAndButtonBind(KeyAndButtonBind bind);
@@ -508,37 +480,17 @@ namespace Satchel.Utils.MenuHelper
         public abstract MenuOptionBuilder AddModToggleOption(ModToggleOption option);
         public abstract MenuOptionBuilder AddModToggleOption(string name, ModToggleDelegates toggleDelegates, string description, out ModToggleOption? option);
         public abstract MenuOptionBuilder AddSideBySideOptions(SideBySideOptions options);
-        public abstract MenuOptionBuilder AddSideBySideOptions(IMenuOption leftOption, IMenuOption rightOption, out SideBySideOptions? option);
+        public abstract MenuOptionBuilder AddSideBySideOptions(Element leftOption, Element rightOption, out SideBySideOptions? option);
         public abstract MenuOptionBuilder AddStaticPanel(StaticPanel panel);
         public abstract MenuOptionBuilder AddStaticPanel(string name, Action<GameObject> createCustomItem, out StaticPanel? panel, float width = 1500f);
         public abstract MenuOptionBuilder AddTextPanel(TextPanel panel);
         public abstract MenuOptionBuilder AddTextPanel(string name, out TextPanel? panel, float width = 1500f);
         public abstract MenuOptionBuilder AddVolumeSlider(VolumeSlider slider);
-        public abstract MenuOptionBuilder AddVolumeSlider(string name, Action<float> storeValue, Func<int> savedValue, out VolumeSlider? option);
-        public abstract IMenuOption[]? Build();
+        public abstract MenuOptionBuilder AddVolumeSlider(string name, Action<float> storeValue, Func<int> savedValue, out VolumeSlider? option);        public abstract Element[]? Build();
         public abstract object Clone();
         public abstract MenuOptionBuilder Reset();
         protected abstract void Dispose(bool disposing);
     }
 
-    [Obsolete("This is an example, and is not to be used in any way.", true)]
-    internal sealed class BuildExample
-    {
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-        public MenuScreen GetMenuScreen(MenuScreen modListMenu, ModToggleDelegates? toggleDelegates)
-        {
-            return MenuHelper.CreateMenuScreen("", modListMenu, new MenuOptionBuilder()
-                .AddKeyBind("Test", null, out _) //Will add a KeyBind.
-                .AddKeyBind("Test2", null, out var Bind) //Will add a KeyBind and store it.
-                .AddTextPanel("Test3", out _, 1000f) //Will add a TextPanel.
-                .AddHorizontalOption(new HorizontalOption("Name", new string[] { "Op1", "Op2" }, "lol", null, null)) //Will attempt to add a Horizontal option.
-                                                                                                                     //This will likely go weird, but that's a problem
-                                                                                                                     //for the one that made HorizontalOption.
-                .AddHorizontalOption("Name", new string[] { "Op1" }, "Desc", null, null, out _) //Will log an error saying that the option couldn't be added. (Because null values were given.)
-                .AddTextPanel("", out _) //Will log an error saying the TextPanel couldn't be added. (Because the name value is an empty string.)
-                .Build()); //Builds the MenuOptionBuilder.
-        }
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
-    }
 #nullable restore
 }

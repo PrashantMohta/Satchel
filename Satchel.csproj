@@ -132,10 +132,9 @@
     <Compile Include="Custom\CustomSaveSlotsManager.cs" />
     <Compile Include="Custom\CustomScene.cs" />
 
-    <Compile Include="BetterMenus\MenuOptions.cs" />
-    <Compile Include="BetterMenus\MenuHelper.cs" />
-    <Compile Include="BetterMenus\ISlightlyBetterMenuMod.cs" />
-    <Compile Include="BetterMenus\CustomModMenuUtils.cs" />
+    <Compile Include="BetterMenus\Menu.cs" />
+    <Compile Include="BetterMenus\**\*.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Build\mac\shaders" />
