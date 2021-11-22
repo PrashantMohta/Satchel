@@ -57,7 +57,5 @@ namespace Satchel.BetterMenus{
     }
 
     public abstract class MenuElement : BaseElement{
-        //public abstract GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true);
-
     }
 }
