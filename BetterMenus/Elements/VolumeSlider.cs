@@ -5,6 +5,7 @@ using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
 {
@@ -37,6 +38,11 @@ namespace Satchel.BetterMenus
 
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
+            _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
+            _ = StoreValue ?? throw new ArgumentNullException(nameof(StoreValue), "StoreValue cannot be null");
+            _ = SavedValue ?? throw new ArgumentNullException(nameof(SavedValue), "SavedValue cannot be null");
+
+            
             c.AddVolumeSlider(Name, 105f, StoreValue, SavedValue, out var option);
 
             if (AddToList)
@@ -44,7 +50,29 @@ namespace Satchel.BetterMenus
                 Instance.MenuOrder.Add(new GameObjectPair(option));
             }
 
+            gameObject = option;
             return new GameObjectPair(option);
+        }
+
+        public override void Update()
+        {
+            //change Text
+            gameObject.transform.Find("Label").GetComponent<Text>().text = Name;
+            
+            MenuAudioSlider VolumeSlider_MenuAudioSlider = gameObject.GetComponent<MenuAudioSlider>();
+            Slider VolumeSlider_Slider = gameObject.GetComponent<Slider>();
+            Action<float> StoreValue_ = f =>
+            {
+                VolumeSlider_MenuAudioSlider.UpdateTextValue(f);
+                StoreValue.Invoke(f);
+            };
+            var SliderEvent = new Slider.SliderEvent();
+            SliderEvent.AddListener(StoreValue_.Invoke);
+            VolumeSlider_Slider.onValueChanged = SliderEvent;
+            
+            int currentValue = SavedValue.Invoke();
+            VolumeSlider_MenuAudioSlider.UpdateTextValue(currentValue);
+            VolumeSlider_Slider.value = currentValue;
         }
     }
 

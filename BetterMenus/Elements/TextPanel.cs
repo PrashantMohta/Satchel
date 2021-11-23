@@ -5,6 +5,7 @@ using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
 {
@@ -36,6 +37,8 @@ namespace Satchel.BetterMenus
                 /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
+            _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
+           
             c.AddTextPanel(
                 Name,
                 new RelVector2(new Vector2(Width, 105f)),
@@ -51,7 +54,14 @@ namespace Satchel.BetterMenus
                 Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
             }
 
+            gameObject = option.gameObject;
+
             return new GameObjectPair(option.gameObject);
+        }
+
+        public override void Update()
+        {
+            gameObject.GetComponent<Text>().text = Name;
         }
     }
 

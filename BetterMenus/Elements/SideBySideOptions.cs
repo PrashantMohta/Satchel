@@ -65,6 +65,11 @@ namespace Satchel.BetterMenus
             }
             return new GameObjectPair(option1, option2);
         }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

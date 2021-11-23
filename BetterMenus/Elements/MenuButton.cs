@@ -5,6 +5,7 @@ using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
 {
@@ -42,6 +43,11 @@ namespace Satchel.BetterMenus
                 /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
+            
+            _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
+            _ = SubmitAction ?? throw new ArgumentNullException(nameof(SubmitAction), "SubmitAction cannot be null");
+            _ = Description ?? throw new ArgumentNullException(nameof(Description), "Description cannot be null");
+
             c.AddMenuButton(
                 Name,
                 new MenuButtonConfig
@@ -61,6 +67,7 @@ namespace Satchel.BetterMenus
                 Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
             }
 
+            gameObject = option.gameObject;
             return new GameObjectPair(option.gameObject);
         }
 
@@ -71,6 +78,14 @@ namespace Satchel.BetterMenus
         public void AddUpdateMenuAction(Action UpdateMenu)
         {
             SubmitAction += _ => UpdateMenu.Invoke();
+        }
+
+        public override void Update()
+        {
+            gameObject.transform.Find("Label").GetComponent<Text>().text = Name;
+            gameObject.transform.Find("Description").GetComponent<Text>().text = Description;
+            gameObject.GetComponent<UnityEngine.UI.MenuButton>().submitAction = SubmitAction;
+
         }
     }
 

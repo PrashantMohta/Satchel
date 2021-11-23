@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using InControl;
 using Modding.Menu;
 using Modding.Menu.Config;
 using UnityEngine;
@@ -11,21 +12,6 @@ namespace Satchel.BetterMenus
 {
     public static class Utils
     {
-        static Utils()
-        {
-            ModHooks.LanguageGetHook += LanguageGet;
-        }
-
-        private static string LanguageGet(string key, string sheetTitle, string orig)
-        {
-            foreach (var KeyValue in Utils.LanguageKeys)
-            {
-                if (key == KeyValue.Item1) return KeyValue.Item2;
-            }
-            return orig;
-        }
-        private static List<(string, string)> LanguageKeys = new List<(string, string)>();
-
         public static MenuBuilder CreateMenuBuilder(string Title)
         {
             return new MenuBuilder(UIManager.instance.UICanvas.gameObject, Title)
@@ -102,8 +88,6 @@ namespace Satchel.BetterMenus
 
         private static GameObject GetMusicSlider(string TextToShow, GameObject Parent, Action<float> StoreValue, Func<int> SavedValue)
         {
-            string key = $"Satchel_Music_Slider_Key_For_{TextToShow}_{LanguageKeys.Count}";
-            LanguageKeys.Add((key, TextToShow));
             GameObject MusicSlider = UIManager.instance.gameObject.transform.Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject;
             GameObject VolumeSlider = Object.Instantiate(MusicSlider, Parent.transform);
             MenuAudioSlider VolumeSlider_MenuAudioSlider = VolumeSlider.GetComponent<MenuAudioSlider>();
@@ -119,7 +103,8 @@ namespace Satchel.BetterMenus
             SliderEvent.AddListener(StoreValue_.Invoke);
             VolumeSlider_Slider.onValueChanged = SliderEvent;
             //change the key of the text so it can be changed
-            VolumeSlider.transform.Find("Label").GetComponent<AutoLocalizeTextUI>().textKey = key;
+            GameObject.Destroy(VolumeSlider.transform.Find("Label").GetComponent<AutoLocalizeTextUI>());
+            VolumeSlider.transform.Find("Label").GetComponent<Text>().text = TextToShow;
             VolumeSlider.SetActive(true);
             //to make sure when go is cloned, it gets the value of the previous session not the value of the music slider
             int currentValue = SavedValue.Invoke();

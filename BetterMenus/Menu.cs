@@ -212,5 +212,10 @@ namespace Satchel.BetterMenus{
         public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions) {
             return new Menu().GetMenuScreen(Title, modListMenu, MenuOptions);
         }
+
+        public override void Update()
+        {
+            //intentionally left blank
+        }
     }
 }

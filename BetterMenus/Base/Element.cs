@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
 using Modding;
 using Modding.Menu;
 using UnityEngine;
@@ -12,14 +14,18 @@ namespace Satchel.BetterMenus{
         /// The name to be displayed.
         /// </summary>
         public string Name;
-        public GameObject gameObject;
+
+        public GameObject gameObject
+        {
+            get;
+            protected set;
+        }
         public BaseElement Parent; // reference to the parent (menu may also be an Element)
         public event EventHandler<UpdateEventArgs> OnUpdate;
         public event EventHandler<VisibilityChangeEventArgs> OnVisibilityChange;
 
         
-        //public abstract void Update();
-        public void Update(){}
+        public abstract void Update();
         public bool isVisible { get; private set; } = true;
         public void Show(){
             if(isVisible == true){ return; }
@@ -53,7 +59,7 @@ namespace Satchel.BetterMenus{
     }
     public abstract class Element : BaseElement{
         public abstract GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true);
-
+        
     }
 
     public abstract class MenuElement : BaseElement{
