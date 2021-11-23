@@ -95,7 +95,8 @@ namespace Satchel.BetterMenus
         public static ContentArea AddVolumeSlider(this ContentArea content, string TextToShow, float height, Action<float> StoreValue, Func<int> SavedValue, out GameObject obj)
         {
             content.AddStaticPanel(TextToShow, new RelVector2(new Vector2(200f, height)), out GameObject parent);
-            obj = GetMusicSlider(TextToShow, parent, StoreValue, SavedValue);
+            GetMusicSlider(TextToShow, parent, StoreValue, SavedValue);
+            obj = parent;
             return content;
         }
 
