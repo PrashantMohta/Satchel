@@ -132,7 +132,6 @@
     <Compile Include="Custom\CustomSaveSlotsManager.cs" />
     <Compile Include="Custom\CustomScene.cs" />
 
-    <Compile Include="BetterMenus\Menu.cs" />
     <Compile Include="BetterMenus\**\*.cs" />
 
   </ItemGroup>

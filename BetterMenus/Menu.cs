@@ -148,7 +148,7 @@ namespace Satchel.BetterMenus{
                     ModifyNext(pair.RightGo);
 
                     var k = ItemAdvance;
-                    k.x = new RelLength(1920f);
+                    k.x = new RelLength(0f);
                     ChangeColumns(1, 0.25f, k, 0.5f);
                 }
             }

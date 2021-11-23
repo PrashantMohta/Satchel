@@ -56,7 +56,7 @@ namespace Satchel.BetterMenus
             var option1 = LeftOption.Create(c, modlistMenu, Instance, false);
             var option2 = RightOption.Create(c, modlistMenu, Instance, false);
 
-            l.x = new RelLength(1920f);
+            l.x = new RelLength(0f);
             layout.ChangeColumns(1, 0.25f, l);
 
             if (AddToList)
