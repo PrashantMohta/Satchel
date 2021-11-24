@@ -5,6 +5,7 @@ using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
 {
@@ -43,6 +44,9 @@ namespace Satchel.BetterMenus
                 /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
+            _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
+            _ = Description ?? throw new ArgumentNullException(nameof(Description), "Description cannot be null");
+
             var horizontalOption = new HorizontalOption(Name, new[] {"On", "Off"}, Description,
                 i =>
                 {
@@ -56,7 +60,17 @@ namespace Satchel.BetterMenus
                 Instance.MenuOrder.Add(option);
             }
 
+            gameObject = option.LeftGo;
+
             return new GameObjectPair(option);
+        }
+
+        public override void Update()
+        {
+            //you cant change ToggleDelegates, its from mapi
+            gameObject.transform.Find("Label").GetComponent<Text>().text = Name;
+            gameObject.transform.Find("Description").GetComponent<Text>().text = Description;
+
         }
     }
 

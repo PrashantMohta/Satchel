@@ -43,6 +43,8 @@ namespace Satchel.BetterMenus
                 /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
+            _ = CreateCustomItem ?? throw new ArgumentNullException(nameof(CreateCustomItem), "CreateCustomItem cannot be null");
+             
             c.AddStaticPanel(
                 Name,
                 new RelVector2(new Vector2(Width, 105f)),
@@ -50,10 +52,17 @@ namespace Satchel.BetterMenus
             CreateCustomItem.Invoke(option);
             if (AddToList)
             {
-                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+                Instance.MenuOrder.Add(new GameObjectPair(option));
             }
 
-            return new GameObjectPair(option.gameObject);
+            gameObject = option;
+
+            return new GameObjectPair(option);
+        }
+
+        public override void Update()
+        {
+            //intentionally left empty
         }
     }
 

@@ -30,6 +30,7 @@ namespace Satchel.BetterMenus
         
 
         private List<GameObjectPair> AllSubOptions = new List<GameObjectPair>();
+        private List<Element> AllElements = new List<Element>();
 
         /// <summary>
         /// Creates a new HideableMenuOption.
@@ -50,6 +51,12 @@ namespace Satchel.BetterMenus
                 /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
+            _ = PrimaryOption ?? throw new ArgumentNullException(nameof(PrimaryOption), "PrimaryOption cannot be null");
+            _ = SubOptions ?? throw new ArgumentNullException(nameof(SubOptions), "SubOptions cannot be null");
+            _ = EnableSubOptions ?? throw new ArgumentNullException(nameof(EnableSubOptions), "EnableSubOptions cannot be null");
+
+            
+            
             PrimaryOption.AddUpdateMenuAction(() =>
             {
                 bool enable = EnableSubOptions.Invoke();
@@ -64,15 +71,27 @@ namespace Satchel.BetterMenus
             var primaryoption = PrimaryOption.Create(c, modlistMenu, Instance, false);
             
             Instance.MenuOrder.Add(primaryoption);
+
+            gameObject = primaryoption.LeftGo;
             
             foreach (Element menuOption in SubOptions)
             {
                 var option = menuOption.Create(c, modlistMenu,Instance, false);
                 AllSubOptions.Add(option);
                 Instance.MenuOrder.Add(option);
+                AllElements.Add(menuOption);
             }
 
             return primaryoption;
+        }
+
+        public override void Update()
+        {
+            ((Element)PrimaryOption).Update();
+            foreach (var element in AllElements)
+            {
+                element.Update();
+            }
         }
     }
 

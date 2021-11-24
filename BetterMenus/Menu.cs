@@ -148,7 +148,7 @@ namespace Satchel.BetterMenus{
                     ModifyNext(pair.RightGo);
 
                     var k = ItemAdvance;
-                    k.x = new RelLength(1920f);
+                    k.x = new RelLength(0f);
                     ChangeColumns(1, 0.25f, k, 0.5f);
                 }
             }
@@ -211,6 +211,11 @@ namespace Satchel.BetterMenus{
         /// <returns>The generated MenuScreen.</returns>
         public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions) {
             return new Menu().GetMenuScreen(Title, modListMenu, MenuOptions);
+        }
+
+        public override void Update()
+        {
+            //intentionally left blank
         }
     }
 }

@@ -53,6 +53,10 @@ namespace Satchel.BetterMenus
                 /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
+            _ = KeyBindName ?? throw new ArgumentNullException(nameof(KeyBindName), "KeyBindName cannot be null");
+            _ = KeyBindAction ?? throw new ArgumentNullException(nameof(KeyBindAction), "KeyBindAction cannot be null");
+            _ = ButtonBindName ?? throw new ArgumentNullException(nameof(ButtonBindName), "ButtonBindName cannot be null");
+            _ = ButtonBindAction ?? throw new ArgumentNullException(nameof(ButtonBindAction), "ButtonBindAction cannot be null");
 
             var NewOption = new SideBySideOptions(new KeyBind(KeyBindName, KeyBindAction),
                 new ButtonBind(ButtonBindName, ButtonBindAction));
@@ -64,6 +68,11 @@ namespace Satchel.BetterMenus
                 Instance.MenuOrder.Add(option);
             }
             return new GameObjectPair(option);
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 
