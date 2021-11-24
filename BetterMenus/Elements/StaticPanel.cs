@@ -52,12 +52,12 @@ namespace Satchel.BetterMenus
             CreateCustomItem.Invoke(option);
             if (AddToList)
             {
-                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+                Instance.MenuOrder.Add(new GameObjectPair(option));
             }
 
             gameObject = option;
 
-            return new GameObjectPair(option.gameObject);
+            return new GameObjectPair(option);
         }
 
         public override void Update()
