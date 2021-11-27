@@ -23,6 +23,11 @@ namespace Satchel.BetterMenus
         /// </summary>
         public Element RightOption;
         
+        
+        /// <summary>
+        /// Element X Delta, shifts the right element by this amount.
+        /// </summary>
+        public float XDelta = 750f;
 
         /// <summary>
         /// Creates a new SideBySideOptions instance.
@@ -45,7 +50,7 @@ namespace Satchel.BetterMenus
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
 
-            if (LeftOption is KeyAndButtonBind or SideBySideOptions || RightOption is KeyAndButtonBind or SideBySideOptions)
+            if (LeftOption is SideBySideOptions || RightOption is SideBySideOptions)
             {
                 Modding.Logger.LogError("[Satchel] - You cannot create Side by side options inside itself");
                 return new GameObjectPair();
@@ -53,7 +58,7 @@ namespace Satchel.BetterMenus
 
             var layout = c.Layout as RegularGridLayout;
             var l = layout.ItemAdvance;
-            l.x = new RelLength(750f);
+            l.x = new RelLength(XDelta);
             layout.ChangeColumns(2, newSize: l);
 
             var option1 = LeftOption.Create(c, modlistMenu, Instance, false);
@@ -69,9 +74,10 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option1, option2);
         }
 
-        public override void Update()
+        internal override void Update()
         {
-            throw new NotImplementedException();
+            LeftOption?.UpdateInternal();
+            RightOption?.UpdateInternal();
         }
     }
 

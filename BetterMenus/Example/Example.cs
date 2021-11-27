@@ -54,7 +54,8 @@ namespace SatchelBetterMenus.Example
                     () => selectedOption
                 ),
                 new KeyBind("Key",keybind.Action),
-                new ButtonBind("button",button.Action)
+                new ButtonBind("button",button.Action),
+                Blueprints.KeyAndButtonBind("ComboWammie",keybind.Action,button.Action),
             });
         }
        

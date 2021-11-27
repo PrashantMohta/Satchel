@@ -58,7 +58,7 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option.gameObject);
         }
         
-        public override void Update()
+        internal override void Update()
         {
             var mappableControllerButton = gameObject.GetComponent<MappableKey>();
             mappableControllerButton.InitCustomActions(PlayerAction.Owner, PlayerAction);

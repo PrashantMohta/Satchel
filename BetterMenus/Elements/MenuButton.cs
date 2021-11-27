@@ -84,7 +84,7 @@ namespace Satchel.BetterMenus
             SubmitAction += _ => UpdateMenu.Invoke();
         }
 
-        public override void Update()
+        internal override void Update()
         {
             gameObject.transform.Find("Label").GetComponent<Text>().text = Name;
             gameObject.transform.Find("Description").GetComponent<Text>().text = Description;

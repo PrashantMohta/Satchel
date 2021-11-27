@@ -89,7 +89,7 @@ namespace Satchel.BetterMenus
             return primaryoption;
         }
 
-        public override void Update()
+        internal override void Update()
         {
             ((Element)PrimaryOption).Update();
             foreach (var element in AllElements)

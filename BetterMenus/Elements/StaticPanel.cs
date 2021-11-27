@@ -64,7 +64,7 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option);
         }
 
-        public override void Update()
+        internal override void Update()
         {
             //intentionally left empty
         }

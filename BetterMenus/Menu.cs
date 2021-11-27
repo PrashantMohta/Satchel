@@ -225,7 +225,7 @@ namespace Satchel.BetterMenus{
             return new Menu(Title,MenuOptions).GetMenuScreen( modListMenu);
         }
 
-        public override void Update()
+        internal override void Update()
         {
             //intentionally left blank
         }

@@ -54,7 +54,7 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option);
         }
 
-        public override void Update()
+        internal override void Update()
         {
             //change Text
             gameObject.transform.Find("Label").GetComponent<Text>().text = Name;

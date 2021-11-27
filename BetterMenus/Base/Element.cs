@@ -37,7 +37,7 @@ namespace Satchel.BetterMenus{
         public BaseElement(string Id, string Name){
             this.Id = Id == "__UseName" ? Name : Id;
         }
-        public abstract void Update();
+        internal abstract void Update();
         public bool isVisible { get; private set; } = true;
         public void Show(){
             if(isVisible == true){ return; }
@@ -57,7 +57,7 @@ namespace Satchel.BetterMenus{
             });
         }
 
-        public void UpdateInternal(){
+        internal void UpdateInternal(){
             Update();
             OnUpdate?.Invoke(this,new UpdateEventArgs{
                 Target = this

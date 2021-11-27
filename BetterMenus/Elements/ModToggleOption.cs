@@ -69,7 +69,7 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option);
         }
 
-        public override void Update()
+        internal override void Update()
         {
             //you cant change ToggleDelegates, its from mapi
             gameObject.transform.Find("Label").GetComponent<Text>().text = Name;

@@ -104,7 +104,7 @@ namespace Satchel.BetterMenus
             ApplySetting += _ => UpdateMenu.Invoke();
         }
 
-        public override void Update()
+        internal override void Update()
         {
             gameObject.GetComponent<MenuOptionHorizontal>().optionList = Values;
             var menuSetting = gameObject.GetComponent<MenuSetting>();

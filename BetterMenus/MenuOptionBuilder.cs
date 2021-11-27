@@ -316,38 +316,6 @@ namespace Satchel.BetterMenus
             return this;
         }
 
-        /// <summary>
-        /// Adds a KeyAndButtonBind to the current MenuOptionBuilder.
-        /// </summary>
-        /// <param name="bind">The KeyAndButtonBind to add.</param>
-        /// <returns>The current MenuOptionBuilder.</returns>
-        public MenuOptionBuilder AddKeyAndButtonBind(KeyAndButtonBind bind)
-        {
-            if (!disposedValue && bind != null) options.Add(bind);
-            else Modding.Logger.LogError("[Satchel] - Couldn't create KeyAndButtonBind.");
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a KeyAndButtonBind to the current MenuOptionBuilder.
-        /// </summary>
-        /// <param name="keyBindName">The name of the keybind.</param>
-        /// <param name="keyBindAction">The InControl.PlayerAction of the keybind.</param>
-        /// <param name="buttonBindName">The name of the buttonbind.</param>
-        /// <param name="buttonBindAction">The InControl.PlayerAction of the buttonbind</param>
-        /// <param name="bind">The created KeyAndButtonBind. Null if the bind could not be added.</param>
-        /// <returns>The current MenuOptionBuilder.</returns>
-        public MenuOptionBuilder AddKeyAndButtonBind(string keyBindName, InControl.PlayerAction keyBindAction, string buttonBindName, InControl.PlayerAction buttonBindAction, out KeyAndButtonBind? bind)
-        {
-            bind = default;
-            if (!disposedValue && !string.IsNullOrEmpty(keyBindName) && keyBindAction != null && !string.IsNullOrEmpty(buttonBindName) && buttonBindAction != null)
-            {
-                bind = new KeyAndButtonBind(keyBindName, keyBindAction, buttonBindName, buttonBindAction);
-                options.Add(bind);
-            }
-            else Modding.Logger.LogError("[Satchel] - Couldn't create KeyAndButtonBind");
-            return this;
-        }
 
         /// <summary>
         /// Adds the provided SideBySideOptions to the MenuOptionBuilder.
