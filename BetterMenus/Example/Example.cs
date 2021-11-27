@@ -1,32 +1,71 @@
 using Modding;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
+using InControl;
+using Satchel;
 using Satchel.BetterMenus;
 
-namespace Satchel.BetterMenus
+namespace SatchelBetterMenus.Example 
 {
-    [Obsolete("This is an example, and is not to be used in any way.", true)]
-    internal sealed class BuildExample
+    public class MenuExample : Mod, ICustomMenuMod
     {
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+        private string getVersionSafely(){
+            return Satchel.AssemblyUtils.GetAssemblyVersionHash();
+        }
+        public override string GetVersion()
+        {
+            var version = "Install Satchel";
+            try{
+                version = getVersionSafely();
+            } catch(Exception e){
+                Modding.Logger.Log(e.ToString());
+            }
+            return version;
+        }
+
+        
+        public bool ToggleButtonInsideMenu => false;
+        public KeyBinds keybind = new KeyBinds();
+        public ButtonBinds button = new ButtonBinds();
+        public Menu MenuRef;
+        public int selectedOption = 0;
+        public override void Initialize()
+        {
+
+        }
+       
+        public Menu PrepareMenu(){
+            return new Menu("SatchelBetterMenus", new Element[]{
+                new TextPanel("Example Mod Menu Text Panel",1000f,Id:"textyboi"),
+                new TextPanel("uses name",1000f),
+                new HorizontalOption(
+                    "Option 1", 
+                    "horizotal option description",
+                    new string[]{"O1","O2","O3"},
+                    (setting) => {
+                        selectedOption = setting;
+                        MenuRef?.Find("textyboi")?.updateAfter((elem)=>{
+                            ((Element)elem).Name="uses Id " + setting;
+                        });
+                        MenuRef?.Find("uses name")?.updateAfter((elem)=>{
+                            ((Element)elem).Name="uses name" + setting;
+                        });
+                        },
+                    () => selectedOption
+                ),
+                new KeyBind("Key",keybind.Action),
+                new ButtonBind("button",button.Action)
+            });
+        }
+       
         public MenuScreen GetMenuScreen(MenuScreen modListMenu, ModToggleDelegates? toggleDelegates)
         {
-            return Menu.Create("", modListMenu, new MenuOptionBuilder()
-                .AddKeyBind("Test", null, out _) //Will add a KeyBind.
-                .AddKeyBind("Test2", null, out var Bind) //Will add a KeyBind and store it.
-                .AddTextPanel("Test3", out _, 1000f) //Will add a TextPanel.
-                .AddHorizontalOption(new HorizontalOption("Name", new string[] { "Op1", "Op2" }, "lol", null, null)) //Will attempt to add a Horizontal option.
-                                                                                                                     //This will likely go weird, but that's a problem
-                                                                                                                     //for the one that made HorizontalOption.
-                .AddHorizontalOption("Name", new string[] { "Op1" }, "Desc", null, null, out _) //Will log an error saying that the option couldn't be added. (Because null values were given.)
-                .AddTextPanel("", out _) //Will log an error saying the TextPanel couldn't be added. (Because the name value is an empty string.)
-                .Build()); //Builds the MenuOptionBuilder.
+            if(MenuRef == null){
+                MenuRef = PrepareMenu();
+            }
+            return MenuRef.GetMenuScreen(modListMenu);
         }
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+
+
     }
 }
