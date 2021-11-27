@@ -38,7 +38,7 @@ namespace Satchel.BetterMenus{
             this.Id = Id == "__UseName" ? Name : Id;
         }
         internal abstract void Update();
-        public bool isVisible { get; private set; } = true;
+        public bool isVisible { get; set; } = true;
         public void Show(){
             if(isVisible == true){ return; }
             isVisible = true;
@@ -62,6 +62,9 @@ namespace Satchel.BetterMenus{
             OnUpdate?.Invoke(this,new UpdateEventArgs{
                 Target = this
             });
+            if(Parent!=null){
+                ((IContainer)Parent)?.Reflow();
+            }
         }
 
         public void updateAfter(Action<BaseElement> callback){
@@ -78,4 +81,5 @@ namespace Satchel.BetterMenus{
 
     public abstract class MenuElement : BaseElement{
     }
+
 }

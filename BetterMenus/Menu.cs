@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Modding;
@@ -9,7 +10,7 @@ using Satchel.BetterMenus;
 using UnityEngine;
 using UnityEngine.UI;
 namespace Satchel.BetterMenus{
-    public class Menu : MenuElement{
+    public class Menu : MenuElement, IContainer{
         private readonly List<Element> Elements = new();
         private readonly Dictionary<String,Element> ElementDict = new();
 
@@ -32,6 +33,10 @@ namespace Satchel.BetterMenus{
         internal static GameObject TempObj = new GameObject("SatchelTempObj");
         #endregion
 
+        public void AddElement(Element elem){
+            Elements.Add(elem);
+            ElementDict[elem.Id] = elem;
+    }
         //not really sure if we need this or not
         /// <summary>
         /// Creates a new Menu instance. Generally, this is not needed.
@@ -43,22 +48,33 @@ namespace Satchel.BetterMenus{
             gameObject = null; // no go
             Name = name;
             foreach(var elem in elements){
-                Elements.Add(elem);
-                ElementDict[elem.Id] = elem;
+               AddElement(elem);
             }
             Instance = this;
             MenuOrder.Clear();
             ResetPositioners();
+            On.UIManager.ShowMenu += ShowMenu;
+        }
+        public MenuScreen menuRef;
+        public IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
+            if(menu == this.menuRef){
+                menu.screenCanvasGroup.alpha = 0f;
+                menu.screenCanvasGroup.gameObject.SetActive(value: true);
+                Reflow(silent:true);
+                menu.screenCanvasGroup.gameObject.SetActive(value: false);
+            }
+            yield return orig(self,menu);
         }
         public Element Find(string Id){
-            /*
+            
             foreach(KeyValuePair<string,Element> kvp in ElementDict){
                 Modding.Logger.Log(kvp.Key);
             }
-            */
+            
             if(ElementDict.TryGetValue(Id,out var elem)){
                 return elem;
             }
+            Modding.Logger.Log($"No such Element with id {Id}");
             return null;
         }
         /// <summary>
@@ -104,15 +120,32 @@ namespace Satchel.BetterMenus{
             }
 
             Menu.AddBackButton(modListMenu, out backButton); // add a back button
-            return Menu.Build();
+            menuRef = Menu.Build();
+            return menuRef;
         }
 
+        public void ApplyElementVisibility(Element elem){
+            if(elem.gameObject == null){
+                if(elem is IShadowElement){
+                    var elems = ((IShadowElement)elem).GetElements();
+                    foreach(var e in elems){
+                        ApplyElementVisibility(e);
+                    }
+                } else {
+                    Modding.Logger.Log($"no go for {elem.GetType()} {elem.Name}");
+                }
+            } else {
+                elem.gameObject.SetActive(elem.isVisible);
+            }
+        }
         private void AddModMenuContent(List<Element> AllMenuOptions, ContentArea c, MenuScreen modListMenu)
         {
             //go through the list given to us by user
             foreach (var menuOption in AllMenuOptions)
             {
                 menuOption.Create(c, modListMenu, Instance);
+                menuOption.Parent = this;
+                ApplyElementVisibility(menuOption);
             }
         }
 
@@ -138,7 +171,19 @@ namespace Satchel.BetterMenus{
                 Index++;
             }
         }
-
+        public event EventHandler<ReflowEventArgs> OnReflow;
+        public void Reflow(bool silent = false){
+            foreach (var menuOption in Elements)
+            {
+                ApplyElementVisibility(menuOption);
+            }
+            Reorder();
+            if(!silent){
+                OnReflow?.Invoke(this,new ReflowEventArgs{
+                    Target = this
+                });
+            }
+        }
         /// <summary>
         /// Reorders the GameObjectPairs in this instance.
         /// </summary>
@@ -146,23 +191,31 @@ namespace Satchel.BetterMenus{
         {
             foreach (GameObjectPair pair in Instance.MenuOrder)
             {
-                if (pair.RightGo == TempObj)
-                {
+                if(pair.LeftGo != TempObj && pair.RightGo != TempObj){
+                    if(pair.LeftGo.activeInHierarchy && pair.RightGo.activeInHierarchy){
+                        var l = ItemAdvance;
+                        var XDelta = pair.Parent != null ? ((SideBySideOptions)pair.Parent).XDelta : 750f; 
+                        l.x = new RelLength(XDelta); // this breaks shit if not done on Element
+                        ChangeColumns(2, 0.5f, l, 0.5f);
+                    }
+                }
+
+                if(pair.LeftGo != TempObj){
                     ModifyNext(pair.LeftGo);
                 }
-                else if (pair.LeftGo != TempObj && pair.RightGo != TempObj)
-                {
-                    var l = ItemAdvance;
-                    l.x = new RelLength(750f);
-                    ChangeColumns(2, 0.5f, l, 0.5f);
-
-                    ModifyNext(pair.LeftGo);
+                
+                if(pair.RightGo != TempObj){
                     ModifyNext(pair.RightGo);
-
-                    var k = ItemAdvance;
-                    k.x = new RelLength(0f);
-                    ChangeColumns(1, 0.25f, k, 0.5f);
                 }
+
+                if(pair.LeftGo != TempObj && pair.RightGo != TempObj){
+                    if(pair.LeftGo.activeInHierarchy && pair.RightGo.activeInHierarchy){
+                        var k = ItemAdvance;
+                        k.x = new RelLength(0f);
+                        ChangeColumns(1, 0.25f, k, 0.5f);
+                    }
+                }
+                
             }
             ResetPositioners();
         }
@@ -227,7 +280,8 @@ namespace Satchel.BetterMenus{
 
         internal override void Update()
         {
-            //intentionally left blank
+            //todo update title text etc
+            Reflow();
         }
     }
 }

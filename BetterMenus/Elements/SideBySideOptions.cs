@@ -12,7 +12,7 @@ namespace Satchel.BetterMenus
     /// <summary>
     /// A collection of side-by-side options.
     /// </summary>
-    public class SideBySideOptions : Element
+    public class SideBySideOptions : Element , IShadowElement
     {
         /// <summary>
         /// The left options.
@@ -23,12 +23,14 @@ namespace Satchel.BetterMenus
         /// </summary>
         public Element RightOption;
         
-        
+        public Element[] GetElements(){
+            return new Element[]{LeftOption,RightOption};
+        }
         /// <summary>
         /// Element X Delta, shifts the right element by this amount.
         /// </summary>
         public float XDelta = 750f;
-
+        public bool isShadowElement = true;
         /// <summary>
         /// Creates a new SideBySideOptions instance.
         /// </summary>
@@ -50,9 +52,9 @@ namespace Satchel.BetterMenus
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
 
-            if (LeftOption is SideBySideOptions || RightOption is SideBySideOptions)
+            if (LeftOption is IShadowElement || RightOption is IShadowElement)
             {
-                Modding.Logger.LogError("[Satchel] - You cannot create Side by side options inside itself");
+                Modding.Logger.LogError("[Satchel] - You cannot create IShadowElement inside IShadowElement");
                 return new GameObjectPair();
             }
 
@@ -66,12 +68,13 @@ namespace Satchel.BetterMenus
 
             l.x = new RelLength(0f);
             layout.ChangeColumns(1, 0.25f, l);
-
+            var gop = new GameObjectPair(option1, option2);
+            gop.Parent = this;
             if (AddToList)
             {
-                Instance.MenuOrder.Add(new GameObjectPair(option1, option2));
+                Instance.MenuOrder.Add(gop);
             }
-            return new GameObjectPair(option1, option2);
+            return gop;
         }
 
         internal override void Update()

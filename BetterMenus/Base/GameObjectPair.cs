@@ -21,6 +21,11 @@ namespace Satchel.BetterMenus
         /// The right GameObject.
         /// </summary>
         public GameObject RightGo;
+        
+        /// <summary>
+        /// The Parent Element (only not null for SideBySideOptions)
+        /// </summary>
+        public Element Parent;
 
         /// <summary>
         /// Generates a GameObjectPair from 2 GameObjects.
