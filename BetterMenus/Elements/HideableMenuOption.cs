@@ -38,7 +38,11 @@ namespace Satchel.BetterMenus
         /// <param name="primaryOption">The primary option.</param>
         /// <param name="subOptions">The sub-options.</param>
         /// <param name="enableSubOptions">The Func(bool) that hides/shows the options. (The bool determines whether the sub options should show or not.)</param>
-        public HideableMenuOption(IPrimaryMenuOption primaryOption, List<Element> subOptions,Func<bool> enableSubOptions)
+        public HideableMenuOption(
+            IPrimaryMenuOption primaryOption, 
+            List<Element> subOptions,
+            Func<bool> enableSubOptions,
+            string Id) : base(Id)
         {
             PrimaryOption = primaryOption;
             SubOptions = subOptions;

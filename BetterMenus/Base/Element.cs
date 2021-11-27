@@ -10,6 +10,12 @@ using UnityEngine;
 namespace Satchel.BetterMenus{
     public abstract class BaseElement{
 
+
+        /// <summary>
+        /// The Identifier used to refer to this element.
+        /// </summary>
+        public string Id { get; protected set;}
+
         /// <summary>
         /// The name to be displayed.
         /// </summary>
@@ -23,8 +29,14 @@ namespace Satchel.BetterMenus{
         public BaseElement Parent; // reference to the parent (menu may also be an Element)
         public event EventHandler<UpdateEventArgs> OnUpdate;
         public event EventHandler<VisibilityChangeEventArgs> OnVisibilityChange;
-
         
+        public BaseElement(){}
+        public BaseElement(string Id){
+            this.Id = Id;
+        }
+        public BaseElement(string Id, string Name){
+            this.Id = Id == "__UseName" ? Name : Id;
+        }
         public abstract void Update();
         public bool isVisible { get; private set; } = true;
         public void Show(){
@@ -58,6 +70,8 @@ namespace Satchel.BetterMenus{
         }
     }
     public abstract class Element : BaseElement{
+        public Element(string Id) : base(Id){}
+        public Element(string Id,string Name) : base(Id,Name){}
         public abstract GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true);
         
     }

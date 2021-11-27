@@ -30,7 +30,11 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="description">The description to be displayed.</param>
         /// <param name="submitAction">The Action(UnityEngine.UI.MenuButton) to call when a value is submitted.</param>
-        public MenuButton(string name, string description, Action<UnityEngine.UI.MenuButton> submitAction)
+        public MenuButton(
+            string name, 
+            string description, 
+            Action<UnityEngine.UI.MenuButton> submitAction,
+            string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             Description = description;

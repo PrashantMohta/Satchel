@@ -39,9 +39,15 @@ namespace Satchel.BetterMenus
         /// <param name="keyBindAction">The PlayerAction of the KeyBind.</param>
         /// <param name="buttonBindName">The name of the ButtonBind.</param>
         /// <param name="buttonBindAction">The PlayerAction of the ButtonBind.</param>
-        public KeyAndButtonBind(string keyBindName, InControl.PlayerAction keyBindAction, string buttonBindName, InControl.PlayerAction buttonBindAction)
+        public KeyAndButtonBind(
+            string name,
+            InControl.PlayerAction keyBindAction,
+            string buttonBindName,
+            InControl.PlayerAction buttonBindAction,
+            string Id = "__UseName") : base(Id,name)
         {
-            KeyBindName = keyBindName;
+            Name = name;
+            KeyBindName = name; //todo see i this is even needed
             KeyBindAction = keyBindAction;
             ButtonBindName = buttonBindName;
             ButtonBindAction = buttonBindAction;
@@ -58,8 +64,10 @@ namespace Satchel.BetterMenus
             _ = ButtonBindName ?? throw new ArgumentNullException(nameof(ButtonBindName), "ButtonBindName cannot be null");
             _ = ButtonBindAction ?? throw new ArgumentNullException(nameof(ButtonBindAction), "ButtonBindAction cannot be null");
 
-            var NewOption = new SideBySideOptions(new KeyBind(KeyBindName, KeyBindAction),
-                new ButtonBind(ButtonBindName, ButtonBindAction));
+            var NewOption = new SideBySideOptions(
+                new KeyBind(KeyBindName, KeyBindAction),
+                new ButtonBind(ButtonBindName, ButtonBindAction),
+                Id:"SideBySideOptions");
 
             var option = NewOption.Create(c, modlistMenu, Instance, false);
             

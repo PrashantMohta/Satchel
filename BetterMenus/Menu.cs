@@ -11,6 +11,7 @@ using UnityEngine.UI;
 namespace Satchel.BetterMenus{
     public class Menu : MenuElement{
         private readonly List<Element> Elements = new();
+        private readonly Dictionary<String,Element> ElementDict = new();
 
 
         #region Fields
@@ -36,30 +37,41 @@ namespace Satchel.BetterMenus{
         /// Creates a new Menu instance. Generally, this is not needed.
         /// <para/>Use Menu.Create for creating custom menus instead.
         /// </summary>
-        public Menu()
+        public Menu(string name,Element[] elements)
         {
             Parent = null; // menu has no Parent
             gameObject = null; // no go
-
+            Name = name;
+            foreach(var elem in elements){
+                Elements.Add(elem);
+                ElementDict[elem.Id] = elem;
+            }
             Instance = this;
             MenuOrder.Clear();
             ResetPositioners();
         }
-
+        public Element Find(string Id){
+            /*
+            foreach(KeyValuePair<string,Element> kvp in ElementDict){
+                Modding.Logger.Log(kvp.Key);
+            }
+            */
+            if(ElementDict.TryGetValue(Id,out var elem)){
+                return elem;
+            }
+            return null;
+        }
         /// <summary>
         /// Creates a new MenuScreen with the provided variables.
         /// </summary>
-        /// <param name="Title">The title that should be displayed.</param>
         /// <param name="modListMenu">The MenuScreen to add.</param>
-        /// <param name="AllMenuOptions">All the Elements that should be added.</param>
         /// <returns>The created MenuScreen.</returns>
-        public MenuScreen GetMenuScreen(string Title, MenuScreen modListMenu, Element[] AllMenuOptions)
+        public MenuScreen GetMenuScreen(MenuScreen modListMenu)
         {
-            MenuBuilder Menu = Utils.CreateMenuBuilder(Title); //create main screen
+            MenuBuilder Menu = Utils.CreateMenuBuilder(Name); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
-            
             //mapi code from IMenuMod
-            if (AllMenuOptions.Count() > 5)
+            if (Elements.Count() > 5)
             {
                 Menu.AddContent(new NullContentLayout(), c => c.AddScrollPaneContent(
                     new ScrollbarConfig
@@ -78,16 +90,16 @@ namespace Satchel.BetterMenus{
                             Offset = new Vector2(-310f, 0f)
                         }
                     },
-                    new RelLength(AllMenuOptions.Count() * 105f),
+                    new RelLength(Elements.Count() * 105f),
                     RegularGridLayout.CreateVerticalLayout(105f),
-                    d => AddModMenuContent(AllMenuOptions, d, modListMenu)
+                    d => AddModMenuContent(Elements, d, modListMenu)
                 ));
             }
             else
             {
                 Menu.AddContent(
                     RegularGridLayout.CreateVerticalLayout(105f),
-                    c => AddModMenuContent(AllMenuOptions, c, modListMenu)
+                    c => AddModMenuContent(Elements, c, modListMenu)
                 );
             }
 
@@ -95,7 +107,7 @@ namespace Satchel.BetterMenus{
             return Menu.Build();
         }
 
-        private void AddModMenuContent(Element[] AllMenuOptions, ContentArea c, MenuScreen modListMenu)
+        private void AddModMenuContent(List<Element> AllMenuOptions, ContentArea c, MenuScreen modListMenu)
         {
             //go through the list given to us by user
             foreach (var menuOption in AllMenuOptions)
@@ -199,8 +211,8 @@ namespace Satchel.BetterMenus{
         /// <returns>The generated MenuScreen.</returns>
         public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions, out Menu betterMenuMod)
         {
-            betterMenuMod = new Menu();
-            return betterMenuMod.GetMenuScreen(Title, modListMenu, MenuOptions); 
+            betterMenuMod = new Menu(Title,MenuOptions);
+            return betterMenuMod.GetMenuScreen(modListMenu); 
         }
         /// <summary>
         /// Generates a new MenuScreen.
@@ -210,7 +222,7 @@ namespace Satchel.BetterMenus{
         /// <param name="MenuOptions">The Elements to add.</param>
         /// <returns>The generated MenuScreen.</returns>
         public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions) {
-            return new Menu().GetMenuScreen(Title, modListMenu, MenuOptions);
+            return new Menu(Title,MenuOptions).GetMenuScreen( modListMenu);
         }
 
         public override void Update()

@@ -25,16 +25,17 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
         /// <param name="width">The width of the TextPanel.</param>
-        public TextPanel(string name, float width = 1500f)
+        public TextPanel(string name, float width = 1500f,string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             Width = width;
         }
 
+
         /// <summary>
         /// Creates a GameObjectPair based on the current variables.
         /// </summary>
-                /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");

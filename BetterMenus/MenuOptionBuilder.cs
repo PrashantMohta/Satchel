@@ -15,7 +15,7 @@ namespace Satchel.BetterMenus
     /// A class used to build MenuOptions.
     /// </summary>
     [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
-    public class MenuOptionBuilder: MenuOptionBuilderBase, ICloneable
+    public class MenuOptionBuilder: ICloneable
     {
 
         private readonly List<Element> options = new();
@@ -36,7 +36,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="option">The custom option to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddOption(Element option)
+        public MenuOptionBuilder AddOption(Element option)
         {
             if (!disposedValue && option != null) options.Add(option);
             else Modding.Logger.LogError("Could not add custom item.");
@@ -48,7 +48,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="customOptions">The list to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddList(List<Element> customOptions)
+        public MenuOptionBuilder AddList(List<Element> customOptions)
         {
             if (!disposedValue && customOptions.Count > 0)
                 foreach (var option in customOptions) options.Add(option);
@@ -61,7 +61,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="option">The keybind to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddKeyBind(KeyBind option)
+        public MenuOptionBuilder AddKeyBind(KeyBind option)
         {
             if (!disposedValue && option != null) options.Add(option);
             else Modding.Logger.LogError("[Satchel] - Could not add keybind.");
@@ -74,7 +74,7 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name of the keybind.</param>
         /// <param name="action">The keybind to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddKeyBind(string name, InControl.PlayerAction action, out KeyBind? bind)
+        public MenuOptionBuilder AddKeyBind(string name, InControl.PlayerAction action, out KeyBind? bind)
         {
             bind = default;
             if (!disposedValue && name != null && name != string.Empty && action != null)
@@ -91,7 +91,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="button">The ButtonBind to add.</param>
         /// <returns>The current MenuOptionBuilder instance.</returns>
-        public override MenuOptionBuilder AddButtonBind(ButtonBind button)
+        public MenuOptionBuilder AddButtonBind(ButtonBind button)
         {
             if (!disposedValue && button != null) options.Add(button);
             else Modding.Logger.LogError("[Satchel] - Could not add buttonbind.");
@@ -105,7 +105,7 @@ namespace Satchel.BetterMenus
         /// <param name="playerAction">The PlayerAction to add.</param>
         /// <param name="bind">The bind created. Null if button couldn't be created.</param>
         /// <returns>The current MenuOptionBuilder instance.</returns>
-        public override MenuOptionBuilder AddButtonBind(string name, InControl.PlayerAction playerAction, out ButtonBind? bind)
+        public MenuOptionBuilder AddButtonBind(string name, InControl.PlayerAction playerAction, out ButtonBind? bind)
         {
             bind = default;
             if (!disposedValue && name != null && name != string.Empty && playerAction != null)
@@ -122,7 +122,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="option">The HorizontalOption to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddHorizontalOption(HorizontalOption option)
+        public MenuOptionBuilder AddHorizontalOption(HorizontalOption option)
         {
             if (!disposedValue && option != null) options.Add(option);
             else Modding.Logger.LogError("[Satchel] - Could not add horizontaloption.");
@@ -133,15 +133,21 @@ namespace Satchel.BetterMenus
         /// Adds a HorizontalOption to the current MenuOptionBuilder.
         /// </summary>
         /// <param name="name">The name of the HorizontalOption.</param>
-        /// <param name="values">The possible values of the HorizontalOption.</param>
         /// <param name="description">The description to be displayed.</param>
+        /// <param name="values">The possible values of the HorizontalOption.</param>
         /// <param name="applySetting">The Action(int) to execute when the value is changed.</param>
         /// <param name="loadSetting">The Func(int) to load.</param>
         /// <param name="option">The created HorizontalOption. Null if the HorizontalOption couldn't be created.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddHorizontalOption(string name, string[] values, string description, Action<int> applySetting, Func<int> loadSetting, out HorizontalOption option)
+        public MenuOptionBuilder AddHorizontalOption
+        (string name, 
+        string description, 
+        string[] values, 
+        Action<int> applySetting,
+        Func<int> loadSetting, 
+        out HorizontalOption option)
         {
-            option = new HorizontalOption(name, values, description, applySetting, loadSetting);
+            option = new HorizontalOption(name, description, values, applySetting, loadSetting);
             options.Add(option);
             return this;
         }
@@ -151,7 +157,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="button">The MenuButton to add.</param>
         /// <returns>The current MenuOptionBuilder instance.</returns>
-        public override MenuOptionBuilder AddMenuButton(MenuButton button)
+        public MenuOptionBuilder AddMenuButton(MenuButton button)
         {
             if (!disposedValue && button != null) options.Add(button);
             else Modding.Logger.LogError("[Satchel] - Couldn't add menubutton.");
@@ -166,7 +172,7 @@ namespace Satchel.BetterMenus
         /// <param name="submitAction">The Action(UnityEngine.UI.MenuButton) to be executed.</param>
         /// <param name="button">The MenuButton added. Null if the button could not be added.</param>
         /// <returns>The current MenuOptionBuilder instance.</returns>
-        public override MenuOptionBuilder AddMenuButton(string name, string description, Action<UnityEngine.UI.MenuButton> submitAction, out MenuButton? button)
+        public MenuOptionBuilder AddMenuButton(string name, string description, Action<UnityEngine.UI.MenuButton> submitAction, out MenuButton? button)
         {
             button = default;
             if (!disposedValue && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description) && submitAction != null)
@@ -183,7 +189,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="panel">The TextPanel to add.</param>
         /// <returns>The current MenuOptionBuilder instance.</returns>
-        public override MenuOptionBuilder AddTextPanel(TextPanel panel)
+        public MenuOptionBuilder AddTextPanel(TextPanel panel)
         {
             if (!disposedValue && panel != null) options.Add(panel);
             else Modding.Logger.LogError("[Satchel] - Could not add TextPanel.");
@@ -197,7 +203,7 @@ namespace Satchel.BetterMenus
         /// <param name="panel">The TextPanel created. Null if the panel could not be added.</param>
         /// <param name="width">The width of the TextPanel.</param>
         /// <returns>The current MenuOptionBuilder instance.</returns>
-        public override MenuOptionBuilder AddTextPanel(string name, out TextPanel? panel, float width = 1500f)
+        public MenuOptionBuilder AddTextPanel(string name, out TextPanel? panel, float width = 1500f)
         {
             panel = default;
             if (!disposedValue && !string.IsNullOrEmpty(name))
@@ -214,7 +220,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="panel">The StaticPanel to add.</param>
         /// <returns>The current MenuOptionBuilder instance.</returns>
-        public override MenuOptionBuilder AddStaticPanel(StaticPanel panel)
+        public MenuOptionBuilder AddStaticPanel(StaticPanel panel)
         {
             if (!disposedValue && panel != null) options.Add(panel);
             else Modding.Logger.LogError("[Satchel] - Couldn't add StaticPanel.");
@@ -229,7 +235,7 @@ namespace Satchel.BetterMenus
         /// <param name="panel">The StaticPanel created. Null if the panel could not be added.</param>
         /// <param name="width">The width of the StaticPanel.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddStaticPanel(string name, Action<GameObject> createCustomItem, out StaticPanel? panel, float width = 1500f)
+        public MenuOptionBuilder AddStaticPanel(string name, Action<GameObject> createCustomItem, out StaticPanel? panel, float width = 1500f)
         {
             panel = default;
             if (!disposedValue && !string.IsNullOrEmpty(name) && createCustomItem != null)
@@ -246,7 +252,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="option">The ModToggleOption to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddModToggleOption(ModToggleOption option)
+        public MenuOptionBuilder AddModToggleOption(ModToggleOption option)
         {
             if (!disposedValue && option != null) options.Add(option);
             else Modding.Logger.LogError("[Satchel] - Couldn't create ModToggleOption.");
@@ -261,7 +267,7 @@ namespace Satchel.BetterMenus
         /// <param name="description">The description to be displayed.</param>
         /// <param name="option">The created ModToggleOption. Null if the option could not be added.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddModToggleOption(string name, ModToggleDelegates toggleDelegates, string description, out ModToggleOption? option)
+        public MenuOptionBuilder AddModToggleOption(string name, ModToggleDelegates toggleDelegates, string description, out ModToggleOption? option)
         {
             option = default;
             if (!disposedValue && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description))
@@ -278,7 +284,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="option">The HideableOption to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddHideableMenuOption(HideableMenuOption option)
+        public MenuOptionBuilder AddHideableMenuOption(HideableMenuOption option)
         {
             if (!disposedValue && option != null) options.Add(option);
             else Modding.Logger.LogError("[Satchel] - Coudln't create HideableMenuOption.");
@@ -293,12 +299,17 @@ namespace Satchel.BetterMenus
         /// <param name="enableSubOptions">The Func(bool) that determines whether to show the suboptions.</param>
         /// <param name="option">The HideableMenuOption created. Null if the option could not be added.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddHideableMenuOption(IPrimaryMenuOption primaryOption, List<Element> subOptions, Func<bool> enableSubOptions, out HideableMenuOption? option)
+        public MenuOptionBuilder AddHideableMenuOption(
+            IPrimaryMenuOption primaryOption, 
+            List<Element> subOptions, 
+            Func<bool> enableSubOptions, 
+            out HideableMenuOption? option,
+            string Id)
         {
             option = default;
             if (!disposedValue && primaryOption != null && subOptions.Count > 0 && enableSubOptions != null)
             {
-                option = new HideableMenuOption(primaryOption, subOptions, enableSubOptions);
+                option = new HideableMenuOption(primaryOption, subOptions, enableSubOptions,Id:Id);
                 options.Add(option);
             }
             else Modding.Logger.LogError("[Satchel] - Couldn't create HideableMenuOption.");
@@ -310,7 +321,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="bind">The KeyAndButtonBind to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddKeyAndButtonBind(KeyAndButtonBind bind)
+        public MenuOptionBuilder AddKeyAndButtonBind(KeyAndButtonBind bind)
         {
             if (!disposedValue && bind != null) options.Add(bind);
             else Modding.Logger.LogError("[Satchel] - Couldn't create KeyAndButtonBind.");
@@ -326,7 +337,7 @@ namespace Satchel.BetterMenus
         /// <param name="buttonBindAction">The InControl.PlayerAction of the buttonbind</param>
         /// <param name="bind">The created KeyAndButtonBind. Null if the bind could not be added.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddKeyAndButtonBind(string keyBindName, InControl.PlayerAction keyBindAction, string buttonBindName, InControl.PlayerAction buttonBindAction, out KeyAndButtonBind? bind)
+        public MenuOptionBuilder AddKeyAndButtonBind(string keyBindName, InControl.PlayerAction keyBindAction, string buttonBindName, InControl.PlayerAction buttonBindAction, out KeyAndButtonBind? bind)
         {
             bind = default;
             if (!disposedValue && !string.IsNullOrEmpty(keyBindName) && keyBindAction != null && !string.IsNullOrEmpty(buttonBindName) && buttonBindAction != null)
@@ -343,7 +354,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="options">The SideBySideOptions to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddSideBySideOptions(SideBySideOptions options)
+        public MenuOptionBuilder AddSideBySideOptions(SideBySideOptions options)
         {
             if (!disposedValue && options != null) this.options.Add(options);
             else Modding.Logger.LogError("[Satchel] - Couldn't create SideBySideOptions.");
@@ -357,12 +368,16 @@ namespace Satchel.BetterMenus
         /// <param name="rightOption">The right option to add.</param>
         /// <param name="option">The created SideBySideOptions. Null if the options could not be added.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddSideBySideOptions(Element leftOption, Element rightOption, out SideBySideOptions? option)
+        public MenuOptionBuilder AddSideBySideOptions(
+            Element leftOption, 
+            Element rightOption, 
+            out SideBySideOptions? option,
+            string Id)
         {
             option = default;
             if (!disposedValue && leftOption != null & rightOption != null)
             {
-                option = new SideBySideOptions(leftOption, rightOption);
+                option = new SideBySideOptions(leftOption, rightOption,Id:Id);
                 options.Add(option);
             }
             return this;
@@ -373,7 +388,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="slider">The Slider to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder AddVolumeSlider(VolumeSlider slider)
+        public MenuOptionBuilder AddVolumeSlider(VolumeSlider slider)
         {
             if (!disposedValue && options != null) this.options.Add(slider);
             else Modding.Logger.LogError("[Satchel] - Couldn't create Volume Slider.");
@@ -386,7 +401,7 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
         /// <param name="savedValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
-        public override MenuOptionBuilder AddVolumeSlider(string name, Action<float> storeValue, Func<int> savedValue, out VolumeSlider? option)
+        public MenuOptionBuilder AddVolumeSlider(string name, Action<float> storeValue, Func<int> savedValue, out VolumeSlider? option)
         {
             option = default;
             if (!disposedValue && !string.IsNullOrEmpty(name))
@@ -402,7 +417,7 @@ namespace Satchel.BetterMenus
         /// Build the current MenuOptionBuilder into an array of MenuOptions.
         /// </summary>
         /// <returns>The array of MenuOptions created.</returns>
-        public override Element[]? Build()
+        public Element[]? Build()
         {
             if (disposedValue || options.Count <= 0) Modding.Logger.LogError("[Satchel] - There is nothing to build!");
             else
@@ -422,7 +437,7 @@ namespace Satchel.BetterMenus
         public new Element[]? Build(MenuOptionBuilder builder) =>
             builder.Build();
 
-        protected override void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
@@ -438,7 +453,7 @@ namespace Satchel.BetterMenus
         /// Resets this MenuOptionBuilder.
         /// </summary>
         /// <returns>A backup of the current MenuOptionBuilder.</returns>
-        public override MenuOptionBuilder Reset()
+        public MenuOptionBuilder Reset()
         {
             var backup = this;
             Dispose(disposing: true);
@@ -450,46 +465,12 @@ namespace Satchel.BetterMenus
         /// Clones the current MenuOptionBuilder.
         /// </summary>
         /// <returns>The cloned MenuOptionBuilder.</returns>
-        public override object Clone() =>
+        public object Clone() =>
             new MenuOptionBuilder(options);
 
         private string GetDebuggerDisplay()
             => ToString();
 
-    }
-
-    public abstract class MenuOptionBuilderBase
-    {
-        //For context, I (Ruttie) made this, so it's probably bad.
-        public static Element[]? Build(MenuOptionBuilder builder) =>
-            builder.Build();
-        public abstract MenuOptionBuilder AddList(List<Element> customOptions);
-        public abstract MenuOptionBuilder AddOption(Element option);
-        public abstract MenuOptionBuilder AddButtonBind(ButtonBind button);
-        public abstract MenuOptionBuilder AddButtonBind(string name, InControl.PlayerAction playerAction, out ButtonBind? bind);
-        public abstract MenuOptionBuilder AddHideableMenuOption(HideableMenuOption option);
-        public abstract MenuOptionBuilder AddHideableMenuOption(IPrimaryMenuOption primaryOption, List<Element> subOptions, Func<bool> enableSubOptions, out HideableMenuOption? option);
-        public abstract MenuOptionBuilder AddHorizontalOption(HorizontalOption option);
-        public abstract MenuOptionBuilder AddHorizontalOption(string name, string[] values, string description, Action<int> applySetting, Func<int> loadSetting, out HorizontalOption option);
-        public abstract MenuOptionBuilder AddKeyAndButtonBind(KeyAndButtonBind bind);
-        public abstract MenuOptionBuilder AddKeyAndButtonBind(string keyBindName, InControl.PlayerAction keyBindAction, string buttonBindName, InControl.PlayerAction buttonBindAction, out KeyAndButtonBind? bind);
-        public abstract MenuOptionBuilder AddKeyBind(KeyBind option);
-        public abstract MenuOptionBuilder AddKeyBind(string name, InControl.PlayerAction action, out KeyBind? bind);
-        public abstract MenuOptionBuilder AddMenuButton(MenuButton button);
-        public abstract MenuOptionBuilder AddMenuButton(string name, string description, Action<UnityEngine.UI.MenuButton> submitAction, out MenuButton? button);
-        public abstract MenuOptionBuilder AddModToggleOption(ModToggleOption option);
-        public abstract MenuOptionBuilder AddModToggleOption(string name, ModToggleDelegates toggleDelegates, string description, out ModToggleOption? option);
-        public abstract MenuOptionBuilder AddSideBySideOptions(SideBySideOptions options);
-        public abstract MenuOptionBuilder AddSideBySideOptions(Element leftOption, Element rightOption, out SideBySideOptions? option);
-        public abstract MenuOptionBuilder AddStaticPanel(StaticPanel panel);
-        public abstract MenuOptionBuilder AddStaticPanel(string name, Action<GameObject> createCustomItem, out StaticPanel? panel, float width = 1500f);
-        public abstract MenuOptionBuilder AddTextPanel(TextPanel panel);
-        public abstract MenuOptionBuilder AddTextPanel(string name, out TextPanel? panel, float width = 1500f);
-        public abstract MenuOptionBuilder AddVolumeSlider(VolumeSlider slider);
-        public abstract MenuOptionBuilder AddVolumeSlider(string name, Action<float> storeValue, Func<int> savedValue, out VolumeSlider? option);        public abstract Element[]? Build();
-        public abstract object Clone();
-        public abstract MenuOptionBuilder Reset();
-        protected abstract void Dispose(bool disposing);
     }
 
 #nullable restore

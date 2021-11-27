@@ -29,7 +29,10 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="leftOption">The left options.</param>
         /// <param name="rightOption">The right options.</param>
-        public SideBySideOptions(Element leftOption, Element rightOption)
+        public SideBySideOptions(
+            Element leftOption, 
+            Element rightOption,
+            string Id) : base(Id)
         {
             LeftOption = leftOption;
             RightOption = rightOption;

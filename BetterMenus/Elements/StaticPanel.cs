@@ -30,7 +30,11 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="createCustomItem">The Action(GameObject) te be called on creation.</param>
         /// <param name="width">The width of the panel.</param>
-        public StaticPanel(string name, Action<GameObject> createCustomItem, float width = 1500f)
+        public StaticPanel(
+            string name,
+            Action<GameObject> createCustomItem, 
+            float width = 1500f,
+            string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             CreateCustomItem = createCustomItem;

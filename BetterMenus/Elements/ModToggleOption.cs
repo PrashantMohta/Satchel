@@ -31,7 +31,11 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="toggleDelegates">The ModToggleDelegates of the mod.</param>
         /// <param name="description">The description to be displayed.</param>
-        public ModToggleOption(string name, ModToggleDelegates toggleDelegates, string description)
+        public ModToggleOption(
+            string name, 
+            ModToggleDelegates toggleDelegates,
+            string description,
+            string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             ToggleDelegates = toggleDelegates;
@@ -47,11 +51,11 @@ namespace Satchel.BetterMenus
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = Description ?? throw new ArgumentNullException(nameof(Description), "Description cannot be null");
 
-            var horizontalOption = new HorizontalOption(Name, new[] {"On", "Off"}, Description,
+            var horizontalOption = new HorizontalOption(Name, Description, new[] {"On", "Off"},
                 i =>
                 {
                     ToggleDelegates.SetModEnabled(i == 0);
-                }, () => ToggleDelegates.GetModEnabled() ? 0 : 1);
+                }, () => ToggleDelegates.GetModEnabled() ? 0 : 1,Name+"internalModToggle");
             
             var option = horizontalOption.Create(c, modlistMenu, Instance, false);
             

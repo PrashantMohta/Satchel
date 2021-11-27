@@ -38,11 +38,17 @@ namespace Satchel.BetterMenus
         /// Creates a new HorizontalOption.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
-        /// <param name="values">The values the HorizontalOption can have.</param>
         /// <param name="description">The description to be displayed.</param>
+        /// <param name="values">The values the HorizontalOption can have.</param>
         /// <param name="applySetting">Triggered when a setting is applied.</param>
         /// <param name="loadSetting">The Func(int) to call when settings are being loaded.</param>
-        public HorizontalOption(string name, string[] values, string description, Action<int> applySetting, Func<int> loadSetting)
+        public HorizontalOption(
+            string name , 
+            string description,
+            string[] values, 
+            Action<int> applySetting, 
+            Func<int> loadSetting,
+            string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             Description = description;
