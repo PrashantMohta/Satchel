@@ -22,7 +22,11 @@ namespace Satchel.BetterMenus
         /// The description to be displayed.
         /// </summary>
         public string Description;
-        
+
+        /// <summary>
+        /// Will this button navigate to another menu?.
+        /// </summary>
+        public bool Proceed;
 
         /// <summary>
         /// Creates a MenuButton.
@@ -34,11 +38,13 @@ namespace Satchel.BetterMenus
             string name, 
             string description, 
             Action<UnityEngine.UI.MenuButton> submitAction,
+            bool proceed = false,
             string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             Description = description;
             SubmitAction = submitAction;
+            Proceed = proceed;
         }
 
         /// <summary>
@@ -62,7 +68,7 @@ namespace Satchel.BetterMenus
                         Text = Description
                     },
                     Label = Name,
-                    Proceed = false,
+                    Proceed = Proceed,
                     SubmitAction = SubmitAction,
                 }, out var option);
 
