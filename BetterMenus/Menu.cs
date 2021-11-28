@@ -281,6 +281,9 @@ namespace Satchel.BetterMenus{
         internal override void Update()
         {
             //todo update title text etc
+            foreach(var elem in Elements){
+                elem.Update();
+            }
             Reflow();
         }
     }
