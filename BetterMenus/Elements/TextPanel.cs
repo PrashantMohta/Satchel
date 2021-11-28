@@ -19,16 +19,22 @@ namespace Satchel.BetterMenus
         /// </summary>
         public float Width;
         
+        /// <summary>
+        /// The fontSize of the TextPanel (default 35).
+        /// </summary>
+        public int FontSize;
 
         /// <summary>
         /// Creates a new TextPanel.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
         /// <param name="width">The width of the TextPanel.</param>
-        public TextPanel(string name, float width = 1500f,string Id = "__UseName") : base(Id,name)
+        /// <param name="fontSize">The fontSize of the TextPanel.</param>
+        public TextPanel(string name, float width = 1500f,int fontSize = 35,string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             Width = width;
+            FontSize = fontSize;
         }
 
 
@@ -47,7 +53,7 @@ namespace Satchel.BetterMenus
                 {
                     Anchor = TextAnchor.MiddleCenter,
                     Font = TextPanelConfig.TextFont.TrajanBold,
-                    Size = 46,
+                    Size = FontSize,
                     Text = Name
                 }, out var option);
             if (AddToList)
@@ -63,6 +69,7 @@ namespace Satchel.BetterMenus
         internal override void Update()
         {
             gameObject.GetComponent<Text>().text = Name;
+            gameObject.GetComponent<Text>().fontSize = FontSize;
         }
     }
 
