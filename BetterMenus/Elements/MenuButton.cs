@@ -12,7 +12,7 @@ namespace Satchel.BetterMenus
         /// <summary>
     /// A menu button.
     /// </summary>
-    public class MenuButton : Element, IPrimaryMenuOption
+    public class MenuButton : Element
     {
         /// <summary>
         /// The Action(UnityEngine.UI.MenuButton) to call when a value is submitted.
@@ -73,15 +73,6 @@ namespace Satchel.BetterMenus
 
             gameObject = option.gameObject;
             return new GameObjectPair(option.gameObject);
-        }
-
-        /// <summary>
-        /// Adds a new Action to when the setting is applied.
-        /// </summary>
-        /// <param name="UpdateMenu">The Action to add.</param>
-        public void AddUpdateMenuAction(Action UpdateMenu)
-        {
-            SubmitAction += _ => UpdateMenu.Invoke();
         }
 
         internal override void Update()

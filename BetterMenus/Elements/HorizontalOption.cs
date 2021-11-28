@@ -14,7 +14,7 @@ namespace Satchel.BetterMenus
     /// <summary>
     /// A horizontal option.
     /// </summary>
-    public class HorizontalOption : Element, IPrimaryMenuOption
+    public class HorizontalOption : Element
     {
         
         /// <summary>
@@ -94,16 +94,7 @@ namespace Satchel.BetterMenus
 
             return new GameObjectPair(option.gameObject);
         }
-
-        /// <summary>
-        /// Adds a new Action to when the setting is applied.
-        /// </summary>
-        /// <param name="UpdateMenu">The Action to add.</param>
-        public void AddUpdateMenuAction(Action UpdateMenu)
-        {
-            ApplySetting += _ => UpdateMenu.Invoke();
-        }
-
+        
         internal override void Update()
         {
             gameObject.GetComponent<MenuOptionHorizontal>().optionList = Values;
