@@ -14,7 +14,7 @@ namespace SatchelBetterMenus.Example
         public static KeyBinds keybind = new KeyBinds();
         public static ButtonBinds button = new ButtonBinds();
         public static Menu PrepareMenu(){
-            return new Menu("Simple Menu",new Element[]{
+            return new Menu("Complex Menu",new Element[]{
                 new TextPanel("Example Mod Menu Text Panel",1000f,Id:"textyboi"),
                 new TextPanel("uses name",1000f),
                 new TextPanel("1 boy",1000f,Id:"1boi"){isVisible=false},

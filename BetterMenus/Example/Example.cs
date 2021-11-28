@@ -42,12 +42,12 @@ namespace SatchelBetterMenus.Example
                     Blueprints.NavigateToMenu(
                         "Simple Menu",
                         "Create Basic Menus quickly",
-                        ()=>SimpleMenu.GetMenu(MenuRef.menuRef)
+                        ()=>SimpleMenu.GetMenu(MenuRef.menuScreen)
                     ),
                     Blueprints.NavigateToMenu(
                         "Dynamic Updates",
                         "Without messing around with GameObjects",
-                        ()=>DynamicMenu.GetMenu(MenuRef.menuRef)
+                        ()=>DynamicMenu.GetMenu(MenuRef.menuScreen)
                     ),
                     Id:"group1"
                 ),
@@ -55,12 +55,12 @@ namespace SatchelBetterMenus.Example
                     Blueprints.NavigateToMenu(
                         "ToggleGroups",
                         "Hide groups of elements easily",
-                        ()=>ToggleGroups.GetMenu(MenuRef.menuRef)
+                        ()=>ToggleGroups.GetMenu(MenuRef.menuScreen)
                     ),
                     Blueprints.NavigateToMenu(
                         "Full Control",
                         "Get specific and control individual elements",
-                        ()=>ComplexMenu.GetMenu(MenuRef.menuRef)
+                        ()=>ComplexMenu.GetMenu(MenuRef.menuScreen)
                     ),
                     Id:"group2"
                 ){ XDelta = 500f},

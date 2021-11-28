@@ -36,7 +36,7 @@ namespace Satchel.BetterMenus{
         public void AddElement(Element elem){
             Elements.Add(elem);
             ElementDict[elem.Id] = elem;
-    }
+        }
         //not really sure if we need this or not
         /// <summary>
         /// Creates a new Menu instance. Generally, this is not needed.
@@ -55,9 +55,9 @@ namespace Satchel.BetterMenus{
             ResetPositioners();
             On.UIManager.ShowMenu += ShowMenu;
         }
-        public MenuScreen menuRef;
+        public MenuScreen menuScreen;
         public IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
-            if(menu == this.menuRef){
+            if(menu == this.menuScreen){
                 menu.screenCanvasGroup.alpha = 0f;
                 menu.screenCanvasGroup.gameObject.SetActive(value: true);
                 Reflow(silent:true);
@@ -77,6 +77,7 @@ namespace Satchel.BetterMenus{
             Modding.Logger.Log($"No such Element with id {Id}");
             return null;
         }
+
         /// <summary>
         /// Creates a new MenuScreen with the provided variables.
         /// </summary>
@@ -120,8 +121,8 @@ namespace Satchel.BetterMenus{
             }
 
             Menu.AddBackButton(modListMenu, out backButton); // add a back button
-            menuRef = Menu.Build();
-            return menuRef;
+            menuScreen = Menu.Build();
+            return menuScreen;
         }
 
         public void ApplyElementVisibility(Element elem){
@@ -238,22 +239,6 @@ namespace Satchel.BetterMenus{
             ItemAdvance = relVector2;
         }
 
-        /// <summary>
-        /// Gets all the GameObjects in this Menu instance.
-        /// </summary>
-        /// <returns>The List of GameObjects.</returns>
-        public List<GameObject> GetGameObjectList()
-        {
-            List<GameObject> GoList = new List<GameObject>();
-            foreach (var menuOptionGos in MenuOrder)
-            {
-                if (menuOptionGos.LeftGo != TempObj) GoList.Add(menuOptionGos.LeftGo);
-                if (menuOptionGos.RightGo != TempObj) GoList.Add(menuOptionGos.RightGo);
-                
-            }
-            return GoList;
-        }
-        
         /// <summary>
         /// Generates a new MenuScreen.
         /// </summary>
