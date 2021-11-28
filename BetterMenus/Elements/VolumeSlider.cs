@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
 {
-    public class VolumeSlider : Element
+    public class VolumeSlider : Element //should be renamed to slider probs and probably needs to be remade slider needs to be added to nav graph
     {
         
         /// <summary>
@@ -54,7 +54,7 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option);
         }
 
-        internal override void Update()
+        public override void Update()
         {
             //change Text
             gameObject.transform.Find("Label").GetComponent<Text>().text = Name;

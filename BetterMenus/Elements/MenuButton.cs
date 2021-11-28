@@ -34,6 +34,8 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="description">The description to be displayed.</param>
         /// <param name="submitAction">The Action(UnityEngine.UI.MenuButton) to call when a value is submitted.</param>
+        /// <param name="proceed">Will this button navigate to another menu?</param>
+        /// <param name="Id">The Id of this Element.</param>
         public MenuButton(
             string name, 
             string description, 
@@ -50,14 +52,18 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a GameObjectPair based on the current variables.
         /// </summary>
-                /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
+        /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
+        /// <param name="modlistMenu">The previous MenuScreen.</param>
+        /// <param name="Instance">The current Menu instance.</param>
+        /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = SubmitAction ?? throw new ArgumentNullException(nameof(SubmitAction), "SubmitAction cannot be null");
             _ = Description ?? throw new ArgumentNullException(nameof(Description), "Description cannot be null");
-
+            //todo support DescriptionStyle & MenuButtonStyle
             c.AddMenuButton(
                 Name,
                 new MenuButtonConfig
@@ -81,7 +87,7 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option.gameObject);
         }
 
-        internal override void Update()
+        public override void Update()
         {
             gameObject.transform.Find("Label").GetComponent<Text>().text = Name;
             gameObject.transform.Find("Description").GetComponent<Text>().text = Description;

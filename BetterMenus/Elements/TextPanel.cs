@@ -30,6 +30,7 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="width">The width of the TextPanel.</param>
         /// <param name="fontSize">The fontSize of the TextPanel.</param>
+        /// <param name="Id">The Id of this Element.</param>
         public TextPanel(string name, float width = 1500f,int fontSize = 35,string Id = "__UseName") : base(Id,name)
         {
             Name = name;
@@ -41,11 +42,16 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a GameObjectPair based on the current variables.
         /// </summary>
+        /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
+        /// <param name="modlistMenu">The previous MenuScreen.</param>
+        /// <param name="Instance">The current Menu instance.</param>
+        /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
         /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
-           
+           //todo add support for TextFont & TextAnchor
+           //todo also add support for height
             c.AddTextPanel(
                 Name,
                 new RelVector2(new Vector2(Width, 105f)),
@@ -55,7 +61,8 @@ namespace Satchel.BetterMenus
                     Font = TextPanelConfig.TextFont.TrajanBold,
                     Size = FontSize,
                     Text = Name
-                }, out var option);
+                }, out var option
+            );
             if (AddToList)
             {
                 Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
@@ -66,10 +73,11 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option.gameObject);
         }
 
-        internal override void Update()
+        public override void Update()
         {
             gameObject.GetComponent<Text>().text = Name;
             gameObject.GetComponent<Text>().fontSize = FontSize;
+            //todo add support for updating width
         }
     }
 

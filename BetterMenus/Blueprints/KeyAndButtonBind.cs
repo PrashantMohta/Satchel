@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Satchel.BetterMenus
 {
     public static partial class Blueprints{
-        public static SideBySideOptions KeyAndButtonBind(
+        public static SideBySideElements KeyAndButtonBind(
             string name,
             InControl.PlayerAction keyBindAction,
             InControl.PlayerAction buttonBindAction,
@@ -17,7 +17,7 @@ namespace Satchel.BetterMenus
             if(Id == "__UseName"){
                 Id = name;
             }
-            var sbso = new SideBySideOptions(
+            var sbso = new SideBySideElements(
                 new KeyBind(name ,keyBindAction,Id:Id+"key"),
                 new ButtonBind("",keyBindAction,Id:Id+"button"),
                 Id:Id);

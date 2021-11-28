@@ -25,6 +25,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
         /// <param name="playerAction">The PlayerAction connected to this bind.</param>
+        /// <param name="Id">The Id of this Element.</param>
         public KeyBind(string name,InControl.PlayerAction playerAction,string Id = "__UseName") : base(Id,name)
         {
             Name = name;
@@ -34,13 +35,17 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a GameObjectPair based on the current variables.
         /// </summary>
-                /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
+        /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
+        /// <param name="modlistMenu">The previous MenuScreen.</param>
+        /// <param name="Instance">The current Menu instance.</param>
+        /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = PlayerAction ?? throw new ArgumentNullException(nameof(PlayerAction), "PlayerAction cannot be null");
-
+            //todo add KeybindStyle support
             c.AddKeybind(
                 Name,
                 PlayerAction,
@@ -58,7 +63,7 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option.gameObject);
         }
         
-        internal override void Update()
+        public override void Update()
         {
             var mappableControllerButton = gameObject.GetComponent<MappableKey>();
             mappableControllerButton.InitCustomActions(PlayerAction.Owner, PlayerAction);

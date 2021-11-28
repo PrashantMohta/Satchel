@@ -23,7 +23,7 @@ namespace Satchel.BetterMenus
         public GameObject RightGo;
         
         /// <summary>
-        /// The Parent Element (only not null for SideBySideOptions)
+        /// The Parent Element (only not null for SideBySideElements)
         /// </summary>
         public Element Parent;
 
@@ -59,12 +59,12 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Generates a new GameObjectPair from 2 GameObjectPairs that contain 1 Real GameObject each
         /// </summary>
-        /// <param name="LeftOptionGo">The left GameObjectPair.</param>
-        /// <param name="RightOptionGo">The right GameObjectPair.</param>
-        public GameObjectPair(GameObjectPair LeftOptionGo, GameObjectPair RightOptionGo)
+        /// <param name="LeftElementGo">The left GameObjectPair.</param>
+        /// <param name="RightElementGo">The right GameObjectPair.</param>
+        public GameObjectPair(GameObjectPair LeftElementGo, GameObjectPair RightElementGo)
         {
-            LeftGo = LeftOptionGo.LeftGo;
-            RightGo = RightOptionGo.LeftGo;
+            LeftGo = LeftElementGo.LeftGo;
+            RightGo = RightElementGo.LeftGo;
         }
         /// <summary>
         /// Generates an empty GameObjectPair. To be used as instead of null

@@ -29,8 +29,9 @@ namespace Satchel.BetterMenus
         /// Triggered when a setting is applied.
         /// </summary>
         public Action<int> ApplySetting;
+
         /// <summary>
-        /// The Func(int) to call when settings are being loaded.
+        /// The Func(int) to Invoke to load the current setting.
         /// </summary>
         public Func<int> LoadSetting;
 
@@ -41,7 +42,8 @@ namespace Satchel.BetterMenus
         /// <param name="description">The description to be displayed.</param>
         /// <param name="values">The values the HorizontalOption can have.</param>
         /// <param name="applySetting">Triggered when a setting is applied.</param>
-        /// <param name="loadSetting">The Func(int) to call when settings are being loaded.</param>
+        /// <param name="loadSetting">The Func(int) to Invoke to load the current setting.</param>
+        /// <param name="Id">The Id of this Element.</param>
         public HorizontalOption(
             string name , 
             string description,
@@ -60,7 +62,11 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a GameObjectPair based on the current variables.
         /// </summary>
-                /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
+        /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
+        /// <param name="modlistMenu">The previous MenuScreen.</param>
+        /// <param name="Instance">The current Menu instance.</param>
+        /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
@@ -68,7 +74,7 @@ namespace Satchel.BetterMenus
             _ = Values ?? throw new ArgumentNullException(nameof(Values), "Values cannot be null");
             _ = ApplySetting ?? throw new ArgumentNullException(nameof(ApplySetting), "ApplySetting cannot be null");
             _ = LoadSetting ?? throw new ArgumentNullException(nameof(LoadSetting), "LoadSetting cannot be null");
-
+            //todo add support for HorizontalOptionStyle & DescriptionStyle
             c.AddHorizontalOption(
                 Name,
                 new HorizontalOptionConfig
@@ -95,7 +101,7 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option.gameObject);
         }
         
-        internal override void Update()
+        public override void Update()
         {
             gameObject.GetComponent<MenuOptionHorizontal>().optionList = Values;
             var menuSetting = gameObject.GetComponent<MenuSetting>();

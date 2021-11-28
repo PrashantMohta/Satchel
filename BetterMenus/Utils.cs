@@ -12,6 +12,7 @@ namespace Satchel.BetterMenus
 {
     public static class Utils
     {
+        public static GameObject SliderPrefab; // this should contain the prefab once we have it
         public static MenuBuilder CreateMenuBuilder(string Title)
         {
             return new MenuBuilder(UIManager.instance.UICanvas.gameObject, Title)
@@ -81,15 +82,22 @@ namespace Satchel.BetterMenus
         public static ContentArea AddVolumeSlider(this ContentArea content, string TextToShow, float height, Action<float> StoreValue, Func<int> SavedValue, out GameObject obj)
         {
             content.AddStaticPanel(TextToShow, new RelVector2(new Vector2(200f, height)), out GameObject parent);
-            GetMusicSlider(TextToShow, parent, StoreValue, SavedValue);
+            var VolumeSlider = GetMusicSlider(TextToShow, parent, StoreValue, SavedValue);
+            content.NavGraph.AddNavigationNode(VolumeSlider.GetComponent<Slider>());
             obj = parent;
             return content;
         }
 
+        private static GameObject GetSliderPrefab(){
+            if(SliderPrefab == null){
+                SliderPrefab = UIManager.instance.gameObject.transform.Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject;
+            }
+            return SliderPrefab;
+        }
+
         private static GameObject GetMusicSlider(string TextToShow, GameObject Parent, Action<float> StoreValue, Func<int> SavedValue)
         {
-            GameObject MusicSlider = UIManager.instance.gameObject.transform.Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject;
-            GameObject VolumeSlider = Object.Instantiate(MusicSlider, Parent.transform);
+            GameObject VolumeSlider = Object.Instantiate(GetSliderPrefab(), Parent.transform);
             MenuAudioSlider VolumeSlider_MenuAudioSlider = VolumeSlider.GetComponent<MenuAudioSlider>();
             Slider VolumeSlider_Slider = VolumeSlider.GetComponent<Slider>();
             VolumeSlider.name = $"{TextToShow}";

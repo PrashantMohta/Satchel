@@ -195,7 +195,7 @@ namespace Satchel.BetterMenus{
                 if(pair.LeftGo != TempObj && pair.RightGo != TempObj){
                     if(pair.LeftGo.activeInHierarchy && pair.RightGo.activeInHierarchy){
                         var l = ItemAdvance;
-                        var XDelta = pair.Parent != null ? ((SideBySideOptions)pair.Parent).XDelta : 750f; 
+                        var XDelta = pair.Parent != null ? ((SideBySideElements)pair.Parent).XDelta : 750f; 
                         l.x = new RelLength(XDelta); // this breaks shit if not done on Element
                         ChangeColumns(2, 0.5f, l, 0.5f);
                     }
@@ -263,7 +263,7 @@ namespace Satchel.BetterMenus{
             return new Menu(Title,MenuOptions).GetMenuScreen( modListMenu);
         }
 
-        internal override void Update()
+        public override void Update()
         {
             //todo update title text etc
             foreach(var elem in Elements){

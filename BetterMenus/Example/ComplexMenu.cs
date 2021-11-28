@@ -31,21 +31,21 @@ namespace SatchelBetterMenus.Example
                             MenuRef?.Find("2boi")?.Hide();
                             MenuRef?.Find("3boi")?.Hide();
                             MenuRef?.Find("ComboWammie")?.updateAfter((elem)=>{
-                                ((SideBySideOptions)elem).RightOption.isVisible = false;
+                                ((SideBySideElements)elem).RightElement.isVisible = false;
                             });
                         } else if(setting == 1){
                             MenuRef?.Find("1boi")?.Hide();
                             MenuRef?.Find("2boi")?.Show();
                             MenuRef?.Find("3boi")?.Hide();
                             MenuRef?.Find("ComboWammie")?.updateAfter((elem)=>{
-                                ((SideBySideOptions)elem).RightOption.isVisible = false;
+                                ((SideBySideElements)elem).RightElement.isVisible = false;
                             });
                         } else {
                             MenuRef?.Find("1boi")?.Hide();
                             MenuRef?.Find("2boi")?.Hide();
                             MenuRef?.Find("3boi")?.Show();
                             MenuRef?.Find("ComboWammie")?.updateAfter((elem)=>{
-                                ((SideBySideOptions)elem).RightOption.isVisible = true;
+                                ((SideBySideElements)elem).RightElement.isVisible = true;
                             });
                         }
                         MenuRef?.Find("textyboi")?.updateAfter((elem)=>{

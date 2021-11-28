@@ -10,51 +10,56 @@ namespace Satchel.BetterMenus
 {
     
     /// <summary>
-    /// A collection of side-by-side options.
+    /// Shows two Elements side-by-side.
     /// </summary>
-    public class SideBySideOptions : Element , IShadowElement
+    public class SideBySideElements : Element , IShadowElement
     {
         /// <summary>
-        /// The left options.
+        /// The left Element.
         /// </summary>
-        public Element LeftOption;
+        public Element LeftElement;
         /// <summary>
-        /// The right options.
+        /// The right Element.
         /// </summary>
-        public Element RightOption;
+        public Element RightElement;
         
         public Element[] GetElements(){
-            return new Element[]{LeftOption,RightOption};
+            return new Element[]{LeftElement,RightElement};
         }
         /// <summary>
         /// Element X Delta, shifts the right element by this amount.
         /// </summary>
         public float XDelta = 750f;
-        public bool isShadowElement = true;
+
         /// <summary>
-        /// Creates a new SideBySideOptions instance.
+        /// Creates a new SideBySideElements instance.
         /// </summary>
-        /// <param name="leftOption">The left options.</param>
-        /// <param name="rightOption">The right options.</param>
-        public SideBySideOptions(
-            Element leftOption, 
-            Element rightOption,
+        /// <param name="LeftElement">The left Element.</param>
+        /// <param name="RightElement">The right Element.</param>
+        /// <param name="Id">The Id of this Element.</param>
+        public SideBySideElements(
+            Element LeftElement, 
+            Element RightElement,
             string Id) : base(Id)
         {
-            LeftOption = leftOption;
-            RightOption = rightOption;
+            this.LeftElement = LeftElement;
+            this.RightElement = RightElement;
         }
 
         /// <summary>
         /// Creates a GameObjectPair based on the current variables.
         /// </summary>
-                /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
+        /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
+        /// <param name="modlistMenu">The previous MenuScreen.</param>
+        /// <param name="Instance">The current Menu instance.</param>
+        /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
 
-            if (LeftOption is IShadowElement || RightOption is IShadowElement)
+            if (LeftElement is IShadowElement || RightElement is IShadowElement)
             {
-                Modding.Logger.LogError("[Satchel] - You cannot create IShadowElement inside IShadowElement");
+                Modding.Logger.LogError("[Satchel] - You cannot create an IShadowElement inside another IShadowElement");
                 return new GameObjectPair();
             }
 
@@ -63,8 +68,8 @@ namespace Satchel.BetterMenus
             l.x = new RelLength(XDelta);
             layout.ChangeColumns(2, newSize: l);
 
-            var option1 = LeftOption.Create(c, modlistMenu, Instance, false);
-            var option2 = RightOption.Create(c, modlistMenu, Instance, false);
+            var option1 = LeftElement.Create(c, modlistMenu, Instance, false);
+            var option2 = RightElement.Create(c, modlistMenu, Instance, false);
 
             l.x = new RelLength(0f);
             layout.ChangeColumns(1, 0.25f, l);
@@ -77,10 +82,10 @@ namespace Satchel.BetterMenus
             return gop;
         }
 
-        internal override void Update()
+        public override void Update()
         {
-            LeftOption?.UpdateInternal();
-            RightOption?.UpdateInternal();
+            LeftElement?.UpdateInternal();
+            RightElement?.UpdateInternal();
         }
     }
 

@@ -24,6 +24,9 @@ namespace SatchelBetterMenus.Example
         }
 
         public bool ToggleButtonInsideMenu => true;
+
+        public float sliderValue = 0f;
+
         public Menu MenuRef;
         public int selectedOption = 0,selectedToggleOption = 1;
         public override void Initialize()
@@ -38,7 +41,7 @@ namespace SatchelBetterMenus.Example
                 toggleDelegates.CreateToggle("Mod Toggle","Made using Blueprints"),
                 new TextPanel("Explore a few menus that can be made",800f),
                 new TextPanel("using the Better Menus system below",800f),
-                new SideBySideOptions(
+                new SideBySideElements(
                     Blueprints.NavigateToMenu(
                         "Simple Menu",
                         "Create Basic Menus quickly",
@@ -51,7 +54,7 @@ namespace SatchelBetterMenus.Example
                     ),
                     Id:"group1"
                 ),
-                new SideBySideOptions(
+                new SideBySideElements(
                     Blueprints.NavigateToMenu(
                         "ToggleGroups",
                         "Hide groups of elements easily",
@@ -64,6 +67,13 @@ namespace SatchelBetterMenus.Example
                     ),
                     Id:"group2"
                 ){ XDelta = 500f},
+                new VolumeSlider(
+                    "SliderBoi",
+                    (f)=>{
+                        sliderValue = f;
+                        Log($"slider value updated {f}");
+                    },
+                    () => (int)sliderValue,Id:"sliderboi")
             });
         }
        

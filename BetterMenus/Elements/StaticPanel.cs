@@ -30,6 +30,7 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="createCustomItem">The Action(GameObject) te be called on creation.</param>
         /// <param name="width">The width of the panel.</param>
+        /// <param name="Id">The Id of this Element.</param>
         public StaticPanel(
             string name,
             Action<GameObject> createCustomItem, 
@@ -44,7 +45,11 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a GameObjectPair based on the current variables.
         /// </summary>
-                /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
+        /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
+        /// <param name="modlistMenu">The previous MenuScreen.</param>
+        /// <param name="Instance">The current Menu instance.</param>
+        /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
+        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
         public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             _ = CreateCustomItem ?? throw new ArgumentNullException(nameof(CreateCustomItem), "CreateCustomItem cannot be null");
@@ -54,6 +59,7 @@ namespace Satchel.BetterMenus
                 new RelVector2(new Vector2(Width, 105f)),
                 out var option);
             CreateCustomItem.Invoke(option);
+            
             if (AddToList)
             {
                 Instance.MenuOrder.Add(new GameObjectPair(option));
@@ -64,9 +70,11 @@ namespace Satchel.BetterMenus
             return new GameObjectPair(option);
         }
 
-        internal override void Update()
+        public override void Update()
         {
             //intentionally left empty
+            //update for static panel might need to be handled via the Event as
+            //we dont know what update means for that which is inside it
         }
     }
 
