@@ -38,6 +38,27 @@ namespace SatchelBetterMenus.Example
         }
         public Menu PrepareMenu(ModToggleDelegates toggleDelegates){
             return new Menu("SatchelBetterMenus", new Element[]{
+                new MenuButton("button","i do nothing",(mb)=>{
+                    MenuRef.Find("fb").updateAfter((elem)=>{
+                        var btn = (Element)elem;
+                        btn.Name = btn.Name == "button" ? "buttoff" : "button";
+                    });
+                },Id:"fb"),
+                new SideBySideOptions(
+                    new MenuButton("button","i do nothing",(mb)=>{
+                        MenuRef.Find("bgroup").updateAfter((elem)=>{
+                            var btn = ((SideBySideOptions)elem).LeftOption;
+                            btn.Name = btn.Name == "button" ? "buttoff" : "button";
+                        });
+                    }),
+                    new MenuButton("button","i do nothing",(mb)=>{
+                        MenuRef.Find("bgroup").updateAfter((elem)=>{
+                            var btn = ((SideBySideOptions)elem).RightOption;
+                            btn.Name = btn.Name == "button" ? "buttoff" : "button";
+                        });
+                    }),
+                Id:"bgroup"
+                ),
                 new TextPanel("Example Mod Menu Text Panel",1000f,Id:"textyboi"),
                 toggleDelegates.CreateToggle("ExampleMod","Enables or disables the mod"),
                 new TextPanel("uses name",1000f),
