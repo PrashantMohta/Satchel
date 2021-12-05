@@ -1,5 +1,7 @@
 using Modding;
 using System;
+using System.Collections.Generic;
+
 using UnityEngine;
 using InControl;
 using Satchel;
@@ -31,21 +33,21 @@ namespace SatchelBetterMenus.Example
                             MenuRef?.Find("2boi")?.Hide();
                             MenuRef?.Find("3boi")?.Hide();
                             MenuRef?.Find("ComboWammie")?.updateAfter((elem)=>{
-                                ((SideBySideElements)elem).RightElement.isVisible = false;
+                                ((SideBySideElements)elem).Row[1].isVisible = false;
                             });
                         } else if(setting == 1){
                             MenuRef?.Find("1boi")?.Hide();
                             MenuRef?.Find("2boi")?.Show();
                             MenuRef?.Find("3boi")?.Hide();
                             MenuRef?.Find("ComboWammie")?.updateAfter((elem)=>{
-                                ((SideBySideElements)elem).RightElement.isVisible = false;
+                                ((SideBySideElements)elem).Row[1].isVisible = false;
                             });
                         } else {
                             MenuRef?.Find("1boi")?.Hide();
                             MenuRef?.Find("2boi")?.Hide();
                             MenuRef?.Find("3boi")?.Show();
                             MenuRef?.Find("ComboWammie")?.updateAfter((elem)=>{
-                                ((SideBySideElements)elem).RightElement.isVisible = true;
+                                ((SideBySideElements)elem).Row[1].isVisible = true;
                             });
                         }
                         MenuRef?.Find("textyboi")?.updateAfter((elem)=>{

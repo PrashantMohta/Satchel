@@ -18,8 +18,10 @@ namespace Satchel.BetterMenus
                 Id = name;
             }
             var sbso = new SideBySideElements(
-                new KeyBind(name ,keyBindAction,Id:Id+"key"),
-                new ButtonBind("",keyBindAction,Id:Id+"button"),
+                new List<Element>{
+                    new KeyBind(name ,keyBindAction,Id:Id+"key"),
+                    new ButtonBind("",keyBindAction,Id:Id+"button")
+                },
                 Id:Id);
             sbso.XDelta = 150f;
             return sbso;

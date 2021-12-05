@@ -1,5 +1,7 @@
 using Modding;
 using System;
+using System.Collections.Generic;
+
 using UnityEngine;
 using InControl;
 using Satchel;
@@ -42,29 +44,33 @@ namespace SatchelBetterMenus.Example
                 new TextPanel("Explore a few menus that can be made",800f),
                 new TextPanel("using the Better Menus system below",800f),
                 new SideBySideElements(
-                    Blueprints.NavigateToMenu(
-                        "Simple Menu",
-                        "Create Basic Menus quickly",
-                        ()=>SimpleMenu.GetMenu(MenuRef.menuScreen)
-                    ),
-                    Blueprints.NavigateToMenu(
-                        "Dynamic Updates",
-                        "Without messing around with GameObjects",
-                        ()=>DynamicMenu.GetMenu(MenuRef.menuScreen)
-                    ),
+                    new List<Element>{
+                        Blueprints.NavigateToMenu(
+                            "Simple Menu",
+                            "Create Basic Menus quickly",
+                            ()=>SimpleMenu.GetMenu(MenuRef.menuScreen)
+                        ),
+                        Blueprints.NavigateToMenu(
+                            "Dynamic Updates",
+                            "Without messing around with GameObjects",
+                            ()=>DynamicMenu.GetMenu(MenuRef.menuScreen)
+                        )
+                    },
                     Id:"group1"
                 ),
                 new SideBySideElements(
-                    Blueprints.NavigateToMenu(
-                        "ToggleGroups",
-                        "Hide groups of elements easily",
-                        ()=>ToggleGroups.GetMenu(MenuRef.menuScreen)
-                    ),
-                    Blueprints.NavigateToMenu(
-                        "Full Control",
-                        "Get specific and control individual elements",
-                        ()=>ComplexMenu.GetMenu(MenuRef.menuScreen)
-                    ),
+                    new List<Element>{
+                        Blueprints.NavigateToMenu(
+                            "ToggleGroups",
+                            "Hide groups of elements easily",
+                            ()=>ToggleGroups.GetMenu(MenuRef.menuScreen)
+                        ),
+                        Blueprints.NavigateToMenu(
+                            "Full Control",
+                            "Get specific and control individual elements",
+                            ()=>ComplexMenu.GetMenu(MenuRef.menuScreen)
+                        )
+                    },
                     Id:"group2"
                 ){ XDelta = 500f},
                 new CustomSlider(

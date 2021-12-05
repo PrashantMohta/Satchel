@@ -136,7 +136,6 @@
     <Compile Include="BetterMenus\Elements\*.cs" />
     <Compile Include="BetterMenus\Blueprints\*.cs" />
     <Compile Include="BetterMenus\Menu.cs" />
-    <Compile Include="BetterMenus\MenuOptionBuilder.cs" />
     <Compile Include="BetterMenus\Utils.cs" />
   </ItemGroup>
   <ItemGroup>

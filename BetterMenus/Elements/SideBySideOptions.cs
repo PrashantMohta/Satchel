@@ -14,17 +14,10 @@ namespace Satchel.BetterMenus
     /// </summary>
     public class SideBySideElements : Element , IShadowElement
     {
-        /// <summary>
-        /// The left Element.
-        /// </summary>
-        public Element LeftElement;
-        /// <summary>
-        /// The right Element.
-        /// </summary>
-        public Element RightElement;
+        public List<Element> Row;
         
         public Element[] GetElements(){
-            return new Element[]{LeftElement,RightElement};
+            return Row.ToArray();
         }
         /// <summary>
         /// Element X Delta, shifts the right element by this amount.
@@ -34,16 +27,13 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a new SideBySideElements instance.
         /// </summary>
-        /// <param name="LeftElement">The left Element.</param>
-        /// <param name="RightElement">The right Element.</param>
+        /// <param name="Row">The Row of Elemenst.</param>
         /// <param name="Id">The Id of this Element.</param>
         public SideBySideElements(
-            Element LeftElement, 
-            Element RightElement,
+            List<Element> Row,
             string Id) : base(Id)
         {
-            this.LeftElement = LeftElement;
-            this.RightElement = RightElement;
+            this.Row = Row;
         }
 
         /// <summary>
@@ -56,24 +46,36 @@ namespace Satchel.BetterMenus
         /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
         public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
-
-            if (LeftElement is IShadowElement || RightElement is IShadowElement)
-            {
-                Modding.Logger.LogError("[Satchel] - You cannot create an IShadowElement inside another IShadowElement");
-                return new GameObjectRow();
-            }
-
+            var columnCount = Row.Count;
+                        
             var layout = c.Layout as RegularGridLayout;
             var l = layout.ItemAdvance;
-            l.x = new RelLength(XDelta);
-            layout.ChangeColumns(2, newSize: l);
+            List<GameObject> rowGos = new();
 
-            var option1 = LeftElement.Create(c, modlistMenu, Instance, false);
-            var option2 = RightElement.Create(c, modlistMenu, Instance, false);
+            if(columnCount > 1){
+                l.x = new RelLength(XDelta); // this breaks shit if not done
+                layout.ChangeColumns(columnCount, newSize: l);
+            }
 
-            l.x = new RelLength(0f);
-            layout.ChangeColumns(1, 0.25f, l);
-            var gop = new GameObjectRow(option1, option2);
+            foreach(var elem in Row){
+                if (elem is IShadowElement)
+                {
+                    Modding.Logger.LogError("[Satchel] - Cannot create an IShadowElement inside another IShadowElement");
+                    return new GameObjectRow();
+                }
+                var gor = elem.Create(c, modlistMenu, Instance, false);
+                foreach(var go in gor.Row){
+                    rowGos.Add(go);
+                }
+            }
+
+            if(columnCount > 1){
+                var k = layout.ItemAdvance;
+                k.x = new RelLength(0f);
+                layout.ChangeColumns(1, 0.25f, newSize: k);
+            }
+            
+            var gop = new GameObjectRow(rowGos);
             gop.Parent = this;
             if (AddToList)
             {
@@ -84,8 +86,9 @@ namespace Satchel.BetterMenus
 
         public override void Update()
         {
-            LeftElement?.UpdateInternal();
-            RightElement?.UpdateInternal();
+            foreach(var elem in Row){
+                elem?.UpdateInternal();
+            }
         }
     }
 
