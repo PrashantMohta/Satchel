@@ -14,7 +14,9 @@ namespace Satchel.BetterMenus
     {
         public GameObject currentSlider;
         public float value = 0f;
-        public bool discreet = true;
+        public float minValue = 0f;
+        public float maxValue = 5f;
+        public bool wholeNumbers = false;
 
         /// <summary>
         /// The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.
@@ -69,6 +71,15 @@ namespace Satchel.BetterMenus
             return CustomSlider.prefab;
         }
 
+        private void SetValueLabel(float value){
+            if(wholeNumbers){
+                GetValueLabel().text = $"{value}";
+            } else {
+                GetValueLabel().text = $"{value.ToString("0.0")}";
+            }
+        }
+
+
         public GameObject AddSlider(GameObject Parent){
             currentSlider = GameObject.Instantiate(CustomSlider.GetSliderPrefab(),Parent.transform);
             currentSlider.name = $"{Name}";
@@ -77,13 +88,12 @@ namespace Satchel.BetterMenus
             value = SavedValue.Invoke();
 
             GetLabel().text = $"{Name}"; 
-            GetValueLabel().text = $"{value}";
-
+            SetValueLabel(value);
 
             Action<float> updateOnEvent = value =>
             {
                 GetLabel().text = $"{Name}"; 
-                GetValueLabel().text = $"{value}";
+                SetValueLabel(value);
                 // call the StoreValue action with float
                 StoreValue?.Invoke(value);
             };
@@ -142,8 +152,7 @@ namespace Satchel.BetterMenus
             }
             gameObject = panel;
             ((IContainer)Parent).OnBuilt += (_,Element) => {
-                FixSliderNavigation();
-                GetSlider().value = value;
+                Update();
             };
             return new GameObjectRow(panel);
         }
@@ -152,8 +161,12 @@ namespace Satchel.BetterMenus
         {
             //change Text
             GetLabel().text = Name;
-            GetValueLabel().text = $"{value}";
-            GetSlider().value = value;
+            SetValueLabel(value);
+            var slider = GetSlider();
+            slider.value = value;
+            slider.minValue = minValue;                
+            slider.maxValue = maxValue;                
+            slider.wholeNumbers = wholeNumbers;
             FixSliderNavigation(); // just in case the nav graph was changed
         }
     }
