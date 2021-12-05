@@ -58,11 +58,12 @@ namespace Satchel.BetterMenus
             //todo actually make the prefab instead of stealing from Music slider.
             var prefab = GameObject.Instantiate(UIManager.instance.gameObject.transform.Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject);
             prefab.SetActive(false);
+
             //fix the prefab to be better to work with
-            prefab.RemoveComponent<MenuAudioSlider>(); //<= big change right here
+            prefab.RemoveComponent<MenuAudioSlider>(); 
             prefab.Find("Label")?.RemoveComponent<AutoLocalizeTextUI>();
             var mpd = prefab.GetComponent<MenuPreventDeselect>();
-            mpd.cancelAction = CancelAction.CustomCancelAction; // <= another one
+            mpd.cancelAction = CancelAction.CustomCancelAction; 
 
             CustomSlider.prefab = prefab;
             return CustomSlider.prefab;
@@ -76,7 +77,6 @@ namespace Satchel.BetterMenus
             value = SavedValue.Invoke();
 
             GetLabel().text = $"{Name}"; 
-            //Modding.Logger.Log("set value done");
             GetValueLabel().text = $"{value}";
 
 
@@ -122,7 +122,7 @@ namespace Satchel.BetterMenus
             SavedValue = savedValue;
         }
 
-        public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
+        public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = StoreValue ?? throw new ArgumentNullException(nameof(StoreValue), "StoreValue cannot be null");
@@ -138,14 +138,14 @@ namespace Satchel.BetterMenus
             
             if (AddToList)
             {
-                Instance.MenuOrder.Add(new GameObjectPair(panel));
+                Instance.MenuOrder.Add(new GameObjectRow(panel));
             }
             gameObject = panel;
             ((IContainer)Parent).OnBuilt += (_,Element) => {
                 FixSliderNavigation();
                 GetSlider().value = value;
             };
-            return new GameObjectPair(panel);
+            return new GameObjectRow(panel);
         }
 
         public override void Update()

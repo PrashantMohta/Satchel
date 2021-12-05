@@ -32,14 +32,14 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Creates a GameObjectRow based on the current variables.
         /// </summary>
         /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
         /// <param name="modlistMenu">The previous MenuScreen.</param>
         /// <param name="Instance">The current Menu instance.</param>
         /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
-        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
-        public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
+        /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
+        public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = PlayerAction ?? throw new ArgumentNullException(nameof(PlayerAction), "PlayerAction cannot be null");
@@ -58,10 +58,10 @@ namespace Satchel.BetterMenus
             
             if (AddToList)
             {
-                Instance.MenuOrder.Add(new GameObjectPair(option.gameObject));
+                Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
             }
 
-            return new GameObjectPair(option.gameObject);
+            return new GameObjectRow(option.gameObject);
         }
 
         public override void Update()

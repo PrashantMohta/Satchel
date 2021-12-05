@@ -47,20 +47,20 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// Creates a GameObjectPair based on the current variables.
+        /// Creates a GameObjectRow based on the current variables.
         /// </summary>
         /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
         /// <param name="modlistMenu">The previous MenuScreen.</param>
         /// <param name="Instance">The current Menu instance.</param>
         /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
-        /// <returns>The created GameObjectPair which can be used to add to the corresponding Lists.</returns>
-        public override GameObjectPair Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
+        /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
+        public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
 
             if (LeftElement is IShadowElement || RightElement is IShadowElement)
             {
                 Modding.Logger.LogError("[Satchel] - You cannot create an IShadowElement inside another IShadowElement");
-                return new GameObjectPair();
+                return new GameObjectRow();
             }
 
             var layout = c.Layout as RegularGridLayout;
@@ -73,7 +73,7 @@ namespace Satchel.BetterMenus
 
             l.x = new RelLength(0f);
             layout.ChangeColumns(1, 0.25f, l);
-            var gop = new GameObjectPair(option1, option2);
+            var gop = new GameObjectRow(option1, option2);
             gop.Parent = this;
             if (AddToList)
             {

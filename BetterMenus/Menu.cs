@@ -29,7 +29,7 @@ namespace Satchel.BetterMenus{
         };
 
         //list that stores the order. max items per column is 2 thats why we use tuple
-        internal List<GameObjectPair> MenuOrder = new List<GameObjectPair>();
+        internal List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
         internal static GameObject TempObj = new GameObject("SatchelTempObj");
         #endregion
 
@@ -195,37 +195,30 @@ namespace Satchel.BetterMenus{
             }
         }
         /// <summary>
-        /// Reorders the GameObjectPairs in this instance.
+        /// Reorders the GameObjectRows in this instance.
         /// </summary>
         public void Reorder()
         {
-            foreach (GameObjectPair pair in Instance.MenuOrder)
+            foreach (GameObjectRow GoRow in Instance.MenuOrder)
             {
-                if(pair.LeftGo != TempObj && pair.RightGo != TempObj){
-                    if(pair.LeftGo.activeInHierarchy && pair.RightGo.activeInHierarchy){
-                        var l = ItemAdvance;
-                        var XDelta = pair.Parent != null ? ((SideBySideElements)pair.Parent).XDelta : 750f; 
-                        l.x = new RelLength(XDelta); // this breaks shit if not done on Element
-                        ChangeColumns(2, 0.5f, l, 0.5f);
+                var columnCount = GoRow.ActiveCount();
+
+                var l = ItemAdvance;
+                if(columnCount > 1){
+                    var XDelta = GoRow.Parent != null ? ((SideBySideElements)GoRow.Parent).XDelta : 750f; 
+                    l.x = new RelLength(XDelta); // this breaks shit if not done on Element
+                    ChangeColumns(columnCount, 0.5f, l, 0.5f);
+                }
+                foreach( var go in GoRow.Row){
+                    if(go != TempObj){
+                        ModifyNext(go);
                     }
                 }
-
-                if(pair.LeftGo != TempObj){
-                    ModifyNext(pair.LeftGo);
+                if(columnCount > 1){
+                    var k = ItemAdvance;
+                    k.x = new RelLength(0f);
+                    ChangeColumns(1, 0.25f, k, 0.5f);
                 }
-                
-                if(pair.RightGo != TempObj){
-                    ModifyNext(pair.RightGo);
-                }
-
-                if(pair.LeftGo != TempObj && pair.RightGo != TempObj){
-                    if(pair.LeftGo.activeInHierarchy && pair.RightGo.activeInHierarchy){
-                        var k = ItemAdvance;
-                        k.x = new RelLength(0f);
-                        ChangeColumns(1, 0.25f, k, 0.5f);
-                    }
-                }
-                
             }
             ResetPositioners();
         }
