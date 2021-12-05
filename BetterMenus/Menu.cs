@@ -122,6 +122,7 @@ namespace Satchel.BetterMenus{
 
             Menu.AddBackButton(modListMenu, out backButton); // add a back button
             menuScreen = Menu.Build();
+            TriggerBuiltEvent();
             return menuScreen;
         }
 
@@ -144,8 +145,8 @@ namespace Satchel.BetterMenus{
             //go through the list given to us by user
             foreach (var menuOption in AllMenuOptions)
             {
-                menuOption.Create(c, modListMenu, Instance);
                 menuOption.Parent = this;
+                menuOption.Create(c, modListMenu, Instance);
                 ApplyElementVisibility(menuOption);
             }
         }
@@ -172,6 +173,14 @@ namespace Satchel.BetterMenus{
                 Index++;
             }
         }
+
+        public event EventHandler<ContainerBuiltEventArgs> OnBuilt;
+        public void TriggerBuiltEvent(){
+            OnBuilt?.Invoke(this,new ContainerBuiltEventArgs{
+                Target = this
+            });
+        }
+
         public event EventHandler<ReflowEventArgs> OnReflow;
         public void Reflow(bool silent = false){
             foreach (var menuOption in Elements)

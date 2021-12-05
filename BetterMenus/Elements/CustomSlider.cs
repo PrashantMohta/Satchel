@@ -105,7 +105,7 @@ namespace Satchel.BetterMenus
                 //mode = Navigation.Mode.Vertical
                 mode = Navigation.Mode.Explicit,
                 selectOnUp = slider.navigation.selectOnUp,
-                selectOnDown = slider.navigation.selectOnUp,
+                selectOnDown = slider.navigation.selectOnDown,
                 selectOnLeft = null,
                 selectOnRight = null
             };
@@ -143,6 +143,9 @@ namespace Satchel.BetterMenus
                 Instance.MenuOrder.Add(new GameObjectPair(panel));
             }
             gameObject = panel;
+            ((IContainer)Parent).OnBuilt += (_,Element) => {
+                FixSliderNavigation();
+            };
             return new GameObjectPair(panel);
         }
 
