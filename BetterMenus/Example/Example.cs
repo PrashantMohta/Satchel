@@ -97,7 +97,7 @@ namespace SatchelBetterMenus.Example
                     "SliderBoi",
                     (f)=>{
                         sliderValue = f;
-                        Log($"slider value updated {f}");
+                        //Log($"slider value updated {f}");
                     },
                     () => (float)sliderValue,Id:"sliderboi")
             });

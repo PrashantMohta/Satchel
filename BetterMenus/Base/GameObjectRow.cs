@@ -80,7 +80,6 @@ namespace Satchel.BetterMenus
                     count++;
                 }
             }
-            Modding.Logger.Log(count);
             return count;
         }
     }
