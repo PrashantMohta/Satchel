@@ -20,7 +20,7 @@ namespace Satchel.BetterMenus
         public List<GameObject> Row;
         
         /// <summary>
-        /// The Parent Element (only not null for SideBySideElements)
+        /// The Parent Element (only not null for MenuRow)
         /// </summary>
         public Element Parent;
 

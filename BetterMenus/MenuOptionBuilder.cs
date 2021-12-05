@@ -248,34 +248,34 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// Adds the provided SideBySideElements to the MenuOptionBuilder.
+        /// Adds the provided MenuRow to the MenuOptionBuilder.
         /// </summary>
-        /// <param name="options">The SideBySideElements to add.</param>
+        /// <param name="options">The MenuRow to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public MenuOptionBuilder AddSideBySideElements(SideBySideElements options)
+        public MenuOptionBuilder AddMenuRow(MenuRow options)
         {
             if (!disposedValue && options != null) this.options.Add(options);
-            else Modding.Logger.LogError("[Satchel] - Couldn't create SideBySideElements.");
+            else Modding.Logger.LogError("[Satchel] - Couldn't create MenuRow.");
             return this;
         }
 
         /// <summary>
-        /// Adds SideBySideElements to the current MenuOptionBuilder.
+        /// Adds MenuRow to the current MenuOptionBuilder.
         /// </summary>
         /// <param name="LeftElement">The left option to add.</param>
         /// <param name="RightElement">The right option to add.</param>
-        /// <param name="option">The created SideBySideElements. Null if the options could not be added.</param>
+        /// <param name="option">The created MenuRow. Null if the options could not be added.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public MenuOptionBuilder AddSideBySideElements(
+        public MenuOptionBuilder AddMenuRow(
             Element LeftElement, 
             Element RightElement, 
-            out SideBySideElements? option,
+            out MenuRow? option,
             string Id)
         {
             option = default;
             if (!disposedValue && LeftElement != null & RightElement != null)
             {
-                option = new SideBySideElements(LeftElement, RightElement,Id:Id);
+                option = new MenuRow(LeftElement, RightElement,Id:Id);
                 options.Add(option);
             }
             return this;

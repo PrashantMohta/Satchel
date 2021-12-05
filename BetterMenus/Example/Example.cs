@@ -43,7 +43,7 @@ namespace SatchelBetterMenus.Example
                 toggleDelegates.CreateToggle("Mod Toggle","Made using Blueprints"),
                 new TextPanel("Explore a few menus that can be made",800f),
                 new TextPanel("using the Better Menus system below",800f),
-                new SideBySideElements(
+                new MenuRow(
                     new List<Element>{
                         Blueprints.NavigateToMenu(
                             "Simple Menu",
@@ -63,7 +63,7 @@ namespace SatchelBetterMenus.Example
                     },
                     Id:"group1"
                 ){ XDelta = 425f},
-                new SideBySideElements(
+                new MenuRow(
                     new List<Element>{
                         Blueprints.NavigateToMenu(
                             "ToggleGroups",
@@ -78,7 +78,7 @@ namespace SatchelBetterMenus.Example
                     },
                     Id:"group2"
                 ){ XDelta = 500f},
-                new SideBySideElements(
+                new MenuRow(
                     new List<Element>{
                         Blueprints.NavigateToMenu(
                             "ToggleGroups",

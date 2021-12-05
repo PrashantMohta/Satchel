@@ -205,7 +205,7 @@ namespace Satchel.BetterMenus{
 
                 var l = ItemAdvance;
                 if(columnCount > 1){
-                    var XDelta = GoRow.Parent != null ? ((SideBySideElements)GoRow.Parent).XDelta : 750f; 
+                    var XDelta = GoRow.Parent != null ? ((MenuRow)GoRow.Parent).XDelta : 750f; 
                     l.x = new RelLength(XDelta); // this breaks shit if not done on Element
                     ChangeColumns(columnCount, 0.5f, l, 0.5f);
                 }

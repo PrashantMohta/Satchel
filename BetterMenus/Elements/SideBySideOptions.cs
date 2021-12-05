@@ -10,9 +10,9 @@ namespace Satchel.BetterMenus
 {
     
     /// <summary>
-    /// Shows two Elements side-by-side.
+    /// Shows a row of Elements side-by-side.
     /// </summary>
-    public class SideBySideElements : Element , IShadowElement
+    public class MenuRow : Element , IShadowElement
     {
         public List<Element> Row;
         
@@ -25,11 +25,11 @@ namespace Satchel.BetterMenus
         public float XDelta = 750f;
 
         /// <summary>
-        /// Creates a new SideBySideElements instance.
+        /// Creates a new MenuRow instance.
         /// </summary>
         /// <param name="Row">The Row of Elemenst.</param>
         /// <param name="Id">The Id of this Element.</param>
-        public SideBySideElements(
+        public MenuRow(
             List<Element> Row,
             string Id) : base(Id)
         {
