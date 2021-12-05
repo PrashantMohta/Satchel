@@ -227,6 +227,9 @@ namespace Satchel.BetterMenus{
         private Vector2Int IndexPos => new Vector2Int(Index % Columns, Index / Columns);
 
         //from mapi
+        // originalAnchor needs the % of the previous width where the new grid needs to start
+        // newSize is the size of the new grid
+        // newAnchor is % of current width where the anchor should be
         private void ChangeColumns(int columns, float originalAnchor = 0.5f, RelVector2? newSize = null, float newAnchor = 0.5f)
         {
             RelVector2 relVector2 = newSize ?? ItemAdvance;
