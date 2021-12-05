@@ -218,6 +218,10 @@ namespace Satchel.BetterMenus{
                     var k = ItemAdvance;
                     k.x = new RelLength(0f);
                     ChangeColumns(1, 0.5f - (1f/(2f*columnCount)), k, 0.5f);
+                    // we assume next row is a single column and same width as our current columns
+                    // and set the position of the start of next grid when center aligned in terms of current grid
+                    // so we substract half of it's width (in terms of the whole width of our current grid)
+                    // from the center 
                 }
             }
             ResetPositioners();
