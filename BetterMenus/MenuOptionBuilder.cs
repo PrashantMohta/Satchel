@@ -282,11 +282,11 @@ namespace Satchel.BetterMenus
         } 
         
         /// <summary>
-        /// Adds the provided VolumeSlider to the MenuOptionBuilder.
+        /// Adds the provided CustomSlider to the MenuOptionBuilder.
         /// </summary>
         /// <param name="slider">The Slider to add.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public MenuOptionBuilder AddVolumeSlider(VolumeSlider slider)
+        public MenuOptionBuilder AddCustomSlider(CustomSlider slider)
         {
             if (!disposedValue && options != null) this.options.Add(slider);
             else Modding.Logger.LogError("[Satchel] - Couldn't create Volume Slider.");
@@ -294,17 +294,17 @@ namespace Satchel.BetterMenus
         }
         
         /// <summary>
-        /// Creates a new VolumeSlider instance.
+        /// Creates a new CustomSlider instance.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
         /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
         /// <param name="savedValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
-        public MenuOptionBuilder AddVolumeSlider(string name, Action<float> storeValue, Func<int> savedValue, out VolumeSlider? option)
+        public MenuOptionBuilder AddCustomSlider(string name, Action<float> storeValue, Func<float> savedValue, out CustomSlider? option)
         {
             option = default;
             if (!disposedValue && !string.IsNullOrEmpty(name))
             {
-                option = new VolumeSlider(name,storeValue,savedValue);
+                option = new CustomSlider(name,storeValue,savedValue);
                 options.Add(option);
             }
             return this;

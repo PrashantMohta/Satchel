@@ -7,5 +7,6 @@ namespace Satchel.BetterMenus{
     public class ValueChangeEventArgs : BaseEventArgs{}
     public class VisibilityChangeEventArgs : BaseEventArgs{}
     public class ReflowEventArgs : BaseEventArgs{}
+    public class ContainerBuiltEventArgs : BaseEventArgs{}
 
 }

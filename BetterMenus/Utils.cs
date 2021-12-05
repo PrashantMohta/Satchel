@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Modding;
+using GlobalEnums;
 
 namespace Satchel.BetterMenus
 {
@@ -78,50 +79,6 @@ namespace Satchel.BetterMenus
                         Proceed = true
                     }));
         }
-
-        public static ContentArea AddVolumeSlider(this ContentArea content, string TextToShow, float height, Action<float> StoreValue, Func<int> SavedValue, out GameObject obj)
-        {
-            content.AddStaticPanel(TextToShow, new RelVector2(new Vector2(200f, height)), out GameObject parent);
-            var VolumeSlider = GetMusicSlider(TextToShow, parent, StoreValue, SavedValue);
-            content.NavGraph.AddNavigationNode(VolumeSlider.GetComponent<Slider>());
-            obj = parent;
-            return content;
-        }
-
-        private static GameObject GetSliderPrefab(){
-            if(SliderPrefab == null){
-                SliderPrefab = UIManager.instance.gameObject.transform.Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject;
-            }
-            return SliderPrefab;
-        }
-
-        private static GameObject GetMusicSlider(string TextToShow, GameObject Parent, Action<float> StoreValue, Func<int> SavedValue)
-        {
-            GameObject VolumeSlider = Object.Instantiate(GetSliderPrefab(), Parent.transform);
-            MenuAudioSlider VolumeSlider_MenuAudioSlider = VolumeSlider.GetComponent<MenuAudioSlider>();
-            Slider VolumeSlider_Slider = VolumeSlider.GetComponent<Slider>();
-            VolumeSlider.name = $"{TextToShow}";
-            Action<float> StoreValue_ = f =>
-            {
-                VolumeSlider_MenuAudioSlider.UpdateTextValue(f);
-                StoreValue.Invoke(f);
-            };
-            // stuff to happen whenever slider is moved
-            var SliderEvent = new Slider.SliderEvent();
-            SliderEvent.AddListener(StoreValue_.Invoke);
-            VolumeSlider_Slider.onValueChanged = SliderEvent;
-            //change the key of the text so it can be changed
-            GameObject.Destroy(VolumeSlider.transform.Find("Label").GetComponent<AutoLocalizeTextUI>());
-            VolumeSlider.transform.Find("Label").GetComponent<Text>().text = TextToShow;
-            VolumeSlider.SetActive(true);
-            //to make sure when go is cloned, it gets the value of the previous session not the value of the music slider
-            int currentValue = SavedValue.Invoke();
-            VolumeSlider_MenuAudioSlider.UpdateTextValue(currentValue);
-            VolumeSlider_Slider.value = currentValue;
-
-            return VolumeSlider;
-        }
-
 
     }
 }

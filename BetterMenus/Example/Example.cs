@@ -67,7 +67,7 @@ namespace SatchelBetterMenus.Example
                     ),
                     Id:"group2"
                 ){ XDelta = 500f},
-                new VolumeSlider(
+                new CustomSlider(
                     "SliderBoi",
                     (f)=>{
                         sliderValue = f;

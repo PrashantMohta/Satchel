@@ -97,7 +97,9 @@ namespace Satchel.BetterMenus
             }
 			
 			gameObject = option.gameObject;
-
+            ((IContainer)Parent).OnBuilt += (_,Element) => {
+                option.menuSetting.RefreshValueFromGameSettings();
+            };
             return new GameObjectPair(option.gameObject);
         }
         
