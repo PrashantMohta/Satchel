@@ -51,6 +51,11 @@ namespace SatchelBetterMenus.Example
                             ()=>SimpleMenu.GetMenu(MenuRef.menuScreen)
                         ),
                         Blueprints.NavigateToMenu(
+                            "Simple Menu 2",
+                            "Create Basic Menus quickly",
+                            ()=>SimpleMenu.GetMenu(MenuRef.menuScreen)
+                        ),
+                        Blueprints.NavigateToMenu(
                             "Dynamic Updates",
                             "Without messing around with GameObjects",
                             ()=>DynamicMenu.GetMenu(MenuRef.menuScreen)
