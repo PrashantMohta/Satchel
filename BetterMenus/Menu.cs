@@ -217,7 +217,7 @@ namespace Satchel.BetterMenus{
                 if(columnCount > 1){
                     var k = ItemAdvance;
                     k.x = new RelLength(0f);
-                    ChangeColumns(1, 0.25f, k, 0.5f);
+                    ChangeColumns(1, 0.5f - (1f/(2f*columnCount)), k, 0.5f);
                 }
             }
             ResetPositioners();

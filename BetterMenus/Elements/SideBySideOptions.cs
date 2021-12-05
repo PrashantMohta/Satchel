@@ -72,7 +72,7 @@ namespace Satchel.BetterMenus
             if(columnCount > 1){
                 var k = layout.ItemAdvance;
                 k.x = new RelLength(0f);
-                layout.ChangeColumns(1, 0.25f, newSize: k);
+                layout.ChangeColumns(1, 0.5f - (1f/(2f * columnCount)), newSize: k);
             }
             
             var gop = new GameObjectRow(rowGos);

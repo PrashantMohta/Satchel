@@ -51,8 +51,8 @@ namespace SatchelBetterMenus.Example
                             ()=>SimpleMenu.GetMenu(MenuRef.menuScreen)
                         ),
                         Blueprints.NavigateToMenu(
-                            "Simple Menu 2",
-                            "Create Basic Menus quickly",
+                            "Dupe",
+                            "Dupe!",
                             ()=>SimpleMenu.GetMenu(MenuRef.menuScreen)
                         ),
                         Blueprints.NavigateToMenu(
@@ -62,7 +62,22 @@ namespace SatchelBetterMenus.Example
                         )
                     },
                     Id:"group1"
-                ),
+                ){ XDelta = 425f},
+                new SideBySideElements(
+                    new List<Element>{
+                        Blueprints.NavigateToMenu(
+                            "ToggleGroups",
+                            "Hide groups of elements easily",
+                            ()=>ToggleGroups.GetMenu(MenuRef.menuScreen)
+                        ),
+                        Blueprints.NavigateToMenu(
+                            "Full Control",
+                            "Get specific and control individual elements",
+                            ()=>ComplexMenu.GetMenu(MenuRef.menuScreen)
+                        )
+                    },
+                    Id:"group2"
+                ){ XDelta = 500f},
                 new SideBySideElements(
                     new List<Element>{
                         Blueprints.NavigateToMenu(
