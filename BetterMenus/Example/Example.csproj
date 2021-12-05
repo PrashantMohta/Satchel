@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -7,13 +7,13 @@
     <ProjectGuid>{A67E8362-108D-4FDF-85F5-B8A482CA38D7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Satchel</RootNamespace>
-    <AssemblyName>Satchel</AssemblyName>
+    <RootNamespace>SatchelBetterMenus.Example</RootNamespace>
+    <AssemblyName>BetterMenusExample</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <VanillaFiles>..\Vanilla</VanillaFiles>
-    <ModdingAPI>..\HollowKnight.Modding\OutputFinal</ModdingAPI>
-    <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
+    <VanillaFiles>..\..\..\Vanilla</VanillaFiles>
+    <ModdingAPI>..\..\..\HollowKnight.Modding\OutputFinal</ModdingAPI>
+    <HollowKnightModsDirectory>..\..\..\linkedtoHKMods</HollowKnightModsDirectory>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -96,55 +96,15 @@
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(VanillaFiles)\UnityEngine.UIModule.dll</HintPath>
     </Reference>
+    <Reference Include="Satchel, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\bin\Debug\Satchel.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mod.cs" />
-    <Compile Include="Core.cs" />
-
-    <Compile Include="Utils\AnimationUtils.cs" />
-    <Compile Include="Utils\AssemblyUtils.cs" />
-    <Compile Include="Utils\EnemyUtils.cs" />
-    <Compile Include="Utils\FsmUtils.cs" />
-    <Compile Include="Utils\GameObjectUtils.cs" />
-    <Compile Include="Utils\IoUtils.cs" />
-    <Compile Include="Utils\PlayerDataUtils.cs" />
-    <Compile Include="Utils\SceneUtils.cs" />
-    <Compile Include="Utils\Singleton.cs" />
-    <Compile Include="Utils\SpriteUtils.cs" />
-    <Compile Include="Utils\TextureUtils.cs" />
-    <Compile Include="Utils\WavUtils.cs" />
-
-    <Compile Include="Monobehaviour\Unity\AlertRangeMarker.cs" />
-    <Compile Include="Monobehaviour\Unity\ChangeMeshColor.cs" />
-    <Compile Include="Monobehaviour\Unity\CustomEnemyMarker.cs" />
-    <Compile Include="Monobehaviour\Unity\SpriteRendererMaterial.cs" />
-    <Compile Include="Monobehaviour\Unity\WhoAmI.cs" />
-
-    <Compile Include="Monobehaviour\CustomAnimationFrames.cs" />
-    <Compile Include="Monobehaviour\CustomArrowPromptBehaviour.cs" />
-    <Compile Include="Monobehaviour\CustomEnemy.cs" />
-
-    <Compile Include="Custom\CustomArrowPrompt.cs" />
-    <Compile Include="Custom\CustomDialogueManager.cs" />
-    <Compile Include="Custom\CustomDreamNailManager.cs" />
-    <Compile Include="Custom\CustomEnemyManager.cs" />
-    <Compile Include="Custom\CustomMapManager.cs" />
-    <Compile Include="Custom\CustomSaveSlotsManager.cs" />
-    <Compile Include="Custom\CustomScene.cs" />
-
-    <Compile Include="BetterMenus\Base\*.cs" />
-    <Compile Include="BetterMenus\Elements\*.cs" />
-    <Compile Include="BetterMenus\Blueprints\*.cs" />
-    <Compile Include="BetterMenus\Menu.cs" />
-    <Compile Include="BetterMenus\Utils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\Build\mac\shaders" />
-    <EmbeddedResource Include="Assets\Build\lin\shaders" />
-    <EmbeddedResource Include="Assets\Build\win\shaders" />
+    <Compile Include="*.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(HollowKnightModsDirectory)\Satchel" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(HollowKnightModsDirectory)\$(AssemblyName)" />
   </Target>
 </Project>
