@@ -65,7 +65,6 @@ namespace Satchel.BetterMenus
             mpd.cancelAction = CancelAction.CustomCancelAction; // <= another one
 
             CustomSlider.prefab = prefab;
-            prefab.LogWithChildren();
             return CustomSlider.prefab;
         }
 
@@ -76,8 +75,7 @@ namespace Satchel.BetterMenus
 
             value = SavedValue.Invoke();
 
-            //GetLabel().text = $"{Name}"; 
-            //GetSlider().value = value;
+            GetLabel().text = $"{Name}"; 
             //Modding.Logger.Log("set value done");
             GetValueLabel().text = $"{value}";
 
@@ -145,6 +143,7 @@ namespace Satchel.BetterMenus
             gameObject = panel;
             ((IContainer)Parent).OnBuilt += (_,Element) => {
                 FixSliderNavigation();
+                GetSlider().value = value;
             };
             return new GameObjectPair(panel);
         }

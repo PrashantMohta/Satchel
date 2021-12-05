@@ -67,14 +67,14 @@ namespace Satchel.BetterMenus{
         }
         public Element Find(string Id){
             
-            foreach(KeyValuePair<string,Element> kvp in ElementDict){
+            /*foreach(KeyValuePair<string,Element> kvp in ElementDict){
                 Modding.Logger.Log(kvp.Key);
-            }
+            }*/
             
             if(ElementDict.TryGetValue(Id,out var elem)){
                 return elem;
             }
-            Modding.Logger.Log($"No such Element with id {Id}");
+            Modding.Logger.LogError($"No such Element with id {Id}");
             return null;
         }
 
@@ -134,7 +134,7 @@ namespace Satchel.BetterMenus{
                         ApplyElementVisibility(e);
                     }
                 } else {
-                    Modding.Logger.Log($"no go for {elem.GetType()} {elem.Name}");
+                    Modding.Logger.LogError($"No GameObject for {elem.GetType()} {elem.Name}");
                 }
             } else {
                 elem.gameObject.SetActive(elem.isVisible);
