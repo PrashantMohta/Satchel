@@ -19,11 +19,12 @@ namespace Satchel.BetterMenus
             }
             var sbso = new MenuRow(
                 new List<Element>{
-                    new KeyBind(name ,keyBindAction,Id:Id+"key"),
-                    new ButtonBind("",keyBindAction,Id:Id+"button")
+                    new KeyBind(name ,keyBindAction,Id:Id+"key", SelectableArea.ButtonOnly),
+                    new ButtonBind("",buttonBindAction,Id:Id+"button", SelectableArea.ButtonOnly)
                 },
                 Id:Id);
             sbso.XDelta = 150f;
+            
             return sbso;
         }
     }

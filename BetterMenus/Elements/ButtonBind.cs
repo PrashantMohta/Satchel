@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Satchel.BetterMenus
         /// The PlayerAction connected to this ButtonBind.
         /// </summary>
         public InControl.PlayerAction PlayerAction;
+
+        private SelectableArea SelectableArea = SelectableArea.Full;
         
 
         /// <summary>
@@ -29,6 +32,12 @@ namespace Satchel.BetterMenus
         {
             Name = name;
             PlayerAction = playerAction;
+        }
+        internal ButtonBind(string name, InControl.PlayerAction playerAction,string Id = "__UseName", SelectableArea selectableArea = SelectableArea.Full ) : base(Id,name)
+        {
+            Name = name;
+            PlayerAction = playerAction;
+            SelectableArea = selectableArea;
         }
 
         /// <summary>
@@ -61,6 +70,11 @@ namespace Satchel.BetterMenus
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
             }
 
+            ((IContainer) Parent).OnBuilt += (_, element) =>
+            {
+                UpdatePosValues();
+            };
+
             return new GameObjectRow(option.gameObject);
         }
 
@@ -69,6 +83,38 @@ namespace Satchel.BetterMenus
             var mappableControllerButton = gameObject.GetComponent<MappableControllerButton>();
             mappableControllerButton.InitCustomActions(PlayerAction.Owner, PlayerAction);
             gameObject.transform.Find("Text").GetComponent<Text>().text = Name;
+
+            UpdatePosValues();
+        }
+
+        private void UpdatePosValues()
+        {
+            IEnumerator UpdatePosValuesAfterFrame()
+            {
+                yield return null;
+                if (SelectableArea == BetterMenus.SelectableArea.ButtonOnly)
+                {
+                    RectTransform rectTransform = gameObject.gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = new Vector2(150f, rectTransform.sizeDelta.y);
+                    rectTransform.anchoredPosition = new Vector2(350f, rectTransform.anchoredPosition.y);
+
+                    RectTransform textRectTranform =
+                        gameObject.transform.Find("Text").gameObject.GetComponent<RectTransform>();
+                    textRectTranform.anchoredPosition = new Vector2(-500, textRectTranform.anchoredPosition.y);
+                }
+                else if (SelectableArea == SelectableArea.Full)
+                {
+                    RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = new Vector2(650f, rectTransform.sizeDelta.y);
+                    rectTransform.anchoredPosition = new Vector2(75, rectTransform.anchoredPosition.y);
+
+                    RectTransform textRectTranform =
+                        gameObject.transform.Find("Text").gameObject.GetComponent<RectTransform>();
+                    textRectTranform.anchoredPosition = new Vector2(0, textRectTranform.anchoredPosition.y);
+                }
+            }
+
+            GameManager.instance.StartCoroutine(UpdatePosValuesAfterFrame());
         }
     }
 }
