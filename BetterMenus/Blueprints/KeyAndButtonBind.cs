@@ -19,8 +19,8 @@ namespace Satchel.BetterMenus
             }
             var sbso = new MenuRow(
                 new List<Element>{
-                    new KeyBind(name ,keyBindAction,Id:Id+"key", SelectableArea.ButtonOnly),
-                    new ButtonBind("",buttonBindAction,Id:Id+"button", SelectableArea.ButtonOnly)
+                    new KeyBind(name ,keyBindAction,Id:Id+"key"){SelectableArea = SelectableArea.ButtonOnly},
+                    new ButtonBind("",buttonBindAction,Id:Id+"button"){SelectableArea = SelectableArea.ButtonOnly}
                 },
                 Id:Id);
             sbso.XDelta = 200f;

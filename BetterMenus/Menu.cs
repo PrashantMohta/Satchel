@@ -56,8 +56,7 @@ namespace Satchel.BetterMenus{
         }
         public MenuScreen menuScreen;
         public IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
-            if(menu == this.menuScreen)
-            {
+            if(menu == this.menuScreen){
                 menu.screenCanvasGroup.alpha = 0f;
                 menu.screenCanvasGroup.gameObject.SetActive(value: true);
                 UpdateInternal();

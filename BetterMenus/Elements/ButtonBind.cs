@@ -19,9 +19,9 @@ namespace Satchel.BetterMenus
         /// </summary>
         public InControl.PlayerAction PlayerAction;
 
-        private SelectableArea SelectableArea = SelectableArea.Full;
+        public SelectableArea SelectableArea = SelectableArea.Full;
         
-
+        private ButtonBindConfig buttonBindConfig;
         /// <summary>
         /// Creates a new ButtonBind.
         /// </summary>
@@ -32,12 +32,6 @@ namespace Satchel.BetterMenus
         {
             Name = name;
             PlayerAction = playerAction;
-        }
-        internal ButtonBind(string name, InControl.PlayerAction playerAction,string Id = "__UseName", SelectableArea selectableArea = SelectableArea.Full ) : base(Id,name)
-        {
-            Name = name;
-            PlayerAction = playerAction;
-            SelectableArea = selectableArea;
         }
 
         /// <summary>
@@ -52,17 +46,17 @@ namespace Satchel.BetterMenus
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = PlayerAction ?? throw new ArgumentNullException(nameof(PlayerAction), "PlayerAction cannot be null");
-            
+            buttonBindConfig = new ButtonBindConfig{
+                    CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
+                    Label = Name,
+                    selectableArea = SelectableArea
+                };
             //todo add support for keybind styles
             c.AddCustomButtonBind(
                 Name,
                 PlayerAction,
-                new ButtonBindConfig
-                {
-                    CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
-                    Label = Name,
-                    selectableArea = SelectableArea
-                }, out var option);
+                buttonBindConfig,
+                out var option);
 
             gameObject = option.gameObject;
             
@@ -70,12 +64,6 @@ namespace Satchel.BetterMenus
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
             }
-
-            ((IContainer) Parent).OnBuilt += (_, element) =>
-            {
-                //UpdatePosValues();
-            };
-
             return new GameObjectRow(option.gameObject);
         }
 
@@ -84,7 +72,8 @@ namespace Satchel.BetterMenus
             var mappableControllerButton = gameObject.GetComponent<MappableControllerButton>();
             mappableControllerButton.InitCustomActions(PlayerAction.Owner, PlayerAction);
             gameObject.transform.Find("Text").GetComponent<Text>().text = Name;
-
+            KeybindContent.ApplySelectableArea(mappableControllerButton,buttonBindConfig);
+            mappableControllerButton.ShowCurrentBinding();
         }
     }
 }
