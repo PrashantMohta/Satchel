@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Modding;
 using Modding.Menu;
-using Modding.Menu.Config;
+using Satchel.BetterMenus.Config;
 using UnityEngine;
 
 namespace Satchel.BetterMenus
@@ -23,7 +23,7 @@ namespace Satchel.BetterMenus
                     new ButtonBind("",buttonBindAction,Id:Id+"button", SelectableArea.ButtonOnly)
                 },
                 Id:Id);
-            sbso.XDelta = 150f;
+            sbso.XDelta = 200f;
             
             return sbso;
         }

@@ -133,6 +133,7 @@
     <Compile Include="Custom\CustomScene.cs" />
 
     <Compile Include="BetterMenus\Base\*.cs" />
+    <Compile Include="BetterMenus\Elements\Builders\*.cs" />
     <Compile Include="BetterMenus\Elements\*.cs" />
     <Compile Include="BetterMenus\Blueprints\*.cs" />
     <Compile Include="BetterMenus\Menu.cs" />

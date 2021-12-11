@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Modding;
 using Modding.Menu;
-using Modding.Menu.Config;
+using Satchel.BetterMenus.Config;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,13 +54,14 @@ namespace Satchel.BetterMenus
             _ = PlayerAction ?? throw new ArgumentNullException(nameof(PlayerAction), "PlayerAction cannot be null");
             
             //todo add support for keybind styles
-            c.AddButtonBind(
+            c.AddCustomButtonBind(
                 Name,
                 PlayerAction,
                 new ButtonBindConfig
                 {
                     CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
                     Label = Name,
+                    selectableArea = SelectableArea
                 }, out var option);
 
             gameObject = option.gameObject;
@@ -72,7 +73,7 @@ namespace Satchel.BetterMenus
 
             ((IContainer) Parent).OnBuilt += (_, element) =>
             {
-                UpdatePosValues();
+                //UpdatePosValues();
             };
 
             return new GameObjectRow(option.gameObject);
@@ -84,37 +85,6 @@ namespace Satchel.BetterMenus
             mappableControllerButton.InitCustomActions(PlayerAction.Owner, PlayerAction);
             gameObject.transform.Find("Text").GetComponent<Text>().text = Name;
 
-            UpdatePosValues();
-        }
-
-        private void UpdatePosValues()
-        {
-            IEnumerator UpdatePosValuesAfterFrame()
-            {
-                yield return null;
-                if (SelectableArea == BetterMenus.SelectableArea.ButtonOnly)
-                {
-                    RectTransform rectTransform = gameObject.gameObject.GetComponent<RectTransform>();
-                    rectTransform.sizeDelta = new Vector2(150f, rectTransform.sizeDelta.y);
-                    rectTransform.anchoredPosition = new Vector2(350f, rectTransform.anchoredPosition.y);
-
-                    RectTransform textRectTranform =
-                        gameObject.transform.Find("Text").gameObject.GetComponent<RectTransform>();
-                    textRectTranform.anchoredPosition = new Vector2(-500, textRectTranform.anchoredPosition.y);
-                }
-                else if (SelectableArea == SelectableArea.Full)
-                {
-                    RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
-                    rectTransform.sizeDelta = new Vector2(650f, rectTransform.sizeDelta.y);
-                    rectTransform.anchoredPosition = new Vector2(75, rectTransform.anchoredPosition.y);
-
-                    RectTransform textRectTranform =
-                        gameObject.transform.Find("Text").gameObject.GetComponent<RectTransform>();
-                    textRectTranform.anchoredPosition = new Vector2(0, textRectTranform.anchoredPosition.y);
-                }
-            }
-
-            GameManager.instance.StartCoroutine(UpdatePosValuesAfterFrame());
         }
     }
 }
