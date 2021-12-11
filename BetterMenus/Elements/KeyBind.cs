@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Modding;
@@ -9,6 +10,11 @@ using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
 {
+    internal enum SelectableArea
+    {
+        Full,
+        ButtonOnly
+    }
     /// <summary>
     /// A KeyBind.
     /// </summary>
@@ -18,7 +24,8 @@ namespace Satchel.BetterMenus
         /// The PlayerAction connected to this bind.
         /// </summary>
         public InControl.PlayerAction PlayerAction;
-        
+
+        private SelectableArea SelectableArea = SelectableArea.Full;
 
         /// <summary>
         /// Creates a new KeyBind.
@@ -30,6 +37,12 @@ namespace Satchel.BetterMenus
         {
             Name = name;
             PlayerAction = playerAction;
+        }
+        internal KeyBind(string name,InControl.PlayerAction playerAction,string Id = "__UseName", SelectableArea selectableArea = SelectableArea.Full) : base(Id,name)
+        {
+            Name = name;
+            PlayerAction = playerAction;
+            SelectableArea = selectableArea;
         }
 
         /// <summary>
@@ -60,15 +73,51 @@ namespace Satchel.BetterMenus
             }
 
             gameObject = option.gameObject;
+            
+            ((IContainer) Parent).OnBuilt += (_, element) =>
+            {
+                UpdatePosValues();
+            };
+
             return new GameObjectRow(option.gameObject);
         }
-        
+
+        private void UpdatePosValues()
+        {
+            IEnumerator UpdatePosValuesAfterFrame()
+            {
+                yield return null;
+                if (SelectableArea == BetterMenus.SelectableArea.ButtonOnly)
+                {
+                    RectTransform rectTransform = gameObject.gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = new Vector2(150f, rectTransform.sizeDelta.y);
+                    rectTransform.anchoredPosition = new Vector2(75f, rectTransform.anchoredPosition.y);
+
+                    RectTransform textRectTranform =  gameObject.transform.Find("Text").gameObject.GetComponent<RectTransform>(); 
+                    textRectTranform.anchoredPosition = new Vector2(-500, textRectTranform.anchoredPosition.y);
+                }
+                else if (SelectableArea == BetterMenus.SelectableArea.Full)
+                {
+                    RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = new Vector2(650f, rectTransform.sizeDelta.y);
+                    rectTransform.anchoredPosition = new Vector2(-75, rectTransform.anchoredPosition.y);
+                    
+                    RectTransform textRectTranform =  gameObject.transform.Find("Text").gameObject.GetComponent<RectTransform>(); 
+                    textRectTranform.anchoredPosition = new Vector2(0, textRectTranform.anchoredPosition.y);
+                }
+            }
+            GameManager.instance.StartCoroutine(UpdatePosValuesAfterFrame());
+        }
+
+
         public override void Update()
         {
             var mappableControllerButton = gameObject.GetComponent<MappableKey>();
             mappableControllerButton.InitCustomActions(PlayerAction.Owner, PlayerAction);
 
             gameObject.transform.Find("Text").GetComponent<Text>().text = Name;
+            UpdatePosValues();
+
         }
     }
 }
