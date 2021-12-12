@@ -75,6 +75,17 @@ namespace Satchel{
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
+        public static List<UnityEngine.SceneManagement.Scene> GetAllLoadedScenes(){
+            List<UnityEngine.SceneManagement.Scene> scenes = new();
+        
+            for (int n = 0; n < UnityEngine.SceneManagement.SceneManager.sceneCount; ++n)
+            {
+                Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(n);
+                scenes.Add(scene);
+            }
+            return scenes;
+        }
+
         public static void FixMaterials(){
             foreach(GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
             {

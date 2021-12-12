@@ -59,6 +59,19 @@ namespace Satchel {
             }
             return null;
         }
+
+        public static List<GameObject> FindGameObjectsInChildren( this GameObject gameObject, string name ,bool useBaseName = false)
+        {
+            if( gameObject == null ){ return null; }
+            List<GameObject> children = new List<GameObject>(); 
+            foreach( var t in gameObject.GetComponentsInChildren<Transform>( true ) )
+            {
+                if( t.GetName(useBaseName) == name ) { 
+                    children.Add(t.gameObject);
+                }
+            }
+            return children;
+        }
         public static void Log(this GameObject gameObject)
         {
             if( gameObject == null ){ return; }
