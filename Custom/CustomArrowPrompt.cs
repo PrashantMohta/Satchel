@@ -7,6 +7,7 @@ using HutongGames.PlayMaker.Actions;
 using Modding;
 using static Modding.Logger;
 using UnityEngine;
+using Satchel.Futils;
 
 namespace Satchel{
     public static class CustomArrowPrompt {

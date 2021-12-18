@@ -5,272 +5,98 @@ using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using UnityEngine;
 using Logger = Modding.Logger;
+using Satchel.Futils;
+using Satchel.Futils.Extractors;
 
 namespace Satchel
 {
-    public class ActionArg
-    {
-        public GameObject go;
-        public HutongGames.PlayMaker.FsmString fsmString;
-    }
-    public class ActionAction<Targ> : FsmStateAction
-    {
-        public Action<Targ> action;
-        public Targ arg;
-
-        public override void Reset()
-        {
-            action = null;
-
-            base.Reset();
-        }
-
-        public override void OnEnter()
-        {
-            if (action != null) action.Invoke(arg);
-            Finish();
-        }
-    }
-
-    public class MethodAction : FsmStateAction
-    {
-        public Action method;
-
-        public override void Reset()
-        {
-            method = null;
-
-            base.Reset();
-        }
-
-        public override void OnEnter()
-        {
-            if (method != null) method.Invoke();
-            Finish();
-        }
-    }
+    
+    [Obsolete("Satchel.MethodAction is deprecated, please use Satchel.Futils.CustomFsmAction instead.")]
+    public class MethodAction : CustomFsmAction{}   
+    [Obsolete("Satchel.FsmUtil is deprecated, please use Satchel.Futils.* instead.")]
     public static class FsmUtil
     {
-        public static FsmState AddFsmState(this PlayMakerFSM fsm, string stateName)
+        [Obsolete("Satchel.FsmUtil.AddFsmState is deprecated, please use Satchel.Futils.Fsm.AddState instead.")]
+        public static FsmState AddFsmState(PlayMakerFSM fsm, string stateName)
         {
-            var states = fsm.Fsm.States.ToList();
-            var ret = new FsmState(fsm.Fsm);
-            states.Add(ret);
-            fsm.Fsm.States = states.ToArray();
-            return ret;
+            return Futils.Fsm.AddState(fsm,stateName);
         }
 
-        public static FsmEvent AddTransition(this PlayMakerFSM fsm, string stateName, string eventName, string toState)
+        [Obsolete("Satchel.FsmUtil.GetState is deprecated, please use Satchel.Futils.Fsm.GetState instead.")]
+        public static FsmState GetState(PlayMakerFSM fsm, string stateName)
         {
-            var state = fsm.Fsm.GetState(stateName);
-            var list = state.Transitions.ToList();
-            var ret = FsmEvent.GetFsmEvent(eventName);
-            list.Add(new FsmTransition
-            {
-                ToState = toState,
-                ToFsmState = fsm.GetState(toState),
-                FsmEvent = ret
-            });
-            state.Transitions = list.ToArray();
-            return ret;
+            return Futils.Fsm.GetState(fsm,stateName);
         }
 
-        public static FsmEvent AddGlobalTransition(this PlayMakerFSM fsm, string globalEventName, string toState)
+        [Obsolete("Satchel.FsmUtil.CopyState is deprecated, please use Satchel.Futils.Fsm.CopyState instead.")]
+        public static FsmState CopyState(PlayMakerFSM fsm, string fromState, string toState)
         {
-            List<FsmTransition> tmpFsmGlobalTransitions = new List<FsmTransition>(fsm.Fsm.GlobalTransitions);
-            var ret = new FsmEvent(globalEventName) { IsGlobal = true };
-            tmpFsmGlobalTransitions.Add(new FsmTransition
-            {
-                ToState = toState,
-                ToFsmState = fsm.GetState(toState),
-                FsmEvent = ret
-            });
-            fsm.Fsm.GlobalTransitions = tmpFsmGlobalTransitions.ToArray();
-            return ret;
+            return Futils.Fsm.CopyState(fsm,fromState,toState);
         }
 
-        public static void ChangeTransition(this PlayMakerFSM fsm, string stateName, string eventName, string toState)
+        [Obsolete("Satchel.FsmUtil.AddTransition is deprecated, please use Satchel.Futils.Fsm.AddTransition instead.")]
+        public static FsmEvent AddTransition(PlayMakerFSM fsm, string stateName, string eventName, string toState)
         {
-            var state = fsm.Fsm.GetState(stateName);
-            var transition = state.Transitions.First(t => t.EventName.Equals(eventName));
-            transition.ToState = toState;
-            transition.ToFsmState = fsm.GetState(toState);
+            Futils.Fsm.AddTransition(fsm,stateName,eventName,toState);
+            return null;
         }
 
-        public static FsmState GetState(this PlayMakerFSM fsm, string stateName)
+        [Obsolete("Satchel.FsmUtil.ChangeTransition is deprecated, please use Satchel.Futils.Fsm.ChangeTransition instead.")]
+        public static void ChangeTransition(PlayMakerFSM fsm, string stateName, string eventName, string toState)
         {
-            return fsm.Fsm.GetState(stateName);
+            Futils.Fsm.ChangeTransition(fsm,stateName,eventName,toState);
         }
 
-        public static FsmState CopyState(this PlayMakerFSM fsm, string fromState, string toState)
+        [Obsolete("Satchel.FsmUtil.AddGlobalTransition is deprecated, please use Satchel.Futils.Fsm.AddGlobalTransition instead.")]
+        public static FsmEvent AddGlobalTransition(PlayMakerFSM fsm, string globalEventName, string toState)
         {
-            FsmState copy = new FsmState(fsm.Fsm.GetState(fromState))
-            {
-                Name = toState
-            };
-            foreach (var t in copy.Transitions)
-            {
-                t.ToFsmState = fsm.GetState(t.ToState);
-            }
-            List<FsmState> tmpList = new List<FsmState>(fsm.FsmStates);
-            tmpList.Add(copy);
-            fsm.Fsm.States = tmpList.ToArray();
-            return copy;
+            Futils.Fsm.AddGlobalTransition(fsm, globalEventName, toState);
+            return null;
+        }
+        
+        [Obsolete("Satchel.FsmUtil.GetAction is deprecated, please use Satchel.Futils.Fsm.GetAction instead.")]
+        public static TAction GetAction<TAction>(PlayMakerFSM self, string state, int index) where TAction : FsmStateAction
+        {
+            return Futils.Fsm.GetAction(self,state,index) as TAction;
+        }
+        [Obsolete("Satchel.FsmUtil.GetAction is deprecated, please use Satchel.Futils.Fsm.GetAction instead.")]
+        public static FsmStateAction GetAction(PlayMakerFSM self, string state, int index)
+        {
+            return Futils.Fsm.GetAction(self,state,index);
+        }
+        
+        [Obsolete("Satchel.FsmUtil.AddAction is deprecated, please use Satchel.Futils.Fsm.AddAction instead.")]
+        public static void AddAction(PlayMakerFSM self, string state, FsmStateAction action)
+        {
+            Futils.Fsm.AddAction(self,state,action);
+        }
+        [Obsolete("Satchel.FsmUtil.InsertAction is deprecated, please use Satchel.Futils.Fsm.InsertAction instead.")]
+        public static void InsertAction(PlayMakerFSM self, string state, FsmStateAction action, int index)
+        {
+            Futils.Fsm.InsertAction(self,state,action,index);
         }
 
-        public static TAction GetAction<TAction>(this PlayMakerFSM self, string state, int index) where TAction : FsmStateAction
+        [Obsolete("Satchel.FsmUtil.RemoveAction is deprecated, please use Satchel.Futils.Fsm.RemoveAction instead.")]
+        public static void RemoveAction(PlayMakerFSM self, string state, int index)
         {
-            return self.GetAction(state,index) as TAction;
+            Futils.Fsm.RemoveAction(self,state,index);
+        }
+        
+        [Obsolete("Satchel.FsmUtil.AddMethod is deprecated, please use Satchel.Futils.Fsm.AddCustomAction instead.")]
+        public static void AddMethod(PlayMakerFSM self, string state, Action method)
+        {
+            Futils.Fsm.AddCustomAction(self,state, method );
+        }
+        [Obsolete("Satchel.FsmUtil.InsertMethod is deprecated, please use Satchel.Futils.Fsm.InsertCustomAction instead.")]
+        public static void InsertMethod(PlayMakerFSM self, string state, Action method, int index)
+        {
+            Futils.Fsm.InsertCustomAction(self,state, method,index);
         }
 
-        public static FsmStateAction GetAction(this PlayMakerFSM self, string state, int index)
-        {
-            return self.FsmStates.First(s => s.Name.Equals(state)).Actions[index];
-        }
-        public static void AddAction(this PlayMakerFSM self, string state, FsmStateAction action)
-        {
-            FsmState fsmState = self.FsmStates.First(s => s.Name.Equals(state));
-            List<FsmStateAction> actions = new List<FsmStateAction>(fsmState.Actions);
-            actions.Add(action);
-            fsmState.Actions = actions.ToArray();
-        }
 
-        public static void InsertAction(this PlayMakerFSM self, string state, FsmStateAction action, int index)
-        {
-            FsmState fsmState = self.FsmStates.First(s => s.Name.Equals(state));
-            List<FsmStateAction> actions = new List<FsmStateAction>(fsmState.Actions);
-            actions.Insert(index, action);
-            fsmState.Actions = actions.ToArray();
-        }
-
-        public static void RemoveAction(this PlayMakerFSM self, string state, int index)
-        {
-            FsmState fsmState = self.FsmStates.First(s => s.Name.Equals(state));
-            List<FsmStateAction> actions = new List<FsmStateAction>(fsmState.Actions);
-            actions.RemoveAt(index);
-            fsmState.Actions = actions.ToArray();
-        }
-
-        public static void AddMethod(this PlayMakerFSM self, string state, Action method)
-        {
-            self.AddAction(state, new MethodAction() { method = method });
-        }
-
-        public static void InsertMethod(this PlayMakerFSM self, string state, Action method, int index)
-        {
-            self.InsertAction(state, new MethodAction() { method = method }, index);
-        }
-
-        public static void AddFloatVariable(this PlayMakerFSM self, string name)
-        {
-            List<FsmFloat> tmpFloats = new List<FsmFloat>(self.FsmVariables.FloatVariables);
-            tmpFloats.Add(new FsmFloat(name));
-            self.FsmVariables.FloatVariables = tmpFloats.ToArray();
-        }
-        public static void AddIntVariable(this PlayMakerFSM self, string name)
-        {
-            List<FsmInt> tmpInts = new List<FsmInt>(self.FsmVariables.IntVariables);
-            tmpInts.Add(new FsmInt(name));
-            self.FsmVariables.IntVariables = tmpInts.ToArray();
-        }
-        public static void AddBoolVariable(this PlayMakerFSM self, string name)
-        {
-            List<FsmBool> tmpBools = new List<FsmBool>(self.FsmVariables.BoolVariables);
-            tmpBools.Add(new FsmBool(name));
-            self.FsmVariables.BoolVariables = tmpBools.ToArray();
-        }
-        public static void AddStringVariable(this PlayMakerFSM self, string name)
-        {
-            List<FsmString> tmpStrings = new List<FsmString>(self.FsmVariables.StringVariables);
-            tmpStrings.Add(new FsmString(name));
-            self.FsmVariables.StringVariables = tmpStrings.ToArray();
-        }
-        public static void AddVector2Variable(this PlayMakerFSM self, string name)
-        {
-            List<FsmVector2> tmpVector2s = new List<FsmVector2>(self.FsmVariables.Vector2Variables);
-            tmpVector2s.Add(new FsmVector2(name));
-            self.FsmVariables.Vector2Variables = tmpVector2s.ToArray();
-        }
-        public static void AddVector3Variable(this PlayMakerFSM self, string name)
-        {
-            List<FsmVector3> tmpVector3s = new List<FsmVector3>(self.FsmVariables.Vector3Variables);
-            tmpVector3s.Add(new FsmVector3(name));
-            self.FsmVariables.Vector3Variables = tmpVector3s.ToArray();
-        }
-        public static void AddColorVariable(this PlayMakerFSM self, string name)
-        {
-            List<FsmColor> tmpColors = new List<FsmColor>(self.FsmVariables.ColorVariables);
-            tmpColors.Add(new FsmColor(name));
-            self.FsmVariables.ColorVariables = tmpColors.ToArray();
-        }
-        public static void AddRectVariable(this PlayMakerFSM self, string name)
-        {
-            List<FsmRect> tmpRects = new List<FsmRect>(self.FsmVariables.RectVariables);
-            tmpRects.Add(new FsmRect(name));
-            self.FsmVariables.RectVariables = tmpRects.ToArray();
-        }
-        public static void AddQuaternionVariable(this PlayMakerFSM self, string name)
-        {
-            List<FsmQuaternion> tmpQuaternions = new List<FsmQuaternion>(self.FsmVariables.QuaternionVariables);
-            tmpQuaternions.Add(new FsmQuaternion(name));
-            self.FsmVariables.QuaternionVariables = tmpQuaternions.ToArray();
-        }
-        public static void AddGameObjectVariable(this PlayMakerFSM self, string name)
-        {
-            List<FsmGameObject> tmpGameObjects = new List<FsmGameObject>(self.FsmVariables.GameObjectVariables);
-            tmpGameObjects.Add(new FsmGameObject(name));
-            self.FsmVariables.GameObjectVariables = tmpGameObjects.ToArray();
-        }
-
-        public static Dictionary<string,AudioClip> getAudioClips(this PlayMakerFSM self){
-            Dictionary<string,AudioClip> ac = new Dictionary<string,AudioClip>();
-            foreach (var state in self.FsmStates)
-            {
-                foreach(var action in state.Actions){
-                    Type t = action.GetType();
-                    if (action is AudioPlay){
-                        AudioPlay a = (AudioPlay) action;
-                        var clip = a.oneShotClip.Value as AudioClip;
-                        ac[clip.name]=clip;
-                    } else if(action is AudioPlayerOneShot){
-                        AudioPlayerOneShot a = (AudioPlayerOneShot) action;
-                        foreach( var clip in a.audioClips){
-                            ac[clip.name]=clip;
-                        }
-                    }  else if(action is AudioPlayerOneShotSingle){
-                        AudioPlayerOneShotSingle a = (AudioPlayerOneShotSingle) action;
-                        var clip = a.audioClip.Value as AudioClip;
-                        ac[clip.name]=clip;
-                    } else if (action is AudioPlayRandom){
-                        AudioPlayRandom a = (AudioPlayRandom) action;
-                        foreach( var clip in a.audioClips){
-                            ac[clip.name]=clip;
-                        }
-                    } else if (action is AudioPlayRandomSingle){
-                        AudioPlayRandomSingle a = (AudioPlayRandomSingle) action;
-                        var clip = a.audioClip.Value as AudioClip;
-                        ac[clip.name]=clip;
-                    } else if (action is AudioPlaySimple){
-                        AudioPlaySimple a = (AudioPlaySimple) action;
-                        var clip = a.oneShotClip.Value as AudioClip;
-                        ac[clip.name]=clip;
-                    } else if (action is AudioPlayV2){
-                        AudioPlayV2 a = (AudioPlayV2) action;
-                        var clip = a.oneShotClip.Value as AudioClip;
-                        ac[clip.name]=clip;
-                    } else if (action is PlayRandomSound){
-                        PlayRandomSound a = (PlayRandomSound) action;
-                        foreach( var clip in a.audioClips){
-                            ac[clip.name]=clip;
-                        }
-                    } else if (action is PlaySound){
-                        PlaySound a = (PlaySound) action;
-                        var clip = a.clip.Value as AudioClip;
-                        ac[clip.name]=clip;
-                    } 
-                }
-            }
-            return ac;
+        [Obsolete("Satchel.FsmUtil.getAudioClips is deprecated, please use Satchel.Futils.Extractors.GetAudioClips instead.")]
+        public static Dictionary<string,AudioClip> getAudioClips(PlayMakerFSM self){
+            return self.GetAudioClips();
         }
     }
 }
