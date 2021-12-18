@@ -145,13 +145,13 @@ namespace Satchel
             return fsm.GetAction(stateName,index) as T;
         }
 
-        public static FsmStateAction[] GetActions<T>(this PlayMakerFSM fsm, string stateName)
+        public static T[] GetActions<T>(this PlayMakerFSM fsm, string stateName) where T : FsmStateAction
         {
             var actions = fsm.GetState(stateName).Actions;
-            var actionOfTypeT = new List<FsmStateAction>();
+            var actionOfTypeT = new List<T>();
             foreach(var a in actions){
                 if(a.GetType() == typeof(T)){
-                    actionOfTypeT.Add(a);
+                    actionOfTypeT.Add((T)a);
                 }
             }
             return actionOfTypeT.ToArray();

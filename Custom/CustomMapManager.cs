@@ -160,8 +160,9 @@ namespace Satchel{
 
             var quickMapFsmVars = quickMapFsm.FsmVariables;
 
-            var customFsmAction = new CustomFsmAction();
-            customFsmAction.method = ()=>CheckOpenCustomQuickMap(gameMapGameObject);
+            var customFsmAction = new CustomFsmAction(){
+                method = ()=>CheckOpenCustomQuickMap(gameMapGameObject)
+            };
 
             quickMapFsm.InsertAction("Crossroads", customFsmAction, 7);
             quickMapFsm.InsertAction("Dirtmouth", customFsmAction, 5);
