@@ -5,10 +5,10 @@ using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using UnityEngine;
 using Logger = Modding.Logger;
-
-namespace Satchel.Futils
+using Satchel.Futils;
+namespace Satchel
 {
-    public static class Fsm{
+    public static partial class FsmUtil{
 
         public static FsmState AddState(this PlayMakerFSM fsm, FsmState state)
         {   
