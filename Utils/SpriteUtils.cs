@@ -127,6 +127,7 @@ namespace Satchel {
                     }
                 }
             }
+            Texture2D.DestroyImmediate(origTex);
             currentSpriteTexture.Apply();
             
 

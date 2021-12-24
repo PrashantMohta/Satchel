@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Modding;
 using Modding.Menu;
-using Modding.Menu.Config;
+using Satchel.BetterMenus.Config;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,10 @@ namespace Satchel.BetterMenus
         /// The PlayerAction connected to this bind.
         /// </summary>
         public InControl.PlayerAction PlayerAction;
-        
+
+        public SelectableArea SelectableArea = SelectableArea.Full;
+
+        private KeybindConfig keybindConfig;
 
         /// <summary>
         /// Creates a new KeyBind.
@@ -45,15 +49,17 @@ namespace Satchel.BetterMenus
             
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = PlayerAction ?? throw new ArgumentNullException(nameof(PlayerAction), "PlayerAction cannot be null");
-            //todo add KeybindStyle support
-            c.AddKeybind(
-                Name,
-                PlayerAction,
-                new KeybindConfig
-                {
+            keybindConfig = new KeybindConfig{
                     CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
                     Label = Name,
-                }, out var option);
+                    selectableArea = SelectableArea
+                };
+            //todo add KeybindStyle support
+            c.AddCustomKeybind(
+                Name,
+                PlayerAction,
+                keybindConfig,
+                out var option);
             if (AddToList)
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
@@ -62,13 +68,16 @@ namespace Satchel.BetterMenus
             gameObject = option.gameObject;
             return new GameObjectRow(option.gameObject);
         }
-        
+
+
+
         public override void Update()
         {
-            var mappableControllerButton = gameObject.GetComponent<MappableKey>();
-            mappableControllerButton.InitCustomActions(PlayerAction.Owner, PlayerAction);
-
+            var mappableKey = gameObject.GetComponent<MappableKey>();
+            mappableKey.InitCustomActions(PlayerAction.Owner, PlayerAction);
             gameObject.transform.Find("Text").GetComponent<Text>().text = Name;
+            KeybindContent.ApplySelectableArea(mappableKey,keybindConfig);
+            mappableKey.ShowCurrentBinding();
         }
     }
 }

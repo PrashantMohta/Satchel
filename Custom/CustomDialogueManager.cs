@@ -7,6 +7,7 @@ using HutongGames.PlayMaker.Actions;
 using Modding;
 using static Modding.Logger;
 using UnityEngine;
+using Satchel.Futils;
 
 namespace Satchel{
     public class CustomDialogueManager {
@@ -44,8 +45,8 @@ namespace Satchel{
         private void addEventsInFSM(){
             PlayMakerFSM pfsm = DialogTextBox.LocateMyFSM("Dialogue Page Control");
             if(pfsm != null){
-                pfsm.InsertMethod("Page End",() => EndPage(),0);
-                pfsm.InsertMethod("End Conversation",() => EndConversation(),5);
+                pfsm.InsertCustomAction("Page End",() => EndPage(),0);
+                pfsm.InsertCustomAction("End Conversation",() => EndConversation(),5);
             }
         }
 

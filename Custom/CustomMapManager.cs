@@ -12,6 +12,7 @@ using HutongGames.PlayMaker.Actions;
 
 using static Satchel.SceneUtils;
 using static Modding.Logger;
+using Satchel.Futils;
 
 namespace Satchel{
 
@@ -159,28 +160,24 @@ namespace Satchel{
 
             var quickMapFsmVars = quickMapFsm.FsmVariables;
 
-            var fsmAAAction = new ActionAction<ActionArg>();
-            fsmAAAction.arg = new ActionArg()
-            {
-                go = gameMapGameObject,
-                fsmString = quickMapFsmVars.FindFsmString("Map Zone")
+            var customFsmAction = new CustomFsmAction(){
+                method = ()=>CheckOpenCustomQuickMap(gameMapGameObject)
             };
-            fsmAAAction.action = CheckOpenCustomQuickMap;
 
-            quickMapFsm.InsertAction("Crossroads", fsmAAAction, 7);
-            quickMapFsm.InsertAction("Dirtmouth", fsmAAAction, 5);
-            quickMapFsm.InsertAction("Greenpath", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Cliffs", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Fungal Wastes", fsmAAAction, 6);
-            quickMapFsm.InsertAction("City", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Mines", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Resting Grounds", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Fog Canyon", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Royal Gardens", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Deepnest", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Waterways", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Abyss", fsmAAAction, 6);
-            quickMapFsm.InsertAction("Outskirts", fsmAAAction, 7);
+            quickMapFsm.InsertAction("Crossroads", customFsmAction, 7);
+            quickMapFsm.InsertAction("Dirtmouth", customFsmAction, 5);
+            quickMapFsm.InsertAction("Greenpath", customFsmAction, 6);
+            quickMapFsm.InsertAction("Cliffs", customFsmAction, 6);
+            quickMapFsm.InsertAction("Fungal Wastes", customFsmAction, 6);
+            quickMapFsm.InsertAction("City", customFsmAction, 6);
+            quickMapFsm.InsertAction("Mines", customFsmAction, 6);
+            quickMapFsm.InsertAction("Resting Grounds", customFsmAction, 6);
+            quickMapFsm.InsertAction("Fog Canyon", customFsmAction, 6);
+            quickMapFsm.InsertAction("Royal Gardens", customFsmAction, 6);
+            quickMapFsm.InsertAction("Deepnest", customFsmAction, 6);
+            quickMapFsm.InsertAction("Waterways", customFsmAction, 6);
+            quickMapFsm.InsertAction("Abyss", customFsmAction, 6);
+            quickMapFsm.InsertAction("Outskirts", customFsmAction, 7);
 
 
         }       
@@ -221,9 +218,9 @@ namespace Satchel{
         public void MoveMapTo(GameMap gm, Vector2 point){
             gm.gameObject.transform.localPosition = new Vector3(point.x,point.y,18);
         }
-        public void CheckOpenCustomQuickMap(ActionArg arg)
+        public void CheckOpenCustomQuickMap(GameObject go)
         {
-            OpenCustomMap(arg.go.GetComponent<GameMap>());   
+            OpenCustomMap(go.GetComponent<GameMap>());   
         }
 
         public string LanguageGet( string key, string sheet, string orig){

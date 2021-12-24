@@ -81,9 +81,9 @@ namespace SatchelBetterMenus.Example
                 new MenuRow(
                     new List<Element>{
                         Blueprints.NavigateToMenu(
-                            "ToggleGroups",
-                            "Hide groups of elements easily",
-                            ()=>ToggleGroups.GetMenu(MenuRef.menuScreen)
+                            "SelectableAreaMenu",
+                            "Adjust the selectable part of keybinds",
+                            ()=>SelectableAreaMenu.GetMenu(MenuRef.menuScreen)
                         ),
                         Blueprints.NavigateToMenu(
                             "Full Control",

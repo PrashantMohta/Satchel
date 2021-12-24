@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Modding;
 using Modding.Menu;
-using Modding.Menu.Config;
+using Satchel.BetterMenus.Config;
 using UnityEngine;
 
 namespace Satchel.BetterMenus
@@ -19,11 +19,12 @@ namespace Satchel.BetterMenus
             }
             var sbso = new MenuRow(
                 new List<Element>{
-                    new KeyBind(name ,keyBindAction,Id:Id+"key"),
-                    new ButtonBind("",keyBindAction,Id:Id+"button")
+                    new KeyBind(name ,keyBindAction,Id:Id+"key"){SelectableArea = SelectableArea.ButtonOnly},
+                    new ButtonBind("",buttonBindAction,Id:Id+"button"){SelectableArea = SelectableArea.ButtonOnly}
                 },
                 Id:Id);
-            sbso.XDelta = 150f;
+            sbso.XDelta = 200f;
+            
             return sbso;
         }
     }

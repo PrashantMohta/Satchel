@@ -13,6 +13,7 @@ namespace Satchel{
         public Animator anim;
         private SpriteRenderer sr;
         public bool dump;
+        public bool enableAnim = true;
         public string dumpPath;
         public string dumpingClip = "";
         public List<int> dumpedFrames;
@@ -28,8 +29,17 @@ namespace Satchel{
             customClips[clip][frame] = s;
         }
         private void LateUpdate(){
-            var currentClipName = anim.GetClipName();
-            var currentFrame = anim.GetCurrentFrame();
+            if(!enableAnim) { return; }
+            string currentClipName = null;
+            int currentFrame = 0;
+            try{
+             currentClipName = anim.GetClipName();
+             currentFrame = anim.GetCurrentFrame();
+            } catch (Exception e){
+                dump = false;
+                enableAnim = false;
+                Log(e.ToString());
+            }
             if(dump){
                 if(dumpingClip != currentClipName){
                     dumpedFrames = new List<int>();

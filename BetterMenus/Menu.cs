@@ -13,8 +13,7 @@ namespace Satchel.BetterMenus{
     public class Menu : MenuElement, IContainer{
         private readonly List<Element> Elements = new();
         private readonly Dictionary<String,Element> ElementDict = new();
-
-
+        
         #region Fields
         //some private atributes we need because we intent to reorder the menu
         private int Columns = 1;
@@ -60,7 +59,7 @@ namespace Satchel.BetterMenus{
             if(menu == this.menuScreen){
                 menu.screenCanvasGroup.alpha = 0f;
                 menu.screenCanvasGroup.gameObject.SetActive(value: true);
-                Reflow(silent:true);
+                UpdateInternal();
                 menu.screenCanvasGroup.gameObject.SetActive(value: false);
             }
             yield return orig(self,menu);
