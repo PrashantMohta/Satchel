@@ -2,7 +2,9 @@
 A Bag-of-tricks Utility mod that aims to make it easier to mod hollow knight
 
 # Documentation
- coming soon
+ 
+*  [Example Mod showcasing how to use BetterMenus ](https://github.com/PrashantMohta/Satchel/tree/master/BetterMenus/Example)
+*  Actual Documentation coming soon
 
 # Credits 
 
