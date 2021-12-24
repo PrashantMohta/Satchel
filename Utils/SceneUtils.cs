@@ -11,7 +11,16 @@ using HutongGames.PlayMaker.Actions;
 using Modding;
 using static Modding.Logger;
 namespace Satchel{
-    public class SceneUtils{
+    public static class SceneUtils{
+
+        public static GameObject DontDestroyOnLoadObj;
+        public static Scene GetDontDestorOnLoadScene(){
+            if(DontDestroyOnLoadObj == null){
+                DontDestroyOnLoadObj = new GameObject();
+                GameObject.DontDestroyOnLoad(DontDestroyOnLoadObj);
+            }
+            return DontDestroyOnLoadObj.scene;
+        }
 
         public struct CustomSaveSlotParams {
             public string sceneName;
@@ -75,13 +84,16 @@ namespace Satchel{
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        public static List<UnityEngine.SceneManagement.Scene> GetAllLoadedScenes(){
+        public static List<UnityEngine.SceneManagement.Scene> GetAllLoadedScenes(bool includeDontDestroyScene = false){
             List<UnityEngine.SceneManagement.Scene> scenes = new();
         
             for (int n = 0; n < UnityEngine.SceneManagement.SceneManager.sceneCount; ++n)
             {
                 Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(n);
                 scenes.Add(scene);
+            }
+            if(includeDontDestroyScene){
+                scenes.Add(GetDontDestorOnLoadScene());
             }
             return scenes;
         }
