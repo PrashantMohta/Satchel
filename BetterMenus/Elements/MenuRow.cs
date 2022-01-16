@@ -20,15 +20,11 @@ namespace Satchel.BetterMenus
         public Element[] GetElements(){
             return Row.ToArray();
         }
-        public Element Find(string id){
-            
-            foreach (var elem in Row) {
-                if (elem.Id == id) return elem;
-            }
-            //if it is not found, it will reach here
-            Modding.Logger.LogError($"No such Element in {this.Id} with id {id}");
-            return null;
+
+        public Element Find(string Id){
+            return Row?.Find( e => e.Id == Id);;
         }
+
         /// <summary>
         /// Element X Delta, shifts the right element by this amount.
         /// </summary>

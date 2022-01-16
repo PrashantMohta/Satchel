@@ -105,10 +105,11 @@ namespace Satchel.BetterMenus
         
         public override void Update()
         {
-            gameObject.GetComponent<MenuOptionHorizontal>().optionList = Values;
-            var menuSetting = gameObject.GetComponent<MenuSetting>();
-            menuSetting.customApplySetting = (_, i) => ApplySetting(i);
-            menuSetting.customRefreshSetting = (s, _) => s.optionList.SetOptionTo(LoadSetting());
+            var option = gameObject.GetComponent<MenuOptionHorizontal>();
+            option.optionList = Values;
+            option.menuSetting.customApplySetting = (_, i) => ApplySetting(i);
+            option.menuSetting.customRefreshSetting = (s, _) => s.optionList.SetOptionTo(LoadSetting());
+            option.menuSetting.RefreshValueFromGameSettings();
 
             gameObject.transform.Find("Label").GetComponent<Text>().text = Name;
             gameObject.transform.Find("Description").GetComponent<Text>().text = Description;
