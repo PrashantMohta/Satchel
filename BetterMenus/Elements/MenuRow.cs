@@ -19,6 +19,11 @@ namespace Satchel.BetterMenus
         public Element[] GetElements(){
             return Row.ToArray();
         }
+
+        public Element Find(string Id){
+            return Row?.Find( e => e.Id == Id);;
+        }
+
         /// <summary>
         /// Element X Delta, shifts the right element by this amount.
         /// </summary>
