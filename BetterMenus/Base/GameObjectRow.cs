@@ -76,7 +76,7 @@ namespace Satchel.BetterMenus
         public int ActiveCount(){
             var count = 0;
             foreach(var go in Row){
-                if(go != Menu.TempObj && go.activeInHierarchy){
+                if(go != null && go.activeInHierarchy){
                     count++;
                 }
             }
