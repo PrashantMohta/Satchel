@@ -2,14 +2,14 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
-using Satchel.BetterMenus;
 using UnityEngine;
 using UnityEngine.UI;
 namespace Satchel.BetterMenus{
+    /// <summary>
+    /// The class that needs to be instantiated to create a better menu
+    /// </summary>
     public class Menu : MenuElement, IContainer{
         private readonly List<Element> Elements = new();
         private readonly Dictionary<String,Element> ElementDict = new();
@@ -31,6 +31,10 @@ namespace Satchel.BetterMenus{
         internal List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
         #endregion
 
+        /// <summary>
+        /// Adds an element to the menu
+        /// </summary>
+        /// <param name="elem">the new element to be added</param>
         public void AddElement(Element elem){
             Elements.Add(elem);
             ElementDict[elem.Id] = elem;
@@ -53,8 +57,11 @@ namespace Satchel.BetterMenus{
             ResetPositioners();
             On.UIManager.ShowMenu += ShowMenu;
         }
+        /// <summary>
+        /// the MenuScreen of the Menu
+        /// </summary>
         public MenuScreen menuScreen;
-        public IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
+        private IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
             if(menu == this.menuScreen){
                 menu.screenCanvasGroup.alpha = 0f;
                 menu.screenCanvasGroup.gameObject.SetActive(value: true);
@@ -63,12 +70,12 @@ namespace Satchel.BetterMenus{
             }
             yield return orig(self,menu);
         }
+        /// <summary>
+        /// A helper function to help get an Element in the Menu
+        /// </summary>
+        /// <param name="Id">the id of the element being searched for</param>
+        /// <returns></returns>
         public Element Find(string Id){
-            
-            /*foreach(KeyValuePair<string,Element> kvp in ElementDict){
-                Modding.Logger.Log(kvp.Key);
-            }*/
-            
             if(ElementDict.TryGetValue(Id,out var elem)){
                 return elem;
             }
@@ -77,10 +84,10 @@ namespace Satchel.BetterMenus{
         }
 
         /// <summary>
-        /// Creates a new MenuScreen with the provided variables.
+        /// Creates a new MenuScreen from the Menu to be used by Modding API to create mod menu.
         /// </summary>
-        /// <param name="modListMenu">The MenuScreen to add.</param>
-        /// <returns>The created MenuScreen.</returns>
+        /// <param name="modListMenu">The MenuScreen of the returning screen (when back is pressed)</param>
+        /// <returns>The MenuScreen returned is what needs to be given to the Modding API to have a modmenu</returns>
         public MenuScreen GetMenuScreen(MenuScreen modListMenu)
         {
             MenuBuilder Menu = Utils.CreateMenuBuilder(Name); //create main screen
@@ -124,6 +131,10 @@ namespace Satchel.BetterMenus{
             return menuScreen;
         }
 
+        /// <summary>
+        /// Changes the visibility of the element to match its isVisible field
+        /// </summary>
+        /// <param name="elem"></param>
         public void ApplyElementVisibility(Element elem){
             if(elem.gameObject == null){
                 if(elem is IShadowElement){
@@ -172,19 +183,30 @@ namespace Satchel.BetterMenus{
             }
         }
 
+        /// <summary>
+        /// Event for when the container is built
+        /// </summary>
         public event EventHandler<ContainerBuiltEventArgs> OnBuilt;
+        /// <summary>
+        /// Calls all subscribers to OnBuilt
+        /// </summary>
         public void TriggerBuiltEvent(){
             OnBuilt?.Invoke(this,new ContainerBuiltEventArgs{
                 Target = this
             });
         }
-
+        /// <summary>
+        /// Event for when reflow of the container happens
+        /// </summary>
         public event EventHandler<ReflowEventArgs> OnReflow;
+        /// <summary>
+        /// Updates visibility of all elements, and updates menu
+        /// </summary>
+        /// <param name="silent">Whether or not to call subscribers to OnReflow.</param>
+        /// <returns></returns>
         public void Reflow(bool silent = false){
-            foreach (var menuOption in Elements)
-            {
-                ApplyElementVisibility(menuOption);
-            }
+            Elements.ForEach(ApplyElementVisibility);
+            
             Reorder();
             if(!silent){
                 OnReflow?.Invoke(this,new ReflowEventArgs{
@@ -193,7 +215,7 @@ namespace Satchel.BetterMenus{
             }
         }
         /// <summary>
-        /// Reorders the GameObjectRows in this instance.
+        /// Reorders the alls the Elements in the menu
         /// </summary>
         public void Reorder()
         {
@@ -250,9 +272,9 @@ namespace Satchel.BetterMenus{
         /// Generates a new MenuScreen.
         /// </summary>
         /// <param name="Title">The title to be displayed.</param>
-        /// <param name="modListMenu">The MenuScreen to add.</param>
+        /// <param name="modListMenu">The MenuScreen of the returning screen (when back is pressed)</param>
         /// <param name="MenuOptions">The Elements to add.</param>
-        /// <param name="betterMenuMod">The created Menu. (Can in most cases be assigned to discard.)</param>
+        /// <param name="betterMenuMod">The created Menu.</param>
         /// <returns>The generated MenuScreen.</returns>
         public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions, out Menu betterMenuMod)
         {
@@ -263,19 +285,20 @@ namespace Satchel.BetterMenus{
         /// Generates a new MenuScreen.
         /// </summary>
         /// <param name="Title">The title to be displayed.</param>
-        /// <param name="modListMenu">The MenuScreen to add.</param>
+        /// <param name="modListMenu">The MenuScreen of the returning screen (when back is pressed)</param>
         /// <param name="MenuOptions">The Elements to add.</param>
         /// <returns>The generated MenuScreen.</returns>
         public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions) {
             return new Menu(Title,MenuOptions).GetMenuScreen( modListMenu);
         }
 
+        /// <summary>
+        /// A funtion to update the title and all elements and reflow the menu
+        /// </summary>
         public override void Update()
         {
-            //todo update title text etc
-            foreach(var elem in Elements){
-                elem.Update();
-            }
+            this.menuScreen.gameObject.Find("Title").GetComponent<Text>().text = Name;
+            Elements.ForEach(elem => elem.Update());
             Reflow();
         }
     }

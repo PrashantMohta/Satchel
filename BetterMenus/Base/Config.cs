@@ -7,9 +7,18 @@ using UnityEngine.UI;
 namespace Satchel.BetterMenus.Config
 {
     
+    /// <summary>
+    /// An enum to help decide how much of the element can be selected
+    /// </summary>
     public enum SelectableArea
     {
+        /// <summary>
+        /// Make the whole key/button bind selectable including the text
+        /// </summary>
         Full,
+        /// <summary>
+        /// Only allow the key/button area to be selectable
+        /// </summary>
         ButtonOnly
     }
 
@@ -31,6 +40,9 @@ namespace Satchel.BetterMenus.Config
         /// </summary>
         public Action<MappableKey> CancelAction;
 
+        /// <summary>
+        /// An enum to help decide how much of the element can be selected
+        /// </summary>
         public SelectableArea? selectableArea;
     }
 
@@ -52,6 +64,9 @@ namespace Satchel.BetterMenus.Config
         /// </summary>
         public Action<MappableControllerButton> CancelAction;
         
+        /// <summary>
+        /// An enum to help decide how much of the element can be selected
+        /// </summary>
         public SelectableArea? selectableArea;
     }
 

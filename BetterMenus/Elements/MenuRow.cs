@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
@@ -15,9 +16,18 @@ namespace Satchel.BetterMenus
     public class MenuRow : Element , IShadowElement
     {
         public List<Element> Row;
-        
+
         public Element[] GetElements(){
             return Row.ToArray();
+        }
+        public Element Find(string id){
+            
+            foreach (var elem in Row) {
+                if (elem.Id == id) return elem;
+            }
+            //if it is not found, it will reach here
+            Modding.Logger.LogError($"No such Element in {this.Id} with id {id}");
+            return null;
         }
         /// <summary>
         /// Element X Delta, shifts the right element by this amount.
@@ -28,7 +38,7 @@ namespace Satchel.BetterMenus
         /// Creates a new MenuRow instance.
         /// </summary>
         /// <param name="Row">The Row of Elemenst.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public MenuRow(
             List<Element> Row,
             string Id) : base(Id)
@@ -66,9 +76,7 @@ namespace Satchel.BetterMenus
                 elem.Parent = this.Parent;
                 var gor = elem.Create(c, modlistMenu, Instance, false);
                 
-                foreach(var go in gor.Row){
-                    rowGos.Add(go);
-                }
+                gor.Row.ForEach(go =>rowGos.Add(go));
             }
 
             if(columnCount > 1){
@@ -79,18 +87,21 @@ namespace Satchel.BetterMenus
             
             var gop = new GameObjectRow(rowGos);
             gop.Parent = this;
-            if (AddToList)
-            {
+            if (AddToList) {
                 Instance.MenuOrder.Add(gop);
             }
+
+            //fix sub elements not being hidden/shown if menu row is hidden/shown
+            this.OnVisibilityChange += UpdateSubElements;
             return gop;
         }
 
-        public override void Update()
-        {
-            foreach(var elem in Row){
-                elem?.UpdateInternal();
-            }
+        private void UpdateSubElements(object sender, VisibilityChangeEventArgs e) {
+            Row.ForEach(elem => elem.isVisible = e.Target.isVisible);
+        }
+
+        public override void Update() {
+            Row.ForEach(elem => elem?.UpdateInternal());
         }
     }
 
