@@ -14,7 +14,6 @@
     <VanillaFiles>..\Vanilla</VanillaFiles>
     <ModdingAPI>..\HollowKnight.Modding\OutputFinal</ModdingAPI>
     <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
-    <DocumentationFile>bin\Debug\Satchel.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -145,7 +144,6 @@
     <Compile Include="Futils\FsmVariables.cs" />
 
     <Compile Include="Deprecated\FsmUtils.cs" />
-    <Compile Include="JsonConvertors\SystemRandomConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Build\mac\shaders" />
@@ -154,6 +152,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).xml" DestinationFolder="$(HollowKnightModsDirectory)\Satchel" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(HollowKnightModsDirectory)\Satchel" />
   </Target>
 </Project>
