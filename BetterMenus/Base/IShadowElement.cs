@@ -17,6 +17,6 @@ namespace Satchel.BetterMenus{
         /// </summary>
         /// <param name="id">The Id of the element that is to be found.</param>
        /// <returns>The Element if found. else logs errors and returns null.</returns>
-        public Element Find(string id);
+        public Element Find(string Id);
     }
 }
