@@ -29,7 +29,6 @@ namespace Satchel.BetterMenus{
 
         //list that stores the order. max items per column is 2 thats why we use tuple
         internal List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
-        internal static GameObject TempObj = new GameObject("SatchelTempObj");
         #endregion
 
         public void AddElement(Element elem){
@@ -209,7 +208,7 @@ namespace Satchel.BetterMenus{
                     ChangeColumns(columnCount, 0.5f, l, 0.5f);
                 }
                 foreach( var go in GoRow.Row){
-                    if(go != TempObj){
+                    if(go != null){
                         ModifyNext(go);
                     }
                 }

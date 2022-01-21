@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Modding;
 using GlobalEnums;
+using Lang = Language.Language;
 
 namespace Satchel.BetterMenus
 {
@@ -48,7 +49,7 @@ namespace Satchel.BetterMenus
                     "BackButton",
                     new MenuButtonConfig
                     {
-                        Label = "Back",
+                        Label = Lang.Get("NAV_BACK", "MainMenu"),
                         CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen),
                         SubmitAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen),
                         Style = MenuButtonStyle.VanillaStyle,
