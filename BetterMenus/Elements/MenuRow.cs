@@ -21,7 +21,7 @@ namespace Satchel.BetterMenus
         }
 
         public Element Find(string Id){
-            return Row?.Find( e => e.Id == Id);;
+            return Row?.Find( e => e.Id == Id);
         }
 
         /// <summary>
