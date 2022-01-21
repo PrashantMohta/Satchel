@@ -11,7 +11,7 @@ using static Modding.Logger;
 namespace Satchel{
     public static class AssemblyUtils{
         public static string name = "Satchel";
-        public static string ver = "0.7.4";
+        public static string ver = "0.7.5";
         public static string Version(){
             var verStr = $"{name} v{ver}";
             return verStr;
