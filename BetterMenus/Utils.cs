@@ -1,20 +1,26 @@
 using System;
-using System.Collections.Generic;
-using InControl;
 using Modding.Menu;
 using Modding.Menu.Config;
 using UnityEngine;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
-using Modding;
-using GlobalEnums;
 using Lang = Language.Language;
 
 namespace Satchel.BetterMenus
 {
+    /// <summary>
+    /// A class to hold helper functions for creating ICustomMenuMods
+    /// </summary>
     public static class Utils
     {
-        public static GameObject SliderPrefab; // this should contain the prefab once we have it
+        /// <summary>
+        /// this should contain the prefab of a slider once we have it
+        /// </summary>
+        public static GameObject SliderPrefab;
+        /// <summary>
+        /// creates a standard menu builder with a grid nav graph
+        /// </summary>
+        /// <param name="Title"></param>
+        /// <returns></returns>
         public static MenuBuilder CreateMenuBuilder(string Title)
         {
             return new MenuBuilder(UIManager.instance.UICanvas.gameObject, Title)
@@ -37,6 +43,13 @@ namespace Satchel.BetterMenus
                 ))
                 .SetDefaultNavGraph(new GridNavGraph(1));
         }
+        /// <summary>
+        /// Adds a back button to the menu in the center of the control pane
+        /// </summary>
+        /// <param name="builder">the builder to put the back button on</param>
+        /// <param name="returnScreen">the screen previous screen(that game with go to when button is pressed)</param>
+        /// <param name="backButton">the button created</param>
+        /// <returns>The menu builder with a back button</returns>
         public static MenuBuilder AddBackButton(this MenuBuilder builder, MenuScreen returnScreen, out UnityEngine.UI.MenuButton backButton)
         {
             UnityEngine.UI.MenuButton BackButton = null;
@@ -59,9 +72,23 @@ namespace Satchel.BetterMenus
             return builder;
         }
 
+        /// <summary>
+        /// Adds a back button to the menu in the center of the control pane
+        /// </summary>
+        /// <param name="builder">the builder to put the back button on</param>
+        /// <param name="returnScreen">the screen previous screen(that game with go to when button is pressed)</param>
+        /// <returns>The menu builder with a back button</returns>
         public static MenuBuilder AddBackButton(this MenuBuilder builder, MenuScreen returnScreen) => AddBackButton(builder, returnScreen, out _);
 
-        //add a button near the back button
+        /// <summary>
+        /// Adds a button in the control pane near the back button
+        /// </summary>
+        /// <param name="builder">the builder to put the back button on</param>
+        /// <param name="name">The name of the button</param>
+        /// <param name="offset">the offset of the button from the center of the control pane (at bottom of screen)</param>
+        /// <param name="cancelAction">The action that will be invoked when the user pressed esc while this is the current selected element</param>
+        /// <param name="submitAction">the action that will be invoked when the user pressed this menubutton</param>
+        /// <returns>The menu builder with the control button</returns>
         public static MenuBuilder AddControlButton(this MenuBuilder builder, string name, Vector2 offset, Action<MenuSelectable> cancelAction, Action<UnityEngine.UI.MenuButton> submitAction)
         {
             return builder.AddControls(

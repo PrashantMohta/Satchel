@@ -8,8 +8,10 @@ using Modding.Menu;
 using UnityEngine;
 
 namespace Satchel.BetterMenus{
+    /// <summary>
+    /// The abstract class that Element is based on 
+    /// </summary>
     public abstract class BaseElement{
-
 
         /// <summary>
         /// The Identifier used to refer to this element.
@@ -21,24 +23,59 @@ namespace Satchel.BetterMenus{
         /// </summary>
         public string Name;
 
+        /// <summary>
+        /// the GameObject of the element
+        /// </summary>
         public GameObject gameObject
         {
             get;
             protected set;
         }
-        public BaseElement Parent; // reference to the parent (menu may also be an Element)
+        /// <summary>
+        /// reference to the parent (menu may also be an Element)
+        /// </summary>
+        public BaseElement Parent; 
+        /// <summary>
+        /// Event that happens on update of the element
+        /// </summary>
         public event EventHandler<UpdateEventArgs> OnUpdate;
+        /// <summary>
+        /// Event that happens on visibility change of the element
+        /// </summary>
         public event EventHandler<VisibilityChangeEventArgs> OnVisibilityChange;
         
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public BaseElement(){}
+        
+        /// <summary>
+        /// constructor that takes in id
+        /// </summary>
+        ///<param name="Id">the id of the element that can be used to search for it</param>
         public BaseElement(string Id){
             this.Id = Id;
         }
+        /// <summary>
+        /// constructor that takes in id and name
+        /// </summary>
+        ///<param name="Id">the id of the element that can be used to search for it</param>
+        /// <param name="Name">the name of the element</param>
         public BaseElement(string Id, string Name){
             this.Id = Id == "__UseName" ? Name : Id;
         }
+        /// <summary>
+        /// The function to call to update the element
+        /// </summary>
         public abstract void Update();
+        /// <summary>
+        /// a bool that stores whether the element is hidden or visible
+        /// </summary>
         public bool isVisible { get; set; } = true;
+        
+        /// <summary>
+        /// Makes isVisible true and updates and reflows the menu to reflect that
+        /// </summary>
         public void Show(){
             if(isVisible == true){ return; }
             isVisible = true;
@@ -47,7 +84,9 @@ namespace Satchel.BetterMenus{
                 Target = this
             });
         }
-
+        /// <summary>
+        /// Makes isVisible false and updates and reflows the menu to reflect that
+        /// </summary>
         public void Hide(){
             if(isVisible == false){ return; }
             isVisible = false;
@@ -67,13 +106,30 @@ namespace Satchel.BetterMenus{
             }
         }
 
+        /// <summary>
+        /// a function that gives you access to the element and can be used to update it
+        /// </summary>
+        /// <param name="callback">an function that takes in BaseElement as a parameter which can be used to update it</param>
         public void updateAfter(Action<BaseElement> callback){
             callback(this);
             UpdateInternal();
         }
     }
+    /// <summary>
+    /// The abstract class that is the base for all Elements in the Menu
+    /// </summary>
     public abstract class Element : BaseElement{
+        /// <summary>
+        /// constructor that takes in id
+        /// </summary>
+        ///<param name="Id">the id of the element that can be used to search for it</param>
         public Element(string Id) : base(Id){}
+        
+        /// <summary>
+        /// constructor that takes in id and name
+        /// </summary>
+        ///<param name="Id">the id of the element that can be used to search for it</param>
+        /// <param name="Name">the name of the element</param>
         public Element(string Id,string Name) : base(Id,Name){}
 
          /// <summary>
@@ -89,6 +145,9 @@ namespace Satchel.BetterMenus{
         //todo implement AddImagePanel
     }
 
+    /// <summary>
+    /// abstract class for a MenuElement
+    /// </summary>
     public abstract class MenuElement : BaseElement{
     }
 

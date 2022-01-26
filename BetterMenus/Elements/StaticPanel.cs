@@ -13,13 +13,12 @@ namespace Satchel.BetterMenus
     /// </summary>
     public class StaticPanel: Element
     {
-        //the paramater that will be passed in is the static panel that you'll have to make the new object the parent of
         /// <summary>
-        /// The Action(GameObject) te be called on creation.
+        /// The Action(GameObject) te be called on creation. the Gameobject that will be passed in is the static panel go that will be the parent of the custom item you make
         /// </summary>
         public Action<GameObject> CreateCustomItem;
         /// <summary>
-        /// The width of the panel (default 1500f).
+        /// The width of the panel (default 1000f).
         /// </summary>
         public float Width;
         
@@ -28,13 +27,13 @@ namespace Satchel.BetterMenus
         /// Creates a new StaticPanel.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
-        /// <param name="createCustomItem">The Action(GameObject) te be called on creation.</param>
+        /// <param name="createCustomItem">The Action(GameObject) te be called on creation. the Gameobject that will be passed in is the static panel go that will be the parent of the custom item you make.</param>
         /// <param name="width">The width of the panel.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public StaticPanel(
             string name,
             Action<GameObject> createCustomItem, 
-            float width = 1500f,
+            float width = 1000f,
             string Id = "__UseName") : base(Id,name)
         {
             Name = name;
@@ -72,9 +71,7 @@ namespace Satchel.BetterMenus
 
         public override void Update()
         {
-            //intentionally left empty
-            //update for static panel might need to be handled via the Event as
-            //we dont know what update means for that which is inside it
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Width, 105f);
         }
     }
 

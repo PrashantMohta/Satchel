@@ -15,30 +15,43 @@ namespace Satchel.BetterMenus
     public class TextPanel : Element
     {
         /// <summary>
-        /// The width of the TextPanel (default 1500f).
+        /// The width of the TextPanel (default 1000f).
         /// </summary>
         public float Width;
-        
+
         /// <summary>
         /// The fontSize of the TextPanel (default 35).
         /// </summary>
         public int FontSize;
-
+        
+        /// <summary>
+        /// The font used in the TextPanel (default TrajanBold).
+        /// </summary>
+        public TextPanelConfig.TextFont Font;
+        
+        /// <summary>
+        /// The anchor of the text in the TextPanel (default Center).
+        /// </summary>
+        public TextAnchor Anchor;
+        
         /// <summary>
         /// Creates a new TextPanel.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
         /// <param name="width">The width of the TextPanel.</param>
         /// <param name="fontSize">The fontSize of the TextPanel.</param>
-        /// <param name="Id">The Id of this Element.</param>
-        public TextPanel(string name, float width = 1500f,int fontSize = 35,string Id = "__UseName") : base(Id,name)
+        /// <param name="font">The font used in the TextPanel.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
+        /// <param name="anchor">The anchor of the text in the TextPanel (default Center).</param>
+        public TextPanel(string name, float width = 1000f,int fontSize = 35, TextPanelConfig.TextFont font = TextPanelConfig.TextFont.TrajanBold, TextAnchor anchor = TextAnchor.MiddleCenter ,string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             Width = width;
             FontSize = fontSize;
+            Font = font;
+            Anchor = anchor;
         }
-
-
+        
         /// <summary>
         /// Creates a GameObjectRow based on the current variables.
         /// </summary>
@@ -50,19 +63,19 @@ namespace Satchel.BetterMenus
         public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
-           //todo add support for TextFont & TextAnchor
            //todo also add support for height
             c.AddTextPanel(
                 Name,
                 new RelVector2(new Vector2(Width, 105f)),
                 new TextPanelConfig
                 {
-                    Anchor = TextAnchor.MiddleCenter,
-                    Font = TextPanelConfig.TextFont.TrajanBold,
+                    Anchor = Anchor,
+                    Font = Font,
                     Size = FontSize,
                     Text = Name
                 }, out var option
             );
+
             if (AddToList)
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
@@ -77,8 +90,15 @@ namespace Satchel.BetterMenus
         {
             gameObject.GetComponent<Text>().text = Name;
             gameObject.GetComponent<Text>().fontSize = FontSize;
-            //todo add support for updating width
+            gameObject.GetComponent<Text>().alignment = Anchor;
+            gameObject.GetComponent<Text>().font = Font switch
+            {
+                TextPanelConfig.TextFont.TrajanRegular => MenuResources.TrajanRegular,
+                TextPanelConfig.TextFont.TrajanBold => MenuResources.TrajanBold,
+                TextPanelConfig.TextFont.Perpetua => MenuResources.Perpetua,
+                _ => MenuResources.TrajanRegular
+            };
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Width, 105f);
         }
     }
-
 }

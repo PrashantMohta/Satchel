@@ -1,4 +1,3 @@
-using System;
 using GlobalEnums;
 using UnityEngine;
 using UnityEngine.UI;

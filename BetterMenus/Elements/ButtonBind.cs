@@ -12,6 +12,9 @@ using UnityEngine.UI;
 namespace Satchel.BetterMenus
 {
     
+    /// <summary>
+    /// a class to create a button bind in the menu
+    /// </summary>
     public class ButtonBind : Element
     {
         /// <summary>
@@ -19,6 +22,9 @@ namespace Satchel.BetterMenus
         /// </summary>
         public InControl.PlayerAction PlayerAction;
 
+        /// <summary>
+        /// decides whether the full element is selectable or only the button part is selectable
+        /// </summary>
         public SelectableArea SelectableArea = SelectableArea.Full;
         
         private ButtonBindConfig buttonBindConfig;
@@ -27,7 +33,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
         /// <param name="playerAction">The PlayerAction connected to this ButtonBind.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public ButtonBind(string name, InControl.PlayerAction playerAction,string Id = "__UseName") : base(Id,name)
         {
             Name = name;

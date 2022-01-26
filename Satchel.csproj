@@ -14,6 +14,7 @@
     <VanillaFiles>..\Vanilla</VanillaFiles>
     <ModdingAPI>..\HollowKnight.Modding\OutputFinal</ModdingAPI>
     <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
+    <DocumentationFile>bin\Debug\Satchel.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -98,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonConvertors\RandomConvertor.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Core.cs" />
 
@@ -152,6 +154,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(HollowKnightModsDirectory)\Satchel" />
+    <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).xml" DestinationFolder="$(HollowKnightModsDirectory)\Satchel" />
   </Target>
 </Project>

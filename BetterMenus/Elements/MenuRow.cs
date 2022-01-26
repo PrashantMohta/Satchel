@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Modding;
 using Modding.Menu;
-using Modding.Menu.Config;
 using UnityEngine;
 
 namespace Satchel.BetterMenus
@@ -32,8 +28,8 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a new MenuRow instance.
         /// </summary>
-        /// <param name="Row">The Row of Elemenst.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Row">The Row of Elements.</param>
+        /// <param name="Id">the id of the element that can be used to search for it.</param>
         public MenuRow(
             List<Element> Row,
             string Id) : base(Id)
@@ -98,5 +94,4 @@ namespace Satchel.BetterMenus
             }
         }
     }
-
 }
