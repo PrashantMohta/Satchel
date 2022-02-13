@@ -19,7 +19,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         public Action<GameObject> CreateCustomItem;
         /// <summary>
-        /// The width of the panel (default 1500f).
+        /// The width of the panel (default 1000f).
         /// </summary>
         public float Width;
         
@@ -34,7 +34,7 @@ namespace Satchel.BetterMenus
         public StaticPanel(
             string name,
             Action<GameObject> createCustomItem, 
-            float width = 1500f,
+            float width = 1000f,
             string Id = "__UseName") : base(Id,name)
         {
             Name = name;

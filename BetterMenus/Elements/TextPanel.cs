@@ -15,7 +15,7 @@ namespace Satchel.BetterMenus
     public class TextPanel : Element
     {
         /// <summary>
-        /// The width of the TextPanel (default 1500f).
+        /// The width of the TextPanel (default 1000f).
         /// </summary>
         public float Width;
         
@@ -31,7 +31,7 @@ namespace Satchel.BetterMenus
         /// <param name="width">The width of the TextPanel.</param>
         /// <param name="fontSize">The fontSize of the TextPanel.</param>
         /// <param name="Id">The Id of this Element.</param>
-        public TextPanel(string name, float width = 1500f,int fontSize = 35,string Id = "__UseName") : base(Id,name)
+        public TextPanel(string name, float width = 1000f,int fontSize = 35,string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             Width = width;
