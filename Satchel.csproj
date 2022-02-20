@@ -122,6 +122,7 @@
     <Compile Include="Monobehaviour\CustomAnimationFrames.cs" />
     <Compile Include="Monobehaviour\CustomArrowPromptBehaviour.cs" />
     <Compile Include="Monobehaviour\CustomEnemy.cs" />
+    <Compile Include="Monobehaviour\CustomBigItemGetBehaviour.cs" />
 
     <Compile Include="Custom\CustomArrowPrompt.cs" />
     <Compile Include="Custom\CustomDialogueManager.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Custom\CustomMapManager.cs" />
     <Compile Include="Custom\CustomSaveSlotsManager.cs" />
     <Compile Include="Custom\CustomScene.cs" />
+    <Compile Include="Custom\CustomBigItemGet.cs" />
 
     <Compile Include="BetterMenus\Base\*.cs" />
     <Compile Include="BetterMenus\Elements\Builders\*.cs" />
