@@ -131,7 +131,9 @@
     <Compile Include="Custom\CustomMapManager.cs" />
     <Compile Include="Custom\CustomSaveSlotsManager.cs" />
     <Compile Include="Custom\CustomScene.cs" />
-    <Compile Include="Custom\CustomBigItemGet.cs" />
+    <Compile Include="Custom\CustomBigItemGetManager.cs" />
+    <Compile Include="Custom\CustomShinyManager.cs" />
+    <Compile Include="Custom\CustomShiny.cs" />
 
     <Compile Include="BetterMenus\Base\*.cs" />
     <Compile Include="BetterMenus\Elements\Builders\*.cs" />

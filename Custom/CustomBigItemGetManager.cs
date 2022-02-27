@@ -11,13 +11,13 @@ using Satchel.Futils;
 using InControl;
 
 namespace Satchel{
-    public static class CustomBigItemGet {
-        public static GameObject MsgUiPrefab;
-        public static void Prepare(GameObject ShinyPrefab){
+    public class CustomBigItemGetManager {
+        public GameObject MsgUiPrefab;
+        public void Prepare(GameObject ShinyPrefab){
            var fsm = ShinyPrefab.LocateMyFSM("Shiny Control");
            MsgUiPrefab = fsm.GetAction<CreateUIMsgGetItem>("Walljump",3).gameObject.Value;
         }
-        public static void ShowDialog(
+        public void ShowDialog(
             string ItemName,
             string Intro1,
             string ButtonPress,

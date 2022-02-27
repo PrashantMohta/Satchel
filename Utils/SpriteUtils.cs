@@ -37,7 +37,6 @@ namespace Satchel {
         public static Vector2 GetSpriteOrigin(Sprite testSprite){
             var testSpriteRect = (testSprite.texture.width, testSprite.texture.height);
             List<Vector2Int> texUVs = new List<Vector2Int>();
-            int width, height;
 
             foreach (var item in testSprite.uv)
             {
@@ -59,7 +58,6 @@ namespace Satchel {
             List<(Vector2Int, Vector2Int, Vector2Int)> triangles = new List<(Vector2Int, Vector2Int, Vector2Int)>();
             int i;
             bool[][] contents;
-            bool[][] triangle;
             float triangleArea;
             float pab, pbc, pac;
             Vector2Int p;
@@ -89,7 +87,7 @@ namespace Satchel {
             contents = new bool[height][];
             for (i = 0; i < contents.Length; i++)
                 contents[i] = new bool[width];
-            int triangleCounter = 0;
+                
             foreach (var item in triangles)
             {
                 triangleArea = CalcTriangleArea(item.Item1, item.Item2, item.Item3);

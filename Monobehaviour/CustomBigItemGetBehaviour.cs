@@ -31,7 +31,7 @@ namespace Satchel{
                 string ButtonPress,
                 string Prompt1,
                 string Prompt2,
-                Sprite? sprite,
+                Sprite sprite,
                 Func<PlayerAction> actionGet,
                 Action Callback){
                 this.ItemName = ItemName;
@@ -79,10 +79,12 @@ namespace Satchel{
                 }
 
                 //add callback
-                dialogFsm.InsertCustomAction("Done",()=>{
-                    Callback();
-                    Destroy(gameObject);
-                },1);
+                if(Callback != null){
+                    dialogFsm.InsertCustomAction("Done",()=>{
+                        Callback();
+                        Destroy(gameObject);
+                    },1);
+                }
             }
 
             private float blnkWidth = 1.685f;
@@ -163,6 +165,10 @@ namespace Satchel{
                 // set button icon
                 if(this.actionGet() != null){
                     StartCoroutine(updateButtonIcon(this.actionGet()));
+                } else {
+                    var abicon = gameObject.GetComponentInChildren<ActionButtonIcon>();
+                    var button = abicon.gameObject;
+                    button.SetActive(false);
                 }
             }
             public void OnDestroy()

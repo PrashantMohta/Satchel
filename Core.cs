@@ -52,6 +52,7 @@ namespace Satchel{
             }
             return customDialogueManager;
         }
+
         public CustomMapManager customMapManager;
         public CustomMapManager GetCustomMapManager(){
             if(customMapManager == null){
@@ -73,6 +74,23 @@ namespace Satchel{
                 customDreamNailManager = new CustomDreamNailManager();
             }
             return customDreamNailManager;
+        }
+
+        
+        public CustomShinyManager customShinyManager;
+        public CustomShinyManager GetCustomShinyManager(){
+            if(customShinyManager == null){
+                customShinyManager = new CustomShinyManager();
+            }
+            return customShinyManager;
+        }
+
+        public CustomBigItemGetManager customBigItemGetManager;
+        public CustomBigItemGetManager GetCustomBigItemGetManager(){
+            if(customBigItemGetManager == null){
+                customBigItemGetManager = new CustomBigItemGetManager();
+            }
+            return customBigItemGetManager;
         }
 
 
