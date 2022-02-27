@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-using UnityEngine;
-using Logger = Modding.Logger;
-
-namespace Satchel.Futils.Extractors{
+namespace Satchel.Futils.Extractors
+{
     public static class AudioClips{
         public static Dictionary<string,AudioClip> GetAudioClips(this PlayMakerFSM self){
             Dictionary<string,AudioClip> ac = new Dictionary<string,AudioClip>();

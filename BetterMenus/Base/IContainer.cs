@@ -1,6 +1,5 @@
-using System;
-
-namespace Satchel.BetterMenus{
+namespace Satchel.BetterMenus
+{
     public interface IContainer{
         public Element Find(string Id);
         public void Reflow(bool silent = false);

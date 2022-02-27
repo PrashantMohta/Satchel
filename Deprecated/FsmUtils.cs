@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-using UnityEngine;
-using Logger = Modding.Logger;
 using Satchel.Futils;
 using Satchel.Futils.Extractors;
 
 namespace Satchel
 {
-    
+
     [Obsolete("Satchel.MethodAction is deprecated, please use Satchel.Futils.CustomFsmAction instead.")]
     public class MethodAction : CustomFsmAction{}   
     public static partial class FsmUtil

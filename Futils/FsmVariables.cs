@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-using UnityEngine;
-using Logger = Modding.Logger;
-
-namespace Satchel.Futils{
+namespace Satchel.Futils
+{
 
     public static class FsmVariables{
         public static NamedVariable[] GetVariables<T>(this PlayMakerFSM fsm) where T : NamedVariable, new(){

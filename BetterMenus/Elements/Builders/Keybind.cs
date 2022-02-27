@@ -1,11 +1,7 @@
-using System;
-using GlobalEnums;
-using UnityEngine;
-using UnityEngine.UI;
-using Modding;
-using Modding.Menu;
 using InControl;
+using Modding.Menu;
 using Satchel.BetterMenus.Config;
+using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
 {

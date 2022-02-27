@@ -1,14 +1,9 @@
-using UnityEngine;
 using UnityEngine.UI;
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 using static Satchel.SceneUtils;
-using static Modding.Logger;
 
-namespace Satchel{
+namespace Satchel
+{
 
     public class CustomSaveSlotsManager
     {

@@ -1,8 +1,5 @@
-using System;
-using UnityEngine;
-using static Satchel.TextureUtils;
-
-namespace Satchel{
+namespace Satchel
+{
     class ChangeMeshColor : MonoBehaviour
     {
         private Material mat;

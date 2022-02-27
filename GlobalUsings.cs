@@ -1,0 +1,10 @@
+global using GlobalEnums;
+global using HutongGames.PlayMaker;
+global using HutongGames.PlayMaker.Actions;
+global using Modding;
+global using System;
+global using System.Collections;
+global using System.Collections.Generic;
+global using UnityEngine;
+global using UnityEngine.SceneManagement;
+global using static Satchel.Futils.FsmVariables;

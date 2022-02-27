@@ -1,9 +1,7 @@
-using System;
-using UnityEngine;
 using System.IO;
-using static Modding.Logger;
 
-namespace Satchel {
+namespace Satchel
+{
     public static class TextureUtils{
         public static Texture2D createTextureOfColor(int width, int height, Color color){
             Texture2D tex = new Texture2D(width,height);

@@ -1,16 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-
-using Modding;
-using static Modding.Logger;
-using UnityEngine;
-using Satchel.Futils;
 using InControl;
 
-namespace Satchel{
+namespace Satchel
+{
     public class CustomBigItemGetManager {
         public GameObject MsgUiPrefab;
         public void Prepare(GameObject ShinyPrefab){

@@ -1,18 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-
-using Modding;
-using GlobalEnums;
-using static Modding.Logger;
-using UnityEngine;
 using InControl;
-using static Satchel.FsmUtil;
-using static Satchel.Futils.FsmVariables;
 
-namespace Satchel{
+namespace Satchel
+{
     public class CustomBigItemGetBehaviour : MonoBehaviour {
            
             public string ItemName = "ITEM";

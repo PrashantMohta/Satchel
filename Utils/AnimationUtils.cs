@@ -1,15 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using GlobalEnums;
-
-using Modding;
 using static Modding.Logger;
 
-namespace Satchel{
+namespace Satchel
+{
 
     public static class AnimationUtils {
         

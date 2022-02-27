@@ -1,14 +1,9 @@
-using System;
 using System.IO;
 using System.Reflection;
-using System.Collections;
 using System.Security.Cryptography;
 
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Modding.Logger;
-
-namespace Satchel{
+namespace Satchel
+{
     public static class AssemblyUtils{
         public static string name = "Satchel";
         public static string ver = "0.7.6";

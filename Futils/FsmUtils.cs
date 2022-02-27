@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-using UnityEngine;
-using Logger = Modding.Logger;
 using Satchel.Futils;
 namespace Satchel
 {

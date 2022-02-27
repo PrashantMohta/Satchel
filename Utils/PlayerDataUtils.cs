@@ -1,17 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Modding.Patches;
+using Newtonsoft.Json;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using Newtonsoft.Json;
-using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using Modding;
-using Modding.Patches;
 
-namespace Satchel{
+namespace Satchel
+{
     public class PlayerDataUtils{
 
         public static int ConvertSlotToNumber(SaveSlotButton.SaveSlot saveSlot)

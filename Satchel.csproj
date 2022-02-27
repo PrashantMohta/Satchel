@@ -14,7 +14,7 @@
     <VanillaFiles>..\Vanilla</VanillaFiles>
     <ModdingAPI>..\HollowKnight.Modding\OutputFinal</ModdingAPI>
     <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalUsings.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Core.cs" />
 

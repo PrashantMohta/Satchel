@@ -1,15 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Satchel.SceneUtils;
-using static Satchel.FsmUtil;
-using static Satchel.Futils.FsmVariables;
-
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-
 namespace Satchel
 {
     public class CustomShiny {

@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using Modding;
 using Modding.Menu;
-using UnityEngine;
 
-namespace Satchel.BetterMenus{
+namespace Satchel.BetterMenus
+{
     public abstract class BaseElement{
 
 

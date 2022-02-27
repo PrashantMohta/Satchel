@@ -1,13 +1,8 @@
-using System;
 using System.IO;
-using System.Collections;
-using System.Collections.Generic;
-
-using Modding;
 using static Modding.Logger;
-using UnityEngine;
 
-namespace Satchel{
+namespace Satchel
+{
     public class CustomAnimationFrames : MonoBehaviour {
         public Dictionary<string,Dictionary<int,Sprite>> customClips = new Dictionary<string,Dictionary<int,Sprite>>();
         public Animator anim;

@@ -1,13 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using System.IO;
-using UnityEngine;
-using Modding;
-using static Modding.Logger;
-
-namespace Satchel{
+namespace Satchel
+{
     public class Satchel : Mod{
 
         new public string GetName() => AssemblyUtils.name;

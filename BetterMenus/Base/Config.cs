@@ -1,12 +1,7 @@
-using System;
-using GlobalEnums;
-using UnityEngine;
-using UnityEngine.UI;
 
-    
 namespace Satchel.BetterMenus.Config
 {
-    
+
     public enum SelectableArea
     {
         Full,

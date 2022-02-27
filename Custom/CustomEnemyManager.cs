@@ -1,13 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using Modding;
-using static Modding.Logger;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-namespace Satchel{
+namespace Satchel
+{
     public class CustomEnemyManager{
         private GameObject defaultInfectedEnemyPrefab;
         private GameObject defaultUnInfectedEnemyPrefab;

@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
-using On.UnityEngine.UI;
-using UnityEngine;
 using UnityEngine.UI;
 using MenuOptionHorizontal = UnityEngine.UI.MenuOptionHorizontal;
 

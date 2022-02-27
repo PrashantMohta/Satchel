@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-
-using Modding;
-using static Modding.Logger;
-using UnityEngine;
-
-namespace Satchel{
+namespace Satchel
+{
     public class CustomDreamNailManager {
 
         public Dictionary<string,string> DNdialog = new Dictionary<string,string>();

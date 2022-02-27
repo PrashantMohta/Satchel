@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
 {
-        /// <summary>
+    /// <summary>
     /// A menu button.
     /// </summary>
     public class MenuButton : Element

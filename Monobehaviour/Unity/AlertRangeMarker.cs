@@ -1,7 +1,5 @@
-using Modding;
-using UnityEngine;
-
-namespace Satchel{
+namespace Satchel
+{
     public class AlertRangeMarker : MonoBehaviour{
 
         // dont show in editer

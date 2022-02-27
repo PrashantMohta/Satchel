@@ -1,15 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-
-using Modding;
-using static Modding.Logger;
-using UnityEngine;
-using Satchel.Futils;
-
-namespace Satchel{
+namespace Satchel
+{
     public static class CustomArrowPrompt {
         public static GameObject ArrowPromptPrefab;
         public static void Prepare(GameObject CardPrefab){

@@ -1,16 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
-using GlobalEnums;
-
-using HutongGames.PlayMaker.Actions;
-using Modding;
-using static Modding.Logger;
-namespace Satchel{
+namespace Satchel
+{
     public static class SceneUtils{
 
         public static GameObject DontDestroyOnLoadObj;
