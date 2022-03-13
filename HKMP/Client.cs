@@ -1,13 +1,14 @@
 using Hkmp.Api.Client;
 using Hkmp.Networking.Packet;
+using Hkmp.Networking.Packet.Data;
 
 namespace Satchel.Hkmp{
     public class Client : ClientAddon {
         internal static Client Instance;
-        internal static IClientApi clientApi;
+        internal IClientApi clientApi;
         internal event EventHandler<RecievedEventArgs> OnRecieve;
 
-        public Client(IClientApi _clientApi) : base(clientApi) {
+        public Client(IClientApi _clientApi) : base(_clientApi) {
             clientApi = _clientApi;
             Instance = this;
         }
@@ -15,9 +16,7 @@ namespace Satchel.Hkmp{
             Modding.Logger.Log("client send" + _eventName);
             var netSender = clientApi.NetClient.GetNetworkSender<Packets>(Instance);
 
-            // Send single data using the given packet ID
-            //SendSingleData
-            //SendCollectionData
+            // SendCollectionData using the given packet ID
             netSender.SendCollectionData(Packets.GenericPacket, new GenericPacket {
                _isReliable = _reliable,
                _dropReliableDataIfNewerExists = false,
@@ -54,7 +53,7 @@ namespace Satchel.Hkmp{
         private static IPacketData InstantiatePacket(Packets packetId) {
             switch (packetId) {
                 case Packets.GenericPacket:
-                    return new GenericPacket();
+                    return new PacketDataCollection<GenericPacket>();
             }
             return null;
         }

@@ -1,5 +1,6 @@
 using Hkmp.Api.Server;
 using Hkmp.Networking.Packet;
+using Hkmp.Networking.Packet.Data;
 using System.Linq;
 
 namespace Satchel.Hkmp{
@@ -23,8 +24,7 @@ namespace Satchel.Hkmp{
         internal void send(ushort fromPlayer,ushort toPlayer,string _mod,string _eventName,string _eventData,bool _rebroadcast = false , bool _broadcastToAll = false ,bool _reliable = false){
             Modding.Logger.Log("server send" + _eventName);
             var netSender = serverApi.NetServer.GetNetworkSender<Packets>(this);
-            // Send SendCollectionData using the given packet ID
-            // SendSingleData
+            // SendCollectionData using the given packet ID
             netSender.SendCollectionData(Packets.GenericPacket, new GenericPacket {
                _isReliable = _reliable,
                _dropReliableDataIfNewerExists = false,
@@ -68,7 +68,7 @@ namespace Satchel.Hkmp{
         private static IPacketData InstantiatePacket(Packets packetId) {
             switch (packetId) {
                 case Packets.GenericPacket:
-                    return new GenericPacket();
+                    return new PacketDataCollection<GenericPacket>();
             }
             return null;
         }

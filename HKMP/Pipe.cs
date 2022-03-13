@@ -1,10 +1,13 @@
 
+using Hkmp.Api.Client;
+using Hkmp.Api.Server;
+
 namespace Satchel.Hkmp{
-    public class Pipe{
+    public class HkmpPipe{
         public string mod;
         public bool isServer;
         public event EventHandler<RecievedEventArgs> OnRecieve;
-        public Pipe(string mod,bool isServer){
+        public HkmpPipe(string mod,bool isServer){
             this.mod = mod;
             this.isServer = isServer;
         }
@@ -24,7 +27,6 @@ namespace Satchel.Hkmp{
                 packet = p
             });
         }
-        
 
         public void SendToAll(ushort fromPlayer,string eventName,string eventData,bool reliable = true){
             this.Send(fromPlayer,0,eventName,eventData,true,true,reliable);
