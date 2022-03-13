@@ -106,7 +106,6 @@ namespace Satchel
                     var sr  =  button.GetComponent<SpriteRenderer>();
                     Destroy(abicon);
                     sr.sprite = buttonSkinFor.sprite;
-                    TextureUtils.WriteTextureToFile(buttonSkinFor.sprite.texture,$"{AssemblyUtils.getCurrentDirectory()}/buttonSkinFor.sprite.png");
                     if (textContainer != null)
                     {
                         if (buttonSkinFor.skinType == ButtonSkinType.BLANK)

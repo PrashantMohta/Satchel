@@ -20,7 +20,7 @@ namespace Satchel
                 return shiny;
         }
         public CustomShinyManager(){
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SpawnOnSceneLoad;
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SpawnOnSceneLoad;
             ModHooks.LanguageGetHook += LanguageGet;
         }
 
@@ -32,9 +32,9 @@ namespace Satchel
                 }
             }
         }
-        public void SpawnOnSceneLoad(Scene scene,LoadSceneMode mode)
+        public void SpawnOnSceneLoad(Scene oldScene, Scene newScene)
         {
-            GameManager.instance.StartCoroutine(SpawnCoro(scene));
+            GameManager.instance.StartCoroutine(SpawnCoro(newScene));
         }
         public string LanguageGet( string key, string sheet, string orig){ 
             if(sheet == $"{languageKey}UI" && key.StartsWith(languageKey)){

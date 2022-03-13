@@ -18,6 +18,8 @@ namespace Satchel
             fsm.GetVariable<FsmBool>("Mantis Claw").Value = false;
 
             fsm.ChangeTransition("Init","FINISHED","Idle");
+            fsm.RemoveAction("Init",2);
+            fsm.RemoveAction("Finish",1);
 
             if(isTrinket){
                 fsm.ChangeTransition("Hero Down","FINISHED","Trink Flash"); 
