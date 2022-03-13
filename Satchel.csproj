@@ -96,6 +96,9 @@
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(VanillaFiles)\UnityEngine.UIModule.dll</HintPath>
     </Reference>
+    <Reference Include="Hkmp">
+      <HintPath>..\HKMP\ref\Hkmp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalUsings.cs" />
@@ -149,6 +152,8 @@
     <Compile Include="Futils\FsmVariables.cs" />
 
     <Compile Include="Deprecated\FsmUtils.cs" />
+    <Compile Include="HKMP\*.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Build\mac\shaders" />
