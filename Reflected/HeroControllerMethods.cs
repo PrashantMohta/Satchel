@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Modding;
 
-namespace Satchel
+namespace Satchel.Reflected
 {
     public static partial class HeroControllerR
     {
