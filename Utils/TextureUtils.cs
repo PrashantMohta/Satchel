@@ -1,4 +1,5 @@
 using System.IO;
+using System.Security.Cryptography;
 
 namespace Satchel
 {
@@ -84,6 +85,17 @@ namespace Satchel
             
             outTex.Apply();
             return outTex;
+        }
+
+        public static string getHash(this Texture2D tex){ 
+            var data = tex.EncodeToPNG();
+            var sha1 = SHA1.Create();
+
+            byte[] hashBytes = sha1.ComputeHash(data);
+
+            string hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
+
+            return hash;
         }
 
     }
