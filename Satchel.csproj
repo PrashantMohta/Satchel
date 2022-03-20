@@ -147,6 +147,7 @@
     <Compile Include="Futils\CustomAction.cs" />
     <Compile Include="Futils\FsmUtils.cs" />
     <Compile Include="Futils\FsmVariables.cs" />
+    <Compile Include="Futils\Interceptor.cs" />
 
     <Compile Include="Deprecated\FsmUtils.cs" />
   </ItemGroup>
