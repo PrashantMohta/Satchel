@@ -11,8 +11,10 @@ namespace Satchel{
 
         public static AssetBundle shaderBundle;
         public static Shader spriteFlash;
-
-        public void LoadShaders(){
+        public static AssetBundle spriteExtractBundle;
+        public static Shader spriteExtract;
+        public static Shader spriteMask;
+        public static void LoadShaders(){
             switch (SystemInfo.operatingSystemFamily)
             {
                 case OperatingSystemFamily.MacOSX:
@@ -24,14 +26,19 @@ namespace Satchel{
                 case OperatingSystemFamily.Windows:
                 default:
                     shaderBundle = AssemblyUtils.GetAssetBundleFromResources("win.shaders");
+                    spriteExtractBundle = AssemblyUtils.GetAssetBundleFromResources("win.spriteextract");
                     break;
             }
             if(spriteFlash == null){
                 spriteFlash = shaderBundle.GetShader("spriteflash.shader");
             }
-
+            if(spriteExtractBundle != null)
+            {
+                spriteExtract = spriteExtractBundle.GetShader("SpriteExtract");
+                spriteMask = spriteExtractBundle.GetShader("SpriteMask");
+            }
         }
-        public Core(){
+        static Core(){
             Log(AssemblyUtils.Version());
             LoadShaders();
         }
