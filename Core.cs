@@ -19,9 +19,11 @@ namespace Satchel{
             {
                 case OperatingSystemFamily.MacOSX:
                     shaderBundle = AssemblyUtils.GetAssetBundleFromResources("mac.shaders");
+                    spriteExtractBundle = AssemblyUtils.GetAssetBundleFromResources("mac.spriteextract");
                     break;
                 case OperatingSystemFamily.Linux:
                     shaderBundle = AssemblyUtils.GetAssetBundleFromResources("lin.shaders");
+                    spriteExtractBundle = AssemblyUtils.GetAssetBundleFromResources("lin.spriteextract");
                     break;
                 case OperatingSystemFamily.Windows:
                 default:
@@ -35,7 +37,7 @@ namespace Satchel{
             if(spriteExtractBundle != null)
             {
                 spriteExtract = spriteExtractBundle.GetShader("SpriteExtract");
-                spriteMask = spriteExtractBundle.GetShader("SpriteMask");
+                spriteMask = spriteExtractBundle.GetShader("SpriteMaskMaker");
             }
         }
         static Core(){

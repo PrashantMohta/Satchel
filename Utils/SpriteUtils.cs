@@ -57,7 +57,7 @@ namespace Satchel
         public static Texture2D testAll = TextureUtils.createTextureOfColor(1, 1, Color.white);
         public static Texture2D ExtractTextureWithShader(Texture2D tex, Vector2Int offset,
             Vector2Int realSize, Vector2Int texSize, Vector2Int border, bool flipHorizontal,
-            bool flipVertical, List<(Vector2Int, Vector2Int, Vector2Int)> triangles)
+            bool flipVertical, List<(Vector2Int, Vector2Int, Vector2Int)> triangles, bool drawMask = false)
         {
             if (Core.spriteExtract == null || Core.spriteMask == null) throw new InvalidOperationException();
             #region Make Sprite Mask
@@ -96,20 +96,22 @@ namespace Satchel
             var mat = new Material(Core.spriteExtract);
             mat.SetTexture("_MainTex", tex);
             mat.SetTexture("_MaskTex", mtex);
+
+            mat.SetFloat("_DrawMask", drawMask ? 1 : 0);
+
             //mat.SetTexture("_MaskTex", testAll);
             mat.SetFloat("_OffsetX", offset.x);
             mat.SetFloat("_OffsetY", offset.y);
             mat.SetFloat("_SrcWidth", tex.width);
             mat.SetFloat("_SrcHeight", tex.height);
-            mat.SetFloat("_Width", texSize.x);
-            mat.SetFloat("_Height", texSize.y);
-            mat.SetFloat("_DstWidth", realSize.x);
-            mat.SetFloat("_DstHeight", realSize.y);
+            mat.SetFloat("_Width", realSize.x);
+            mat.SetFloat("_Height", realSize.y);
+            mat.SetFloat("_DstWidth", texSize.x);
+            mat.SetFloat("_DstHeight", texSize.y);
             mat.SetFloat("_FlipH", flipHorizontal ? 1 : -1);
             mat.SetFloat("_FlipV", flipVertical ? 1 : -1);
             mat.SetFloat("_BorderLeft", border.x);
             mat.SetFloat("_BorderBottom", border.y);
-
             var rtex = RenderTexture.GetTemporary(
                         texSize.x,
                         texSize.y,
@@ -249,7 +251,7 @@ namespace Satchel
 
             return ExtractTextureWithShader(testSprite.texture,
                 new Vector2Int(minX, minY), new Vector2Int(width, height), new Vector2Int(newSize.x, newSize.y),
-                offset, horizontal, vertical, triangles);
+                offset, horizontal, vertical, triangles, false);
         }
     }
 
