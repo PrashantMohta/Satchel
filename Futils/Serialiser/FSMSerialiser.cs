@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using HutongGames.PlayMaker;
-using UnityEngine;
-using Modding;
 
 namespace Satchel.Futils.Serialiser{
 

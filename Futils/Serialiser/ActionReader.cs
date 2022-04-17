@@ -1,10 +1,5 @@
-using HutongGames.PlayMaker;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using UnityEngine;
 using System.IO;
-using Modding;
 
 namespace Satchel.Futils.Serialiser{
     public static class ActionReader
