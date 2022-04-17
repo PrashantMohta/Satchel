@@ -23,7 +23,6 @@ namespace Satchel.HkmpPipe{
         }
 
         internal void handleRecieve(GenericPacket p){
-            Modding.Logger.LogDebug($"packet from {p.fromPlayer} : event {p.eventName} : data {p.eventData}");
             if(p.mod != this.mod) { return; } // only recieve your own mods events
             OnRecieve?.Invoke(this,new RecievedEventArgs{
                 packet = p
