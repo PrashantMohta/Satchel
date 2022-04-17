@@ -6,27 +6,36 @@ namespace Satchel
 
         public static AssetBundle shaderBundle;
         public static Shader spriteFlash;
-
-        public void LoadShaders(){
+        public static AssetBundle spriteExtractBundle;
+        public static Shader spriteExtract;
+        public static Shader spriteMask;
+        public static void LoadShaders(){
             switch (SystemInfo.operatingSystemFamily)
             {
                 case OperatingSystemFamily.MacOSX:
                     shaderBundle = AssemblyUtils.GetAssetBundleFromResources("mac.shaders");
+                    spriteExtractBundle = AssemblyUtils.GetAssetBundleFromResources("mac.spriteextract");
                     break;
                 case OperatingSystemFamily.Linux:
                     shaderBundle = AssemblyUtils.GetAssetBundleFromResources("lin.shaders");
+                    spriteExtractBundle = AssemblyUtils.GetAssetBundleFromResources("lin.spriteextract");
                     break;
                 case OperatingSystemFamily.Windows:
                 default:
                     shaderBundle = AssemblyUtils.GetAssetBundleFromResources("win.shaders");
+                    spriteExtractBundle = AssemblyUtils.GetAssetBundleFromResources("win.spriteextract");
                     break;
             }
             if(spriteFlash == null){
                 spriteFlash = shaderBundle.GetShader("spriteflash.shader");
             }
-
+            if(spriteExtractBundle != null)
+            {
+                spriteExtract = spriteExtractBundle.GetShader("SpriteExtract");
+                spriteMask = spriteExtractBundle.GetShader("SpriteMaskMaker");
+            }
         }
-        public Core(){
+        static Core(){
             Log(AssemblyUtils.Version());
             LoadShaders();
         }
