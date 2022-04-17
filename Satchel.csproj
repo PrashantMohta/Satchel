@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MonoMod.RuntimeDetour, Version=21.4.29.1, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(ModdingAPI)\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -96,6 +99,11 @@
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(VanillaFiles)\UnityEngine.UIModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(VanillaFiles)\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    
+    
     <Reference Include="Hkmp">
       <HintPath>..\HKMP\ref\Hkmp.dll</HintPath>
     </Reference>
@@ -104,6 +112,12 @@
     <Compile Include="GlobalUsings.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="Reflected\GameManagerFields.cs" />
+    <Compile Include="Reflected\GameManagerILIEnumerators.cs" />
+    <Compile Include="Reflected\GameManagerMethods.cs" />
+    <Compile Include="Reflected\HeroControllerFields.cs" />
+    <Compile Include="Reflected\HeroControllerILIEnumerators.cs" />
+    <Compile Include="Reflected\HeroControllerMethods.cs" />
 
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
@@ -147,9 +161,12 @@
     <Compile Include="BetterMenus\Utils.cs" />
 
     <Compile Include="Futils\Extractors\*.cs" />
+
+    <Compile Include="Futils\Serialiser\*.cs" />
     <Compile Include="Futils\CustomAction.cs" />
     <Compile Include="Futils\FsmUtils.cs" />
     <Compile Include="Futils\FsmVariables.cs" />
+    <Compile Include="Futils\Interceptor.cs" />
 
     <Compile Include="Deprecated\FsmUtils.cs" />
     <Compile Include="HKMP\*.cs" />
@@ -159,6 +176,9 @@
     <EmbeddedResource Include="Assets\Build\mac\shaders" />
     <EmbeddedResource Include="Assets\Build\lin\shaders" />
     <EmbeddedResource Include="Assets\Build\win\shaders" />
+    <EmbeddedResource Include="Assets\Build\win\spriteextract" />
+    <EmbeddedResource Include="Assets\Build\lin\spriteextract" />
+    <EmbeddedResource Include="Assets\Build\mac\spriteextract" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
