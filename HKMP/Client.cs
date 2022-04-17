@@ -11,8 +11,11 @@ namespace Satchel.HkmpPipe{
         public Client() {
             Instance = this;
         }
-        internal void send(ushort fromPlayer,ushort toPlayer,string _mod,string _eventName,string _eventData,bool _rebroadcast = false, bool _broadcastToAll = false ,bool _reliable = false){
-            Modding.Logger.Log("client send" + _eventName);
+        internal void send(ushort fromPlayer,ushort toPlayer,string _mod,string _eventName,string _eventData,bool _rebroadcast = false, bool _broadcastToAll = false ,bool _reliable = false,bool sameScene = false){
+            if(!clientApi.NetClient.IsConnected){
+                return;
+            }
+            Modding.Logger.LogDebug("client send" + _eventName);
             var netSender = clientApi.NetClient.GetNetworkSender<Packets>(Instance);
 
             // SendCollectionData using the given packet ID
@@ -25,7 +28,8 @@ namespace Satchel.HkmpPipe{
                fromPlayer = fromPlayer,
                toPlayer = toPlayer,
                eventName = _eventName,
-               eventData = _eventData
+               eventData = _eventData,
+               sameScene = sameScene
             });
         }
  
@@ -36,7 +40,7 @@ namespace Satchel.HkmpPipe{
             netReceiver.RegisterPacketHandler<GenericPacket>(
                 Packets.GenericPacket,
                 packetData => {
-                    Modding.Logger.Log("Client recieve" + packetData.eventName);
+                    Modding.Logger.LogDebug("Client recieve |  " + packetData.eventName + $"[{packetData.eventData}]");
                     //broadcast event to all client addons
                     OnRecieve?.Invoke(this,new RecievedEventArgs{
                         packet = packetData
@@ -46,7 +50,7 @@ namespace Satchel.HkmpPipe{
         }
 
         protected override string Name => "Satchel";
-        protected override string Version => "0.0.1";
+        protected override string Version => AssemblyUtils.ver;
         public override bool NeedsNetwork => true;
 
 

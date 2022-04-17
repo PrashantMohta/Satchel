@@ -23,24 +23,26 @@ namespace Satchel.HkmpPipe{
         }
 
         internal void handleRecieve(GenericPacket p){
+            Modding.Logger.LogDebug($"packet from {p.fromPlayer} : event {p.eventName} : data {p.eventData}");
+            if(p.mod != this.mod) { return; } // only recieve your own mods events
             OnRecieve?.Invoke(this,new RecievedEventArgs{
                 packet = p
             });
         }
 
-        public void SendToAll(ushort fromPlayer,string eventName,string eventData,bool reliable = true){
-            this.Send(fromPlayer,0,eventName,eventData,true,true,reliable);
+        public void SendToAll(ushort fromPlayer,string eventName,string eventData,bool reliable = true,bool sameScene = false){
+            this.Send(fromPlayer,0,eventName,eventData,true,true,reliable,sameScene);
         }
 
-        public void Send(ushort fromPlayer,ushort toPlayer,string eventName,string eventData,bool rebroadcast = true,bool broadcastToAll = false,bool reliable = true){
+        public void Send(ushort fromPlayer,ushort toPlayer,string eventName,string eventData,bool rebroadcast = true,bool broadcastToAll = false,bool reliable = true,bool sameScene = false){
             if(isServer){
                 if(broadcastToAll){
-                    Server.Instance.sendToAll(fromPlayer,this.mod,eventName,eventData,reliable);
+                    Server.Instance.sendToAll(fromPlayer,this.mod,eventName,eventData,reliable,sameScene);
                 } else {
                     Server.Instance.send(fromPlayer,toPlayer,this.mod,eventName,eventData,rebroadcast,broadcastToAll,reliable);
                 }
             } else {
-                Client.Instance.send(fromPlayer,toPlayer,this.mod,eventName,eventData,rebroadcast,broadcastToAll,reliable);
+                Client.Instance.send(fromPlayer,toPlayer,this.mod,eventName,eventData,rebroadcast,broadcastToAll,reliable,sameScene);
             }
         }
     }

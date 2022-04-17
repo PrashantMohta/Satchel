@@ -1,3 +1,4 @@
+using Satchel.HkmpPipe;
 namespace Satchel
 {
     public class Satchel : Mod{
@@ -10,6 +11,7 @@ namespace Satchel
             if (Instance == null) 
             { 
                 Instance = this;
+                InGameAddon.SafeRegisterAddons();
             }
         }
     }

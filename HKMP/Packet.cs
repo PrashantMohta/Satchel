@@ -12,6 +12,7 @@ namespace Satchel.HkmpPipe{
         public bool IsReliable => _isReliable;
         public bool DropReliableDataIfNewerExists => _dropReliableDataIfNewerExists;
         public bool _isReliable = false;
+        public bool sameScene = false;
         public bool _dropReliableDataIfNewerExists = false;
         public bool rebroadcast = false;
         public bool broadcastToAll = false;
@@ -25,6 +26,7 @@ namespace Satchel.HkmpPipe{
             //order of read should be same as order of write
             packet.Write(mod);
             packet.Write(rebroadcast);
+            packet.Write(sameScene);
             packet.Write(broadcastToAll);
             packet.Write(fromPlayer);
             packet.Write(toPlayer);
@@ -36,6 +38,7 @@ namespace Satchel.HkmpPipe{
             //order of read should be same as order of write
             mod = packet.ReadString();
             rebroadcast = packet.ReadBool();
+            sameScene = packet.ReadBool();
             broadcastToAll = packet.ReadBool();
             fromPlayer = packet.ReadUShort();
             toPlayer = packet.ReadUShort();
