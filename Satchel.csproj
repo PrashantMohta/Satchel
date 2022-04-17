@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MonoMod.RuntimeDetour, Version=21.4.29.1, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(ModdingAPI)\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -96,10 +99,19 @@
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(VanillaFiles)\UnityEngine.UIModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(VanillaFiles)\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mod.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="Reflected\GameManagerFields.cs" />
+    <Compile Include="Reflected\GameManagerILIEnumerators.cs" />
+    <Compile Include="Reflected\GameManagerMethods.cs" />
+    <Compile Include="Reflected\HeroControllerFields.cs" />
+    <Compile Include="Reflected\HeroControllerILIEnumerators.cs" />
+    <Compile Include="Reflected\HeroControllerMethods.cs" />
 
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
