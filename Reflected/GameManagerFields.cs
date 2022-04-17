@@ -1,6 +1,4 @@
-﻿using Modding;
-
-namespace Satchel.Reflected
+﻿namespace Satchel.Reflected
 {
     /// <summary>
     /// A class that contains all (public and private) fields and methods of GameManager allowing you to
