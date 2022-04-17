@@ -54,7 +54,6 @@ namespace Satchel
 
             return new Vector2(minX, minY);
         }
-        public static Texture2D testAll = TextureUtils.createTextureOfColor(1, 1, Color.white);
         public static Texture2D ExtractTextureWithShader(Texture2D tex, Vector2Int offset,
             Vector2Int realSize, Vector2Int texSize, Vector2Int border, bool flipHorizontal,
             bool flipVertical, List<(Vector2Int, Vector2Int, Vector2Int)> triangles, bool drawMask = false)
