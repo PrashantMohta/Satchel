@@ -156,6 +156,8 @@
     <Compile Include="BetterMenus\Utils.cs" />
 
     <Compile Include="Futils\Extractors\*.cs" />
+
+    <Compile Include="Futils\Serialiser\*.cs" />
     <Compile Include="Futils\CustomAction.cs" />
     <Compile Include="Futils\FsmUtils.cs" />
     <Compile Include="Futils\FsmVariables.cs" />

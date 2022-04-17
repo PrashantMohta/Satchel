@@ -15,6 +15,27 @@ namespace Satchel
             fsm.Fsm.States = states;
             return states[i];
         }
+
+        // call this to give all states semi sensible positions for serialisation
+        public static void GiveStatesPosition(this PlayMakerFSM fsm,float startX = 500, float Y = 1100){
+            var currStates = fsm.Fsm.States;
+            var currentX = startX;
+            for(var i = 0; i < currStates.Length; i++){
+                if(currStates[i].Position.height == 0){
+                    var st = currStates[i];
+                    st.GiveStatePosition(
+                        currentX,
+                        Y,
+                        10 * st.Name.Length + 10,
+                        15 * (st.Transitions.Length + 1)
+                    );
+                    currentX += st.Position.width + 50;
+                }
+            }
+        }
+        public static void GiveStatePosition(this FsmState state,float x, float y, float w,float h){
+            state.Position = new Rect(x,y,w,h);  
+        }
         public static FsmState AddState(this PlayMakerFSM fsm, string stateName)
         {   
             return fsm.AddState(new FsmState(fsm.Fsm){Name = stateName});
