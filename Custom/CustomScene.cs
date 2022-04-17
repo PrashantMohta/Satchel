@@ -1,19 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-using GlobalEnums;
-using Modding;
 using static Modding.Logger;
-
-using GatewayParams = Satchel.SceneUtils.GatewayParams;
 using BenchParams = Satchel.SceneUtils.BenchParams;
 using CustomSceneManagerSettings = Satchel.SceneUtils.CustomSceneManagerSettings;
+using GatewayParams = Satchel.SceneUtils.GatewayParams;
 //playerData.respawnScene
-namespace Satchel{
+namespace Satchel
+{
 
     public class CustomScene 
     {

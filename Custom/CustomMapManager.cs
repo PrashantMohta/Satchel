@@ -1,20 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Modding;
-using TMPro;
-
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-
-using static Satchel.SceneUtils;
-using static Modding.Logger;
 using Satchel.Futils;
+using TMPro;
+using static Modding.Logger;
 
-namespace Satchel{
+namespace Satchel
+{
 
     public class customMapZone{
         public string ZoneName;

@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
-using On.UnityEngine.UI;
-using UnityEngine;
 using UnityEngine.UI;
 using MenuOptionHorizontal = UnityEngine.UI.MenuOptionHorizontal;
 
@@ -98,6 +92,9 @@ namespace Satchel.BetterMenus
 			
 			gameObject = option.gameObject;
             ((IContainer)Parent).OnBuilt += (_,Element) => {
+                if(option == null || option.menuSetting == null){
+                    return;
+                }
                 option.menuSetting.RefreshValueFromGameSettings();
             };
             return new GameObjectRow(option.gameObject);
@@ -108,7 +105,12 @@ namespace Satchel.BetterMenus
             var option = gameObject.GetComponent<MenuOptionHorizontal>();
             option.optionList = Values;
             option.menuSetting.customApplySetting = (_, i) => ApplySetting(i);
-            option.menuSetting.customRefreshSetting = (s, _) => s.optionList.SetOptionTo(LoadSetting());
+            option.menuSetting.customRefreshSetting = (s, _) => {
+                var setting = LoadSetting();
+                if(setting >= 0 && setting < option.optionList.Length){
+                    s.optionList.SetOptionTo(setting);
+                }
+            };
             option.menuSetting.RefreshValueFromGameSettings();
 
             gameObject.transform.Find("Label").GetComponent<Text>().text = Name;

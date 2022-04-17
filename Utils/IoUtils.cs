@@ -1,16 +1,10 @@
-using System;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
-
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using GlobalEnums;
-
-using Modding;
 using static Modding.Logger;
 
-namespace Satchel{
+namespace Satchel
+{
 
     public static class IoUtils {
 

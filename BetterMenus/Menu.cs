@@ -1,15 +1,9 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Modding;
 using Modding.Menu;
 using Modding.Menu.Config;
-using Satchel.BetterMenus;
-using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
-namespace Satchel.BetterMenus{
+namespace Satchel.BetterMenus
+{
     public class Menu : MenuElement, IContainer{
         private readonly List<Element> Elements = new();
         private readonly Dictionary<String,Element> ElementDict = new();

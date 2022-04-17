@@ -1,9 +1,8 @@
-using System;
-using UnityEngine;
 using System.IO;
-using static Modding.Logger;
+using System.Security.Cryptography;
 
-namespace Satchel {
+namespace Satchel
+{
     public static class TextureUtils{
         public static Texture2D createTextureOfColor(int width, int height, Color color){
             Texture2D tex = new Texture2D(width,height);
@@ -86,6 +85,17 @@ namespace Satchel {
             
             outTex.Apply();
             return outTex;
+        }
+
+        public static string getHash(this Texture2D tex){ 
+            var data = tex.GetRawTextureData();
+            var sha1 = SHA1.Create();
+
+            byte[] hashBytes = sha1.ComputeHash(data);
+
+            string hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
+
+            return hash;
         }
 
     }

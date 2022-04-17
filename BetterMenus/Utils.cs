@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using InControl;
 using Modding.Menu;
 using Modding.Menu.Config;
-using UnityEngine;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
-using Modding;
-using GlobalEnums;
 using Lang = Language.Language;
 
 namespace Satchel.BetterMenus

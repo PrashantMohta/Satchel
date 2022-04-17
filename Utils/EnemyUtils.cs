@@ -1,14 +1,7 @@
-using UnityEngine;
-using System;
-using System.Reflection;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-using Modding;
-using static Modding.Logger;
-namespace Satchel{
+using System.Reflection;
+namespace Satchel
+{
     public class Convo {
         public static string prefix = "dc_custom_dn_";
         public string Id;

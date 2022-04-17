@@ -1,7 +1,5 @@
-using UnityEngine;
-using System.Text;
 using System.IO;
-using System;
+using System.Text;
 
 /// <summary>
 /// WAV utility for recording and audio playback functions in Unity.
@@ -18,7 +16,7 @@ using System;
 /// </remarks>
 namespace Satchel
 {
-	public class WavUtils
+    public class WavUtils
 	{
 		// Force save as 16-bit .wav
 		const int BlockSize_16Bit = 2;

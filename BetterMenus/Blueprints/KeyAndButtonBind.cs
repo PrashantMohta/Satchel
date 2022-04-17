@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Modding;
-using Modding.Menu;
 using Satchel.BetterMenus.Config;
-using UnityEngine;
 
 namespace Satchel.BetterMenus
 {

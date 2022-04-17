@@ -1,15 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-
-using Modding;
-using static Modding.Logger;
-using UnityEngine;
 using TMPro;
 
-namespace Satchel{
+namespace Satchel
+{
     public class CustomArrowPromptBehaviour : MonoBehaviour {
             public GameObject prompt,customLabel;
             public PromptMarker promptMarker;

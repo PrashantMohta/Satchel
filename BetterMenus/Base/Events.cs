@@ -1,5 +1,5 @@
-using System;
-namespace Satchel.BetterMenus{
+namespace Satchel.BetterMenus
+{
     public class BaseEventArgs : EventArgs {
         public BaseElement Target { get; set; }
     }

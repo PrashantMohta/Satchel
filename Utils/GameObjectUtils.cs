@@ -1,17 +1,9 @@
-using System;
-using System.Collections;
-using System.Text.RegularExpressions; 
-using System.Collections.Generic;
 using System.Reflection;
-using System.Linq;
-using System.Text;
-
-
-using UnityEngine;
+using System.Text.RegularExpressions;
 using UScene = UnityEngine.SceneManagement.Scene;
-using static Modding.Logger;
 
-namespace Satchel {
+namespace Satchel
+{
     public static class GameObjectUtils{
 
         public static T  GetAddComponent<T>(this GameObject go) where T : Component {

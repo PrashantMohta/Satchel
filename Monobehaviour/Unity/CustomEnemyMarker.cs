@@ -1,9 +1,5 @@
-using Modding;
-using UnityEngine;
-using System.Collections;
-
-
-namespace Satchel{
+namespace Satchel
+{
     public class CustomEnemyMarker : MonoBehaviour{
         //this script just marks the go as one to add a custom enemy to
 

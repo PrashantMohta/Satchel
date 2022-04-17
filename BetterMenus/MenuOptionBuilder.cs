@@ -203,7 +203,7 @@ namespace Satchel.BetterMenus
         /// <param name="panel">The TextPanel created. Null if the panel could not be added.</param>
         /// <param name="width">The width of the TextPanel.</param>
         /// <returns>The current MenuOptionBuilder instance.</returns>
-        public MenuOptionBuilder AddTextPanel(string name, out TextPanel? panel, float width = 1500f)
+        public MenuOptionBuilder AddTextPanel(string name, out TextPanel? panel, float width = 1000f)
         {
             panel = default;
             if (!disposedValue && !string.IsNullOrEmpty(name))
@@ -235,7 +235,7 @@ namespace Satchel.BetterMenus
         /// <param name="panel">The StaticPanel created. Null if the panel could not be added.</param>
         /// <param name="width">The width of the StaticPanel.</param>
         /// <returns>The current MenuOptionBuilder.</returns>
-        public MenuOptionBuilder AddStaticPanel(string name, Action<GameObject> createCustomItem, out StaticPanel? panel, float width = 1500f)
+        public MenuOptionBuilder AddStaticPanel(string name, Action<GameObject> createCustomItem, out StaticPanel? panel, float width = 1000f)
         {
             panel = default;
             if (!disposedValue && !string.IsNullOrEmpty(name) && createCustomItem != null)

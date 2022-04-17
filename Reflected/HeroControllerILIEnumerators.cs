@@ -2,7 +2,6 @@
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour.HookGen;
 using MonoMod.Utils;
-using Modding;
 
 namespace Satchel.Reflected
 {
