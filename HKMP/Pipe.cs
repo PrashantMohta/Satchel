@@ -2,7 +2,7 @@
 using Hkmp.Api.Client;
 using Hkmp.Api.Server;
 
-namespace Satchel.Hkmp{
+namespace Satchel.HkmpPipe{
     public class HkmpPipe{
         public string mod;
         public bool isServer;

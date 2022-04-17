@@ -2,14 +2,13 @@ using Hkmp.Api.Client;
 using Hkmp.Networking.Packet;
 using Hkmp.Networking.Packet.Data;
 
-namespace Satchel.Hkmp{
+namespace Satchel.HkmpPipe{
     public class Client : ClientAddon {
         internal static Client Instance;
         internal IClientApi clientApi;
         internal event EventHandler<RecievedEventArgs> OnRecieve;
 
-        public Client(IClientApi _clientApi) : base(_clientApi) {
-            clientApi = _clientApi;
+        public Client() {
             Instance = this;
         }
         internal void send(ushort fromPlayer,ushort toPlayer,string _mod,string _eventName,string _eventData,bool _rebroadcast = false, bool _broadcastToAll = false ,bool _reliable = false){
@@ -30,7 +29,8 @@ namespace Satchel.Hkmp{
             });
         }
  
-        public override void Initialize() {
+        public override void Initialize(IClientApi _clientApi){
+            this.clientApi = _clientApi;
             var netReceiver = clientApi.NetClient.GetNetworkReceiver<Packets>(Instance, InstantiatePacket);
 
             netReceiver.RegisterPacketHandler<GenericPacket>(

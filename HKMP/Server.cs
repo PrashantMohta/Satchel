@@ -3,14 +3,13 @@ using Hkmp.Networking.Packet;
 using Hkmp.Networking.Packet.Data;
 using System.Linq;
 
-namespace Satchel.Hkmp{
+namespace Satchel.HkmpPipe{
     public class Server : ServerAddon {
 
         internal static Server Instance;
         internal IServerApi serverApi;
         internal event EventHandler<RecievedEventArgs> OnRecieve;
-        public Server(IServerApi serverApi) : base(serverApi) {
-            this.serverApi = serverApi;
+        public Server() {
             Instance = this;
         }
         internal void sendToAll(ushort fromPlayer,string _mod,string _eventName,string _eventData,bool _reliable = false){
@@ -37,8 +36,8 @@ namespace Satchel.Hkmp{
                eventData = _eventData
             },toPlayer);
         }
-        public override void Initialize() {
-
+        public override void Initialize(IServerApi serverApi) {
+            this.serverApi = serverApi;
             var netReceiver = serverApi.NetServer.GetNetworkReceiver<Packets>(this,InstantiatePacket);
 
             netReceiver.RegisterPacketHandler<GenericPacket>(

@@ -1,6 +1,6 @@
 using Hkmp.Networking.Packet;
 
-namespace Satchel.Hkmp{
+namespace Satchel.HkmpPipe{
     
     public class RecievedEventArgs : EventArgs {
         public GenericPacket packet { get; set; }
