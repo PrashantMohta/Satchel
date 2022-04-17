@@ -149,6 +149,9 @@
     <EmbeddedResource Include="Assets\Build\mac\shaders" />
     <EmbeddedResource Include="Assets\Build\lin\shaders" />
     <EmbeddedResource Include="Assets\Build\win\shaders" />
+    <EmbeddedResource Include="Assets\Build\win\spriteextract" />
+    <EmbeddedResource Include="Assets\Build\lin\spriteextract" />
+    <EmbeddedResource Include="Assets\Build\mac\spriteextract" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

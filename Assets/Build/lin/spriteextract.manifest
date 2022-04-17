@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 3003982329
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e46e7270bfac09fd1a7ae194b6a8df75
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 68c985bf88fecc38b460cdb825182138
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/SpriteExtract.shader
+- Assets/SpriteMaskMaker.shader
+Dependencies: []
