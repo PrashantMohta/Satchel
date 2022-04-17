@@ -137,6 +137,7 @@
     <Compile Include="Monobehaviour\Unity\SpriteRendererMaterial.cs" />
     <Compile Include="Monobehaviour\Unity\WhoAmI.cs" />
 
+    <Compile Include="Monobehaviour\CustomAnimationController.cs" />
     <Compile Include="Monobehaviour\CustomAnimationFrames.cs" />
     <Compile Include="Monobehaviour\CustomArrowPromptBehaviour.cs" />
     <Compile Include="Monobehaviour\CustomEnemy.cs" />
