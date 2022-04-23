@@ -7,7 +7,6 @@ namespace Satchel.Futils.Serialiser{
             var _actionNames = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<string>>(ActionData, "actionNames");
             Modding.Logger.Log(_actionNames[i] + " | " + ase.Name );
             if(ase.Name != _actionNames[i]){ 
-                Modding.Logger.Log("returned");
                 return ase; 
             }
             var _paramName = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<string>>(ActionData, "paramName");
@@ -26,7 +25,6 @@ namespace Satchel.Futils.Serialiser{
                 string paramName = _paramName[j];
                 object obj = ActionReader.GetFsmObject(ActionData, j, dataVersion);
             
-                Modding.Logger.Log(paramName);
                 ase.Values.Add(new Tuple<string, object>(paramName, obj));
             }
             return ase;

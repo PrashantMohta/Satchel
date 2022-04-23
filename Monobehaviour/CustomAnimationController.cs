@@ -46,7 +46,6 @@ namespace Satchel
             if(sr == null){
                 sr = GetComponent<SpriteRenderer>();
             }
-            Debug.Log($"currentFrame: {currentFrame} | sprites.Length: {sprites.Length}");
             sr.sprite = sprites[currentFrame];
 
         }
