@@ -132,10 +132,8 @@ namespace Satchel
         public static void ChangeTransition(this FsmState state, string onEventName, string toStateName)
         {
             var transition = state.GetTransition(onEventName);
-            if(transition != null){
-                transition.ToState = toStateName;
-                transition.ToFsmState = state.Fsm.GetState(toStateName);
-            }
+            transition.ToState = toStateName;
+            transition.ToFsmState = state.Fsm.GetState(toStateName);
         }
         public static void ChangeTransition(this PlayMakerFSM fsm, string fromStateName, string onEventName, string toStateName)
         {
