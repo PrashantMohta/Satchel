@@ -6,7 +6,7 @@ namespace Satchel
 {
     public static class AssemblyUtils{
         public static string name = "Satchel";
-        public static string ver = "0.7.6";
+        public static string ver = "0.8.0";
         public static string Version(){
             var verStr = $"{name} v{ver}";
             return verStr;
