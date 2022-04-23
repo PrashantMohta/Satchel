@@ -125,7 +125,7 @@ namespace Satchel
             #endregion
             return readableText;
         }
-        public static Texture2D ExtractTextureFromSprite(Sprite testSprite, bool saveTriangles = false)
+        public static Texture2D ExtractTextureFromSpriteExperimental(Sprite testSprite, bool saveTriangles = false)
         {
             var testSpriteRect = (testSprite.texture.width, testSprite.texture.height);
             List<Vector2Int> texUVs = new List<Vector2Int>();
@@ -385,6 +385,11 @@ namespace Satchel
             
             Texture2D.DestroyImmediate(origTex);
             return outTex;
+        }
+    
+        public static Texture2D ExtractTextureFromSprite(Sprite testSprite, bool saveTriangles = false)
+        {
+            return ExtractTextureFromSpriteLegacy(testSprite,saveTriangles); // use legacy mode till the experimental one is fixed
         }
     }
 
