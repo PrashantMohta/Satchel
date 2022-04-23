@@ -152,11 +152,15 @@ namespace Satchel.BetterMenus
 
         public override void Update()
         {
-            //change Text
-            GetLabel().text = Name;
-            SetValueLabel(value);
+            
             var slider = GetSlider();
+            //update value
+            value = SavedValue.Invoke();
             slider.value = value;
+            //change Text
+            GetLabel().text = $"{Name}"; 
+            SetValueLabel(value);
+            
             slider.minValue = minValue;                
             slider.maxValue = maxValue;                
             slider.wholeNumbers = wholeNumbers;
