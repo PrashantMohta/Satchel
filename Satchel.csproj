@@ -170,7 +170,6 @@
     <Compile Include="Futils\Interceptor.cs" />
 
     <Compile Include="Deprecated\FsmUtils.cs" />
-    <Compile Include="HKMP\*.cs" />
 
   </ItemGroup>
   <ItemGroup>
