@@ -50,7 +50,7 @@ namespace Satchel.HkmpPipe{
 
             netReceiver.RegisterPacketHandler<GenericPacket>(
                 Packets.GenericPacket,
-                async (id, packetData) => {
+                (id, packetData) => {
                     //broadcast the packet to all server addons
                     OnRecieve?.Invoke(this,new RecievedEventArgs{
                         packet = packetData

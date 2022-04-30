@@ -88,7 +88,7 @@ namespace Satchel
         }
 
         public static string getHash(this Texture2D tex){ 
-            var data = tex.GetRawTextureData();
+            var data = tex.EncodeToPNG();
             var sha1 = SHA1.Create();
 
             byte[] hashBytes = sha1.ComputeHash(data);

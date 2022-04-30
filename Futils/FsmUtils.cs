@@ -132,10 +132,8 @@ namespace Satchel
         public static void ChangeTransition(this FsmState state, string onEventName, string toStateName)
         {
             var transition = state.GetTransition(onEventName);
-            if(transition != null){
-                transition.ToState = toStateName;
-                transition.ToFsmState = state.Fsm.GetState(toStateName);
-            }
+            transition.ToState = toStateName;
+            transition.ToFsmState = state.Fsm.GetState(toStateName);
         }
         public static void ChangeTransition(this PlayMakerFSM fsm, string fromStateName, string onEventName, string toStateName)
         {
@@ -247,6 +245,14 @@ namespace Satchel
         {
             fsm.GetState(stateName).AddAction(new CustomFsmAction() { method = method });
         }
+
+        public static void AddCustomAction(this FsmState state, string stateName, Action<FsmState> method){
+            state.AddAction(new CustomFsmAction() { method = () => method(state) });
+        }
+        public static void AddCustomAction(this PlayMakerFSM fsm, string stateName, Action<PlayMakerFSM> method)
+        {
+            fsm.GetState(stateName).AddAction(new CustomFsmAction() { method = () => method(fsm) });
+        }
         public static void InsertCustomAction(this FsmState state, string stateName, Action method, int index)
         {
             state.InsertAction(new CustomFsmAction() { method = method },index);
@@ -255,7 +261,14 @@ namespace Satchel
         {
             fsm.GetState(stateName).InsertAction(new CustomFsmAction() { method = method },index);
         }
-
+        public static void InsertCustomAction(this FsmState state, string stateName, Action<FsmState> method, int index)
+        {
+            state.InsertAction(new CustomFsmAction() { method = () => method(state) },index);
+        }
+        public static void InsertCustomAction(this PlayMakerFSM fsm, string stateName, Action<PlayMakerFSM> method, int index)
+        {
+            fsm.GetState(stateName).InsertAction(new CustomFsmAction() { method = () => method(fsm) },index);
+        }
     }
 
 }

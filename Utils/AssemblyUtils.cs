@@ -6,7 +6,7 @@ namespace Satchel
 {
     public static class AssemblyUtils{
         public static string name = "Satchel";
-        public static string ver = "0.7.6";
+        public static string ver = "0.8.0";
         public static string Version(){
             var verStr = $"{name} v{ver}";
             return verStr;
@@ -96,6 +96,28 @@ namespace Satchel
 
         public static Shader GetShader(this AssetBundle bundle,string shader){
             return bundle.LoadAsset<Shader>(shader);
+        }
+
+        public static void ExtractFiles(this Assembly asm,string outpath,Func<string,string> shouldExtractAs){
+            IoUtils.EnsureDirectory(outpath);
+            foreach (string res in asm.GetManifestResourceNames())
+            {   
+                var fileName = shouldExtractAs(res);
+                if(fileName != "") {
+                    using (Stream s = asm.GetManifestResourceStream(res))
+                    {
+                            if (s == null) continue;
+                            var buffer = new byte[s.Length];
+                            s.Read(buffer, 0, buffer.Length);
+                            File.WriteAllBytes(Path.Combine(outpath,fileName),buffer);
+                            s.Dispose();
+                    }
+                } 
+            }
+        }
+
+        public static void ExtractFiles(string outpath,Func<string,string> shouldExtractAs){
+            Assembly.GetCallingAssembly().ExtractFiles(outpath,shouldExtractAs);
         }
 
     }

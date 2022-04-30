@@ -55,18 +55,21 @@ namespace Satchel
             #region Make Sprite Mask
             var maskMat = new Material(Core.spriteMask);
             maskMat.SetColor("_Color", Color.red);
-            var mtex = RenderTexture.GetTemporary(
+
+            var mtex = new RenderTexture(
                         realSize.x,
                         realSize.y,
                         0,
                         RenderTextureFormat.Default,
                         RenderTextureReadWrite.Linear);
-            var mtex2 = RenderTexture.GetTemporary(
+            mtex.Create();
+            var mtex2 = new RenderTexture(
                         realSize.x,
                         realSize.y,
                         0,
                         RenderTextureFormat.Default,
                         RenderTextureReadWrite.Linear);
+            mtex2.Create();
             foreach(var v in triangles)
             {
                 var mp0 = new Vector2((float)(v.Item1.x - offset.x) / (float)realSize.x, (float)(v.Item1.y - offset.y) / (float)realSize.y);
@@ -78,9 +81,9 @@ namespace Satchel
                 maskMat.SetVector("_P2", mp2);
                 Graphics.Blit(mtex2, mtex, maskMat);
                 Graphics.Blit(mtex, mtex2);
-                Modding.Logger.Log($"triangles: {mp0} {mp1} {mp2}");
+                //Modding.Logger.Log($"triangles: {mp0} {mp1} {mp2}");
             }
-            
+            mtex2.Release();
             UnityEngine.Object.Destroy(maskMat);
             #endregion
             
@@ -104,13 +107,16 @@ namespace Satchel
             mat.SetFloat("_FlipV", flipVertical ? 1 : -1);
             mat.SetFloat("_BorderLeft", border.x);
             mat.SetFloat("_BorderBottom", border.y);
-            var rtex = RenderTexture.GetTemporary(
+            var rtex = new RenderTexture(
                         texSize.x,
                         texSize.y,
                         0,
                         RenderTextureFormat.Default,
                         RenderTextureReadWrite.Linear);
+            rtex.Create();
             Graphics.Blit(tex, rtex, mat);
+            
+            mtex.Release();
             
             var previous = RenderTexture.active;
             RenderTexture.active = rtex;
@@ -118,14 +124,13 @@ namespace Satchel
             readableText.ReadPixels(new Rect(0, 0, texSize.x, texSize.y), 0, 0);
             readableText.Apply();
             RenderTexture.active = previous;
-            RenderTexture.ReleaseTemporary(rtex);
-            RenderTexture.ReleaseTemporary(mtex2);
+            
             UnityEngine.Object.Destroy(mat);
-            RenderTexture.ReleaseTemporary(mtex);
+            rtex.Release();
             #endregion
             return readableText;
         }
-        public static Texture2D ExtractTextureFromSprite(Sprite testSprite, bool saveTriangles = false)
+        public static Texture2D ExtractTextureFromSpriteExperimental(Sprite testSprite, bool saveTriangles = false)
         {
             var testSpriteRect = (testSprite.texture.width, testSprite.texture.height);
             List<Vector2Int> texUVs = new List<Vector2Int>();
@@ -385,6 +390,11 @@ namespace Satchel
             
             Texture2D.DestroyImmediate(origTex);
             return outTex;
+        }
+    
+        public static Texture2D ExtractTextureFromSprite(Sprite testSprite, bool saveTriangles = false)
+        {
+            return ExtractTextureFromSpriteLegacy(testSprite,saveTriangles); // use legacy mode till the experimental one is fixed
         }
     }
 
