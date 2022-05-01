@@ -4,7 +4,7 @@ namespace Satchel
     public static class SceneUtils{
 
         public static GameObject DontDestroyOnLoadObj;
-        public static Scene GetDontDestorOnLoadScene(){
+        public static Scene GetDontDestroyOnLoadScene(){
             if(DontDestroyOnLoadObj == null){
                 DontDestroyOnLoadObj = new GameObject();
                 GameObject.DontDestroyOnLoad(DontDestroyOnLoadObj);
@@ -83,7 +83,7 @@ namespace Satchel
                 scenes.Add(scene);
             }
             if(includeDontDestroyScene){
-                scenes.Add(GetDontDestorOnLoadScene());
+                scenes.Add(GetDontDestroyOnLoadScene());
             }
             return scenes;
         }

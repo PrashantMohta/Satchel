@@ -209,5 +209,9 @@ namespace Satchel
             return path;
         }
 
+        public static CustomData GetAddCustomData(this GameObject go){
+           return go.GetAddComponent<CustomData>();
+        }
+
     }
 }

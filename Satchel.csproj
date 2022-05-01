@@ -142,6 +142,7 @@
     <Compile Include="Monobehaviour\CustomArrowPromptBehaviour.cs" />
     <Compile Include="Monobehaviour\CustomEnemy.cs" />
     <Compile Include="Monobehaviour\CustomBigItemGetBehaviour.cs" />
+    <Compile Include="Monobehaviour\CustomData.cs" />
 
     <Compile Include="Custom\CustomArrowPrompt.cs" />
     <Compile Include="Custom\CustomDialogueManager.cs" />
