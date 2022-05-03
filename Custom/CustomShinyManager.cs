@@ -34,7 +34,7 @@ namespace Satchel
         }
         public void SpawnOnSceneLoad(Scene oldScene, Scene newScene)
         {
-            GameManager.instance.StartCoroutine(SpawnCoro(newScene));
+            CoroutineHelper.GetRunner().StartCoroutine(SpawnCoro(newScene));
         }
         public string LanguageGet( string key, string sheet, string orig){ 
             if(sheet == $"{languageKey}UI" && key.StartsWith(languageKey)){

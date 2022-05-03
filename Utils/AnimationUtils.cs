@@ -96,7 +96,7 @@ namespace Satchel
             spriteAnimator.PlayFromFrame(clips[i], 0);
             Log(clips[i].name);
             yield return new WaitForSeconds(2f);
-            GameManager.instance.StartCoroutine(go.playAllAnim(i));
+            CoroutineHelper.GetRunner().StartCoroutine(go.playAllAnim(i));
         }
     
     } 

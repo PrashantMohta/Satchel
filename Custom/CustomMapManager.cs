@@ -72,7 +72,7 @@ namespace Satchel
                 zone.scenes.Add(map.sceneName,map);
                 Zones.Add(zone.ZoneName,zone);
             }
-            GameManager.instance.StartCoroutine(generateCustomMap(map));
+            CoroutineHelper.GetRunner().StartCoroutine(generateCustomMap(map));
         }
 
         public void Remove(string sceneName){
