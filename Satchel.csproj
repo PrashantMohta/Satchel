@@ -11,9 +11,9 @@
     <AssemblyName>Satchel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <VanillaFiles>..\Vanilla</VanillaFiles>
-    <ModdingAPI>..\HollowKnight.Modding\OutputFinal</ModdingAPI>
-    <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
+    <VanillaFiles>D:\HKmod\1.5Moddingapi</VanillaFiles>
+    <ModdingAPI>D:\HKmod\1.5Moddingapi</ModdingAPI>
+    <HollowKnightModsDirectory>D:\Steamself\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods</HollowKnightModsDirectory>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -105,7 +105,7 @@
     
     
     <Reference Include="Hkmp">
-      <HintPath>..\HKMP\ref\Hkmp.dll</HintPath>
+      <HintPath>$(Moddingapi)\HKMP.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
