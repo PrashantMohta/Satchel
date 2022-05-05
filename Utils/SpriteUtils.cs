@@ -310,7 +310,7 @@ namespace Satchel
 
             }
             if (saveTriangles)
-                saveTriangle(contents, replacetex.name, 1000000);
+                saveTriangle(contents, testSprite.name, 1000000);
 
 
             //get current sprite texture
