@@ -71,16 +71,16 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// Creates a new MenuScreen with the provided variables.
+        /// Gets or creates a menuscreen to work with modmenu
         /// </summary>
-        /// <param name="modListMenu">The MenuScreen to add.</param>
+        /// <param name="returnScreen">The MenuScreen to return back to when back button is pressed.</param>
         /// <returns>The created MenuScreen.</returns>
-        public MenuScreen GetMenuScreen(MenuScreen modListMenu)
+        public MenuScreen GetMenuScreen(MenuScreen returnScreen)
         {
             if (menuScreen != null){
                 var button = menuScreen.controls.gameObject.GetChild("BackButton").GetComponent<UnityEngine.UI.MenuButton>();
-                button.submitAction = _ => UIManager.instance.UIGoToDynamicMenu(modListMenu);
-                button.customCancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modListMenu);
+                button.submitAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen);
+                button.customCancelAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen);
                 return menuScreen;
             }
             MenuBuilder Menu = Utils.CreateMenuBuilder(Name); //create main screen
@@ -91,7 +91,7 @@ namespace Satchel.BetterMenus
                 Menu.AddContent(new NullContentLayout(), c => c.AddScrollPaneContent(
                     new ScrollbarConfig
                     {
-                        CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modListMenu),
+                        CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen),
                         Navigation = new Navigation
                         {
                             mode = Navigation.Mode.Explicit,
@@ -107,18 +107,18 @@ namespace Satchel.BetterMenus
                     },
                     new RelLength(Elements.Count() * 105f),
                     RegularGridLayout.CreateVerticalLayout(105f),
-                    d => AddModMenuContent(Elements, d, modListMenu)
+                    d => AddModMenuContent(Elements, d, returnScreen)
                 ));
             }
             else
             {
                 Menu.AddContent(
                     RegularGridLayout.CreateVerticalLayout(105f),
-                    c => AddModMenuContent(Elements, c, modListMenu)
+                    c => AddModMenuContent(Elements, c, returnScreen)
                 );
             }
 
-            Menu.AddBackButton(modListMenu, out backButton); // add a back button
+            Menu.AddBackButton(returnScreen, out backButton); // add a back button
             menuScreen = Menu.Build();
             TriggerBuiltEvent();
             return menuScreen;
