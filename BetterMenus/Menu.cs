@@ -77,7 +77,12 @@ namespace Satchel.BetterMenus
         /// <returns>The created MenuScreen.</returns>
         public MenuScreen GetMenuScreen(MenuScreen modListMenu)
         {
-            if (menuScreen != null) return menuScreen;
+            if (menuScreen != null){
+                var button = menuScreen.controls.gameObject.GetChild("BackButton").GetComponent<UnityEngine.UI.MenuButton>();
+                button.submitAction = _ => UIManager.instance.UIGoToDynamicMenu(modListMenu);
+                button.customCancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modListMenu);
+                return menuScreen;
+            }
             MenuBuilder Menu = Utils.CreateMenuBuilder(Name); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
             //mapi code from IMenuMod
