@@ -27,7 +27,7 @@ namespace SatchelBetterMenus.Example
 
         public bool ToggleButtonInsideMenu => true;
 
-        public float sliderValue = 0f;
+        public float sliderValue = 2.5f;
 
         public Menu MenuRef;
         public int selectedOption = 0,selectedToggleOption = 1;
@@ -99,7 +99,7 @@ namespace SatchelBetterMenus.Example
                         sliderValue = f;
                         //Log($"slider value updated {f}");
                     },
-                    () => (float)sliderValue,Id:"sliderboi")
+                    () => (float)sliderValue,Id:"sliderboi"){ wholeNumbers = false}
             });
         }
        

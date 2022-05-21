@@ -65,7 +65,7 @@ namespace Satchel.BetterMenus
         }
 
         private void SetValueLabel(float value){
-            if(wholeNumbers){
+            if (wholeNumbers){
                 GetValueLabel().text = $"{value}";
             } else {
                 GetValueLabel().text = $"{value.ToString("0.0")}";
@@ -78,10 +78,6 @@ namespace Satchel.BetterMenus
             currentSlider.name = $"{Name}";
             currentSlider.transform.parent= Parent.transform;
 
-            value = SavedValue.Invoke();
-
-            GetLabel().text = $"{Name}"; 
-            SetValueLabel(value);
 
             Action<float> updateOnEvent = value =>
             {
@@ -94,7 +90,13 @@ namespace Satchel.BetterMenus
             var SliderEvent = new Slider.SliderEvent();
             SliderEvent.AddListener(updateOnEvent.Invoke);
             GetSlider().onValueChanged = SliderEvent;
+
             currentSlider.SetActive(true);
+
+            //update slider value after slider event is replaced.
+            value = SavedValue.Invoke();
+            GetLabel().text = $"{Name}";
+            SetValueLabel(value);
 
             return currentSlider;
         }
@@ -155,18 +157,18 @@ namespace Satchel.BetterMenus
         {
             
             var slider = GetSlider();
-            
-            slider.minValue = minValue;                
-            slider.maxValue = maxValue;                
             slider.wholeNumbers = wholeNumbers;
 
             //update value after updating constraints
             value = SavedValue.Invoke();
             slider.value = value;
 
+            slider.minValue = minValue;
+            slider.maxValue = maxValue;
+
             //change Text
             GetLabel().text = $"{Name}";
-            SetValueLabel(value);
+            SetValueLabel(slider.value);
 
             FixSliderNavigation(); // just in case the nav graph was changed
         }

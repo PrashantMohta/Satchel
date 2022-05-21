@@ -7,7 +7,7 @@ namespace Satchel
 
         new public string GetName() => AssemblyUtils.name;
         public override string GetVersion() => $"{AssemblyUtils.GetAssemblyVersionHash(AssemblyUtils.ver)}";
-        public Satchel Instance;
+        public static Satchel Instance;
         public override void Initialize()
         {
             if (Instance == null) 
