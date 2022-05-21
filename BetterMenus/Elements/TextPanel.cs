@@ -18,6 +18,16 @@ namespace Satchel.BetterMenus
         /// The fontSize of the TextPanel (default 35).
         /// </summary>
         public int FontSize;
+        
+        /// <summary>
+        /// The font used in the TextPanel (default TrajanBold).
+        /// </summary>
+        public TextPanelConfig.TextFont Font = TextPanelConfig.TextFont.TrajanBold;
+
+        /// <summary>
+        /// The anchor of the text in the TextPanel (default Center).
+        /// </summary>
+        public TextAnchor Anchor = TextAnchor.MiddleCenter;
 
         /// <summary>
         /// Creates a new TextPanel.
@@ -25,7 +35,7 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="width">The width of the TextPanel.</param>
         /// <param name="fontSize">The fontSize of the TextPanel.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public TextPanel(string name, float width = 1000f,int fontSize = 35,string Id = "__UseName") : base(Id,name)
         {
             Name = name;
@@ -52,8 +62,8 @@ namespace Satchel.BetterMenus
                 new RelVector2(new Vector2(Width, 105f)),
                 new TextPanelConfig
                 {
-                    Anchor = TextAnchor.MiddleCenter,
-                    Font = TextPanelConfig.TextFont.TrajanBold,
+                    Anchor = Anchor,
+                    Font = Font,
                     Size = FontSize,
                     Text = Name
                 }, out var option
@@ -72,7 +82,15 @@ namespace Satchel.BetterMenus
         {
             gameObject.GetComponent<Text>().text = Name;
             gameObject.GetComponent<Text>().fontSize = FontSize;
-            //todo add support for updating width
+            gameObject.GetComponent<Text>().alignment = Anchor;
+            gameObject.GetComponent<Text>().font = Font switch
+            {
+                TextPanelConfig.TextFont.TrajanRegular => MenuResources.TrajanRegular,
+                TextPanelConfig.TextFont.TrajanBold => MenuResources.TrajanBold,
+                TextPanelConfig.TextFont.Perpetua => MenuResources.Perpetua,
+                _ => MenuResources.TrajanRegular
+            };
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Width, 105f);
         }
     }
 

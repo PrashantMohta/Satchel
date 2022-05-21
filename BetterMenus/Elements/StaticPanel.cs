@@ -9,7 +9,7 @@ namespace Satchel.BetterMenus
     {
         //the paramater that will be passed in is the static panel that you'll have to make the new object the parent of
         /// <summary>
-        /// The Action(GameObject) te be called on creation.
+        /// The Action(GameObject) te be called on creation. the Gameobject that will be passed in is the static panel go that will be the parent of the custom item you make
         /// </summary>
         public Action<GameObject> CreateCustomItem;
         /// <summary>
@@ -22,9 +22,9 @@ namespace Satchel.BetterMenus
         /// Creates a new StaticPanel.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
-        /// <param name="createCustomItem">The Action(GameObject) te be called on creation.</param>
+        /// <param name="createCustomItem">The Action(GameObject) te be called on creation. the Gameobject that will be passed in is the static panel go that will be the parent of the custom item you make.</param>
         /// <param name="width">The width of the panel.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public StaticPanel(
             string name,
             Action<GameObject> createCustomItem, 

@@ -8,3 +8,4 @@ global using System.Collections.Generic;
 global using UnityEngine;
 global using UnityEngine.SceneManagement;
 global using static Satchel.Futils.FsmVariables;
+global using Satchel.Futils;

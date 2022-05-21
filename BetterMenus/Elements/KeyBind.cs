@@ -23,7 +23,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
         /// <param name="playerAction">The PlayerAction connected to this bind.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public KeyBind(string name,InControl.PlayerAction playerAction,string Id = "__UseName") : base(Id,name)
         {
             Name = name;

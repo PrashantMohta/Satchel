@@ -30,7 +30,7 @@ namespace Satchel.BetterMenus
         /// <param name="description">The description to be displayed.</param>
         /// <param name="submitAction">The Action(UnityEngine.UI.MenuButton) to call when a value is submitted.</param>
         /// <param name="proceed">Will this button navigate to another menu?</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public MenuButton(
             string name, 
             string description, 
