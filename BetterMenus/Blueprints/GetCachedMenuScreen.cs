@@ -12,11 +12,8 @@ public static partial class Blueprints
         if (MenuRef.menuScreen == null) {
             return MenuRef.GetMenuScreen(returnScreen);
         }
-        else {
-            var button = MenuRef.menuScreen.controls.gameObject.transform.Find("BackButton").GetComponent<UnityEngine.UI.MenuButton>();
-            button.submitAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen);
-            button.customCancelAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen);
-            return MenuRef.menuScreen;
-        }
+        
+        return MenuRef.menuScreen;
+        
     }
 }
