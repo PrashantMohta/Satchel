@@ -155,16 +155,19 @@ namespace Satchel.BetterMenus
         {
             
             var slider = GetSlider();
-            //update value
-            value = SavedValue.Invoke();
-            slider.value = value;
-            //change Text
-            GetLabel().text = $"{Name}"; 
-            SetValueLabel(value);
             
             slider.minValue = minValue;                
             slider.maxValue = maxValue;                
             slider.wholeNumbers = wholeNumbers;
+
+            //update value after updating constraints
+            value = SavedValue.Invoke();
+            slider.value = value;
+
+            //change Text
+            GetLabel().text = $"{Name}";
+            SetValueLabel(value);
+
             FixSliderNavigation(); // just in case the nav graph was changed
         }
     }

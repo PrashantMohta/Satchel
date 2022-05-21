@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A67E8362-108D-4FDF-85F5-B8A482CA38D7}</ProjectGuid>
+    <ProjectGuid>{EC832AC5-D237-45B5-AD18-376CEF2AC643}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Satchel</RootNamespace>
@@ -102,8 +102,6 @@
     <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(VanillaFiles)\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
-    
-    
     <Reference Include="Hkmp">
       <HintPath>..\HKMP\ref\Hkmp.dll</HintPath>
     </Reference>
@@ -118,7 +116,6 @@
     <Compile Include="Reflected\HeroControllerFields.cs" />
     <Compile Include="Reflected\HeroControllerILIEnumerators.cs" />
     <Compile Include="Reflected\HeroControllerMethods.cs" />
-
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
     <Compile Include="Utils\EnemyUtils.cs" />
@@ -131,20 +128,17 @@
     <Compile Include="Utils\TextureUtils.cs" />
     <Compile Include="Utils\WavUtils.cs" />
     <Compile Include="Utils\CoroutineHelper.cs" />
-
     <Compile Include="Monobehaviour\Unity\AlertRangeMarker.cs" />
     <Compile Include="Monobehaviour\Unity\ChangeMeshColor.cs" />
     <Compile Include="Monobehaviour\Unity\CustomEnemyMarker.cs" />
     <Compile Include="Monobehaviour\Unity\SpriteRendererMaterial.cs" />
     <Compile Include="Monobehaviour\Unity\WhoAmI.cs" />
-
     <Compile Include="Monobehaviour\CustomAnimationController.cs" />
     <Compile Include="Monobehaviour\CustomAnimationFrames.cs" />
     <Compile Include="Monobehaviour\CustomArrowPromptBehaviour.cs" />
     <Compile Include="Monobehaviour\CustomEnemy.cs" />
     <Compile Include="Monobehaviour\CustomBigItemGetBehaviour.cs" />
     <Compile Include="Monobehaviour\CustomData.cs" />
-
     <Compile Include="Custom\CustomArrowPrompt.cs" />
     <Compile Include="Custom\CustomDialogueManager.cs" />
     <Compile Include="Custom\CustomDreamNailManager.cs" />
@@ -155,24 +149,19 @@
     <Compile Include="Custom\CustomBigItemGetManager.cs" />
     <Compile Include="Custom\CustomShinyManager.cs" />
     <Compile Include="Custom\CustomShiny.cs" />
-
     <Compile Include="BetterMenus\Base\*.cs" />
     <Compile Include="BetterMenus\Elements\Builders\*.cs" />
     <Compile Include="BetterMenus\Elements\*.cs" />
     <Compile Include="BetterMenus\Blueprints\*.cs" />
     <Compile Include="BetterMenus\Menu.cs" />
     <Compile Include="BetterMenus\Utils.cs" />
-
     <Compile Include="Futils\Extractors\*.cs" />
-
     <Compile Include="Futils\Serialiser\*.cs" />
     <Compile Include="Futils\CustomAction.cs" />
     <Compile Include="Futils\FsmUtils.cs" />
     <Compile Include="Futils\FsmVariables.cs" />
     <Compile Include="Futils\Interceptor.cs" />
-
     <Compile Include="Deprecated\FsmUtils.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Build\mac\shaders" />
