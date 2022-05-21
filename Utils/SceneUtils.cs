@@ -1,9 +1,16 @@
 using UnityEngine.Audio;
 namespace Satchel
 {
+    /// <summary>
+    /// Utilities to work with scenes
+    /// </summary>
     public static class SceneUtils{
 
-        public static GameObject DontDestroyOnLoadObj;
+        internal static GameObject DontDestroyOnLoadObj;
+        /// <summary>
+        /// Get access to DontDestroyOnLoad scene
+        /// </summary>
+        /// <returns>DontDestroyOnLoad scene</returns>
         public static Scene GetDontDestroyOnLoadScene(){
             if(DontDestroyOnLoadObj == null){
                 DontDestroyOnLoadObj = new GameObject();
@@ -11,13 +18,17 @@ namespace Satchel
             }
             return DontDestroyOnLoadObj.scene;
         }
-
+        /// <summary>
+        /// Parameters for creating a CustomSaveSlot
+        /// </summary>
         public struct CustomSaveSlotParams {
             public string sceneName;
             public string sceneTitle;
             public Sprite background;
         }
-
+        /// <summary>
+        /// Settings for SceneManager used by CustomScene
+        /// </summary>
         public class CustomSceneManagerSettings{
             public SceneType sceneType;
             public MapZone mapZone;
@@ -51,6 +62,10 @@ namespace Satchel
                 heroLightColor = prefab.heroLightColor;
             }
         }
+        
+        /// <summary>
+        /// Parameters for creating a CustomBench in a CustomScene
+        /// </summary>
         public struct BenchParams{
 
             public GameObject prefab;
@@ -58,7 +73,9 @@ namespace Satchel
             public Vector3 pos;
             public string sceneName;
         }
-
+        /// <summary>
+        /// Parameters for creatng custom gateways between scenes
+        /// </summary>
         public struct GatewayParams{
             public string gateName;
             public Vector2 pos;
@@ -70,10 +87,18 @@ namespace Satchel
             public bool onlyOut;
             public GameManager.SceneLoadVisualizations vis;
         }
+        /// <summary>
+        /// Gets the current scene
+        /// </summary>
+        /// <returns>current scene</returns>
         public static UnityEngine.SceneManagement.Scene getCurrentScene(){
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
-
+        /// <summary>
+        /// Gets all the loaded scenes
+        /// </summary>
+        /// <param name="includeDontDestroyScene">boolean indicating if DontDestroyOnLoadScene should be included</param>
+        /// <returns>The loaded scenes</returns>
         public static List<UnityEngine.SceneManagement.Scene> GetAllLoadedScenes(bool includeDontDestroyScene = false){
             List<UnityEngine.SceneManagement.Scene> scenes = new();
         
@@ -88,18 +113,10 @@ namespace Satchel
             return scenes;
         }
 
-        public static void FixMaterials(){
-            foreach(GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
-            {
-                if(gameObj.name.StartsWith("tex.")){
-                    gameObj.AddComponent<SpriteRendererMaterial>();
-                }
-                if(gameObj.name.StartsWith("mesh.")){
-                    gameObj.AddComponent<ChangeMeshColor>();
-                }
-            }
-        }
-
+        /// <summary>
+        /// Creat a Gateway using GatewayParams
+        /// </summary>
+        /// <param name="gateway">parameters for this gate</param>
         public static void CreateGateway(GatewayParams gateway){
             CreateGateway(
                 gateway.gateName,
@@ -112,7 +129,17 @@ namespace Satchel
                 gateway.vis
             );
         }
-        //gate name determines some things
+        /// <summary>
+        /// Creat a Gateway
+        /// </summary>
+        /// <param name="gateName">Name of the gate (if name contains left or right, alwaysEnterLeft or alwaysEnterRight is automatically set)</param>
+        /// <param name="pos">Position of the gate</param>
+        /// <param name="size">Size of the gate</param>
+        /// <param name="toScene">Scene to transition to</param>
+        /// <param name="entryGate">Name of the gate that can transition to this one</param>
+        /// <param name="respawnPoint">Relative position of the respawn point</param>
+        /// <param name="onlyOut">Boolean indicating if this gate can only be used as an entrance to current scene</param>
+        /// <param name="vis">The type of loading visualisation to use</param>
         public static void CreateGateway(
             string gateName, 
             Vector2 pos, 
@@ -148,11 +175,24 @@ namespace Satchel
             
         }
         
+        /// <summary>
+        /// Create a bench using BenchParams
+        /// </summary>
+        /// <param name="bench">Parameters for this bench</param>
+        /// <returns>The Bench GameObject</returns>
         public static GameObject CreateBenchFromPrefab(BenchParams bench){
             return CreateBenchFromPrefab(bench.prefab,bench.benchName,bench.pos,bench.sceneName);
         }
 
         //iTween retrieve args break
+        /// <summary>
+        /// Create a bench from the supplied bench prefab
+        /// </summary>
+        /// <param name="benchPrefab">A Preload of a bench from the game</param>
+        /// <param name="benchName">Name of the new bench</param>
+        /// <param name="pos">Position of the new bench</param>
+        /// <param name="sceneName">Scene in which the bench is placed (used for saves)</param>
+        /// <returns>The Bench GameObject</returns>
         public static GameObject CreateBenchFromPrefab(GameObject benchPrefab,string benchName, Vector3 pos, string sceneName)
         {
             if(GameObject.Find(benchName) != null) { 
@@ -176,6 +216,11 @@ namespace Satchel
             return bench;
         }
 
+        /// <summary>
+        /// Create a Fake TileMap from prefab
+        /// </summary>
+        /// <param name="TileMapPrefab">A Preload of the tilemap of any existing scene</param>
+        /// <returns>A tk2dTileMap with dummy data</returns>
         public static tk2dTileMap FakeTileMapFromPrefab(GameObject TileMapPrefab){
             GameObject go = GameObject.Instantiate(TileMapPrefab);
             go.SetActive(false);
@@ -184,7 +229,11 @@ namespace Satchel
             go.SetActive(true);
             return tm;
         }
-
+        /// <summary>
+        /// get a SceneManager component from SceneManager GameObject Prefab
+        /// </summary>
+        /// <param name="SceneManagerPrefab">A preload of a SceneManager GameObject</param>
+        /// <returns>A shallow copy of SceneManager component</returns>
         public static SceneManager getSceneManagerFromPrefab(GameObject SceneManagerPrefab){
             GameObject _sm = GameObject.Instantiate(SceneManagerPrefab);
             _sm.SetActive(false);
@@ -192,6 +241,10 @@ namespace Satchel
             return sm;
         }
 
+        /// <summary>
+        /// Play an AudioClip as the background music
+        /// </summary>
+        /// <param name="clip">The AudioClip to play</param>
         public static void PlayBackgroundMusicForScene(AudioClip clip)
         {   
             MusicCue musicCue = ScriptableObject.CreateInstance<MusicCue>();

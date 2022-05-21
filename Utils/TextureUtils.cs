@@ -7,6 +7,13 @@ namespace Satchel
     /// Utilities to work with Textures
     /// </summary>
     public static class TextureUtils{
+        /// <summary>
+        /// Create a Texture2D of a single Color
+        /// </summary>
+        /// <param name="width">width of the texture</param>
+        /// <param name="height">height of the texture</param>
+        /// <param name="color">Color of the texture</param>
+        /// <returns>The Texture2D</returns>
         public static Texture2D createTextureOfColor(int width, int height, Color color){
             Texture2D tex = new Texture2D(width,height);
             for (int i = 0; i < width; i++)
@@ -20,7 +27,11 @@ namespace Satchel
             return tex;
         }
 
-
+        /// <summary>
+        /// Loads an Image from a file path 
+        /// </summary>
+        /// <param name="path">Path of the image file</param>
+        /// <returns>A Texture2D of the image</returns>
         public static Texture2D LoadTextureFromFile(string path){
             Texture2D tex = new Texture2D(2, 2);
             byte[] texBytes = File.ReadAllBytes(path);            
@@ -29,10 +40,19 @@ namespace Satchel
             return tex;
         }
 
-        public static void WriteTextureToFile(Texture t,string path){
-            File.WriteAllBytes(path,duplicateTexture((Texture2D)t).EncodeToPNG());
+        /// <summary>
+        /// Write a Texture to the given file path
+        /// </summary>
+        /// <param name="texture">The Texture to write</param>
+        /// <param name="path">The Path of the file to write to</param>
+        public static void WriteTextureToFile(Texture texture,string path){
+            File.WriteAllBytes(path,duplicateTexture((Texture2D)texture).EncodeToPNG());
         }
-
+        /// <summary>
+        /// Duplicates a Texture2D so that it is Readable
+        /// </summary>
+        /// <param name="source">Source Texture2D</param>
+        /// <returns>A duplicate Texture2D</returns>
         public static Texture2D duplicateTexture(Texture2D source)
         {
             RenderTexture renderTex = RenderTexture.GetTemporary(
@@ -52,6 +72,14 @@ namespace Satchel
             RenderTexture.ReleaseTemporary(renderTex);
             return readableText;
         }
+
+        /// <summary>
+        /// Flips a Texture2D
+        /// </summary>
+        /// <param name="original">The Texture2D to flip</param>
+        /// <param name="horizontal">Should texture be flipped horizontally</param>
+        /// <param name="vertical">Should texture be flipped vertically</param>
+        /// <returns>The flipped Texture2D</returns>
         public static Texture2D Flip(this Texture2D original,bool horizontal = true,bool vertical = false)
         {
             Texture2D flip = new Texture2D(original.width,original.height);
@@ -72,7 +100,12 @@ namespace Satchel
             flip.Apply();
             return flip;
         }
-
+        /// <summary>
+        /// Get a region from a Texture2D
+        /// </summary>
+        /// <param name="original">original Texture2D</param>
+        /// <param name="region">The region to get</param>
+        /// <returns>The region from original as a Texture2D</returns>
         public static Texture2D GetRegion(this Texture2D original,Rect region)
         {
             // We create a new texture so we don't change the old one!
@@ -89,7 +122,11 @@ namespace Satchel
             outTex.Apply();
             return outTex;
         }
-
+        /// <summary>
+        /// Get the SHA1 hash of the texture when encoded to a png
+        /// </summary>
+        /// <param name="tex">The Texture2D</param>
+        /// <returns>The hash as a string</returns>
         public static string getHash(this Texture2D tex){ 
             var data = tex.EncodeToPNG();
             var sha1 = SHA1.Create();

@@ -4,8 +4,17 @@ using UScene = UnityEngine.SceneManagement.Scene;
 
 namespace Satchel
 {
+    /// <summary>
+    /// Utilities to work with GameObjects
+    /// </summary>
     public static class GameObjectUtils{
 
+        /// <summary>
+        /// Get a component of type T if it exists on the GameObject or add a new one
+        /// </summary>
+        /// <typeparam name="T">Component Type</typeparam>
+        /// <param name="go">GameObject</param>
+        /// <returns>A component of type T</returns>
         public static T  GetAddComponent<T>(this GameObject go) where T : Component {
             T comp = go.GetComponent<T>();
             if(comp == null){
@@ -14,6 +23,12 @@ namespace Satchel
             return comp;
         }
 
+        /// <summary>
+        /// Remove a Component from the GameObject
+        /// </summary>
+        /// <typeparam name="T">Component Type</typeparam>
+        /// <param name="go">GameObject</param>
+        /// <returns>boolean indicating if the component was removed</returns>
         public static bool RemoveComponent<T>(this GameObject go) where T : Component{
             T comp = go.GetComponent<T>();
             if(comp != null){
@@ -23,6 +38,13 @@ namespace Satchel
             return false;
         }
 
+        /// <summary>
+        /// Copy a component from one GameObject to another
+        /// </summary>
+        /// <typeparam name="T">Component Type</typeparam>
+        /// <param name="to">GameObject to copy to</param>
+        /// <param name="from">GameObject to copy from</param>
+        /// <returns>the copied component</returns>
         public static T copyComponent<T>(this GameObject to,GameObject from) where T : Component {
             if(from == null) {return null;}
             var fromComponent = from.GetComponent<T>();
@@ -34,6 +56,12 @@ namespace Satchel
             }
             return toComponent;
         }
+        /// <summary>
+        /// Set the scale of a GameObject
+        /// </summary>
+        /// <param name="gameObject">GameObject</param>
+        /// <param name="scaleX">X scale</param>
+        /// <param name="scaleY">Y scale</param>
         public static void SetScale(this GameObject gameObject,float scaleX, float scaleY){
             Vector3 localScale = gameObject.transform.localScale;
             localScale.x = scaleX;
@@ -41,6 +69,13 @@ namespace Satchel
             gameObject.transform.localScale = localScale;
         }
 
+        /// <summary>
+        /// Find a gameobject in children of another by name
+        /// </summary>
+        /// <param name="gameObject">GameObject parent</param>
+        /// <param name="name">Name of GameObject to find</param>
+        /// <param name="useBaseName">boolean indicaing if baseName should be used</param>
+        /// <returns>The GameObject if found or null</returns>
         public static GameObject FindGameObjectInChildren( this GameObject gameObject, string name ,bool useBaseName = false)
         {
             if( gameObject == null ){ return null; }
@@ -52,6 +87,13 @@ namespace Satchel
             return null;
         }
 
+        /// <summary>
+        /// Find all gameobjects in children of another by name
+        /// </summary>
+        /// <param name="gameObject">GameObject parent</param>
+        /// <param name="name">Name of GameObjects to find</param>
+        /// <param name="useBaseName">boolean indicaing if baseName should be used</param>
+        /// <returns>The List of GameObjects</returns>
         public static List<GameObject> FindGameObjectsInChildren( this GameObject gameObject, string name ,bool useBaseName = false)
         {
             if( gameObject == null ){ return null; }
@@ -64,6 +106,10 @@ namespace Satchel
             }
             return children;
         }
+        /// <summary>
+        /// Log a game object for debugging
+        /// </summary>
+        /// <param name="gameObject">GameObject</param>
         public static void Log(this GameObject gameObject)
         {
             if( gameObject == null ){ return; }
@@ -86,6 +132,11 @@ namespace Satchel
                 */
             }
         }
+        
+        /// <summary>
+        /// Log a game object and all it's children for debugging
+        /// </summary>
+        /// <param name="gameObject"></param>
         public static void LogWithChildren(this GameObject gameObject)
         {
             if( gameObject == null ){ return; }
@@ -96,12 +147,22 @@ namespace Satchel
             }
         }
         
+        /// <summary>
+        /// Logs all active gameObjects 
+        /// </summary>
         public static void PrintAllActiveGameObjectsInScene(){
             foreach(GameObject gameObject in GameObject.FindObjectsOfType<GameObject>())
             {    
                 gameObject.Log();
             }
         }
+
+        /// <summary>
+        /// Find a GameObject that is a descendent of the current GameObject by name
+        /// </summary>
+        /// <param name="go">Ancestor GameObject</param>
+        /// <param name="name">Name of GameObject to find</param>
+        /// <returns>GameObject or null</returns>
         public static GameObject Find(this GameObject go,string name){
             for (int i = 0; i < go.transform.childCount; i++)
             {
@@ -119,6 +180,14 @@ namespace Satchel
             }
             return null;
         }
+
+
+
+        /// <summary>
+        /// Find all GameObjects that are a descendent of the current GameObject by name
+        /// </summary>
+        /// <param name="go">Ancestor GameObject</param>
+        /// <param name="allGoList">List to add the results to</param>
         public static void FindAllChildren(this GameObject go, List<GameObject> allGoList){
             for (int i = 0; i < go.transform.childCount; i++)
             {
@@ -130,6 +199,10 @@ namespace Satchel
             }
         }
 
+        /// <summary>
+        /// Disable all children of a GameObject
+        /// </summary>
+        /// <param name="go">GameObject</param>
         public static void DisableChildren(this GameObject go){
             for (int i = 0; i < go.transform.childCount; i++)
             {
@@ -137,6 +210,12 @@ namespace Satchel
                 child.SetActive(false);
             }
         }
+        
+        /// <summary>
+        /// Get All gameobjects in scene (even inactive ones)
+        /// </summary>
+        /// <param name="scene">The scene</param>
+        /// <returns>A List of All GameObjects in the scene</returns>
         public static List<GameObject> GetAllGameObjects(this UScene scene)
         {
             List<GameObject> allGoList = new List<GameObject>();
@@ -147,7 +226,13 @@ namespace Satchel
             return allGoList;
         }
 
-
+        /// <summary>
+        /// Get a gameobject by name in a scene (even inactive ones)
+        /// </summary>
+        /// <param name="scene">The scene</param>
+        /// <param name="name">Name of the GameObject</param>
+        /// <param name="useBaseName">boolean indicating if BaseName should be used</param>
+        /// <returns>GameObject or null</returns>
         public static GameObject GetGameObjectByName(this UScene scene, string name,bool useBaseName = false)
         {
             GameObject foundGo;
@@ -163,25 +248,45 @@ namespace Satchel
             return null;
         }
 
+        /// <summary>
+        /// Get Root GameObjects in currently Active scene
+        /// </summary>
+        /// <returns></returns>
         public static GameObject[] GetRootGameObjects(){
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
         }
+        /// <summary>
+        /// Find  a gameobject by name in the active scene(even inactive ones)
+        /// </summary>
+        /// <param name="name">Name of GameObject</param>
+        /// <param name="useBaseName">boolean indicating if BaseName should be used</param>
+        /// <returns>GameObject or null</returns>
         public static GameObject GetGameObjectInScene(string name,bool useBaseName = false){
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetGameObjectByName(name,useBaseName);
         }
 
-        /*
-        public static GameObject[] FindAllGameObjects(){
-            return UnityEngine.Object.FindObjectsOfType(typeof(GameObject)) as GameObject[];
-        }
-        */
+        /// <summary>
+        ///  Get All GameObjects in the active scene (even inactive ones)
+        /// </summary>
+        /// <returns></returns>
         public static List<GameObject> GetAllGameObjectsInScene(){
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetAllGameObjects();
         }
-
-        public static string GetName(this Transform t,bool useBaseName = false){
-           return t.gameObject.GetName(useBaseName);
+        /// <summary>
+        /// Get the Name of a GameObject by Transform
+        /// </summary>
+        /// <param name="transform"> the Transform</param>
+        /// <param name="useBaseName">boolean indicating if BaseName should be used</param>
+        /// <returns></returns>
+        public static string GetName(this Transform transform, bool useBaseName = false){
+           return transform.gameObject.GetName(useBaseName);
         }
+        /// <summary>
+        /// Get the Name of a GameObject
+        /// </summary>
+        /// <param name="go">GameObject</param>
+        /// <param name="useBaseName">boolean indicating if BaseName should be used</param>
+        /// <returns></returns>
         public static string GetName(this GameObject go,bool useBaseName = false){
             string ret = go.name;
             if(useBaseName){
@@ -199,6 +304,12 @@ namespace Satchel
             }
             return ret;
         }
+        /// <summary>
+        /// Get the Scene path of a GameObject
+        /// </summary>
+        /// <param name="go">GameObject</param>
+        /// <param name="useBaseName">boolean indicating if BaseName should be used</param>
+        /// <returns></returns>
         public static string GetPath(this GameObject go,bool useBaseName = false){
             string path = go.GetName(useBaseName);
             GameObject currObj = go;
@@ -208,7 +319,11 @@ namespace Satchel
             }
             return path;
         }
-
+        /// <summary>
+        /// Get or Add a custom data component to a GameObject
+        /// </summary>
+        /// <param name="go">GameObject</param>
+        /// <returns>CustomData component on the GameObject</returns>
         public static CustomData GetAddCustomData(this GameObject go){
            return go.GetAddComponent<CustomData>();
         }

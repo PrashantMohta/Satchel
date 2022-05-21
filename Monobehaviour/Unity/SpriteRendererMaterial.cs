@@ -1,5 +1,8 @@
 namespace Satchel
 {
+    /// <summary>
+    /// Fix the shader on the sprite renderers that have been loaded after asset bundling
+    /// </summary>
     public class SpriteRendererMaterial : MonoBehaviour {
 
         public bool enableFlash = false;

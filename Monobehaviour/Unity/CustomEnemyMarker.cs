@@ -1,5 +1,8 @@
 namespace Satchel
 {
+    /// <summary>
+    /// Mark this gameObject to be an Enemy after loading from an asset bundle
+    /// </summary>
     public class CustomEnemyMarker : MonoBehaviour{
         //this script just marks the go as one to add a custom enemy to
 

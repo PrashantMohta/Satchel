@@ -2,6 +2,9 @@ using InControl;
 
 namespace Satchel
 {
+    /// <summary>
+    /// Handles the CustomBigItemGet popups
+    /// </summary>
     public class CustomBigItemGetBehaviour : MonoBehaviour {
            
             public string ItemName = "ITEM";

@@ -2,6 +2,9 @@ using TMPro;
 
 namespace Satchel
 {
+    /// <summary>
+    /// Handles the CustomArrowPrompt behaviours
+    /// </summary>
     public class CustomArrowPromptBehaviour : MonoBehaviour {
             public GameObject prompt,customLabel;
             public PromptMarker promptMarker;

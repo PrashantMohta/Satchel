@@ -1,5 +1,8 @@
 namespace Satchel
 {
+    /// <summary>
+    /// Handles basic functionality of a CustomEnemy
+    /// </summary>
     public class CustomEnemy : MonoBehaviour{
         public DamageHero dh;
         public Rigidbody2D rb;

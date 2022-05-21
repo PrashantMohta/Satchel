@@ -5,12 +5,29 @@ using System.IO;
 
 namespace Satchel
 {   
+    /// <summary>
+    /// Holds the serializable parameters for an Animation
+    /// </summary>
     public class Animation{
+        /// <summary>
+        /// Names of the files that will make up each of the frames of the animation
+        /// </summary>
         public string[] frames;
+
+        /// <summary>
+        /// The Rate of animation playback
+        /// </summary>
         public float fps;
+
+        /// <summary>
+        /// if the animation must loop after ending
+        /// </summary>
         public bool loop;
     }
 
+    /// <summary>
+    /// The MonoBehaviour that controls the animation once loaded
+    /// </summary>
     public class CustomAnimationController : MonoBehaviour {
         public Animation anim;
         public Sprite[] sprites;
@@ -51,10 +68,19 @@ namespace Satchel
         }
     }
 
-    
+    /// <summary>
+    /// Loads and manages CustomAnimations
+    /// </summary>
     public static class CustomAnimation{
-
+        /// <summary>
+        /// All currently loaded Sprites
+        /// </summary>
         public static Dictionary<Animation,Sprite[]> loadedSprites = new Dictionary<Animation, Sprite[]>(); 
+        /// <summary>
+        /// Load an animation using a serialised JSON
+        /// </summary>
+        /// <param name="animationJsonPath">path to the json file</param>
+        /// <returns></returns>
         public static Animation LoadAnimation(string animationJsonPath){
             var animationRootFolder = Path.GetDirectoryName(animationJsonPath);
             var animationJson = File.ReadAllText(animationJsonPath);

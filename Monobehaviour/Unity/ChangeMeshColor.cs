@@ -1,5 +1,8 @@
 namespace Satchel
 {
+    /// <summary>
+    /// Change the color of the mesh after loading it from an asset bundle
+    /// </summary>
     class ChangeMeshColor : MonoBehaviour
     {
         private Material mat;

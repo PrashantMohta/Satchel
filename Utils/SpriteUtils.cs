@@ -1,20 +1,41 @@
 using System.Linq;
 namespace Satchel
 {
-
-    public class SpriteUtils
+    /// <summary>
+    /// Utilities to work with Sprites
+    /// </summary>
+    public static class SpriteUtils
     {
-
+        /// <summary>
+        /// Creates a sprite from a Texture2D
+        /// </summary>
+        /// <param name="texture">The Texture2D</param>
+        /// <returns>A Sprite that contains the texture</returns>
         public static Sprite CreateSpriteFromTexture(Texture2D texture)
         {
             return Sprite.Create(
                 texture,
                 new Rect(0, 0, texture.width, texture.height),
-                new Vector2(texture.width / 2.0f, texture.height / 2.0f)
+                new Vector2(0.5f, 0.5f)
             );
         }
 
-        public static void saveTriangle(bool[][] triangle, string spriteName, int num)
+        /// <summary>
+        /// Creates a sprite from a Texture2D at the desired PixelsPerUnit
+        /// </summary>
+        /// <param name="texture">The Texture2D</param>
+        /// <param name="ppu">Desired PixelsPerUnit</param>
+        /// <returns>A Sprite that contains the texture</returns>
+        public static Sprite CreateSpriteFromTexture(Texture2D texture,float ppu)
+        {
+            return Sprite.Create(
+                texture,
+                new Rect(0, 0, texture.width, texture.height),
+                new Vector2(0.5f, 0.5f),ppu
+            );
+        }
+
+        private static void saveTriangle(bool[][] triangle, string spriteName, int num)
         {
             var outTex = new Texture2D(triangle[0].Length, triangle.Length);
             for (int x = 0; x < triangle[0].Length; x++)
@@ -30,14 +51,14 @@ namespace Satchel
             return Mathf.Abs(((a.x * (b.y - c.y)) + (b.x * (c.y - a.y)) + (c.x * (a.y - b.y))) / 2f);
         }
 
-        public static Vector2 GetSpriteOrigin(Sprite testSprite)
+        private static Vector2 GetSpriteOrigin(Sprite originalSprite)
         {
-            var testSpriteRect = (testSprite.texture.width, testSprite.texture.height);
+            var originalSpriteRect = (originalSprite.texture.width, originalSprite.texture.height);
             List<Vector2Int> texUVs = new List<Vector2Int>();
 
-            foreach (var item in testSprite.uv)
+            foreach (var item in originalSprite.uv)
             {
-                texUVs.Add(new Vector2Int(Mathf.RoundToInt(item.x * (testSpriteRect.width - 1)), Mathf.RoundToInt(item.y * (testSpriteRect.height - 1))));
+                texUVs.Add(new Vector2Int(Mathf.RoundToInt(item.x * (originalSpriteRect.width - 1)), Mathf.RoundToInt(item.y * (originalSpriteRect.height - 1))));
             }
 
             var minX = texUVs.Select(uv => uv.x).ToList().Min();
@@ -47,7 +68,7 @@ namespace Satchel
 
             return new Vector2(minX, minY);
         }
-        public static Texture2D ExtractTextureWithShader(Texture2D tex, Vector2Int offset,
+        private static Texture2D ExtractTextureWithShader(Texture2D tex, Vector2Int offset,
             Vector2Int realSize, Vector2Int texSize, Vector2Int border, bool flipHorizontal,
             bool flipVertical, List<(Vector2Int, Vector2Int, Vector2Int)> triangles, bool drawMask = false)
         {
@@ -130,9 +151,16 @@ namespace Satchel
             #endregion
             return readableText;
         }
-        public static Texture2D ExtractTextureFromSpriteExperimental(Sprite testSprite, bool saveTriangles = false)
+        
+        /// <summary>
+        /// An Experimental implementation of ExtractTextureFromSprite that uses a shader to do the extracting ( faster but buggy )
+        /// </summary>
+        /// <param name="originalSprite"> The Sprite to Extract</param>
+        /// <param name="saveTriangles">A debug boolean to save the triangles used to extract the sprite.</param>
+        /// <returns>The extracted sprite as a Texture2D</returns>
+        public static Texture2D ExtractTextureFromSpriteExperimental(Sprite originalSprite, bool saveTriangles = false)
         {
-            var testSpriteRect = (testSprite.texture.width, testSprite.texture.height);
+            var originalSpriteRect = (originalSprite.texture.width, originalSprite.texture.height);
             List<Vector2Int> texUVs = new List<Vector2Int>();
 
             int i;
@@ -146,9 +174,9 @@ namespace Satchel
             int width, height;
             Vector2 pivot;
 
-            foreach (var item in testSprite.uv)
+            foreach (var item in originalSprite.uv)
             {
-                texUVs.Add(new Vector2Int(Mathf.RoundToInt(item.x * (testSpriteRect.width - 1)), Mathf.RoundToInt(item.y * (testSpriteRect.height - 1))));
+                texUVs.Add(new Vector2Int(Mathf.RoundToInt(item.x * (originalSpriteRect.width - 1)), Mathf.RoundToInt(item.y * (originalSpriteRect.height - 1))));
             }
 
             minX = texUVs.Select(uv => uv.x).ToList().Min();
@@ -161,9 +189,9 @@ namespace Satchel
 
             bool[][] contents;
             List<(Vector2Int, Vector2Int, Vector2Int)> triangles = new();
-            for (i = 0; i < testSprite.triangles.Length; i += 3)
+            for (i = 0; i < originalSprite.triangles.Length; i += 3)
             {
-                triangles.Add((texUVs[testSprite.triangles[i]], texUVs[testSprite.triangles[i + 1]], texUVs[testSprite.triangles[i + 2]]));
+                triangles.Add((texUVs[originalSprite.triangles[i]], texUVs[originalSprite.triangles[i + 1]], texUVs[originalSprite.triangles[i + 2]]));
             }
 
             if (saveTriangles)
@@ -191,21 +219,21 @@ namespace Satchel
                     }
 
                 }
-                saveTriangle(contents, testSprite.name, 1000000);
+                saveTriangle(contents, originalSprite.name, 1000000);
             }
 
 
             // take care of rotations
             var horizontal = false;
             var vertical = false;
-            if (testSprite.packed)
+            if (originalSprite.packed)
             {
-                horizontal = (testSprite.packingRotation == SpritePackingRotation.FlipHorizontal || testSprite.packingRotation == SpritePackingRotation.Rotate180);
-                vertical = (testSprite.packingRotation == SpritePackingRotation.FlipVertical || testSprite.packingRotation == SpritePackingRotation.Rotate180);
+                horizontal = (originalSprite.packingRotation == SpritePackingRotation.FlipHorizontal || originalSprite.packingRotation == SpritePackingRotation.Rotate180);
+                vertical = (originalSprite.packingRotation == SpritePackingRotation.FlipVertical || originalSprite.packingRotation == SpritePackingRotation.Rotate180);
             };
 
             // render on a new texture such that pivot is always at (50%,50%)
-            pivot = testSprite.pivot;
+            pivot = originalSprite.pivot;
 
             var newSize = new Vector2Int(width, height);
             Vector2 pivotRatio = new Vector2(0, 0);
@@ -246,13 +274,19 @@ namespace Satchel
                 newSize.y = (int)(height + (int)(2f * Mathf.Abs(deltaY) * height));
             }
 
-            return ExtractTextureWithShader(testSprite.texture,
+            return ExtractTextureWithShader(originalSprite.texture,
                 new Vector2Int(minX, minY), new Vector2Int(width, height), new Vector2Int(newSize.x, newSize.y),
                 offset, horizontal, vertical, triangles, false);
         }
-        public static Texture2D ExtractTextureFromSpriteLegacy(Sprite testSprite, bool saveTriangles = false)
+        /// <summary>
+        /// The Original implementation of ExtractTextureFromSprite ( slower but stable )
+        /// </summary>
+        /// <param name="originalSprite"> The Sprite to Extract</param>
+        /// <param name="saveTriangles">A debug boolean to save the triangles used to extract the sprite.</param>
+        /// <returns>The extracted sprite as a Texture2D</returns>
+        public static Texture2D ExtractTextureFromSpriteLegacy(Sprite originalSprite, bool saveTriangles = false)
         {
-            var testSpriteRect = (testSprite.texture.width, testSprite.texture.height);
+            var originalSpriteRect = (originalSprite.texture.width, originalSprite.texture.height);
             List<Vector2Int> texUVs = new List<Vector2Int>();
             List<(Vector2Int, Vector2Int, Vector2Int)> triangles = new List<(Vector2Int, Vector2Int, Vector2Int)>();
             int i;
@@ -266,13 +300,13 @@ namespace Satchel
             Texture2D origTex, outTex;
             Vector2 pivot;
 
-            foreach (var item in testSprite.uv)
+            foreach (var item in originalSprite.uv)
             {
-                texUVs.Add(new Vector2Int(Mathf.RoundToInt(item.x * (testSpriteRect.width - 1)), Mathf.RoundToInt(item.y * (testSpriteRect.height - 1))));
+                texUVs.Add(new Vector2Int(Mathf.RoundToInt(item.x * (originalSpriteRect.width - 1)), Mathf.RoundToInt(item.y * (originalSpriteRect.height - 1))));
             }
-            for (i = 0; i < testSprite.triangles.Length; i += 3)
+            for (i = 0; i < originalSprite.triangles.Length; i += 3)
             {
-                triangles.Add((texUVs[testSprite.triangles[i]], texUVs[testSprite.triangles[i+1]], texUVs[testSprite.triangles[i+2]]));
+                triangles.Add((texUVs[originalSprite.triangles[i]], texUVs[originalSprite.triangles[i+1]], texUVs[originalSprite.triangles[i+2]]));
             }
 
             minX = texUVs.Select(uv => uv.x).ToList().Min();
@@ -306,11 +340,11 @@ namespace Satchel
 
             }
             if (saveTriangles)
-                saveTriangle(contents, testSprite.name, 1000000);
+                saveTriangle(contents, originalSprite.name, 1000000);
 
 
             //get current sprite texture
-            origTex = TextureUtils.duplicateTexture(testSprite.texture);
+            origTex = TextureUtils.duplicateTexture(originalSprite.texture);
             Texture2D currentSpriteTexture = new Texture2D(width,height);
             for (x = 0; x < width; x++)
             {
@@ -330,9 +364,9 @@ namespace Satchel
             // take care of rotations
             var horizontal = false;
             var vertical = false;
-            if(testSprite.packed){
-                horizontal = (testSprite.packingRotation == SpritePackingRotation.FlipHorizontal || testSprite.packingRotation == SpritePackingRotation.Rotate180);
-                vertical = (testSprite.packingRotation == SpritePackingRotation.FlipVertical || testSprite.packingRotation == SpritePackingRotation.Rotate180);
+            if(originalSprite.packed){
+                horizontal = (originalSprite.packingRotation == SpritePackingRotation.FlipHorizontal || originalSprite.packingRotation == SpritePackingRotation.Rotate180);
+                vertical = (originalSprite.packingRotation == SpritePackingRotation.FlipVertical || originalSprite.packingRotation == SpritePackingRotation.Rotate180);
             };
             
             if(horizontal || vertical){
@@ -342,7 +376,7 @@ namespace Satchel
             }
 
             // render on a new texture such that pivot is always at (50%,50%)
-            pivot = testSprite.pivot;
+            pivot = originalSprite.pivot;
 
             var newSize = new Vector2Int(width,height);
             Vector2 pivotRatio =  new Vector2(0,0);
@@ -391,10 +425,16 @@ namespace Satchel
             Texture2D.DestroyImmediate(origTex);
             return outTex;
         }
-    
-        public static Texture2D ExtractTextureFromSprite(Sprite testSprite, bool saveTriangles = false)
+
+        /// <summary>
+        /// Extract a packed Sprite as a Texture2D from it's Atlas
+        /// </summary>
+        /// <param name="originalSprite">The Sprite to Extract</param>
+        /// <param name="saveTriangles">A debug boolean to save the triangles used to extract the sprite.</param>
+        /// <returns>The extracted sprite as a Texture2D</returns>
+        public static Texture2D ExtractTextureFromSprite(Sprite originalSprite, bool saveTriangles = false)
         {
-            return ExtractTextureFromSpriteLegacy(testSprite,saveTriangles); // use legacy mode till the experimental one is fixed
+            return ExtractTextureFromSpriteLegacy(originalSprite,saveTriangles); // use legacy mode till the experimental one is fixed
         }
     }
 

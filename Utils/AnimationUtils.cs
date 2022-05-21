@@ -2,7 +2,9 @@ using static Modding.Logger;
 
 namespace Satchel
 {
-
+    /// <summary>
+    /// Utilities to work with Animations
+    /// </summary>
     public static class AnimationUtils {
         
         /// <summary>

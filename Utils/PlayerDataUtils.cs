@@ -7,8 +7,17 @@ using UnityEngine.UI;
 
 namespace Satchel
 {
-    public class PlayerDataUtils{
+    /// <summary>
+    /// Utilities to work with PlayerData
+    /// </summary>
+    public static class PlayerDataUtils
+    {
 
+        /// <summary>
+        /// Convert a SaveSlot to index 
+        /// </summary>
+        /// <param name="saveSlot">SaveSlot enum</param>
+        /// <returns>index of the save slot</returns>
         public static int ConvertSlotToNumber(SaveSlotButton.SaveSlot saveSlot)
         {
             if(saveSlot == SaveSlotButton.SaveSlot.SLOT_1) {
@@ -25,6 +34,11 @@ namespace Satchel
             }
             return 0;
         }
+        /// <summary>
+        /// Gets PlayerData for a saveSlot index
+        /// </summary>
+        /// <param name="saveSlot">Index of the saveSlot</param>
+        /// <param name="callback">Method to be called after data is loaded</param>
         public static void GetPlayerDataForSlot(int saveSlot, Action<PlayerData> callback)
         {
         
@@ -110,6 +124,5 @@ namespace Satchel
     
     
     }
-
     
 }

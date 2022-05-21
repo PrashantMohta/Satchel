@@ -12,6 +12,10 @@ namespace Satchel
         public static AssetBundle spriteExtractBundle;
         public static Shader spriteExtract;
         public static Shader spriteMask;
+
+        /// <summary>
+        /// Method to load the shaders required for Certain satchel features, runs automatically when constructing a Core instance
+        /// </summary>
         public static void LoadShaders(){
             switch (SystemInfo.operatingSystemFamily)
             {
@@ -43,16 +47,25 @@ namespace Satchel
             LoadShaders();
         }
 
-        
         public CustomSaveSlotsManager customSaveSlotsManager;
+
+        /// <summary>
+        /// Gets the instance of CustomSaveSlotManager or creates if null
+        /// </summary>
+        /// <returns>Instance of CustomSaveSlotManager</returns>
         public CustomSaveSlotsManager GetCustomSaveSlotsManager(){
             if(customSaveSlotsManager == null){
                 customSaveSlotsManager = new CustomSaveSlotsManager();
             }
             return customSaveSlotsManager;
         }
-
         public CustomDialogueManager customDialogueManager;
+
+        /// <summary>
+        /// Gets the instance of CustomDialogueManager or creates if null
+        /// </summary>
+        /// <param name="CardPrefab">A preload of Cornifer's Card</param>
+        /// <returns>Instance of CustomDialogueManager</returns>
         public CustomDialogueManager GetCustomDialogueManager(GameObject CardPrefab){
             if(customDialogueManager == null){
                 customDialogueManager = new CustomDialogueManager(CardPrefab);
@@ -61,6 +74,10 @@ namespace Satchel
         }
 
         public CustomMapManager customMapManager;
+        /// <summary>
+        /// Gets the instance of CustomMapManager or creates if null
+        /// </summary>
+        /// <returns>Instance of CustomMapManager</returns>
         public CustomMapManager GetCustomMapManager(){
             if(customMapManager == null){
                 customMapManager = new CustomMapManager();
@@ -69,6 +86,10 @@ namespace Satchel
         }
 
         public CustomEnemyManager customEnemyManager;
+        /// <summary>
+        /// Gets the instance of CustomEnemyManager or creates if null
+        /// </summary>
+        /// <returns>Instance of CustomEnemyManager</returns>
         public CustomEnemyManager GetCustomEnemyManager(){
             if(customEnemyManager == null){
                 customEnemyManager = new CustomEnemyManager();
@@ -76,6 +97,10 @@ namespace Satchel
             return customEnemyManager;
         }
         public CustomDreamNailManager customDreamNailManager;
+        /// <summary>
+        /// Gets the instance of CustomDreamNailManager or creates if null
+        /// </summary>
+        /// <returns>Instance of CustomDreamNailManager</returns>
         public CustomDreamNailManager GetCustomDreamNailManager(){
             if(customDreamNailManager == null){
                 customDreamNailManager = new CustomDreamNailManager();
@@ -85,6 +110,11 @@ namespace Satchel
 
         
         public CustomShinyManager customShinyManager;
+
+        /// <summary>
+        /// Gets the instance of CustomShinyManager or creates if null
+        /// </summary>
+        /// <returns>Instance of CustomShinyManager</returns>
         public CustomShinyManager GetCustomShinyManager(){
             if(customShinyManager == null){
                 customShinyManager = new CustomShinyManager();
@@ -93,6 +123,10 @@ namespace Satchel
         }
 
         public CustomBigItemGetManager customBigItemGetManager;
+        /// <summary>
+        /// Gets the instance of CustomBigItemGetManager or creates if null
+        /// </summary>
+        /// <returns>Instance of CustomBigItemGetManager</returns>
         public CustomBigItemGetManager GetCustomBigItemGetManager(){
             if(customBigItemGetManager == null){
                 customBigItemGetManager = new CustomBigItemGetManager();
@@ -100,14 +134,29 @@ namespace Satchel
             return customBigItemGetManager;
         }
 
-
+        /// <summary>
+        /// All custom scenes being managed by Satchel for this mod
+        /// </summary>
         public Dictionary<string,CustomScene> customScenes = new Dictionary<string,CustomScene>();
+
+        /// <summary>
+        /// Get custom Scene by sceneName
+        /// </summary>
+        /// <param name="sceneName">Name of the scene</param>
+        /// <returns>The customScene or null</returns>
         public CustomScene GetCustomScene(string sceneName){
             if(customScenes.TryGetValue(sceneName, out var customScene)){
                 return customScene;
             }
             return null;
         }
+        /// <summary>
+        /// Gets or Creates a new CustomScene
+        /// </summary>
+        /// <param name="sceneName">Name of the scene</param>
+        /// <param name="TileMap">A preload of a TileMap from an existing scene</param>
+        /// <param name="SceneManager">A preload of a SceneManager from an existin scene</param>
+        /// <returns>The customScene or null</returns>
         public CustomScene GetCustomScene(string sceneName,GameObject TileMap,GameObject SceneManager){
             if(!customScenes.TryGetValue(sceneName, out var customScene)){
                 customScene = new CustomScene();
