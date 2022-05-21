@@ -27,7 +27,7 @@ namespace Satchel.BetterMenus
         /// Creates a new MenuRow instance.
         /// </summary>
         /// <param name="Row">The Row of Elemenst.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public MenuRow(
             List<Element> Row,
             string Id) : base(Id)

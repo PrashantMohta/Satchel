@@ -49,12 +49,8 @@ namespace Satchel.BetterMenus
         public GameObjectRow(GameObjectRow firstRow, GameObjectRow secondRow)
         {
             this.Row = new List<GameObject>();
-            foreach(var go in firstRow.Row){
-                Row.Add(go);
-            }
-            foreach(var go in secondRow.Row){
-                Row.Add(go);
-            }
+            firstRow.Row.ForEach(go => Row.Add(go));
+            secondRow.Row.ForEach(go => Row.Add(go));
         }
         /// <summary>
         /// Generates an empty GameObjectRow. To be used as instead of null
@@ -64,7 +60,10 @@ namespace Satchel.BetterMenus
             this.Row = new List<GameObject>();
         }
 
-
+        /// <summary>
+        /// a function to give the number of active elements in the GameObject row
+        /// </summary>
+        /// <returns>the number of active elements</returns>
         public int ActiveCount(){
             var count = 0;
             foreach(var go in Row){

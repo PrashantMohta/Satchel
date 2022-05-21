@@ -37,7 +37,7 @@ namespace Satchel.BetterMenus
         /// <param name="values">The values the HorizontalOption can have.</param>
         /// <param name="applySetting">Triggered when a setting is applied.</param>
         /// <param name="loadSetting">The Func(int) to Invoke to load the current setting.</param>
-        /// <param name="Id">The Id of this Element.</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
         public HorizontalOption(
             string name , 
             string description,
