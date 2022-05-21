@@ -237,7 +237,7 @@ namespace Satchel
             fsm.GetState(stateName).RemoveAction(index);
         }
 
-        public static void AddCustomAction(this FsmState state, string stateName, Action method)
+        public static void AddCustomAction(this FsmState state, Action method)
         {
             state.AddAction(new CustomFsmAction() { method = method });
         }
@@ -246,14 +246,14 @@ namespace Satchel
             fsm.GetState(stateName).AddAction(new CustomFsmAction() { method = method });
         }
 
-        public static void AddCustomAction(this FsmState state, string stateName, Action<FsmState> method){
+        public static void AddCustomAction(this FsmState state, Action<FsmState> method){
             state.AddAction(new CustomFsmAction() { method = () => method(state) });
         }
         public static void AddCustomAction(this PlayMakerFSM fsm, string stateName, Action<PlayMakerFSM> method)
         {
             fsm.GetState(stateName).AddAction(new CustomFsmAction() { method = () => method(fsm) });
         }
-        public static void InsertCustomAction(this FsmState state, string stateName, Action method, int index)
+        public static void InsertCustomAction(this FsmState state, Action method, int index)
         {
             state.InsertAction(new CustomFsmAction() { method = method },index);
         }
@@ -261,7 +261,7 @@ namespace Satchel
         {
             fsm.GetState(stateName).InsertAction(new CustomFsmAction() { method = method },index);
         }
-        public static void InsertCustomAction(this FsmState state, string stateName, Action<FsmState> method, int index)
+        public static void InsertCustomAction(this FsmState state, Action<FsmState> method, int index)
         {
             state.InsertAction(new CustomFsmAction() { method = () => method(state) },index);
         }
