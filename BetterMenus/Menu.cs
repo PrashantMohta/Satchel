@@ -71,13 +71,13 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Returns the element with the id given in the Menu. The element found can then be used to edit its properties
         /// </summary>
-        /// <param name="ElemId">The id of the element to find. If not specified, id is the name of the element</param>
+        /// <param name="ElementId">The id of the element to find. If not specified, id is the name of the element</param>
         /// <returns></returns>
-        public Element Find(string ElemId){
-            if(ElementDict.TryGetValue(Id,out var elem)){
+        public Element Find(string ElementId){
+            if(ElementDict.TryGetValue(ElementId, out var elem)){
                 return elem;
             }
-            Modding.Logger.LogError($"No such Element with id {ElemId}");
+            Modding.Logger.LogError($"No such Element with id {ElementId}");
             return null;
         }
 
