@@ -2,6 +2,9 @@ using static Modding.Logger;
 
 namespace Satchel
 {
+    /// <summary>
+    /// The class that gives access to custom In-game UI and game elements
+    /// </summary>
     public class Core{
 
         public static AssetBundle shaderBundle;

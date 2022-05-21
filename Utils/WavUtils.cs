@@ -1,22 +1,23 @@
 using System.IO;
 using System.Text;
 
-/// <summary>
-/// WAV utility for recording and audio playback functions in Unity.
-/// Version: 1.0 alpha 1
-///
-/// - Use "ToAudioClip" method for loading wav file / bytes.
-/// Loads .wav (PCM uncompressed) files at 8,16,24 and 32 bits and converts data to Unity's AudioClip.
-///
-/// - Use "FromAudioClip" method for saving wav file / bytes.
-/// Converts an AudioClip's float data into wav byte array at 16 bit.
-/// </summary>
-/// <remarks>
-/// For documentation and usage examples: https://github.com/deadlyfingers/UnityWav
-/// </remarks>
+
 namespace Satchel
 {
-    public class WavUtils
+	/// <summary>
+	/// WAV utility for recording and audio playback functions in Unity.
+	/// Version: 1.0 alpha 1
+	///
+	/// - Use "ToAudioClip" method for loading wav file / bytes.
+	/// Loads .wav (PCM uncompressed) files at 8,16,24 and 32 bits and converts data to Unity's AudioClip.
+	///
+	/// - Use "FromAudioClip" method for saving wav file / bytes.
+	/// Converts an AudioClip's float data into wav byte array at 16 bit.
+	/// </summary>
+	/// <remarks>
+	/// For documentation and usage examples: https://github.com/deadlyfingers/UnityWav
+	/// </remarks>
+	public class WavUtils
 	{
 		// Force save as 16-bit .wav
 		const int BlockSize_16Bit = 2;

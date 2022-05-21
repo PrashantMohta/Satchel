@@ -3,6 +3,9 @@ using System.Security.Cryptography;
 
 namespace Satchel
 {
+    /// <summary>
+    /// Utilities to work with Textures
+    /// </summary>
     public static class TextureUtils{
         public static Texture2D createTextureOfColor(int width, int height, Color color){
             Texture2D tex = new Texture2D(width,height);
