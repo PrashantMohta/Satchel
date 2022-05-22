@@ -11,7 +11,7 @@ namespace Satchel.BetterMenus
         private readonly List<Element> Elements = new();
         private readonly Dictionary<String,Element> ElementDict = new();
         
-        #region Fields
+        #region Internal Fields
         //some private atributes we need because we intent to reorder the menu
         private int Columns = 1;
         private int Index = 0;
@@ -26,12 +26,18 @@ namespace Satchel.BetterMenus
 
         //list that stores the order. max items per column is 2 thats why we use tuple
         internal List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
+        #endregion
+        
         
         /// <summary>
         /// the MenuScreen of the Menu
         /// </summary>
         public MenuScreen menuScreen;
-        #endregion
+
+        /// <summary>
+        /// the "previous" menu screen. It is the screen the game will return to to on back button press or esc
+        /// </summary>
+        public MenuScreen returnScreen;
 
         /// <summary>
         /// Adds an element to the menu
@@ -62,9 +68,9 @@ namespace Satchel.BetterMenus
         private IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
             if(menu == this.menuScreen){
                 menu.screenCanvasGroup.alpha = 0f;
-                menu.screenCanvasGroup.gameObject.SetActive(value: true);
+                menu.screenCanvasGroup.gameObject.SetActive(true);
                 UpdateInternal();
-                menu.screenCanvasGroup.gameObject.SetActive(value: false);
+                menu.screenCanvasGroup.gameObject.SetActive(false);
             }
             yield return orig(self,menu);
         }
@@ -84,10 +90,12 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a new MenuScreen from the Menu to be used by Modding API to create mod menu.
         /// </summary>
-        /// <param name="returnScreen">The MenuScreen of the returning screen (when back is pressed)</param>
+        /// <param name="_returnScreen">the "previous" menu screen. It is the screen the game will return to to on back button press or esc</param>
         /// <returns>The MenuScreen returned is what needs to be given to the Modding API to have a modmenu</returns>
-        public MenuScreen GetMenuScreen(MenuScreen returnScreen)
+        public MenuScreen GetMenuScreen(MenuScreen _returnScreen)
         {
+            returnScreen = _returnScreen;
+            
             MenuBuilder Menu = Utils.CreateMenuBuilder(Name); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
             //mapi code from IMenuMod
@@ -96,7 +104,7 @@ namespace Satchel.BetterMenus
                 Menu.AddContent(new NullContentLayout(), c => c.AddScrollPaneContent(
                     new ScrollbarConfig
                     {
-                        CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen),
+                        CancelAction = _ => GoToReturnScreen(),
                         Navigation = new Navigation
                         {
                             mode = Navigation.Mode.Explicit,
@@ -112,18 +120,18 @@ namespace Satchel.BetterMenus
                     },
                     new RelLength(Elements.Count() * 105f),
                     RegularGridLayout.CreateVerticalLayout(105f),
-                    d => AddModMenuContent(Elements, d, returnScreen)
+                    d => AddModMenuContent(Elements, d)
                 ));
             }
             else
             {
                 Menu.AddContent(
                     RegularGridLayout.CreateVerticalLayout(105f),
-                    c => AddModMenuContent(Elements, c, returnScreen)
+                    c => AddModMenuContent(Elements, c)
                 );
             }
 
-            Menu.AddBackButton(returnScreen, out backButton); // add a back button
+            Menu.AddBackButtonToBMenu(Instance, out backButton); // add a back button
             menuScreen = Menu.Build();
             TriggerBuiltEvent();
             return menuScreen;
@@ -143,13 +151,13 @@ namespace Satchel.BetterMenus
                 elem.gameObject.SetActive(elem.isVisible);
             }
         }
-        private void AddModMenuContent(List<Element> AllMenuOptions, ContentArea c, MenuScreen modListMenu)
+        private void AddModMenuContent(List<Element> AllMenuOptions, ContentArea c)
         {
             //go through the list given to us by user
             foreach (var menuOption in AllMenuOptions)
             {
                 menuOption.Parent = this;
-                menuOption.Create(c, modListMenu, Instance);
+                menuOption.Create(c, Instance);
                 ApplyElementVisibility(menuOption);
             }
         }
@@ -281,7 +289,7 @@ namespace Satchel.BetterMenus
         /// <param name="MenuOptions">The Elements to add.</param>
         /// <returns>The generated MenuScreen.</returns>
         public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions) {
-            return new Menu(Title,MenuOptions).GetMenuScreen( modListMenu);
+            return new Menu(Title, MenuOptions).GetMenuScreen(modListMenu);
         }
         /// <summary>
         /// A funtion to update the title and all elements and reflow the menu
@@ -293,5 +301,8 @@ namespace Satchel.BetterMenus
             
             Reflow();
         }
+
+        //allows return screen to be set by outsider
+        public void GoToReturnScreen() => Utils.GoToMenuScreen(returnScreen);
     }
 }

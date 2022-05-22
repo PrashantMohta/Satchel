@@ -7,7 +7,6 @@ namespace Satchel.BetterMenus
 {
     public static class Utils
     {
-        public static GameObject SliderPrefab; // this should contain the prefab once we have it
         public static MenuBuilder CreateMenuBuilder(string Title)
         {
             return new MenuBuilder(UIManager.instance.UICanvas.gameObject, Title)
@@ -43,8 +42,8 @@ namespace Satchel.BetterMenus
                     new MenuButtonConfig
                     {
                         Label = Lang.Get("NAV_BACK", "MainMenu"),
-                        CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen),
-                        SubmitAction = _ => UIManager.instance.UIGoToDynamicMenu(returnScreen),
+                        CancelAction = _ => GoToMenuScreen(returnScreen),
+                        SubmitAction = _ => GoToMenuScreen(returnScreen),
                         Style = MenuButtonStyle.VanillaStyle,
                         Proceed = true
                     }, out BackButton));
@@ -74,6 +73,29 @@ namespace Satchel.BetterMenus
                     }));
         }
 
+        public static MenuBuilder AddBackButtonToBMenu(this MenuBuilder builder, Menu menuRef, out UnityEngine.UI.MenuButton backButton)
+        {
+            UnityEngine.UI.MenuButton BackButton = null;
+            builder.AddControls(
+                new SingleContentLayout(new AnchoredPosition(
+                    new Vector2(0.5f, 0.5f),
+                    new Vector2(0.5f, 0.5f),
+                    new Vector2(0f, -64f)
+                )), c => c.AddMenuButton(
+                    "BackButton",
+                    new MenuButtonConfig
+                    {
+                        Label = Lang.Get("NAV_BACK", "MainMenu"),
+                        CancelAction = _ => menuRef.GoToReturnScreen(),
+                        SubmitAction = _ => menuRef.GoToReturnScreen(),
+                        Style = MenuButtonStyle.VanillaStyle,
+                        Proceed = true
+                    }, out BackButton));
+            backButton = BackButton;
+            return builder;
+        }
+
+        public static void GoToMenuScreen(MenuScreen menuScreen) => UIManager.instance.UIGoToDynamicMenu(menuScreen);
     }
 }
 
