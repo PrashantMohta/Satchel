@@ -212,7 +212,7 @@ namespace Satchel
             benchFsm.FsmVariables.FindFsmString("Scene Name").Value = sceneName;
             benchFsm.FsmVariables.FindFsmString("Spawn Name").Value = bench.name;
             bench.SetActive(true);
-            GameObject.DontDestroyOnLoad(bench);
+            //GameObject.DontDestroyOnLoad(bench); ?? why did i do this ?
             return bench;
         }
 
