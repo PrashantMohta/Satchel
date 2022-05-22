@@ -1,6 +1,11 @@
 namespace Satchel.Futils.Extractors
 {
     public static class AudioClips{
+        /// <summary>
+        /// Extract all Audio Clips on a PlayMakerFSM
+        /// </summary>
+        /// <param name="self">The PlayMakerFSM</param>
+        /// <returns></returns>
         public static Dictionary<string,AudioClip> GetAudioClips(this PlayMakerFSM self){
             Dictionary<string,AudioClip> ac = new Dictionary<string,AudioClip>();
             foreach (var state in self.FsmStates)

@@ -1,8 +1,17 @@
 using Satchel.Futils;
 namespace Satchel
 {
+    /// <summary>
+    /// utilities to work with FSM
+    /// </summary>
     public static partial class FsmUtil{
 
+        /// <summary>
+        /// AddState
+        /// </summary>
+        /// <param name="fsm"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static FsmState AddState(this PlayMakerFSM fsm, FsmState state)
         {   
             var currStates = fsm.Fsm.States;
@@ -16,7 +25,13 @@ namespace Satchel
             return states[i];
         }
 
-        // call this to give all states semi sensible positions for serialisation
+
+        /// <summary>
+        /// Give all states semi-sensible positions for serialisation
+        /// </summary>
+        /// <param name="fsm"></param>
+        /// <param name="startX"></param>
+        /// <param name="Y"></param>
         public static void GiveStatesPosition(this PlayMakerFSM fsm,float startX = 500, float Y = 1100){
             var currStates = fsm.Fsm.States;
             var currentX = startX;
@@ -33,6 +48,14 @@ namespace Satchel
                 }
             }
         }
+        /// <summary>
+        /// Give a state position for serialisation
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="w"></param>
+        /// <param name="h"></param>
         public static void GiveStatePosition(this FsmState state,float x, float y, float w,float h){
             state.Position = new Rect(x,y,w,h);  
         }

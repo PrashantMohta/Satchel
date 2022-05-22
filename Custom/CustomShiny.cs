@@ -1,6 +1,14 @@
 namespace Satchel
 {
+    /// <summary>
+    /// Handles a single Custom Shiny
+    /// </summary>
     public class CustomShiny {
+        /// <summary>
+        /// Prepare shinies using a prefab of a shiny
+        /// </summary>
+        /// <param name="prefab">A preload of a Shiny</param>
+        /// <returns></returns>
         public GameObject preparePrefab(GameObject prefab){
             var go = GameObject.Instantiate(prefab);
             var fsm = go.LocateMyFSM("Shiny Control");
@@ -59,6 +67,7 @@ namespace Satchel
             }
             return go;
         }
+        
         public string sceneName = "Town";
         public Vector3 position = new Vector3(0f,0f,0f);
         public Action Callback;
@@ -66,6 +75,17 @@ namespace Satchel
         public bool isTrinket = false,isStand = false;
         public Sprite sprite;
         public string ItemName;
+        /// <summary>
+        /// Create a custom shiny
+        /// </summary>
+        /// <param name="ItemName"></param>
+        /// <param name="sceneName"></param>
+        /// <param name="position"></param>
+        /// <param name="isStand"></param>
+        /// <param name="isTrinket"></param>
+        /// <param name="Callback"></param>
+        /// <param name="ShouldSpawn"></param>
+        /// <param name="sprite"></param>
         public CustomShiny(string ItemName,string sceneName,Vector3 position,bool isStand,bool isTrinket,Action Callback,Func<bool> ShouldSpawn,Sprite sprite){
             this.ItemName = ItemName;
             this.sceneName = sceneName;
@@ -76,7 +96,10 @@ namespace Satchel
             this.sprite = sprite;
             this.isStand = isStand;
         }
-
+        /// <summary>
+        /// Spawn a shiny using a prefab of a shiny
+        /// </summary>
+        /// <param name="prefab">A preload of a Shiny</param>
         public void Spawn(GameObject prefab){
             var go = preparePrefab(prefab);
             go.transform.position = position;

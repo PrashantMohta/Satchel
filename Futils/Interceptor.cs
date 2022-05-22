@@ -1,5 +1,8 @@
 namespace Satchel.Futils
 {
+    /// <summary>
+    /// an Action that invokes a method to raise an event based on the method
+    /// </summary>
     public class InterceptorAction : FsmStateAction{
         public Func<string> method;
         public override void Reset()
@@ -14,6 +17,10 @@ namespace Satchel.Futils
             Finish();
         }
     }
+    
+    /// <summary>
+    /// Intercept an event and Invoke an Action
+    /// </summary>
     public class EventInterceptor{
         public string fromState;
         public string eventName;
@@ -21,6 +28,10 @@ namespace Satchel.Futils
         public Action onIntercept;
 
     }
+
+    /// <summary>
+    /// Intercepts an FSMTransition and invokes onIntercept
+    /// </summary>
     public class TransitionInterceptor{
         public string fromState;
         public string eventName;
@@ -44,7 +55,16 @@ namespace Satchel.Futils
         }
 
     }
+    
+    /// <summary>
+    /// Interceptions
+    /// </summary>
     public static class InterceptorExtensions{
+        /// <summary>
+        /// Intercept a transition on an FSM
+        /// </summary>
+        /// <param name="fsm"></param>
+        /// <param name="interceptor"></param>
         public static void Intercept(this PlayMakerFSM fsm, TransitionInterceptor interceptor){
            var interceptorName = $"Satchel_Intercept_{interceptor.fromState}_{interceptor.eventName}";
            var interceptionState = new FsmState(fsm.Fsm){Name=interceptorName};
@@ -56,7 +76,11 @@ namespace Satchel.Futils
            fsm.AddTransition(interceptorName,TransitionInterceptor.defaultEvent,interceptor.toStateDefault);
            fsm.AddTransition(interceptorName,TransitionInterceptor.customEvent,interceptor.toStateCustom);
         }
-
+        /// <summary>
+        /// Intercept an Event on an FSM
+        /// </summary>
+        /// <param name="fsm"></param>
+        /// <param name="interceptor"></param>
         public static void Intercept(this PlayMakerFSM fsm, EventInterceptor interceptor){
             var interceptorName = $"Intercept_Event_{interceptor.fromState}_{interceptor.eventName}";
             var interceptionState = new FsmState(fsm.Fsm){Name=interceptorName};

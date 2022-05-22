@@ -5,11 +5,12 @@ using GatewayParams = Satchel.SceneUtils.GatewayParams;
 //playerData.respawnScene
 namespace Satchel
 {
-
+    /// <summary>
+    /// Handles custom scenes
+    /// </summary>
     public class CustomScene 
     {
 
-        //todo create a nice setter for default vaues here
         public string sceneName = "unknown";
         public float width = 32;
         public float height = 32;
@@ -32,12 +33,22 @@ namespace Satchel
 
         }
         
+        /// <summary>
+        /// Load the scene configuration
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="settings"></param>
         public void Config(float width, float height, CustomSceneManagerSettings settings){
             this.width = width;
             this.height = height;
             this.settings = settings;
         }
-
+        
+        /// <summary>
+        /// Add gateways to the scene
+        /// </summary>
+        /// <param name="gateway"></param>
         public void AddGateway(GatewayParams gateway){
             if(gateway.fromScene == sceneName){
                 gatesFromScene.Add(gateway);
@@ -47,6 +58,13 @@ namespace Satchel
                 Log("Tried to add a Gateway that does not connect to this scene");
             }
         }
+        
+        /// <summary>
+        /// Add a bench using prefab
+        /// </summary>
+        /// <param name="prefab">A preload of a bench</param>
+        /// <param name="benchName"></param>
+        /// <param name="pos"></param>
         public void AddBenchFromPrefab(GameObject prefab,string benchName, Vector3 pos){
             Benches.Add(new BenchParams{
                 prefab = prefab,

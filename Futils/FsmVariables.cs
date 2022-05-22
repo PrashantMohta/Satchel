@@ -1,7 +1,15 @@
 namespace Satchel.Futils
 {
-
+    /// <summary>
+    /// Handles getting and setting variables in the FSM
+    /// </summary>
     public static class FsmVariables{
+        /// <summary>
+        /// Get NamedVariables of Type T
+        /// </summary>
+        /// <typeparam name="T">Type of NamedVariable</typeparam>
+        /// <param name="fsm"></param>
+        /// <returns></returns>
         public static NamedVariable[] GetVariables<T>(this PlayMakerFSM fsm) where T : NamedVariable, new(){
             var variables = fsm.FsmVariables;
             var typ = typeof(T);
@@ -37,6 +45,12 @@ namespace Satchel.Futils
             }
             return null;
         }
+        /// <summary>
+        /// Set NamedVariables of Type T
+        /// </summary>
+        /// <typeparam name="T">Type of NamedVariable</typeparam>
+        /// <param name="fsm"></param>
+        /// <param name="namedVariables"></param>
         public static void SetVariables<T>(this PlayMakerFSM fsm,NamedVariable[] namedVariables) where T : NamedVariable, new(){
             var variables = fsm.FsmVariables;
             var typ = typeof(T);
@@ -71,10 +85,23 @@ namespace Satchel.Futils
                 variables.GameObjectVariables = (FsmGameObject[])namedVariables;
             }
         }
+        /// <summary>
+        /// Set NamedVariables of Type T 
+        /// </summary>
+        /// <typeparam name="T">Type of NamedVariable</typeparam>
+        /// <param name="fsm"></param>
+        /// <param name="name"></param>
         public static void AddVariable<T>(this PlayMakerFSM fsm, string name)  where T : NamedVariable, new() {
             AddGetVariable<T>(fsm,name);
         }
-        
+
+        /// <summary>
+        /// Get or Add NamedVariable of type T
+        /// </summary>
+        /// <typeparam name="T">Type of NamedVariable</typeparam>
+        /// <param name="fsm"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static T AddGetVariable<T>(this PlayMakerFSM fsm, string name)  where T : NamedVariable, new() {
             T[] VariableArray = (T[])fsm.GetVariables<T>();
             if(VariableArray == null){ return null;}
@@ -84,6 +111,13 @@ namespace Satchel.Futils
             fsm.SetVariables<T>(tempList.ToArray());
             return newVar;
         }
+        /// <summary>
+        /// Get NamedVariable of type T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fsm"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static T GetVariable<T>(this PlayMakerFSM fsm, string name) where T : NamedVariable, new(){
             T[] VariableArray = (T[])fsm.GetVariables<T>();
             if(VariableArray == null){ return null;}

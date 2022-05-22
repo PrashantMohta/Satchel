@@ -3,6 +3,10 @@ using Newtonsoft.Json;
 using System.IO;
 namespace Satchel.Futils.Serialiser{
     public static class Serialiser{
+        /// <summary>
+        /// Create a JSON file by  serialising FSM for debugging edited FSMS
+        /// </summary>
+        /// <param name="fsm"></param>
         public static void EmitJsonFile(this PlayMakerFSM fsm){
                 var json = JsonConvert.SerializeObject(new FsmDataInstance(fsm), Formatting.Indented, new JsonSerializerSettings 
                 { 

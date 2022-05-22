@@ -131,7 +131,6 @@
     <Compile Include="Monobehaviour\Unity\ChangeMeshColor.cs" />
     <Compile Include="Monobehaviour\Unity\CustomEnemyMarker.cs" />
     <Compile Include="Monobehaviour\Unity\SpriteRendererMaterial.cs" />
-    <Compile Include="Monobehaviour\Unity\WhoAmI.cs" />
     <Compile Include="Monobehaviour\CustomAnimationController.cs" />
     <Compile Include="Deprecated\CustomAnimationFrames.cs" />
     <Compile Include="Monobehaviour\CustomArrowPromptBehaviour.cs" />
