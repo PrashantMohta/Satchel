@@ -2,7 +2,7 @@ using System.Text;
 using System.IO;
 
 namespace Satchel.Futils.Serialiser{
-    public static class ActionReader
+    internal static class ActionReader
     { 
         public static object GetFsmObject(this ActionData actionData, int index, int dataVersion)
         {

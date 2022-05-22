@@ -147,7 +147,9 @@ namespace Satchel.Futils.Serialiser{
             return $"Transition({fsmEvent.name} -> {toState})";
         }
     }
-
+    /// <summary>
+    /// Create a Serializable representation of an FSM
+    /// </summary>
     public class FsmDataInstance
     {
         public string fsmName;
