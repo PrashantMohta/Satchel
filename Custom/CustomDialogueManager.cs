@@ -2,18 +2,32 @@ using static Modding.Logger;
 
 namespace Satchel
 {
+    /// <summary>
+    /// Handles custom dialogue popup
+    /// </summary>
     public class CustomDialogueManager {
-        
+        /// <summary>
+        /// Prefix for the current conversations in language keys
+        /// </summary>
         public string prefix = "SatchelCustomDialogue";
+
+        /// <summary>
+        /// All Conversations key to string map
+        /// </summary>
         public Dictionary<string,string> Conversations = new Dictionary<string,string>();
+        
         public bool isDialogueBoxOpen = false,takenControl = false;
+        
         public string currentDialog;
+        
         public GameObject DialogManager,DialogTextBox,DialogBox;
+        
         public DialogueBox dboxComponent; 
 
         public PlayMakerFSM conversationControl;
 
         public FsmEventTarget boxEventTarget;
+
         private List<Action<string,int>> PageCompletionCallback = new List<Action<string,int>>();
         private List<Action<string>> ConversationCompletionCallback = new List<Action<string>>();
 
@@ -42,6 +56,10 @@ namespace Satchel
             }
         }
 
+        /// <summary>
+        /// Add callback on page end
+        /// </summary>
+        /// <param name="callback"></param>
         public void OnEndPage(Action<string,int> callback){
             PageCompletionCallback.Add(callback);
         }
@@ -50,7 +68,10 @@ namespace Satchel
                 callback(currentDialog,dboxComponent.currentPage);
             }
         }
-
+        /// <summary>
+        /// Add callback on conversation end
+        /// </summary>
+        /// <param name="callback"></param>
         public void OnEndConversation(Action<string> callback){
             ConversationCompletionCallback.Add(callback);
         }
@@ -65,10 +86,19 @@ namespace Satchel
                 takenControl = false;
             }
         }
-
+        /// <summary>
+        /// Add a coversation
+        /// </summary>
+        /// <param name="name">name of conversation</param>
+        /// <param name="conversation">text to display</param>
         public void AddConversation(string name,string conversation){
             Conversations[prefix+name] = conversation;
         }
+        /// <summary>
+        /// show dialogue
+        /// </summary>
+        /// <param name="name">name of conversation</param>
+        /// <param name="takeControl">if player can move during conversation</param>
         public void ShowDialogue(string name,bool takeControl = true){
             if(isDialogueBoxOpen){ return; }
             currentDialog = name;
@@ -87,8 +117,7 @@ namespace Satchel
                 Log("Component is null");
             }
         }
-
-        public string LanguageGet( string key, string sheet, string orig){
+        private string LanguageGet( string key, string sheet, string orig){
             if(key.StartsWith(prefix) && sheet.StartsWith(prefix)){
                 if(Conversations.TryGetValue(key,out var dialogue)){
                     return dialogue;

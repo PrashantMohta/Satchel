@@ -1,5 +1,8 @@
 namespace Satchel
 {
+    /// <summary>
+    /// Handles Custom Enemies
+    /// </summary>
     public class CustomEnemyManager{
         private GameObject defaultInfectedEnemyPrefab;
         private GameObject defaultUnInfectedEnemyPrefab;
@@ -10,7 +13,11 @@ namespace Satchel
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnSceneChanged;
         }
 
-        //provide default configs
+        /// <summary>
+        /// load Prefabs of InfectedEnemy & UnInfectedEnemy to act as base to use
+        /// </summary>
+        /// <param name="InfectedEnemyPrefab"></param>
+        /// <param name="UnInfectedEnemyPrefab"></param>
         public void Setup(GameObject InfectedEnemyPrefab,GameObject UnInfectedEnemyPrefab){
             if(InfectedEnemyPrefab != null){
                 defaultInfectedEnemyPrefab = InfectedEnemyPrefab;
@@ -19,6 +26,10 @@ namespace Satchel
                 defaultUnInfectedEnemyPrefab = UnInfectedEnemyPrefab;
             }
         }
+        /// <summary>
+        /// Add callback for new enemies (called when new enemies are loaded)
+        /// </summary>
+        /// <param name="callback"></param>
         public void AddCallbackForNewEnemies(Action<List<GameObject>> callback){
             enemyCreatedCallbacks.Add(callback);
         }
@@ -26,7 +37,7 @@ namespace Satchel
         // Go , HM , config to set values into HM
         public GameObject Add(){ return null; }
 
-        public void OnSceneChanged(Scene from, Scene to){
+        private void OnSceneChanged(Scene from, Scene to){
             customEnemies = new List<GameObject>();
             foreach(CustomEnemyMarker enemy in GameObject.FindObjectsOfType<CustomEnemyMarker>())
             {  

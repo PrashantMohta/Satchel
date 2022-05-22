@@ -4,7 +4,9 @@ using static Modding.Logger;
 
 namespace Satchel
 {
-
+    /// <summary>
+    /// defines a custom mapZone
+    /// </summary>
     public class customMapZone{
         public string ZoneName;
         public string mapZoneTitle;
@@ -17,6 +19,9 @@ namespace Satchel
         public Vector2 position;
         public Vector2 titleOffset;
     }
+    /// <summary>
+    /// defines a single custom map n a zone
+    /// </summary>
     public class customMap{
         public string ZoneName;
         public string sceneName;
@@ -27,6 +32,10 @@ namespace Satchel
         public Vector2 titleOffset;
         public Func<Sprite> GetSprite;
     }
+
+    /// <summary>
+    /// Handles custom maps
+    /// </summary>
     public class CustomMapManager
     {
         private Dictionary<string,customMap> Maps = new Dictionary<string,customMap>();
@@ -46,9 +55,17 @@ namespace Satchel
                 On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.OnEnter += HandlePlayerDataBoolTest;
                 ModHooks.LanguageGetHook += LanguageGet;
         }
+        /// <summary>
+        /// Add a new customMapZone
+        /// </summary>
+        /// <param name="newZone"></param>
         public void AddZone(customMapZone newZone){
             Zones.Add(newZone.ZoneName,newZone);
         }
+        /// <summary>
+        /// Add a new customMap scene
+        /// </summary>
+        /// <param name="map"></param>
         public void AddScene( customMap map){
             Maps.Add(map.sceneName,map);
             if(Zones.TryGetValue(map.ZoneName, out var zone)){
@@ -75,13 +92,14 @@ namespace Satchel
             CoroutineHelper.GetRunner().StartCoroutine(generateCustomMap(map));
         }
 
+
         public void Remove(string sceneName){
             //Maps.TryGetValue(sceneName,out var oldCustomMap);
             //GameObject.Destroy(oldCustomMap.areaCustomMap);
             //Maps.Remove(sceneName);
         }
 
-        public GameObject GetAreaNameTxt(){
+        private GameObject GetAreaNameTxt(){
             if(AreaNameTxt== null){
                 var quickMapGameObject = GameObject.Find("Quick Map");
                 var quickMapFsm = quickMapGameObject.LocateMyFSM("Quick Map");
@@ -111,7 +129,7 @@ namespace Satchel
             sr.sortingOrder = 0;
             mapSceneObj.SetActive(true);
         }
-        public IEnumerator generateCustomMap(customMap map){
+        private IEnumerator generateCustomMap(customMap map){
             yield return new WaitWhile(()=> gameMapComponent == null);
             var newZone = Zones[map.ZoneName];
             if(newZone.areaCustomMap == null){
@@ -169,8 +187,8 @@ namespace Satchel
             quickMapFsm.InsertAction("Outskirts", customFsmAction, 7);
 
 
-        }       
-        public void OpenCustomMap(GameMap gm){
+        }
+        private void OpenCustomMap(GameMap gm){
             var currentSceneName = SceneUtils.getCurrentScene().name;
             if(Maps.TryGetValue(currentSceneName,out var currentScene)){
                 gm.areaGreenpath.SetActive(false);
@@ -204,15 +222,15 @@ namespace Satchel
                      ));
             }
         }
-        public void MoveMapTo(GameMap gm, Vector2 point){
+        private void MoveMapTo(GameMap gm, Vector2 point){
             gm.gameObject.transform.localPosition = new Vector3(point.x,point.y,18);
         }
-        public void CheckOpenCustomQuickMap(GameObject go)
+        private void CheckOpenCustomQuickMap(GameObject go)
         {
             OpenCustomMap(go.GetComponent<GameMap>());   
         }
 
-        public string LanguageGet( string key, string sheet, string orig){
+        private string LanguageGet( string key, string sheet, string orig){
             //string orig = Language.Language.GetInternal(key, sheet);
 
             if(key.StartsWith("dc_custom_map_")){
@@ -229,7 +247,7 @@ namespace Satchel
             }
             return orig;
         }
-        public void HandlePlayerDataBoolTest(On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.orig_OnEnter orig, HutongGames.PlayMaker.Actions.PlayerDataBoolTest self){
+        private void HandlePlayerDataBoolTest(On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.orig_OnEnter orig, HutongGames.PlayMaker.Actions.PlayerDataBoolTest self){
             if(MapAreas.Contains(self.boolName.Value) && Maps.TryGetValue(SceneUtils.getCurrentScene().name,out var currentMap)){
                 if(currentMap.hasMap() || Zones[currentMap.ZoneName].hasFullMap())
                 {
@@ -241,7 +259,7 @@ namespace Satchel
                 orig(self);
             }
         }
-        public void OnGameManagerSetGameMap(On.GameManager.orig_SetGameMap orig, GameManager self, GameObject gameMapGo)
+        private void OnGameManagerSetGameMap(On.GameManager.orig_SetGameMap orig, GameManager self, GameObject gameMapGo)
         {   
             //update FSM here
             GameObject.DontDestroyOnLoad(gameMapGo);
@@ -268,7 +286,7 @@ namespace Satchel
               
     }
 
-        public void resetMapVisibility(){
+        private void resetMapVisibility(){
             foreach(var kvp in Zones){
                 foreach(var scene in kvp.Value.sceneNames){
                    var sceneObj = kvp.Value.areaCustomMap.FindGameObjectInChildren(scene);
@@ -283,7 +301,7 @@ namespace Satchel
             resetMapVisibility();
         }
 
-         protected void NewPositionCompass(On.GameMap.orig_PositionCompass orig, GameMap self, bool posShade)
+        protected void NewPositionCompass(On.GameMap.orig_PositionCompass orig, GameMap self, bool posShade)
         {
             GameObject gameObject = null;
             var currentMapZone = ReflectionHelper.GetField<GameMap, GameManager>(self, "gm").GetCurrentMapZone();
