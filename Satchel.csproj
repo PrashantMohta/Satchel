@@ -11,9 +11,9 @@
     <AssemblyName>Satchel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <VanillaFiles>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\</VanillaFiles>
-    <ModdingAPI>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\</ModdingAPI>
-    <HollowKnightModsDirectory>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods</HollowKnightModsDirectory>
+    <VanillaFiles>..\Vanilla</VanillaFiles>
+    <ModdingAPI>..\HollowKnight.Modding\OutputFinal</ModdingAPI>
+    <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
