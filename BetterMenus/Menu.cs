@@ -98,39 +98,28 @@ namespace Satchel.BetterMenus
             
             MenuBuilder Menu = Utils.CreateMenuBuilder(Name); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
-            //mapi code from IMenuMod
-            if (Elements.Count() > 5)
-            {
-                Menu.AddContent(new NullContentLayout(), c => c.AddScrollPaneContent(
-                    new ScrollbarConfig
+            Menu.AddContent(new NullContentLayout(), c => c.AddScrollPaneContent(
+                new ScrollbarConfig
+                {
+                    CancelAction = _ => GoToReturnScreen(),
+                    Navigation = new Navigation
                     {
-                        CancelAction = _ => GoToReturnScreen(),
-                        Navigation = new Navigation
-                        {
-                            mode = Navigation.Mode.Explicit,
-                            selectOnUp = backButton,
-                            selectOnDown = backButton
-                        },
-                        Position = new AnchoredPosition
-                        {
-                            ChildAnchor = new Vector2(0f, 1f),
-                            ParentAnchor = new Vector2(1f, 1f),
-                            Offset = new Vector2(-310f, 0f)
-                        }
+                        mode = Navigation.Mode.Explicit,
+                        selectOnUp = backButton,
+                        selectOnDown = backButton
                     },
-                    new RelLength(Elements.Count() * 105f),
-                    RegularGridLayout.CreateVerticalLayout(105f),
-                    d => AddModMenuContent(Elements, d)
-                ));
-            }
-            else
-            {
-                Menu.AddContent(
-                    RegularGridLayout.CreateVerticalLayout(105f),
-                    c => AddModMenuContent(Elements, c)
-                );
-            }
-
+                    Position = new AnchoredPosition
+                    {
+                        ChildAnchor = new Vector2(0f, 1f),
+                        ParentAnchor = new Vector2(1f, 1f),
+                        Offset = new Vector2(-310f, 0f)
+                    }
+                },
+                new RelLength(Elements.Count() * 105f),
+                RegularGridLayout.CreateVerticalLayout(105f),
+                d => AddModMenuContent(Elements, d)
+            ));
+            
             Menu.AddBackButtonToBMenu(Instance, out backButton); // add a back button
             menuScreen = Menu.Build();
             TriggerBuiltEvent();

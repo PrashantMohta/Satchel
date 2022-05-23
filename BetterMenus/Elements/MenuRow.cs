@@ -19,7 +19,7 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// Element X Delta, shifts the right element by this amount.
+        /// The horizontal seperation between elements default: 750
         /// </summary>
         public float XDelta = 750f;
 
