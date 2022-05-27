@@ -19,7 +19,7 @@ namespace Satchel.BetterMenus
             if(Id == "__UseName"){
                 Id = name;
             }
-            var sbso = new MenuRow(
+            return new MenuRow(
                 new List<Element>{
                     new KeyBind(name ,keyBindAction,Id:Id+"key"){SelectableArea = SelectableArea.ButtonOnly},
                     new ButtonBind("",buttonBindAction,Id:Id+"button"){SelectableArea = SelectableArea.ButtonOnly}
@@ -28,8 +28,6 @@ namespace Satchel.BetterMenus
             {
                 XDelta = 200f,
             };
-
-            return sbso;
         }
     }
 }
