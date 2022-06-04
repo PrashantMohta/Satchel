@@ -131,6 +131,7 @@
     <Compile Include="Utils\TextureUtils.cs" />
     <Compile Include="Utils\WavUtils.cs" />
     <Compile Include="Utils\CoroutineHelper.cs" />
+    <Compile Include="Utils\ObjectPoolManager.cs" />
     <Compile Include="Monobehaviour\Unity\AlertRangeMarker.cs" />
     <Compile Include="Monobehaviour\Unity\ChangeMeshColor.cs" />
     <Compile Include="Monobehaviour\Unity\CustomEnemyMarker.cs" />

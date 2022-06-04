@@ -179,7 +179,21 @@ namespace Satchel.BetterMenus
             };
         }
 
-        public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
+        /// <summary>
+        /// Creates a new CustomSlider instance.
+        /// </summary>
+        /// <param name="name">The name to be displayed.</param>
+        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
+        /// <param name="savedValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
+        public CustomSlider(string name, Action<float> storeValue, Func<float> savedValue,string Id = "__UseName") : base(Id,name)
+        {
+            Name = name;
+            StoreValue = storeValue;
+            SavedValue = savedValue;
+        }
+
+        public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = StoreValue ?? throw new ArgumentNullException(nameof(StoreValue), "StoreValue cannot be null");
@@ -190,7 +204,7 @@ namespace Satchel.BetterMenus
             
             c.NavGraph.AddNavigationNode(slider);
             var mpd = slider.GetComponent<MenuPreventDeselect>();
-            mpd.customCancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu);
+            mpd.customCancelAction = _ => Instance.GoToReturnScreen();
             
             if (AddToList)
             {

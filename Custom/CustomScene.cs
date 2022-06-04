@@ -5,6 +5,8 @@ using GatewayParams = Satchel.SceneUtils.GatewayParams;
 //playerData.respawnScene
 namespace Satchel
 {
+    public class SceneLoadedEventArgs : EventArgs {
+    }
     /// <summary>
     /// Handles custom scenes
     /// </summary>
@@ -25,6 +27,13 @@ namespace Satchel
         public List<BenchParams> Benches = new List<BenchParams>();
         public List<GatewayParams> gatesToScene = new List<GatewayParams>();
         public List<GatewayParams> gatesFromScene = new List<GatewayParams>();
+
+        
+        /// <summary>
+        /// Event that is triggered when the scene has loaded
+        /// </summary>
+        public event EventHandler<SceneLoadedEventArgs> OnLoaded;
+
         public CustomScene()
         {
             On.GameManager.RefreshTilemapInfo += OnGameManagerRefreshTilemapInfo;
@@ -151,7 +160,7 @@ namespace Satchel
                 sm.heroLightColor = settings.heroLightColor;
                 sm.gameObject.SetActive(true);
             
-                
+                OnLoaded?.Invoke(this,new SceneLoadedEventArgs());
             }
         }
     }

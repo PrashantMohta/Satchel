@@ -37,14 +37,16 @@ namespace Satchel
         private DateTime lastFrameChange;
 
         public void Start(){
-            sr = GetComponent<SpriteRenderer>();
+            sr = gameObject.GetAddComponent<SpriteRenderer>();
         }
         public void Init(Animation animation){
             anim = animation;
             // init values
+            lastFrameChange = DateTime.MinValue;
             currentFrame = -1;
             animating = true;
             sprites = CustomAnimation.loadedSprites[anim];
+        
         }
 
         public void Update(){
@@ -61,10 +63,9 @@ namespace Satchel
                 lastFrameChange = DateTime.Now;
             }
             if(sr == null){
-                sr = GetComponent<SpriteRenderer>();
+                sr = gameObject.GetAddComponent<SpriteRenderer>();
             }
             sr.sprite = sprites[currentFrame];
-
         }
     }
 
@@ -76,6 +77,7 @@ namespace Satchel
         /// All currently loaded Sprites
         /// </summary>
         public static Dictionary<Animation,Sprite[]> loadedSprites = new Dictionary<Animation, Sprite[]>(); 
+
         /// <summary>
         /// Load an animation using a serialised JSON
         /// </summary>
@@ -92,6 +94,17 @@ namespace Satchel
                 var tex = LoadTextureFromFile(Path.Combine(animationRootFolder,anim.frames[frame]));
                 loadedSprites[anim][frame] = Sprite.Create(tex,new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),64f,0,SpriteMeshType.FullRect);
             }
+            return anim;
+        }
+
+        /// <summary>
+        /// Load an animation using an Animation Object
+        /// </summary>
+        /// <param name="anim">Animation Object to load</param>
+        /// <param name="sprites">An arroy of sprites corresponding to the frames</param>
+        /// <returns></returns>
+        public static Animation LoadAnimation(Animation anim,Sprite[] sprites){
+            loadedSprites[anim] = sprites;
             return anim;
         }
 
