@@ -24,7 +24,7 @@ namespace Satchel.BetterMenus
             Offset = default
         };
 
-        //list that stores the order. max items per column is 2 thats why we use tuple
+        //list that stores the order.
         internal List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
         #endregion
         
