@@ -12,7 +12,7 @@ namespace Satchel.BetterMenus
         private readonly Dictionary<String,Element> ElementDict = new();
         
         #region Internal Fields
-        //some private atributes we need because we intent to reorder the menu
+        //some private atributes we need because we intend to reorder the menu
         private int Columns = 1;
         private int Index = 0;
         private Menu Instance;
@@ -95,13 +95,15 @@ namespace Satchel.BetterMenus
         public MenuScreen GetMenuScreen(MenuScreen _returnScreen)
         {
             returnScreen = _returnScreen;
-            
+            CancelAction = () => { 
+                Utils.GoToMenuScreen(returnScreen); 
+            };
             MenuBuilder Menu = Utils.CreateMenuBuilder(Name); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
             Menu.AddContent(new NullContentLayout(), c => c.AddScrollPaneContent(
                 new ScrollbarConfig
                 {
-                    CancelAction = _ => GoToReturnScreen(),
+                    CancelAction = _ => CancelAction(),
                     Navigation = new Navigation
                     {
                         mode = Navigation.Mode.Explicit,
@@ -120,7 +122,7 @@ namespace Satchel.BetterMenus
                 d => AddModMenuContent(Elements, d)
             ));
             
-            Menu.AddBackButtonToBMenu(Instance, out backButton); // add a back button
+            Menu.AddBackButton(Instance, out backButton); // add a back button
             menuScreen = Menu.Build();
             TriggerBuiltEvent();
             return menuScreen;
@@ -291,7 +293,7 @@ namespace Satchel.BetterMenus
             Reflow();
         }
 
-        //allows return screen to be set by outsider
-        public void GoToReturnScreen() => Utils.GoToMenuScreen(returnScreen);
+        //allows CancelAction to be set by outsider
+        public Action CancelAction;
     }
 }

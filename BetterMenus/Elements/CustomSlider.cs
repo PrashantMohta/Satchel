@@ -95,41 +95,8 @@ namespace Satchel.BetterMenus
             }
         }
         
-        
-        /// <summary>
-        /// Creates a new CustomSlider instance.
-        /// </summary>
-        /// <param name="name">The name to be displayed.</param>
-        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
-        /// <param name="loadValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
-        /// <param name="Id">the id of the element that can be used to search for it</param>
-        [Obsolete]
-        public CustomSlider(string name, Action<float> storeValue, Func<float> loadValue,string Id = "__UseName") : base(Id,name)
-        {
-            Name = name;
-            StoreValue = storeValue;
-            LoadValue = loadValue;
-        }
 
-        /// <summary>
-        /// Creates a new CustomSlider instance.
-        /// </summary>
-        /// <param name="name">The name to be displayed.</param>
-        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
-        /// <param name="loadValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
-        /// <param name="_minValue">the lowest value the slider will go to</param>
-        /// <param name="_maxValue">the highest value the slider will go to</param>
-        /// <param name="_wholeNumbers">Should the slider only allow whole numbers (i.e. ints)</param>
-        /// <param name="Id">the id of the element that can be used to search for it</param>
-        public CustomSlider(string name, Action<float> storeValue, Func<float> loadValue, float _minValue, float _maxValue, bool _wholeNumbers = false, string Id = "__UseName") : base(Id,name)
-        {
-            Name = name;
-            StoreValue = storeValue;
-            LoadValue = loadValue;
-            minValue = _minValue;
-            maxValue = _maxValue;
-            wholeNumbers = _wholeNumbers;
-        }
+
 
         private void UpdateValueLabel(){
             if (wholeNumbers){
@@ -179,18 +146,41 @@ namespace Satchel.BetterMenus
             };
         }
 
+
         /// <summary>
         /// Creates a new CustomSlider instance.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
         /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
-        /// <param name="savedValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
+        /// <param name="loadValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
-        public CustomSlider(string name, Action<float> storeValue, Func<float> savedValue,string Id = "__UseName") : base(Id,name)
+        [Obsolete("This Constructor is obsolete, use the one with minValue and maxValue.")]
+        public CustomSlider(string name, Action<float> storeValue, Func<float> loadValue, string Id = "__UseName") : base(Id, name)
         {
             Name = name;
             StoreValue = storeValue;
-            SavedValue = savedValue;
+            LoadValue = loadValue;
+        }
+
+
+        /// <summary>
+        /// Creates a new CustomSlider instance.
+        /// </summary>
+        /// <param name="name">The name to be displayed.</param>
+        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
+        /// <param name="loadValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
+        /// <param name="minValue">the lowest value the slider will go to</param>
+        /// <param name="maxValue">the highest value the slider will go to</param>
+        /// <param name="wholeNumbers">Should the slider only allow whole numbers (i.e. ints)</param>
+        /// <param name="Id">the id of the element that can be used to search for it</param>
+        public CustomSlider(string name, Action<float> storeValue, Func<float> loadValue, float minValue, float maxValue, bool wholeNumbers = false, string Id = "__UseName") : base(Id, name)
+        {
+            Name = name;
+            StoreValue = storeValue;
+            LoadValue = loadValue;
+            this.minValue = minValue;
+            this.maxValue = maxValue;
+            this.wholeNumbers = wholeNumbers;
         }
 
         public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
@@ -204,7 +194,7 @@ namespace Satchel.BetterMenus
             
             c.NavGraph.AddNavigationNode(slider);
             var mpd = slider.GetComponent<MenuPreventDeselect>();
-            mpd.customCancelAction = _ => Instance.GoToReturnScreen();
+            mpd.customCancelAction = _ => Instance.CancelAction();
             
             if (AddToList)
             {

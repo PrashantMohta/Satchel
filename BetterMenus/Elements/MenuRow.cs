@@ -19,7 +19,8 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// The horizontal seperation between elements default: 750
+        /// The horizontal seperation between elements, the right element is moved to ensure this
+        ///  default: 750f
         /// </summary>
         public float XDelta = 750f;
 
@@ -39,7 +40,6 @@ namespace Satchel.BetterMenus
         /// Creates a GameObjectRow based on the current variables.
         /// </summary>
         /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
-        /// <param name="modlistMenu">The previous MenuScreen.</param>
         /// <param name="Instance">The current Menu instance.</param>
         /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
         /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>

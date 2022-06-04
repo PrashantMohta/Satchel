@@ -57,7 +57,6 @@ namespace Satchel.BetterMenus
         /// Creates a GameObjectRow based on the current variables.
         /// </summary>
         /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
-        /// <param name="modlistMenu">The previous MenuScreen.</param>
         /// <param name="Instance">The current Menu instance.</param>
         /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
         /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
@@ -75,7 +74,7 @@ namespace Satchel.BetterMenus
                 {
                     ApplySetting = (_, i) => ApplySetting(i),
                     RefreshSetting = (s, _) => s.optionList.SetOptionTo(LoadSetting()),
-                    CancelAction = _ => Instance.GoToReturnScreen(),
+                    CancelAction = _ => Instance.CancelAction(),
                     Description = new DescriptionInfo
                     {
                         Text = Description

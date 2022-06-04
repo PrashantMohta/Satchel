@@ -73,7 +73,7 @@ namespace Satchel.BetterMenus
                     }));
         }
 
-        public static MenuBuilder AddBackButtonToBMenu(this MenuBuilder builder, Menu menuRef, out UnityEngine.UI.MenuButton backButton)
+        public static MenuBuilder AddBackButton(this MenuBuilder builder, Menu menuRef, out UnityEngine.UI.MenuButton backButton)
         {
             UnityEngine.UI.MenuButton BackButton = null;
             builder.AddControls(
@@ -86,8 +86,8 @@ namespace Satchel.BetterMenus
                     new MenuButtonConfig
                     {
                         Label = Lang.Get("NAV_BACK", "MainMenu"),
-                        CancelAction = _ => menuRef.GoToReturnScreen(),
-                        SubmitAction = _ => menuRef.GoToReturnScreen(),
+                        CancelAction = _ => menuRef.CancelAction(),
+                        SubmitAction = _ => menuRef.CancelAction(),
                         Style = MenuButtonStyle.VanillaStyle,
                         Proceed = true
                     }, out BackButton));
