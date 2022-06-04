@@ -40,12 +40,12 @@ namespace Satchel.BetterMenus
         /// <param name="Instance">The current Menu instance.</param>
         /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
         /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
-        public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
+        public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = PlayerAction ?? throw new ArgumentNullException(nameof(PlayerAction), "PlayerAction cannot be null");
             buttonBindConfig = new ButtonBindConfig{
-                    CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
+                    CancelAction = _ => Instance.GoToReturnScreen(),
                     Label = Name,
                     selectableArea = SelectableArea
                 };

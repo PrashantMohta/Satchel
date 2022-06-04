@@ -128,7 +128,7 @@ namespace Satchel.BetterMenus
             SavedValue = savedValue;
         }
 
-        public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
+        public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = StoreValue ?? throw new ArgumentNullException(nameof(StoreValue), "StoreValue cannot be null");
@@ -140,7 +140,7 @@ namespace Satchel.BetterMenus
             var slider = GetSlider();
             c.NavGraph.AddNavigationNode(slider);
             var mpd = slider.GetComponent<MenuPreventDeselect>();
-            mpd.customCancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu);
+            mpd.customCancelAction = _ => Instance.GoToReturnScreen();
             
             if (AddToList)
             {

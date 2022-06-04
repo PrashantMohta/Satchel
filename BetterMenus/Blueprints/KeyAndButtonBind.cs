@@ -10,7 +10,7 @@ namespace Satchel.BetterMenus
         /// <param name="keyBindAction">the InControl.PlayerAction for keybind</param>
         /// <param name="buttonBindAction">the InControl.PlayerAction for the button bind</param>
         ///<param name="Id">the id of the element that can be used to search for it. the keybind and buttonbind will get the id of the row appended by "key" and "button" respectively</param>
-        /// <returns></returns>
+        /// <returns>The MenuRow created</returns>
         public static MenuRow KeyAndButtonBind(
             string name,
             InControl.PlayerAction keyBindAction,
@@ -19,15 +19,15 @@ namespace Satchel.BetterMenus
             if(Id == "__UseName"){
                 Id = name;
             }
-            var sbso = new MenuRow(
+            return new MenuRow(
                 new List<Element>{
                     new KeyBind(name ,keyBindAction,Id:Id+"key"){SelectableArea = SelectableArea.ButtonOnly},
                     new ButtonBind("",buttonBindAction,Id:Id+"button"){SelectableArea = SelectableArea.ButtonOnly}
                 },
-                Id:Id);
-            sbso.XDelta = 200f;
-            
-            return sbso;
+                Id:Id)
+            {
+                XDelta = 200f,
+            };
         }
     }
 }

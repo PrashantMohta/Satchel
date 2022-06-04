@@ -13,7 +13,7 @@ namespace Satchel.BetterMenus
                 name,
                 description,
                 (mb)=>{
-                        UIManager.instance.UIGoToDynamicMenu(getScreen());
+                        Utils.GoToMenuScreen(getScreen());
                     },
                 proceed:true
             );
