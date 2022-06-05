@@ -21,7 +21,7 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// A function to make the given dialogue menu appear
+        /// A function to make the given dialogue menu appear when it's called. Can be attached to menu button submit action.
         /// </summary>
         /// <param name="initialMenu">The current Menu</param>
         /// <param name="DialogMenu">The dialog Menu</param>
