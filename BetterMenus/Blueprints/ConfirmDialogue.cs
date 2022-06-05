@@ -8,11 +8,11 @@ namespace Satchel.BetterMenus
     public static partial class Blueprints
     {
         /// <summary>
-        /// Show a Dialog instead of the default CancelAction
+        /// Make "DialogMenu" appear instead of the default CancelAction
         /// </summary>
         /// <param name="initialMenu">The current Menu</param>
         /// <param name="DialogMenu">The dialog Menu</param>
-        public static void AddConfirmDialog(this SMenu initialMenu, SMenu DialogMenu)
+        public static void AddConfirmDialogMenu(this SMenu initialMenu, SMenu DialogMenu)
         {
             initialMenu.CancelAction = () =>
             {
@@ -21,11 +21,11 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// Shows a dialog menu while hiding the existing menu
+        /// A function to make the given dialogue menu appear
         /// </summary>
         /// <param name="initialMenu">The current Menu</param>
         /// <param name="DialogMenu">The dialog Menu</param>
-        public static void ShowDialog(this SMenu initialMenu, SMenu DialogMenu)
+        public static void ShowConfirmDialogMenu(this SMenu initialMenu, SMenu DialogMenu)
         {
             DialogMenu.returnScreen = initialMenu.GetCachedMenuScreen(initialMenu.returnScreen);
             Utils.GoToMenuScreen(DialogMenu.GetCachedMenuScreen(DialogMenu.returnScreen));
@@ -40,11 +40,8 @@ namespace Satchel.BetterMenus
         /// <param name="optionsPerRow"> Number of options to show in a single row</param>
         /// <returns>The Dialog Menu</returns>
         public static SMenu CreateDialogMenu(string title,string subTitle,string[] Options,Action<string> OnButtonPress, int optionsPerRow = 2) { 
-            var menu = new Menu("", new Element[]
-            {
-                //new StaticPanel("space", _ => { }),
-                //new StaticPanel("fleur", _ => {}),
-            });
+            var menu = new Menu("", Array.Empty<Element>());
+            
             if (title != string.Empty)
             {
                 menu.AddElement(new TextPanel(title, fontSize: 55)
@@ -59,10 +56,10 @@ namespace Satchel.BetterMenus
                     Font = TextPanelConfig.TextFont.TrajanBold
                 });
             }
-            for(var i=0;i< Options.Length; i+=optionsPerRow)
+            for(var i = 0; i < Options.Length; i += optionsPerRow)
             {
                 List<Element> optionList = new List<Element>();
-                for (var j=0;(j < optionsPerRow && i+j < Options.Length); j++)
+                for (var j = 0; (j < optionsPerRow && i + j < Options.Length); j++)
                 {
                     var option = Options[i + j];
                     optionList.Add(
@@ -83,21 +80,7 @@ namespace Satchel.BetterMenus
                 var mobj = menu.menuScreen.gameObject;
                 var rt = mobj.GetComponent<RectTransform>();
                 rt.sizeDelta = new Vector2(0f, 250f);
-                //rt.pivot = new Vector2(0.5f, 0.5f);
-                //rt.anchorMin = new Vector2(0f, 0f);
-                //rt.anchorMax = new Vector2(1f, 1f);
                 rt.anchoredPosition = new Vector2(0f, -200f);
-
-                /*var panel = menu.Find("fleur").gameObject;
-                var fleur = menu.menuScreen.topFleur;
-                //fleur.transform.SetParent(panel.transform, false);
-                UnityEngine.Object.DontDestroyOnLoad(fleur);
-                AnchoredPosition.FromSiblingAnchor(
-                        new Vector2(0.5f, 0.5f),
-                        panel.GetComponent<RectTransform>(),
-                        new Vector2(0.5f, 0.5f),
-                        new Vector2(0.0f, 50))
-                    .Reposition(fleur.GetComponent<RectTransform>());*/
                 // destroy the back button 
                 // todo make this be optional in the menu itself
                 var backButton = menu.menuScreen.gameObject.Find("BackButton");
@@ -111,7 +94,7 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// When back is pressed, ask user to confirm across a set of options
+        /// Creates a menu screen that is shown when back is pressed to ask user to confirm across a set of options.
         /// </summary>
         /// <param name="initialMenu">Menu to add the confirm dialog on</param>
         /// <param name="title">Title of the confirm dialog</param>
@@ -120,7 +103,7 @@ namespace Satchel.BetterMenus
         /// <param name="OnButtonPress">Action that is invoked with the user's selection</param>
         /// <param name="optionsPerRow"> Number of options to show in a single row</param>
         /// <returns>The Dialog Menu</returns>
-        public static SMenu AddConfirmDialog(
+        public static SMenu AddConfirmDialogMenu(
             this SMenu initialMenu,
             string title, 
             string subTitle, 
