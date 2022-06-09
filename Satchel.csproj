@@ -40,8 +40,8 @@
 
     <!-- Create a LocalBuildProperties.props file which defines references directories
   and OutputDirectory (where the post-build event sends the dll to) -->
-  <Import Project="LocalBuildProperties_example.props" Condition="Exists('LocalBuildProperties_example.props')"/>
-  <Import Project="LocalBuildProperties.props" Condition="Exists('LocalBuildProperties.props')"/>
+  <Import Project="LocalBuildProperties_example.props" Condition="Exists('LocalBuildProperties_example.props')" />
+  <Import Project="LocalBuildProperties.props" Condition="Exists('LocalBuildProperties.props')" />
 
   <ItemGroup>
     <Reference Include="MonoMod.RuntimeDetour, Version=21.4.29.1, Culture=neutral, PublicKeyToken=null">
@@ -124,6 +124,7 @@
     <Compile Include="Reflected\HeroControllerFields.cs" />
     <Compile Include="Reflected\HeroControllerILIEnumerators.cs" />
     <Compile Include="Reflected\HeroControllerMethods.cs" />
+    <Compile Include="Reflected\PlayerDataFields.cs" />
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
     <Compile Include="Utils\EnemyUtils.cs" />
