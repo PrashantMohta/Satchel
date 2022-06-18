@@ -4,23 +4,23 @@
     /// A class that allows you to access PD directly while also using PlayerData.Get/Set functions
     /// </summary>
     public static class PlayerDataR
-    { 
+    {
         public static string version
         {
             get => PlayerData.instance.GetString(nameof(PlayerData.version));
             set => PlayerData.instance.SetString(nameof(PlayerData.version), value);
-		}
+        }
 
-		public static bool awardAllAchievements
+        public static bool awardAllAchievements
         {
-			get => PlayerData.instance.GetBool(nameof(PlayerData.awardAllAchievements));
-			set => PlayerData.instance.SetBool(nameof(PlayerData.awardAllAchievements), value);
-		}
+            get => PlayerData.instance.GetBool(nameof(PlayerData.awardAllAchievements));
+            set => PlayerData.instance.SetBool(nameof(PlayerData.awardAllAchievements), value);
+        }
 
         public static int profileID
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.profileID));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.profileID), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.profileID), value);
         }
 
         public static float playTime
@@ -44,37 +44,37 @@
         public static int permadeathMode
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.permadeathMode));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.permadeathMode), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.permadeathMode), value);
         }
 
         public static int health
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.health));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.health), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.health), value);
         }
 
         public static int maxHealth
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.maxHealth));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.maxHealth), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.maxHealth), value);
         }
 
         public static int maxHealthBase
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.maxHealthBase));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.maxHealthBase), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.maxHealthBase), value);
         }
 
         public static int healthBlue
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.healthBlue));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.healthBlue), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.healthBlue), value);
         }
 
         public static int joniHealthBlue
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.joniHealthBlue));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.joniHealthBlue), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.joniHealthBlue), value);
         }
 
         public static bool damagedBlue
@@ -86,7 +86,7 @@
         public static int heartPieces
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.heartPieces));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.heartPieces), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.heartPieces), value);
         }
 
         public static bool heartPieceCollected
@@ -98,7 +98,7 @@
         public static int maxHealthCap
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.maxHealthCap));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.maxHealthCap), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.maxHealthCap), value);
         }
 
         public static bool heartPieceMax
@@ -110,13 +110,13 @@
         public static int prevHealth
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.prevHealth));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.prevHealth), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.prevHealth), value);
         }
 
         public static int blockerHits
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.blockerHits));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.blockerHits), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.blockerHits), value);
         }
 
         public static bool firstGeo
@@ -128,31 +128,31 @@
         public static int geo
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.geo));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.geo), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.geo), value);
         }
 
         public static int maxMP
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.maxMP));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.maxMP), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.maxMP), value);
         }
 
         public static int MPCharge
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.MPCharge));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.MPCharge), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.MPCharge), value);
         }
 
         public static int MPReserve
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.MPReserve));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.MPReserve), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.MPReserve), value);
         }
 
         public static int MPReserveMax
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.MPReserveMax));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.MPReserveMax), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.MPReserveMax), value);
         }
 
         public static bool soulLimited
@@ -164,7 +164,7 @@
         public static int vesselFragments
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.vesselFragments));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.vesselFragments), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.vesselFragments), value);
         }
 
         public static bool vesselFragmentCollected
@@ -176,7 +176,7 @@
         public static int MPReserveCap
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.MPReserveCap));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.MPReserveCap), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.MPReserveCap), value);
         }
 
         public static bool vesselFragmentMax
@@ -188,7 +188,7 @@
         public static int focusMP_amount
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.focusMP_amount));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.focusMP_amount), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.focusMP_amount), value);
         }
 
         public static bool atBench
@@ -218,7 +218,7 @@
         public static int respawnType
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.respawnType));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.respawnType), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.respawnType), value);
         }
 
         public static bool respawnFacingRight
@@ -266,37 +266,37 @@
         public static int shadeHealth
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.shadeHealth));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.shadeHealth), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.shadeHealth), value);
         }
 
         public static int shadeMP
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.shadeMP));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.shadeMP), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.shadeMP), value);
         }
 
         public static int shadeFireballLevel
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.shadeFireballLevel));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.shadeFireballLevel), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.shadeFireballLevel), value);
         }
 
         public static int shadeQuakeLevel
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.shadeQuakeLevel));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.shadeQuakeLevel), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.shadeQuakeLevel), value);
         }
 
         public static int shadeScreamLevel
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.shadeScreamLevel));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.shadeScreamLevel), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.shadeScreamLevel), value);
         }
 
         public static int shadeSpecialType
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.shadeSpecialType));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.shadeSpecialType), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.shadeSpecialType), value);
         }
 
         public static UnityEngine.Vector3 shadeMapPos
@@ -314,25 +314,25 @@
         public static int geoPool
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.geoPool));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.geoPool), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.geoPool), value);
         }
 
         public static int nailDamage
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.nailDamage));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.nailDamage), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.nailDamage), value);
         }
 
         public static int nailRange
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.nailRange));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.nailRange), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.nailRange), value);
         }
 
         public static int beamDamage
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.beamDamage));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.beamDamage), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.beamDamage), value);
         }
 
         public static bool canDash
@@ -374,19 +374,19 @@
         public static int fireballLevel
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.fireballLevel));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.fireballLevel), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.fireballLevel), value);
         }
 
         public static int quakeLevel
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.quakeLevel));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.quakeLevel), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.quakeLevel), value);
         }
 
         public static int screamLevel
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.screamLevel));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.screamLevel), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.screamLevel), value);
         }
 
         public static bool hasNailArt
@@ -440,13 +440,13 @@
         public static int dreamOrbs
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.dreamOrbs));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.dreamOrbs), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.dreamOrbs), value);
         }
 
         public static int dreamOrbsSpent
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.dreamOrbsSpent));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.dreamOrbsSpent), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.dreamOrbsSpent), value);
         }
 
         public static string dreamGateScene
@@ -590,13 +590,13 @@
         public static int ghostCoins
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.ghostCoins));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.ghostCoins), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.ghostCoins), value);
         }
 
         public static int ore
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.ore));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.ore), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.ore), value);
         }
 
         public static bool foundGhostCoin
@@ -608,7 +608,7 @@
         public static int trinket1
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.trinket1));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.trinket1), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.trinket1), value);
         }
 
         public static bool foundTrinket1
@@ -620,7 +620,7 @@
         public static int trinket2
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.trinket2));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.trinket2), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.trinket2), value);
         }
 
         public static bool foundTrinket2
@@ -632,7 +632,7 @@
         public static int trinket3
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.trinket3));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.trinket3), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.trinket3), value);
         }
 
         public static bool foundTrinket3
@@ -644,7 +644,7 @@
         public static int trinket4
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.trinket4));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.trinket4), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.trinket4), value);
         }
 
         public static bool foundTrinket4
@@ -680,37 +680,37 @@
         public static int soldTrinket1
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.soldTrinket1));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.soldTrinket1), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.soldTrinket1), value);
         }
 
         public static int soldTrinket2
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.soldTrinket2));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.soldTrinket2), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.soldTrinket2), value);
         }
 
         public static int soldTrinket3
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.soldTrinket3));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.soldTrinket3), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.soldTrinket3), value);
         }
 
         public static int soldTrinket4
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.soldTrinket4));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.soldTrinket4), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.soldTrinket4), value);
         }
 
         public static int simpleKeys
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.simpleKeys));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.simpleKeys), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.simpleKeys), value);
         }
 
         public static int rancidEggs
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.rancidEggs));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.rancidEggs), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.rancidEggs), value);
         }
 
         public static bool notchShroomOgres
@@ -782,7 +782,7 @@
         public static int guardiansDefeated
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.guardiansDefeated));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.guardiansDefeated), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.guardiansDefeated), value);
         }
 
         public static bool lurienDefeated
@@ -824,13 +824,13 @@
         public static int maskToBreak
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.maskToBreak));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.maskToBreak), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.maskToBreak), value);
         }
 
         public static int elderbug
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.elderbug));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.elderbug), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.elderbug), value);
         }
 
         public static bool metElderbug
@@ -848,7 +848,7 @@
         public static int elderbugHistory
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.elderbugHistory));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.elderbugHistory), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.elderbugHistory), value);
         }
 
         public static bool elderbugHistory1
@@ -956,25 +956,25 @@
         public static int quirrelEggTemple
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.quirrelEggTemple));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.quirrelEggTemple), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.quirrelEggTemple), value);
         }
 
         public static int quirrelSlugShrine
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.quirrelSlugShrine));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.quirrelSlugShrine), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.quirrelSlugShrine), value);
         }
 
         public static int quirrelRuins
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.quirrelRuins));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.quirrelRuins), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.quirrelRuins), value);
         }
 
         public static int quirrelMines
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.quirrelMines));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.quirrelMines), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.quirrelMines), value);
         }
 
         public static bool quirrelLeftStation
@@ -1106,7 +1106,7 @@
         public static int cornifer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.cornifer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.cornifer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.cornifer), value);
         }
 
         public static bool metCornifer
@@ -1310,13 +1310,13 @@
         public static int brettaPosition
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.brettaPosition));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.brettaPosition), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.brettaPosition), value);
         }
 
         public static int brettaState
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.brettaState));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.brettaState), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.brettaState), value);
         }
 
         public static bool brettaSeenBench
@@ -1526,13 +1526,13 @@
         public static int jinnEggsSold
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.jinnEggsSold));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.jinnEggsSold), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.jinnEggsSold), value);
         }
 
         public static int zote
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.zote));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.zote), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.zote), value);
         }
 
         public static bool zoteRescuedBuzzer
@@ -1550,7 +1550,7 @@
         public static int zoteDeathPos
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.zoteDeathPos));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.zoteDeathPos), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.zoteDeathPos), value);
         }
 
         public static bool zoteSpokenCity
@@ -1592,19 +1592,19 @@
         public static int zotePrecept
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.zotePrecept));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.zotePrecept), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.zotePrecept), value);
         }
 
         public static int zoteTownConvo
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.zoteTownConvo));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.zoteTownConvo), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.zoteTownConvo), value);
         }
 
         public static int shaman
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.shaman));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.shaman), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.shaman), value);
         }
 
         public static bool shamanScreamConvo
@@ -1646,25 +1646,25 @@
         public static int miner
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.miner));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.miner), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.miner), value);
         }
 
         public static int minerEarly
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.minerEarly));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.minerEarly), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.minerEarly), value);
         }
 
         public static int hornetGreenpath
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.hornetGreenpath));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.hornetGreenpath), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.hornetGreenpath), value);
         }
 
         public static int hornetFung
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.hornetFung));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.hornetFung), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.hornetFung), value);
         }
 
         public static bool hornet_f19
@@ -1814,7 +1814,7 @@
         public static int bankerBalance
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.bankerBalance));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.bankerBalance), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.bankerBalance), value);
         }
 
         public static bool bankerDeclined
@@ -1832,7 +1832,7 @@
         public static int bankerTheft
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.bankerTheft));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.bankerTheft), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.bankerTheft), value);
         }
 
         public static bool bankerSpaMet
@@ -1916,7 +1916,7 @@
         public static int nailSmithUpgrades
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.nailSmithUpgrades));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.nailSmithUpgrades), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.nailSmithUpgrades), value);
         }
 
         public static bool honedNail
@@ -2150,7 +2150,7 @@
         public static int tukEggPrice
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.tukEggPrice));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.tukEggPrice), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.tukEggPrice), value);
         }
 
         public static bool tukDungEgg
@@ -2306,7 +2306,7 @@
         public static int mossCultist
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.mossCultist));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.mossCultist), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.mossCultist), value);
         }
 
         public static bool maskmakerMet
@@ -2510,7 +2510,7 @@
         public static int xunFlowerBrokeTimes
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.xunFlowerBrokeTimes));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.xunFlowerBrokeTimes), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.xunFlowerBrokeTimes), value);
         }
 
         public static bool xunFlowerGiven
@@ -2528,7 +2528,7 @@
         public static int menderState
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.menderState));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.menderState), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.menderState), value);
         }
 
         public static bool menderSignBroken
@@ -2546,7 +2546,7 @@
         public static int mrMushroomState
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.mrMushroomState));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.mrMushroomState), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.mrMushroomState), value);
         }
 
         public static bool openedMapperShop
@@ -2576,13 +2576,13 @@
         public static int stagPosition
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.stagPosition));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.stagPosition), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.stagPosition), value);
         }
 
         public static int stationsOpened
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.stationsOpened));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.stationsOpened), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.stationsOpened), value);
         }
 
         public static bool stagConvoTram
@@ -2768,13 +2768,13 @@
         public static int charmSlots
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmSlots));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmSlots), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmSlots), value);
         }
 
         public static int charmSlotsFilled
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmSlotsFilled));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmSlotsFilled), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmSlotsFilled), value);
         }
 
         public static bool hasCharm
@@ -2798,7 +2798,7 @@
         public static int charmsOwned
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmsOwned));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmsOwned), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmsOwned), value);
         }
 
         public static bool canOvercharm
@@ -2828,7 +2828,7 @@
         public static int charmCost_1
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_1));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_1), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_1), value);
         }
 
         public static bool newCharm_1
@@ -2852,7 +2852,7 @@
         public static int charmCost_2
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_2));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_2), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_2), value);
         }
 
         public static bool newCharm_2
@@ -2876,7 +2876,7 @@
         public static int charmCost_3
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_3));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_3), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_3), value);
         }
 
         public static bool newCharm_3
@@ -2900,7 +2900,7 @@
         public static int charmCost_4
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_4));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_4), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_4), value);
         }
 
         public static bool newCharm_4
@@ -2924,7 +2924,7 @@
         public static int charmCost_5
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_5));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_5), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_5), value);
         }
 
         public static bool newCharm_5
@@ -2948,7 +2948,7 @@
         public static int charmCost_6
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_6));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_6), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_6), value);
         }
 
         public static bool newCharm_6
@@ -2972,7 +2972,7 @@
         public static int charmCost_7
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_7));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_7), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_7), value);
         }
 
         public static bool newCharm_7
@@ -2996,7 +2996,7 @@
         public static int charmCost_8
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_8));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_8), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_8), value);
         }
 
         public static bool newCharm_8
@@ -3020,7 +3020,7 @@
         public static int charmCost_9
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_9));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_9), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_9), value);
         }
 
         public static bool newCharm_9
@@ -3044,7 +3044,7 @@
         public static int charmCost_10
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_10));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_10), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_10), value);
         }
 
         public static bool newCharm_10
@@ -3068,7 +3068,7 @@
         public static int charmCost_11
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_11));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_11), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_11), value);
         }
 
         public static bool newCharm_11
@@ -3092,7 +3092,7 @@
         public static int charmCost_12
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_12));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_12), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_12), value);
         }
 
         public static bool newCharm_12
@@ -3116,7 +3116,7 @@
         public static int charmCost_13
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_13));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_13), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_13), value);
         }
 
         public static bool newCharm_13
@@ -3140,7 +3140,7 @@
         public static int charmCost_14
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_14));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_14), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_14), value);
         }
 
         public static bool newCharm_14
@@ -3164,7 +3164,7 @@
         public static int charmCost_15
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_15));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_15), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_15), value);
         }
 
         public static bool newCharm_15
@@ -3188,7 +3188,7 @@
         public static int charmCost_16
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_16));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_16), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_16), value);
         }
 
         public static bool newCharm_16
@@ -3212,7 +3212,7 @@
         public static int charmCost_17
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_17));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_17), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_17), value);
         }
 
         public static bool newCharm_17
@@ -3236,7 +3236,7 @@
         public static int charmCost_18
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_18));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_18), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_18), value);
         }
 
         public static bool newCharm_18
@@ -3260,7 +3260,7 @@
         public static int charmCost_19
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_19));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_19), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_19), value);
         }
 
         public static bool newCharm_19
@@ -3284,7 +3284,7 @@
         public static int charmCost_20
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_20));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_20), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_20), value);
         }
 
         public static bool newCharm_20
@@ -3308,7 +3308,7 @@
         public static int charmCost_21
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_21));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_21), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_21), value);
         }
 
         public static bool newCharm_21
@@ -3332,7 +3332,7 @@
         public static int charmCost_22
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_22));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_22), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_22), value);
         }
 
         public static bool newCharm_22
@@ -3362,7 +3362,7 @@
         public static int charmCost_23
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_23));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_23), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_23), value);
         }
 
         public static bool newCharm_23
@@ -3392,7 +3392,7 @@
         public static int charmCost_24
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_24));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_24), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_24), value);
         }
 
         public static bool newCharm_24
@@ -3422,7 +3422,7 @@
         public static int charmCost_25
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_25));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_25), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_25), value);
         }
 
         public static bool newCharm_25
@@ -3446,7 +3446,7 @@
         public static int charmCost_26
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_26));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_26), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_26), value);
         }
 
         public static bool newCharm_26
@@ -3470,7 +3470,7 @@
         public static int charmCost_27
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_27));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_27), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_27), value);
         }
 
         public static bool newCharm_27
@@ -3494,7 +3494,7 @@
         public static int charmCost_28
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_28));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_28), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_28), value);
         }
 
         public static bool newCharm_28
@@ -3518,7 +3518,7 @@
         public static int charmCost_29
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_29));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_29), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_29), value);
         }
 
         public static bool newCharm_29
@@ -3542,7 +3542,7 @@
         public static int charmCost_30
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_30));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_30), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_30), value);
         }
 
         public static bool newCharm_30
@@ -3566,7 +3566,7 @@
         public static int charmCost_31
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_31));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_31), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_31), value);
         }
 
         public static bool newCharm_31
@@ -3590,7 +3590,7 @@
         public static int charmCost_32
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_32));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_32), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_32), value);
         }
 
         public static bool newCharm_32
@@ -3614,7 +3614,7 @@
         public static int charmCost_33
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_33));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_33), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_33), value);
         }
 
         public static bool newCharm_33
@@ -3638,7 +3638,7 @@
         public static int charmCost_34
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_34));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_34), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_34), value);
         }
 
         public static bool newCharm_34
@@ -3662,7 +3662,7 @@
         public static int charmCost_35
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_35));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_35), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_35), value);
         }
 
         public static bool newCharm_35
@@ -3686,7 +3686,7 @@
         public static int charmCost_36
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_36));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_36), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_36), value);
         }
 
         public static bool newCharm_36
@@ -3710,7 +3710,7 @@
         public static int charmCost_37
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_37));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_37), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_37), value);
         }
 
         public static bool newCharm_37
@@ -3734,7 +3734,7 @@
         public static int charmCost_38
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_38));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_38), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_38), value);
         }
 
         public static bool newCharm_38
@@ -3758,7 +3758,7 @@
         public static int charmCost_39
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_39));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_39), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_39), value);
         }
 
         public static bool newCharm_39
@@ -3782,7 +3782,7 @@
         public static int charmCost_40
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.charmCost_40));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_40), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.charmCost_40), value);
         }
 
         public static bool newCharm_40
@@ -3812,7 +3812,7 @@
         public static int royalCharmState
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.royalCharmState));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.royalCharmState), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.royalCharmState), value);
         }
 
         public static bool hasJournal
@@ -3824,7 +3824,7 @@
         public static int lastJournalItem
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.lastJournalItem));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.lastJournalItem), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.lastJournalItem), value);
         }
 
         public static bool killedDummy
@@ -3836,7 +3836,7 @@
         public static int killsDummy
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsDummy));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsDummy), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsDummy), value);
         }
 
         public static bool newDataDummy
@@ -3866,19 +3866,19 @@
         public static int journalEntriesCompleted
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.journalEntriesCompleted));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.journalEntriesCompleted), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.journalEntriesCompleted), value);
         }
 
         public static int journalNotesCompleted
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.journalNotesCompleted));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.journalNotesCompleted), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.journalNotesCompleted), value);
         }
 
         public static int journalEntriesTotal
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.journalEntriesTotal));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.journalEntriesTotal), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.journalEntriesTotal), value);
         }
 
         public static bool killedCrawler
@@ -3890,7 +3890,7 @@
         public static int killsCrawler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsCrawler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsCrawler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsCrawler), value);
         }
 
         public static bool newDataCrawler
@@ -3908,7 +3908,7 @@
         public static int killsBuzzer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBuzzer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBuzzer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBuzzer), value);
         }
 
         public static bool newDataBuzzer
@@ -3926,7 +3926,7 @@
         public static int killsBouncer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBouncer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBouncer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBouncer), value);
         }
 
         public static bool newDataBouncer
@@ -3944,7 +3944,7 @@
         public static int killsClimber
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsClimber));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsClimber), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsClimber), value);
         }
 
         public static bool newDataClimber
@@ -3962,7 +3962,7 @@
         public static int killsHopper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHopper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHopper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHopper), value);
         }
 
         public static bool newDataHopper
@@ -3980,7 +3980,7 @@
         public static int killsWorm
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsWorm));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsWorm), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsWorm), value);
         }
 
         public static bool newDataWorm
@@ -3998,7 +3998,7 @@
         public static int killsSpitter
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSpitter));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSpitter), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSpitter), value);
         }
 
         public static bool newDataSpitter
@@ -4016,7 +4016,7 @@
         public static int killsHatcher
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHatcher));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHatcher), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHatcher), value);
         }
 
         public static bool newDataHatcher
@@ -4034,7 +4034,7 @@
         public static int killsHatchling
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHatchling));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHatchling), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHatchling), value);
         }
 
         public static bool newDataHatchling
@@ -4052,7 +4052,7 @@
         public static int killsZombieRunner
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZombieRunner));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieRunner), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieRunner), value);
         }
 
         public static bool newDataZombieRunner
@@ -4070,7 +4070,7 @@
         public static int killsZombieHornhead
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZombieHornhead));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieHornhead), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieHornhead), value);
         }
 
         public static bool newDataZombieHornhead
@@ -4088,7 +4088,7 @@
         public static int killsZombieLeaper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZombieLeaper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieLeaper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieLeaper), value);
         }
 
         public static bool newDataZombieLeaper
@@ -4106,7 +4106,7 @@
         public static int killsZombieBarger
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZombieBarger));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieBarger), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieBarger), value);
         }
 
         public static bool newDataZombieBarger
@@ -4124,7 +4124,7 @@
         public static int killsZombieShield
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZombieShield));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieShield), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieShield), value);
         }
 
         public static bool newDataZombieShield
@@ -4142,7 +4142,7 @@
         public static int killsZombieGuard
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZombieGuard));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieGuard), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieGuard), value);
         }
 
         public static bool newDataZombieGuard
@@ -4160,7 +4160,7 @@
         public static int killsBigBuzzer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBigBuzzer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBigBuzzer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBigBuzzer), value);
         }
 
         public static bool newDataBigBuzzer
@@ -4178,7 +4178,7 @@
         public static int killsBigFly
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBigFly));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBigFly), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBigFly), value);
         }
 
         public static bool newDataBigFly
@@ -4196,7 +4196,7 @@
         public static int killsMawlek
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMawlek));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMawlek), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMawlek), value);
         }
 
         public static bool newDataMawlek
@@ -4214,7 +4214,7 @@
         public static int killsFalseKnight
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFalseKnight));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFalseKnight), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFalseKnight), value);
         }
 
         public static bool newDataFalseKnight
@@ -4232,7 +4232,7 @@
         public static int killsRoller
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsRoller));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoller), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoller), value);
         }
 
         public static bool newDataRoller
@@ -4250,7 +4250,7 @@
         public static int killsBlocker
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBlocker));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlocker), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlocker), value);
         }
 
         public static bool newDataBlocker
@@ -4268,7 +4268,7 @@
         public static int killsPrayerSlug
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsPrayerSlug));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsPrayerSlug), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsPrayerSlug), value);
         }
 
         public static bool newDataPrayerSlug
@@ -4286,7 +4286,7 @@
         public static int killsMenderBug
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMenderBug));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMenderBug), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMenderBug), value);
         }
 
         public static bool newDataMenderBug
@@ -4304,7 +4304,7 @@
         public static int killsMossmanRunner
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMossmanRunner));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossmanRunner), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossmanRunner), value);
         }
 
         public static bool newDataMossmanRunner
@@ -4322,7 +4322,7 @@
         public static int killsMossmanShaker
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMossmanShaker));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossmanShaker), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossmanShaker), value);
         }
 
         public static bool newDataMossmanShaker
@@ -4340,7 +4340,7 @@
         public static int killsMosquito
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMosquito));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMosquito), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMosquito), value);
         }
 
         public static bool newDataMosquito
@@ -4358,7 +4358,7 @@
         public static int killsBlobFlyer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBlobFlyer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlobFlyer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlobFlyer), value);
         }
 
         public static bool newDataBlobFlyer
@@ -4376,7 +4376,7 @@
         public static int killsFungifiedZombie
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFungifiedZombie));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFungifiedZombie), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFungifiedZombie), value);
         }
 
         public static bool newDataFungifiedZombie
@@ -4394,7 +4394,7 @@
         public static int killsPlantShooter
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsPlantShooter));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsPlantShooter), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsPlantShooter), value);
         }
 
         public static bool newDataPlantShooter
@@ -4412,7 +4412,7 @@
         public static int killsMossCharger
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMossCharger));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossCharger), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossCharger), value);
         }
 
         public static bool newDataMossCharger
@@ -4430,7 +4430,7 @@
         public static int killsMegaMossCharger
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMegaMossCharger));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMegaMossCharger), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMegaMossCharger), value);
         }
 
         public static bool newDataMegaMossCharger
@@ -4448,7 +4448,7 @@
         public static int killsSnapperTrap
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSnapperTrap));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSnapperTrap), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSnapperTrap), value);
         }
 
         public static bool newDataSnapperTrap
@@ -4466,7 +4466,7 @@
         public static int killsMossKnight
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMossKnight));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossKnight), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossKnight), value);
         }
 
         public static bool newDataMossKnight
@@ -4484,7 +4484,7 @@
         public static int killsGrassHopper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGrassHopper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGrassHopper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGrassHopper), value);
         }
 
         public static bool newDataGrassHopper
@@ -4502,7 +4502,7 @@
         public static int killsAcidFlyer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsAcidFlyer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsAcidFlyer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsAcidFlyer), value);
         }
 
         public static bool newDataAcidFlyer
@@ -4520,7 +4520,7 @@
         public static int killsAcidWalker
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsAcidWalker));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsAcidWalker), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsAcidWalker), value);
         }
 
         public static bool newDataAcidWalker
@@ -4538,7 +4538,7 @@
         public static int killsMossFlyer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMossFlyer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossFlyer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossFlyer), value);
         }
 
         public static bool newDataMossFlyer
@@ -4556,7 +4556,7 @@
         public static int killsMossKnightFat
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMossKnightFat));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossKnightFat), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossKnightFat), value);
         }
 
         public static bool newDataMossKnightFat
@@ -4574,7 +4574,7 @@
         public static int killsMossWalker
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMossWalker));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossWalker), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMossWalker), value);
         }
 
         public static bool newDataMossWalker
@@ -4592,7 +4592,7 @@
         public static int killsInfectedKnight
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsInfectedKnight));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsInfectedKnight), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsInfectedKnight), value);
         }
 
         public static bool newDataInfectedKnight
@@ -4610,7 +4610,7 @@
         public static int killsLazyFlyer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsLazyFlyer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsLazyFlyer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsLazyFlyer), value);
         }
 
         public static bool newDataLazyFlyer
@@ -4628,7 +4628,7 @@
         public static int killsZapBug
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZapBug));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZapBug), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZapBug), value);
         }
 
         public static bool newDataZapBug
@@ -4646,7 +4646,7 @@
         public static int killsJellyfish
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsJellyfish));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsJellyfish), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsJellyfish), value);
         }
 
         public static bool newDataJellyfish
@@ -4664,7 +4664,7 @@
         public static int killsJellyCrawler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsJellyCrawler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsJellyCrawler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsJellyCrawler), value);
         }
 
         public static bool newDataJellyCrawler
@@ -4682,7 +4682,7 @@
         public static int killsMegaJellyfish
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMegaJellyfish));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMegaJellyfish), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMegaJellyfish), value);
         }
 
         public static bool newDataMegaJellyfish
@@ -4700,7 +4700,7 @@
         public static int killsFungoonBaby
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFungoonBaby));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFungoonBaby), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFungoonBaby), value);
         }
 
         public static bool newDataFungoonBaby
@@ -4718,7 +4718,7 @@
         public static int killsMushroomTurret
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMushroomTurret));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMushroomTurret), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMushroomTurret), value);
         }
 
         public static bool newDataMushroomTurret
@@ -4736,7 +4736,7 @@
         public static int killsMantis
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMantis));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMantis), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMantis), value);
         }
 
         public static bool newDataMantis
@@ -4754,7 +4754,7 @@
         public static int killsMushroomRoller
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMushroomRoller));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMushroomRoller), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMushroomRoller), value);
         }
 
         public static bool newDataMushroomRoller
@@ -4772,7 +4772,7 @@
         public static int killsMushroomBrawler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMushroomBrawler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMushroomBrawler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMushroomBrawler), value);
         }
 
         public static bool newDataMushroomBrawler
@@ -4790,7 +4790,7 @@
         public static int killsMushroomBaby
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMushroomBaby));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMushroomBaby), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMushroomBaby), value);
         }
 
         public static bool newDataMushroomBaby
@@ -4808,7 +4808,7 @@
         public static int killsMantisFlyerChild
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMantisFlyerChild));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMantisFlyerChild), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMantisFlyerChild), value);
         }
 
         public static bool newDataMantisFlyerChild
@@ -4826,7 +4826,7 @@
         public static int killsFungusFlyer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFungusFlyer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFungusFlyer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFungusFlyer), value);
         }
 
         public static bool newDataFungusFlyer
@@ -4844,7 +4844,7 @@
         public static int killsFungCrawler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFungCrawler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFungCrawler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFungCrawler), value);
         }
 
         public static bool newDataFungCrawler
@@ -4862,7 +4862,7 @@
         public static int killsMantisLord
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMantisLord));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMantisLord), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMantisLord), value);
         }
 
         public static bool newDataMantisLord
@@ -4880,7 +4880,7 @@
         public static int killsBlackKnight
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBlackKnight));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlackKnight), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlackKnight), value);
         }
 
         public static bool newDataBlackKnight
@@ -4898,7 +4898,7 @@
         public static int killsElectricMage
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsElectricMage));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsElectricMage), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsElectricMage), value);
         }
 
         public static bool newDataElectricMage
@@ -4916,7 +4916,7 @@
         public static int killsMage
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMage));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMage), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMage), value);
         }
 
         public static bool newDataMage
@@ -4934,7 +4934,7 @@
         public static int killsMageKnight
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMageKnight));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMageKnight), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMageKnight), value);
         }
 
         public static bool newDataMageKnight
@@ -4952,7 +4952,7 @@
         public static int killsRoyalDandy
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsRoyalDandy));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoyalDandy), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoyalDandy), value);
         }
 
         public static bool newDataRoyalDandy
@@ -4970,7 +4970,7 @@
         public static int killsRoyalCoward
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsRoyalCoward));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoyalCoward), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoyalCoward), value);
         }
 
         public static bool newDataRoyalCoward
@@ -4988,7 +4988,7 @@
         public static int killsRoyalPlumper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsRoyalPlumper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoyalPlumper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoyalPlumper), value);
         }
 
         public static bool newDataRoyalPlumper
@@ -5006,7 +5006,7 @@
         public static int killsFlyingSentrySword
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlyingSentrySword));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlyingSentrySword), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlyingSentrySword), value);
         }
 
         public static bool newDataFlyingSentrySword
@@ -5024,7 +5024,7 @@
         public static int killsFlyingSentryJavelin
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlyingSentryJavelin));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlyingSentryJavelin), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlyingSentryJavelin), value);
         }
 
         public static bool newDataFlyingSentryJavelin
@@ -5042,7 +5042,7 @@
         public static int killsSentry
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSentry));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSentry), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSentry), value);
         }
 
         public static bool newDataSentry
@@ -5060,7 +5060,7 @@
         public static int killsSentryFat
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSentryFat));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSentryFat), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSentryFat), value);
         }
 
         public static bool newDataSentryFat
@@ -5078,7 +5078,7 @@
         public static int killsMageBlob
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMageBlob));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMageBlob), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMageBlob), value);
         }
 
         public static bool newDataMageBlob
@@ -5096,7 +5096,7 @@
         public static int killsGreatShieldZombie
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGreatShieldZombie));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGreatShieldZombie), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGreatShieldZombie), value);
         }
 
         public static bool newDataGreatShieldZombie
@@ -5114,7 +5114,7 @@
         public static int killsJarCollector
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsJarCollector));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsJarCollector), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsJarCollector), value);
         }
 
         public static bool newDataJarCollector
@@ -5132,7 +5132,7 @@
         public static int killsMageBalloon
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMageBalloon));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMageBalloon), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMageBalloon), value);
         }
 
         public static bool newDataMageBalloon
@@ -5150,7 +5150,7 @@
         public static int killsMageLord
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMageLord));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMageLord), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMageLord), value);
         }
 
         public static bool newDataMageLord
@@ -5168,7 +5168,7 @@
         public static int killsGorgeousHusk
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGorgeousHusk));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGorgeousHusk), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGorgeousHusk), value);
         }
 
         public static bool newDataGorgeousHusk
@@ -5186,7 +5186,7 @@
         public static int killsFlipHopper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlipHopper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlipHopper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlipHopper), value);
         }
 
         public static bool newDataFlipHopper
@@ -5204,7 +5204,7 @@
         public static int killsFlukeman
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlukeman));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlukeman), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlukeman), value);
         }
 
         public static bool newDataFlukeman
@@ -5222,7 +5222,7 @@
         public static int killsInflater
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsInflater));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsInflater), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsInflater), value);
         }
 
         public static bool newDataInflater
@@ -5240,7 +5240,7 @@
         public static int killsFlukefly
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlukefly));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlukefly), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlukefly), value);
         }
 
         public static bool newDataFlukefly
@@ -5258,7 +5258,7 @@
         public static int killsFlukeMother
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlukeMother));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlukeMother), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlukeMother), value);
         }
 
         public static bool newDataFlukeMother
@@ -5276,7 +5276,7 @@
         public static int killsDungDefender
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsDungDefender));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsDungDefender), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsDungDefender), value);
         }
 
         public static bool newDataDungDefender
@@ -5294,7 +5294,7 @@
         public static int killsCrystalCrawler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsCrystalCrawler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsCrystalCrawler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsCrystalCrawler), value);
         }
 
         public static bool newDataCrystalCrawler
@@ -5312,7 +5312,7 @@
         public static int killsCrystalFlyer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsCrystalFlyer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsCrystalFlyer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsCrystalFlyer), value);
         }
 
         public static bool newDataCrystalFlyer
@@ -5330,7 +5330,7 @@
         public static int killsLaserBug
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsLaserBug));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsLaserBug), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsLaserBug), value);
         }
 
         public static bool newDataLaserBug
@@ -5348,7 +5348,7 @@
         public static int killsBeamMiner
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBeamMiner));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBeamMiner), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBeamMiner), value);
         }
 
         public static bool newDataBeamMiner
@@ -5366,7 +5366,7 @@
         public static int killsZombieMiner
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZombieMiner));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieMiner), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieMiner), value);
         }
 
         public static bool newDataZombieMiner
@@ -5384,7 +5384,7 @@
         public static int killsMegaBeamMiner
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMegaBeamMiner));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMegaBeamMiner), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMegaBeamMiner), value);
         }
 
         public static bool newDataMegaBeamMiner
@@ -5402,7 +5402,7 @@
         public static int killsMinesCrawler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMinesCrawler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMinesCrawler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMinesCrawler), value);
         }
 
         public static bool newDataMinesCrawler
@@ -5420,7 +5420,7 @@
         public static int killsAngryBuzzer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsAngryBuzzer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsAngryBuzzer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsAngryBuzzer), value);
         }
 
         public static bool newDataAngryBuzzer
@@ -5438,7 +5438,7 @@
         public static int killsBurstingBouncer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBurstingBouncer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBurstingBouncer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBurstingBouncer), value);
         }
 
         public static bool newDataBurstingBouncer
@@ -5456,7 +5456,7 @@
         public static int killsBurstingZombie
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBurstingZombie));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBurstingZombie), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBurstingZombie), value);
         }
 
         public static bool newDataBurstingZombie
@@ -5474,7 +5474,7 @@
         public static int killsSpittingZombie
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSpittingZombie));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSpittingZombie), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSpittingZombie), value);
         }
 
         public static bool newDataSpittingZombie
@@ -5492,7 +5492,7 @@
         public static int killsBabyCentipede
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBabyCentipede));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBabyCentipede), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBabyCentipede), value);
         }
 
         public static bool newDataBabyCentipede
@@ -5510,7 +5510,7 @@
         public static int killsBigCentipede
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBigCentipede));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBigCentipede), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBigCentipede), value);
         }
 
         public static bool newDataBigCentipede
@@ -5528,7 +5528,7 @@
         public static int killsCentipedeHatcher
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsCentipedeHatcher));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsCentipedeHatcher), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsCentipedeHatcher), value);
         }
 
         public static bool newDataCentipedeHatcher
@@ -5546,7 +5546,7 @@
         public static int killsLesserMawlek
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsLesserMawlek));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsLesserMawlek), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsLesserMawlek), value);
         }
 
         public static bool newDataLesserMawlek
@@ -5564,7 +5564,7 @@
         public static int killsSlashSpider
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSlashSpider));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSlashSpider), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSlashSpider), value);
         }
 
         public static bool newDataSlashSpider
@@ -5582,7 +5582,7 @@
         public static int killsSpiderCorpse
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSpiderCorpse));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSpiderCorpse), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSpiderCorpse), value);
         }
 
         public static bool newDataSpiderCorpse
@@ -5600,7 +5600,7 @@
         public static int killsShootSpider
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsShootSpider));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsShootSpider), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsShootSpider), value);
         }
 
         public static bool newDataShootSpider
@@ -5618,7 +5618,7 @@
         public static int killsMiniSpider
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMiniSpider));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMiniSpider), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMiniSpider), value);
         }
 
         public static bool newDataMiniSpider
@@ -5636,7 +5636,7 @@
         public static int killsSpiderFlyer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSpiderFlyer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSpiderFlyer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSpiderFlyer), value);
         }
 
         public static bool newDataSpiderFlyer
@@ -5654,7 +5654,7 @@
         public static int killsMimicSpider
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMimicSpider));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMimicSpider), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMimicSpider), value);
         }
 
         public static bool newDataMimicSpider
@@ -5672,7 +5672,7 @@
         public static int killsBeeHatchling
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBeeHatchling));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBeeHatchling), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBeeHatchling), value);
         }
 
         public static bool newDataBeeHatchling
@@ -5690,7 +5690,7 @@
         public static int killsBeeStinger
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBeeStinger));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBeeStinger), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBeeStinger), value);
         }
 
         public static bool newDataBeeStinger
@@ -5708,7 +5708,7 @@
         public static int killsBigBee
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBigBee));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBigBee), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBigBee), value);
         }
 
         public static bool newDataBigBee
@@ -5726,7 +5726,7 @@
         public static int killsHiveKnight
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHiveKnight));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHiveKnight), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHiveKnight), value);
         }
 
         public static bool newDataHiveKnight
@@ -5744,7 +5744,7 @@
         public static int killsBlowFly
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBlowFly));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlowFly), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlowFly), value);
         }
 
         public static bool newDataBlowFly
@@ -5762,7 +5762,7 @@
         public static int killsCeilingDropper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsCeilingDropper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsCeilingDropper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsCeilingDropper), value);
         }
 
         public static bool newDataCeilingDropper
@@ -5780,7 +5780,7 @@
         public static int killsGiantHopper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGiantHopper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGiantHopper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGiantHopper), value);
         }
 
         public static bool newDataGiantHopper
@@ -5798,7 +5798,7 @@
         public static int killsGrubMimic
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGrubMimic));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGrubMimic), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGrubMimic), value);
         }
 
         public static bool newDataGrubMimic
@@ -5816,7 +5816,7 @@
         public static int killsMawlekTurret
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMawlekTurret));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMawlekTurret), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMawlekTurret), value);
         }
 
         public static bool newDataMawlekTurret
@@ -5834,7 +5834,7 @@
         public static int killsOrangeScuttler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsOrangeScuttler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsOrangeScuttler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsOrangeScuttler), value);
         }
 
         public static bool newDataOrangeScuttler
@@ -5852,7 +5852,7 @@
         public static int killsHealthScuttler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHealthScuttler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHealthScuttler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHealthScuttler), value);
         }
 
         public static bool newDataHealthScuttler
@@ -5870,7 +5870,7 @@
         public static int killsPigeon
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsPigeon));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsPigeon), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsPigeon), value);
         }
 
         public static bool newDataPigeon
@@ -5888,7 +5888,7 @@
         public static int killsZombieHive
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZombieHive));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieHive), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZombieHive), value);
         }
 
         public static bool newDataZombieHive
@@ -5906,7 +5906,7 @@
         public static int killsDreamGuard
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsDreamGuard));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsDreamGuard), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsDreamGuard), value);
         }
 
         public static bool newDataDreamGuard
@@ -5924,7 +5924,7 @@
         public static int killsHornet
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHornet));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHornet), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHornet), value);
         }
 
         public static bool newDataHornet
@@ -5942,7 +5942,7 @@
         public static int killsAbyssCrawler
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsAbyssCrawler));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsAbyssCrawler), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsAbyssCrawler), value);
         }
 
         public static bool newDataAbyssCrawler
@@ -5960,7 +5960,7 @@
         public static int killsSuperSpitter
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSuperSpitter));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSuperSpitter), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSuperSpitter), value);
         }
 
         public static bool newDataSuperSpitter
@@ -5978,7 +5978,7 @@
         public static int killsSibling
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsSibling));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsSibling), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsSibling), value);
         }
 
         public static bool newDataSibling
@@ -5996,7 +5996,7 @@
         public static int killsPalaceFly
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsPalaceFly));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsPalaceFly), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsPalaceFly), value);
         }
 
         public static bool newDataPalaceFly
@@ -6014,7 +6014,7 @@
         public static int killsEggSac
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsEggSac));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsEggSac), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsEggSac), value);
         }
 
         public static bool newDataEggSac
@@ -6032,7 +6032,7 @@
         public static int killsMummy
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMummy));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMummy), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMummy), value);
         }
 
         public static bool newDataMummy
@@ -6050,7 +6050,7 @@
         public static int killsOrangeBalloon
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsOrangeBalloon));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsOrangeBalloon), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsOrangeBalloon), value);
         }
 
         public static bool newDataOrangeBalloon
@@ -6068,7 +6068,7 @@
         public static int killsAbyssTendril
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsAbyssTendril));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsAbyssTendril), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsAbyssTendril), value);
         }
 
         public static bool newDataAbyssTendril
@@ -6086,7 +6086,7 @@
         public static int killsHeavyMantis
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHeavyMantis));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHeavyMantis), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHeavyMantis), value);
         }
 
         public static bool newDataHeavyMantis
@@ -6104,7 +6104,7 @@
         public static int killsTraitorLord
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsTraitorLord));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsTraitorLord), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsTraitorLord), value);
         }
 
         public static bool newDataTraitorLord
@@ -6122,7 +6122,7 @@
         public static int killsMantisHeavyFlyer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsMantisHeavyFlyer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsMantisHeavyFlyer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsMantisHeavyFlyer), value);
         }
 
         public static bool newDataMantisHeavyFlyer
@@ -6140,7 +6140,7 @@
         public static int killsGardenZombie
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGardenZombie));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGardenZombie), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGardenZombie), value);
         }
 
         public static bool newDataGardenZombie
@@ -6158,7 +6158,7 @@
         public static int killsRoyalGuard
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsRoyalGuard));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoyalGuard), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsRoyalGuard), value);
         }
 
         public static bool newDataRoyalGuard
@@ -6176,7 +6176,7 @@
         public static int killsWhiteRoyal
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsWhiteRoyal));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsWhiteRoyal), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsWhiteRoyal), value);
         }
 
         public static bool newDataWhiteRoyal
@@ -6200,7 +6200,7 @@
         public static int killsOblobble
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsOblobble));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsOblobble), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsOblobble), value);
         }
 
         public static bool newDataOblobble
@@ -6218,7 +6218,7 @@
         public static int killsZote
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZote));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZote), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZote), value);
         }
 
         public static bool newDataZote
@@ -6236,7 +6236,7 @@
         public static int killsBlobble
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBlobble));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlobble), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBlobble), value);
         }
 
         public static bool newDataBlobble
@@ -6254,7 +6254,7 @@
         public static int killsColMosquito
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsColMosquito));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsColMosquito), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsColMosquito), value);
         }
 
         public static bool newDataColMosquito
@@ -6272,7 +6272,7 @@
         public static int killsColRoller
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsColRoller));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsColRoller), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsColRoller), value);
         }
 
         public static bool newDataColRoller
@@ -6290,7 +6290,7 @@
         public static int killsColFlyingSentry
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsColFlyingSentry));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsColFlyingSentry), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsColFlyingSentry), value);
         }
 
         public static bool newDataColFlyingSentry
@@ -6308,7 +6308,7 @@
         public static int killsColMiner
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsColMiner));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsColMiner), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsColMiner), value);
         }
 
         public static bool newDataColMiner
@@ -6326,7 +6326,7 @@
         public static int killsColShield
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsColShield));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsColShield), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsColShield), value);
         }
 
         public static bool newDataColShield
@@ -6344,7 +6344,7 @@
         public static int killsColWorm
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsColWorm));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsColWorm), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsColWorm), value);
         }
 
         public static bool newDataColWorm
@@ -6362,7 +6362,7 @@
         public static int killsColHopper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsColHopper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsColHopper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsColHopper), value);
         }
 
         public static bool newDataColHopper
@@ -6380,7 +6380,7 @@
         public static int killsLobsterLancer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsLobsterLancer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsLobsterLancer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsLobsterLancer), value);
         }
 
         public static bool newDataLobsterLancer
@@ -6398,7 +6398,7 @@
         public static int killsGhostAladar
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGhostAladar));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostAladar), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostAladar), value);
         }
 
         public static bool newDataGhostAladar
@@ -6416,7 +6416,7 @@
         public static int killsGhostXero
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGhostXero));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostXero), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostXero), value);
         }
 
         public static bool newDataGhostXero
@@ -6434,7 +6434,7 @@
         public static int killsGhostHu
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGhostHu));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostHu), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostHu), value);
         }
 
         public static bool newDataGhostHu
@@ -6452,7 +6452,7 @@
         public static int killsGhostMarmu
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGhostMarmu));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostMarmu), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostMarmu), value);
         }
 
         public static bool newDataGhostMarmu
@@ -6470,7 +6470,7 @@
         public static int killsGhostNoEyes
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGhostNoEyes));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostNoEyes), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostNoEyes), value);
         }
 
         public static bool newDataGhostNoEyes
@@ -6488,7 +6488,7 @@
         public static int killsGhostMarkoth
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGhostMarkoth));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostMarkoth), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostMarkoth), value);
         }
 
         public static bool newDataGhostMarkoth
@@ -6506,7 +6506,7 @@
         public static int killsGhostGalien
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGhostGalien));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostGalien), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGhostGalien), value);
         }
 
         public static bool newDataGhostGalien
@@ -6524,7 +6524,7 @@
         public static int killsWhiteDefender
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsWhiteDefender));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsWhiteDefender), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsWhiteDefender), value);
         }
 
         public static bool newDataWhiteDefender
@@ -6542,7 +6542,7 @@
         public static int killsGreyPrince
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGreyPrince));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGreyPrince), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGreyPrince), value);
         }
 
         public static bool newDataGreyPrince
@@ -6560,7 +6560,7 @@
         public static int killsZotelingBalloon
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZotelingBalloon));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZotelingBalloon), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZotelingBalloon), value);
         }
 
         public static bool newDataZotelingBalloon
@@ -6578,7 +6578,7 @@
         public static int killsZotelingHopper
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZotelingHopper));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZotelingHopper), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZotelingHopper), value);
         }
 
         public static bool newDataZotelingHopper
@@ -6596,7 +6596,7 @@
         public static int killsZotelingBuzzer
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsZotelingBuzzer));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsZotelingBuzzer), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsZotelingBuzzer), value);
         }
 
         public static bool newDataZotelingBuzzer
@@ -6614,7 +6614,7 @@
         public static int killsHollowKnight
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHollowKnight));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHollowKnight), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHollowKnight), value);
         }
 
         public static bool newDataHollowKnight
@@ -6632,7 +6632,7 @@
         public static int killsFinalBoss
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFinalBoss));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFinalBoss), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFinalBoss), value);
         }
 
         public static bool newDataFinalBoss
@@ -6650,7 +6650,7 @@
         public static int killsHunterMark
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHunterMark));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHunterMark), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHunterMark), value);
         }
 
         public static bool newDataHunterMark
@@ -6668,7 +6668,7 @@
         public static int killsFlameBearerSmall
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlameBearerSmall));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlameBearerSmall), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlameBearerSmall), value);
         }
 
         public static bool newDataFlameBearerSmall
@@ -6686,7 +6686,7 @@
         public static int killsFlameBearerMed
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlameBearerMed));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlameBearerMed), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlameBearerMed), value);
         }
 
         public static bool newDataFlameBearerMed
@@ -6704,7 +6704,7 @@
         public static int killsFlameBearerLarge
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFlameBearerLarge));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlameBearerLarge), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFlameBearerLarge), value);
         }
 
         public static bool newDataFlameBearerLarge
@@ -6722,7 +6722,7 @@
         public static int killsGrimm
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGrimm));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGrimm), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGrimm), value);
         }
 
         public static bool newDataGrimm
@@ -6740,7 +6740,7 @@
         public static int killsNightmareGrimm
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsNightmareGrimm));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsNightmareGrimm), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsNightmareGrimm), value);
         }
 
         public static bool newDataNightmareGrimm
@@ -6758,7 +6758,7 @@
         public static int killsBindingSeal
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsBindingSeal));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsBindingSeal), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsBindingSeal), value);
         }
 
         public static bool newDataBindingSeal
@@ -6776,7 +6776,7 @@
         public static int killsFatFluke
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsFatFluke));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsFatFluke), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsFatFluke), value);
         }
 
         public static bool newDataFatFluke
@@ -6794,7 +6794,7 @@
         public static int killsPaleLurker
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsPaleLurker));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsPaleLurker), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsPaleLurker), value);
         }
 
         public static bool newDataPaleLurker
@@ -6812,7 +6812,7 @@
         public static int killsNailBros
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsNailBros));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsNailBros), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsNailBros), value);
         }
 
         public static bool newDataNailBros
@@ -6830,7 +6830,7 @@
         public static int killsPaintmaster
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsPaintmaster));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsPaintmaster), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsPaintmaster), value);
         }
 
         public static bool newDataPaintmaster
@@ -6848,7 +6848,7 @@
         public static int killsNailsage
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsNailsage));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsNailsage), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsNailsage), value);
         }
 
         public static bool newDataNailsage
@@ -6866,7 +6866,7 @@
         public static int killsHollowKnightPrime
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsHollowKnightPrime));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsHollowKnightPrime), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsHollowKnightPrime), value);
         }
 
         public static bool newDataHollowKnightPrime
@@ -6884,7 +6884,7 @@
         public static int killsGodseekerMask
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsGodseekerMask));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsGodseekerMask), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsGodseekerMask), value);
         }
 
         public static bool newDataGodseekerMask
@@ -6902,7 +6902,7 @@
         public static int killsVoidIdol_1
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsVoidIdol_1));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsVoidIdol_1), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsVoidIdol_1), value);
         }
 
         public static bool newDataVoidIdol_1
@@ -6920,7 +6920,7 @@
         public static int killsVoidIdol_2
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsVoidIdol_2));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsVoidIdol_2), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsVoidIdol_2), value);
         }
 
         public static bool newDataVoidIdol_2
@@ -6938,7 +6938,7 @@
         public static int killsVoidIdol_3
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.killsVoidIdol_3));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.killsVoidIdol_3), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.killsVoidIdol_3), value);
         }
 
         public static bool newDataVoidIdol_3
@@ -6950,13 +6950,13 @@
         public static int grubsCollected
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.grubsCollected));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.grubsCollected), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.grubsCollected), value);
         }
 
         public static int grubRewards
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.grubRewards));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.grubRewards), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.grubRewards), value);
         }
 
         public static bool finalGrubRewardCollected
@@ -7076,13 +7076,13 @@
         public static int whiteDefenderDefeats
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.whiteDefenderDefeats));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.whiteDefenderDefeats), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.whiteDefenderDefeats), value);
         }
 
         public static int greyPrinceDefeats
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.greyPrinceDefeats));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.greyPrinceDefeats), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.greyPrinceDefeats), value);
         }
 
         public static bool greyPrinceDefeated
@@ -7100,43 +7100,43 @@
         public static int aladarSlugDefeated
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.aladarSlugDefeated));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.aladarSlugDefeated), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.aladarSlugDefeated), value);
         }
 
         public static int xeroDefeated
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.xeroDefeated));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.xeroDefeated), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.xeroDefeated), value);
         }
 
         public static int elderHuDefeated
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.elderHuDefeated));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.elderHuDefeated), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.elderHuDefeated), value);
         }
 
         public static int mumCaterpillarDefeated
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.mumCaterpillarDefeated));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.mumCaterpillarDefeated), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.mumCaterpillarDefeated), value);
         }
 
         public static int noEyesDefeated
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.noEyesDefeated));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.noEyesDefeated), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.noEyesDefeated), value);
         }
 
         public static int markothDefeated
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.markothDefeated));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.markothDefeated), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.markothDefeated), value);
         }
 
         public static int galienDefeated
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.galienDefeated));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.galienDefeated), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.galienDefeated), value);
         }
 
         public static bool XERO_encountered
@@ -7226,7 +7226,7 @@
         public static int currentInvPane
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.currentInvPane));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.currentInvPane), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.currentInvPane), value);
         }
 
         public static bool showGeoUI
@@ -7292,7 +7292,7 @@
         public static int currentArea
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.currentArea));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.currentArea), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.currentArea), value);
         }
 
         public static bool visitedDirtmouth
@@ -7430,7 +7430,8 @@
         public static List<System.String> scenesEncounteredBench
         {
             get => PlayerData.instance.GetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredBench));
-            set => PlayerData.instance.SetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredBench), value);
+            set => PlayerData.instance.SetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredBench),
+                value);
         }
 
         public static List<System.String> scenesGrubRescued
@@ -7448,19 +7449,23 @@
         public static List<System.String> scenesEncounteredCocoon
         {
             get => PlayerData.instance.GetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredCocoon));
-            set => PlayerData.instance.SetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredCocoon), value);
+            set => PlayerData.instance.SetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredCocoon),
+                value);
         }
 
         public static List<System.String> scenesEncounteredDreamPlant
         {
             get => PlayerData.instance.GetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredDreamPlant));
-            set => PlayerData.instance.SetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredDreamPlant), value);
+            set => PlayerData.instance.SetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredDreamPlant),
+                value);
         }
 
         public static List<System.String> scenesEncounteredDreamPlantC
         {
-            get => PlayerData.instance.GetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredDreamPlantC));
-            set => PlayerData.instance.SetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredDreamPlantC), value);
+            get =>
+                PlayerData.instance.GetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredDreamPlantC));
+            set => PlayerData.instance.SetVariable<List<System.String>>(nameof(PlayerData.scenesEncounteredDreamPlantC),
+                value);
         }
 
         public static bool hasMap
@@ -7670,67 +7675,71 @@
         public static int spareMarkers_r
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.spareMarkers_r));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.spareMarkers_r), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.spareMarkers_r), value);
         }
 
         public static int spareMarkers_b
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.spareMarkers_b));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.spareMarkers_b), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.spareMarkers_b), value);
         }
 
         public static int spareMarkers_y
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.spareMarkers_y));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.spareMarkers_y), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.spareMarkers_y), value);
         }
 
         public static int spareMarkers_w
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.spareMarkers_w));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.spareMarkers_w), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.spareMarkers_w), value);
         }
 
         public static List<UnityEngine.Vector3> placedMarkers_r
         {
             get => PlayerData.instance.GetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_r));
-            set => PlayerData.instance.SetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_r), value);
+            set =>
+                PlayerData.instance.SetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_r), value);
         }
 
         public static List<UnityEngine.Vector3> placedMarkers_b
         {
             get => PlayerData.instance.GetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_b));
-            set => PlayerData.instance.SetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_b), value);
+            set =>
+                PlayerData.instance.SetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_b), value);
         }
 
         public static List<UnityEngine.Vector3> placedMarkers_y
         {
             get => PlayerData.instance.GetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_y));
-            set => PlayerData.instance.SetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_y), value);
+            set =>
+                PlayerData.instance.SetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_y), value);
         }
 
         public static List<UnityEngine.Vector3> placedMarkers_w
         {
             get => PlayerData.instance.GetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_w));
-            set => PlayerData.instance.SetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_w), value);
+            set =>
+                PlayerData.instance.SetVariable<List<UnityEngine.Vector3>>(nameof(PlayerData.placedMarkers_w), value);
         }
 
         public static int environmentType
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.environmentType));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.environmentType), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.environmentType), value);
         }
 
         public static int environmentTypeDefault
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.environmentTypeDefault));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.environmentTypeDefault), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.environmentTypeDefault), value);
         }
 
         public static int previousDarkness
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.previousDarkness));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.previousDarkness), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.previousDarkness), value);
         }
 
         public static bool openedTramLower
@@ -7748,13 +7757,13 @@
         public static int tramLowerPosition
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.tramLowerPosition));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.tramLowerPosition), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.tramLowerPosition), value);
         }
 
         public static int tramRestingGroundsPosition
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.tramRestingGroundsPosition));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.tramRestingGroundsPosition), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.tramRestingGroundsPosition), value);
         }
 
         public static bool mineLiftOpened
@@ -8198,7 +8207,7 @@
         public static int gladeGhostsKilled
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.gladeGhostsKilled));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.gladeGhostsKilled), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.gladeGhostsKilled), value);
         }
 
         public static bool openedGardensStagStation
@@ -8276,7 +8285,7 @@
         public static int fountainGeo
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.fountainGeo));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.fountainGeo), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.fountainGeo), value);
         }
 
         public static bool fountainVesselSummoned
@@ -8366,13 +8375,13 @@
         public static int flamesCollected
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.flamesCollected));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.flamesCollected), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.flamesCollected), value);
         }
 
         public static int flamesRequired
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.flamesRequired));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.flamesRequired), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.flamesRequired), value);
         }
 
         public static bool nightmareLanternAppeared
@@ -8402,7 +8411,7 @@
         public static int grimmChildLevel
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.grimmChildLevel));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.grimmChildLevel), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.grimmChildLevel), value);
         }
 
         public static bool elderbugConvoGrimm
@@ -8582,7 +8591,7 @@
         public static int divineEatenConvos
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.divineEatenConvos));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.divineEatenConvos), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.divineEatenConvos), value);
         }
 
         public static bool pooedFragileHeart
@@ -8630,7 +8639,7 @@
         public static int mapKeyPref
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.mapKeyPref));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.mapKeyPref), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.mapKeyPref), value);
         }
 
         public static List<System.String> playerStory
@@ -8666,37 +8675,42 @@
         public static BossSequenceDoor.Completion bossDoorStateTier1
         {
             get => PlayerData.instance.GetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier1));
-            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier1), value);
+            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier1),
+                value);
         }
 
         public static BossSequenceDoor.Completion bossDoorStateTier2
         {
             get => PlayerData.instance.GetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier2));
-            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier2), value);
+            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier2),
+                value);
         }
 
         public static BossSequenceDoor.Completion bossDoorStateTier3
         {
             get => PlayerData.instance.GetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier3));
-            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier3), value);
+            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier3),
+                value);
         }
 
         public static BossSequenceDoor.Completion bossDoorStateTier4
         {
             get => PlayerData.instance.GetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier4));
-            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier4), value);
+            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier4),
+                value);
         }
 
         public static BossSequenceDoor.Completion bossDoorStateTier5
         {
             get => PlayerData.instance.GetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier5));
-            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier5), value);
+            set => PlayerData.instance.SetVariable<BossSequenceDoor.Completion>(nameof(PlayerData.bossDoorStateTier5),
+                value);
         }
 
         public static int bossStatueTargetLevel
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.bossStatueTargetLevel));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.bossStatueTargetLevel), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.bossStatueTargetLevel), value);
         }
 
         public static string currentBossStatueCompletionKey
@@ -8708,31 +8722,36 @@
         public static BossStatue.Completion statueStateGruzMother
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGruzMother));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGruzMother), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGruzMother),
+                value);
         }
 
         public static BossStatue.Completion statueStateVengefly
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateVengefly));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateVengefly), value);
+            set =>
+                PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateVengefly), value);
         }
 
         public static BossStatue.Completion statueStateBroodingMawlek
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateBroodingMawlek));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateBroodingMawlek), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateBroodingMawlek),
+                value);
         }
 
         public static BossStatue.Completion statueStateFalseKnight
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFalseKnight));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFalseKnight), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFalseKnight),
+                value);
         }
 
         public static BossStatue.Completion statueStateFailedChampion
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFailedChampion));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFailedChampion), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFailedChampion),
+                value);
         }
 
         public static BossStatue.Completion statueStateHornet1
@@ -8749,32 +8768,38 @@
 
         public static BossStatue.Completion statueStateMegaMossCharger
         {
-            get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMegaMossCharger));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMegaMossCharger), value);
+            get =>
+                PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMegaMossCharger));
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMegaMossCharger),
+                value);
         }
 
         public static BossStatue.Completion statueStateMantisLords
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMantisLords));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMantisLords), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMantisLords),
+                value);
         }
 
         public static BossStatue.Completion statueStateOblobbles
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateOblobbles));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateOblobbles), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateOblobbles),
+                value);
         }
 
         public static BossStatue.Completion statueStateGreyPrince
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGreyPrince));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGreyPrince), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGreyPrince),
+                value);
         }
 
         public static BossStatue.Completion statueStateBrokenVessel
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateBrokenVessel));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateBrokenVessel), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateBrokenVessel),
+                value);
         }
 
         public static BossStatue.Completion statueStateLostKin
@@ -8792,49 +8817,59 @@
         public static BossStatue.Completion statueStateFlukemarm
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFlukemarm));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFlukemarm), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateFlukemarm),
+                value);
         }
 
         public static BossStatue.Completion statueStateCollector
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateCollector));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateCollector), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateCollector),
+                value);
         }
 
         public static BossStatue.Completion statueStateWatcherKnights
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateWatcherKnights));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateWatcherKnights), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateWatcherKnights),
+                value);
         }
 
         public static BossStatue.Completion statueStateSoulMaster
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateSoulMaster));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateSoulMaster), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateSoulMaster),
+                value);
         }
 
         public static BossStatue.Completion statueStateSoulTyrant
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateSoulTyrant));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateSoulTyrant), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateSoulTyrant),
+                value);
         }
 
         public static BossStatue.Completion statueStateGodTamer
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGodTamer));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGodTamer), value);
+            set =>
+                PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateGodTamer), value);
         }
 
         public static BossStatue.Completion statueStateCrystalGuardian1
         {
-            get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateCrystalGuardian1));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateCrystalGuardian1), value);
+            get => PlayerData.instance.GetVariable<BossStatue.Completion>(
+                nameof(PlayerData.statueStateCrystalGuardian1));
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(
+                nameof(PlayerData.statueStateCrystalGuardian1), value);
         }
 
         public static BossStatue.Completion statueStateCrystalGuardian2
         {
-            get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateCrystalGuardian2));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateCrystalGuardian2), value);
+            get => PlayerData.instance.GetVariable<BossStatue.Completion>(
+                nameof(PlayerData.statueStateCrystalGuardian2));
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(
+                nameof(PlayerData.statueStateCrystalGuardian2), value);
         }
 
         public static BossStatue.Completion statueStateUumuu
@@ -8846,25 +8881,29 @@
         public static BossStatue.Completion statueStateDungDefender
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateDungDefender));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateDungDefender), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateDungDefender),
+                value);
         }
 
         public static BossStatue.Completion statueStateWhiteDefender
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateWhiteDefender));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateWhiteDefender), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateWhiteDefender),
+                value);
         }
 
         public static BossStatue.Completion statueStateHiveKnight
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateHiveKnight));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateHiveKnight), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateHiveKnight),
+                value);
         }
 
         public static BossStatue.Completion statueStateTraitorLord
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateTraitorLord));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateTraitorLord), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateTraitorLord),
+                value);
         }
 
         public static BossStatue.Completion statueStateGrimm
@@ -8876,13 +8915,15 @@
         public static BossStatue.Completion statueStateNightmareGrimm
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNightmareGrimm));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNightmareGrimm), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNightmareGrimm),
+                value);
         }
 
         public static BossStatue.Completion statueStateHollowKnight
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateHollowKnight));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateHollowKnight), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateHollowKnight),
+                value);
         }
 
         public static BossStatue.Completion statueStateElderHu
@@ -8930,7 +8971,8 @@
         public static BossStatue.Completion statueStateRadiance
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateRadiance));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateRadiance), value);
+            set =>
+                PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateRadiance), value);
         }
 
         public static BossStatue.Completion statueStateSly
@@ -8942,19 +8984,22 @@
         public static BossStatue.Completion statueStateNailmasters
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNailmasters));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNailmasters), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNailmasters),
+                value);
         }
 
         public static BossStatue.Completion statueStateMageKnight
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMageKnight));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMageKnight), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMageKnight),
+                value);
         }
 
         public static BossStatue.Completion statueStatePaintmaster
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStatePaintmaster));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStatePaintmaster), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStatePaintmaster),
+                value);
         }
 
         public static BossStatue.Completion statueStateZote
@@ -8966,13 +9011,16 @@
         public static BossStatue.Completion statueStateNoskHornet
         {
             get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNoskHornet));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNoskHornet), value);
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateNoskHornet),
+                value);
         }
 
         public static BossStatue.Completion statueStateMantisLordsExtra
         {
-            get => PlayerData.instance.GetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMantisLordsExtra));
-            set => PlayerData.instance.SetVariable<BossStatue.Completion>(nameof(PlayerData.statueStateMantisLordsExtra), value);
+            get => PlayerData.instance.GetVariable<BossStatue.Completion>(
+                nameof(PlayerData.statueStateMantisLordsExtra));
+            set => PlayerData.instance.SetVariable<BossStatue.Completion>(
+                nameof(PlayerData.statueStateMantisLordsExtra), value);
         }
 
         public static bool godseekerUnlocked
@@ -8983,8 +9031,10 @@
 
         public static BossSequenceController.BossSequenceData currentBossSequence
         {
-            get => PlayerData.instance.GetVariable<BossSequenceController.BossSequenceData>(nameof(PlayerData.currentBossSequence));
-            set => PlayerData.instance.SetVariable<BossSequenceController.BossSequenceData>(nameof(PlayerData.currentBossSequence), value);
+            get => PlayerData.instance.GetVariable<BossSequenceController.BossSequenceData>(
+                nameof(PlayerData.currentBossSequence));
+            set => PlayerData.instance.SetVariable<BossSequenceController.BossSequenceData>(
+                nameof(PlayerData.currentBossSequence), value);
         }
 
         public static bool bossRushMode
@@ -9104,7 +9154,7 @@
         public static int godseekerWaterwaysSeenState
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.godseekerWaterwaysSeenState));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.godseekerWaterwaysSeenState), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.godseekerWaterwaysSeenState), value);
         }
 
         public static bool godseekerWaterwaysSpoken1
@@ -9128,7 +9178,7 @@
         public static int bossDoorEntranceTextSeen
         {
             get => PlayerData.instance.GetInt(nameof(PlayerData.bossDoorEntranceTextSeen));
-           set => PlayerData.instance.SetInt(nameof(PlayerData.bossDoorEntranceTextSeen), value);
+            set => PlayerData.instance.SetInt(nameof(PlayerData.bossDoorEntranceTextSeen), value);
         }
 
         public static bool seenDoor4Finale
