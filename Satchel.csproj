@@ -121,6 +121,8 @@
     <Compile Include="Reflected\ILIEnumerators\GameManagerILIEnumerators.cs" />
     <Compile Include="Reflected\ILIEnumerators\HeroControllerILIEnumerators.cs" />
     <Compile Include="Reflected\ILIEnumerators\UIManagerILIEnumerators.cs" />
+    <Compile Include="Reflected\InstanceClasses\HealthManagerR.cs" />
+    <Compile Include="Reflected\InstanceClasses\InstanceClassWrapper.cs" />
     <Compile Include="Reflected\SingletonClasses\GameManagerR.cs" />
     <Compile Include="Reflected\SingletonClasses\HeroControllerR.cs" />
     <Compile Include="Reflected\SingletonClasses\PlayerDataR.cs" />
