@@ -1308,5 +1308,23 @@ namespace Satchel.Reflected
         {
             return UIManager.instance.PauseToDynamicMenu(to);
         }
+        
+        public static event Action BeforeHideDynamicMenu
+        {
+            add => UIManager.BeforeHideDynamicMenu += value;
+            remove => UIManager.BeforeHideDynamicMenu -= value;
+        }
+        
+        public static event Action EditMenus
+        {
+            add => UIManager.EditMenus += value;
+            remove => UIManager.EditMenus -= value;
+        }
+
+        private static Action _editMenus
+        {
+            get => ReflectionHelper.GetField<Action>(typeof(UIManager), "_editMenus");
+            set => ReflectionHelper.SetField(typeof(UIManager), "_editMenus", value);
+        }
     }
 }
