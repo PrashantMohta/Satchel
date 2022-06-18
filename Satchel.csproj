@@ -122,7 +122,9 @@
     <Compile Include="Reflected\HeroControllerR.cs" />
     <Compile Include="Reflected\IEnumerators\GameManagerILIEnumerators.cs" />
     <Compile Include="Reflected\IEnumerators\HeroControllerILIEnumerators.cs" />
+    <Compile Include="Reflected\IEnumerators\UIManagerILIEnumerators.cs" />
     <Compile Include="Reflected\PlayerDataR.cs" />
+    <Compile Include="Reflected\UIManagerR.cs" />
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
     <Compile Include="Utils\EnemyUtils.cs" />
