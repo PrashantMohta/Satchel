@@ -3,7 +3,7 @@ using MonoMod.Cil;
 using MonoMod.RuntimeDetour.HookGen;
 using MonoMod.Utils;
 
-namespace Satchel.Reflected.IEnumerators
+namespace Satchel.Reflected.ILIEnumerators
 {
     /// <summary>
     /// A class that contains events to properly ILHook onto IEnumerators.
