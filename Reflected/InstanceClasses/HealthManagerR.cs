@@ -1,9 +1,11 @@
-﻿using System.Linq;
-using System.Reflection;
-using Object = System.Object;
+﻿using System.Reflection;
 
 namespace Satchel.Reflected
 {
+    /// <summary>
+    ///     A class that contains all (public and private) fields and methods of HealthManager allowing you to
+    ///     easily get/set fields and call methods without dealing with reflection.
+    /// </summary>
     public class HealthManagerR : InstanceClassWrapper<HealthManager>
     {
         public HealthManagerR(HealthManager _orig) : base(_orig)
