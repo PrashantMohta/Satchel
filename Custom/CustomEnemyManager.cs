@@ -14,7 +14,7 @@ namespace Satchel
         }
 
         /// <summary>
-        /// load Prefabs of InfectedEnemy & UnInfectedEnemy to act as base to use
+        /// load Prefabs of InfectedEnemy and UnInfectedEnemy to act as base to use
         /// </summary>
         /// <param name="InfectedEnemyPrefab"></param>
         /// <param name="UnInfectedEnemyPrefab"></param>

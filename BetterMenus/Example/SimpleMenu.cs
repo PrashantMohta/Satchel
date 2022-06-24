@@ -4,6 +4,7 @@ using UnityEngine;
 using InControl;
 using Satchel;
 using Satchel.BetterMenus;
+using static Satchel.BetterMenus.Blueprints;
 
 namespace SatchelBetterMenus.Example 
 {
@@ -36,6 +37,20 @@ namespace SatchelBetterMenus.Example
         public static MenuScreen GetMenu(MenuScreen lastMenu){
             if(MenuRef == null){
                 MenuRef = PrepareMenu();
+                MenuRef.OnBuilt += (_, R) =>
+                {
+                    MenuRef.AddConfirmDialog("Do you want to continue?", "", new string[] { "continue", "Git Good", "Quit" }, (inp) =>
+                    {
+                        if (inp.StartsWith("continue"))
+                        {
+                            Utils.GoToMenuScreen(MenuRef.returnScreen);
+                        } else
+                        {
+                            Utils.GoToMenuScreen(MenuRef.menuScreen);
+                        }
+                        Modding.Logger.Log(inp);
+                    });
+                };
             }
             return MenuRef.GetMenuScreen(lastMenu);
         }

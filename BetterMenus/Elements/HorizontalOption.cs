@@ -57,11 +57,10 @@ namespace Satchel.BetterMenus
         /// Creates a GameObjectRow based on the current variables.
         /// </summary>
         /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
-        /// <param name="modlistMenu">The previous MenuScreen.</param>
         /// <param name="Instance">The current Menu instance.</param>
         /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
         /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
-        public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
+        public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = Description ?? throw new ArgumentNullException(nameof(Description), "Description cannot be null");
@@ -75,7 +74,7 @@ namespace Satchel.BetterMenus
                 {
                     ApplySetting = (_, i) => ApplySetting(i),
                     RefreshSetting = (s, _) => s.optionList.SetOptionTo(LoadSetting()),
-                    CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(modlistMenu),
+                    CancelAction = _ => Instance.CancelAction(),
                     Description = new DescriptionInfo
                     {
                         Text = Description

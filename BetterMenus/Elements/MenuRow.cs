@@ -19,7 +19,8 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// Element X Delta, shifts the right element by this amount.
+        /// The horizontal seperation between elements, the right element is moved to ensure this
+        ///  default: 750f
         /// </summary>
         public float XDelta = 750f;
 
@@ -39,11 +40,10 @@ namespace Satchel.BetterMenus
         /// Creates a GameObjectRow based on the current variables.
         /// </summary>
         /// <param name="c">The ContentArea on which the ButtonBind is created.</param>
-        /// <param name="modlistMenu">The previous MenuScreen.</param>
         /// <param name="Instance">The current Menu instance.</param>
         /// <param name="AddToList">Should this element be added to the MenuOrder (All non IShadowElements).</param>
         /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
-        public override GameObjectRow Create(ContentArea c, MenuScreen modlistMenu, Menu Instance, bool AddToList = true)
+        public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
             var columnCount = Row.Count;
                         
@@ -63,7 +63,7 @@ namespace Satchel.BetterMenus
                     return new GameObjectRow();
                 }
                 elem.Parent = this.Parent;
-                var gor = elem.Create(c, modlistMenu, Instance, false);
+                var gor = elem.Create(c, Instance, false);
                 
                 foreach(var go in gor.Row){
                     rowGos.Add(go);

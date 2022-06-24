@@ -11,9 +11,7 @@
     <AssemblyName>Satchel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <VanillaFiles>..\Vanilla</VanillaFiles>
-    <ModdingAPI>..\HollowKnight.Modding\OutputFinal</ModdingAPI>
-    <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
+    
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,6 +37,12 @@
     <DocumentationFile>bin\Release\Satchel.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
+
+    <!-- Create a LocalBuildProperties.props file which defines references directories
+  and OutputDirectory (where the post-build event sends the dll to) -->
+  <Import Project="LocalBuildProperties_example.props" Condition="Exists('LocalBuildProperties_example.props')"/>
+  <Import Project="LocalBuildProperties.props" Condition="Exists('LocalBuildProperties.props')"/>
+
   <ItemGroup>
     <Reference Include="MonoMod.RuntimeDetour, Version=21.4.29.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(ModdingAPI)\MonoMod.RuntimeDetour.dll</HintPath>
@@ -131,6 +135,7 @@
     <Compile Include="Utils\TextureUtils.cs" />
     <Compile Include="Utils\WavUtils.cs" />
     <Compile Include="Utils\CoroutineHelper.cs" />
+    <Compile Include="Utils\ObjectPoolManager.cs" />
     <Compile Include="Monobehaviour\Unity\AlertRangeMarker.cs" />
     <Compile Include="Monobehaviour\Unity\ChangeMeshColor.cs" />
     <Compile Include="Monobehaviour\Unity\CustomEnemyMarker.cs" />
