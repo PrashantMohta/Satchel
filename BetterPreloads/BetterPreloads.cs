@@ -12,7 +12,6 @@ namespace Satchel.BetterPreloads{
             {
                 var PreloadInfo = prop.GetCustomAttributes().FirstOrDefault(x => x.GetType() == typeof(Preload)) as Preload;
                 if(PreloadInfo != null){
-                    Modding.Logger.Log(PreloadInfo.scene +"|"+PreloadInfo.objPath);
                     preloadNames.Add((PreloadInfo.scene, PreloadInfo.objPath));
                 }
 
