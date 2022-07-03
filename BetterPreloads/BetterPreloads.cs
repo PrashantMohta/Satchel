@@ -43,6 +43,7 @@ namespace Satchel.BetterPreloads{
                     ReflectionHelper.SetProperty(Preloads,prop.Name,preloadedObjects[PreloadInfo.scene][PreloadInfo.objPath]);
                 }
             }
+            Initialize();
         }
     }
 }
