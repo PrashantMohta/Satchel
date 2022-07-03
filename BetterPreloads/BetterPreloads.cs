@@ -8,10 +8,10 @@ namespace Satchel.BetterPreloads{
         private List<PropertyInfo> pi;
         public override List<(string, string)> GetPreloadNames(){
 
-            List<(string, string)> preloadNames = new();
-
-            fi = new List<FieldInfo>(typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
-            pi = new List<PropertyInfo>(typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
+            var preloadNames = new List<(string, string)>();
+            
+            fi = new(typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
+            pi = new(typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
 
             foreach (var prop in fi)
             {
