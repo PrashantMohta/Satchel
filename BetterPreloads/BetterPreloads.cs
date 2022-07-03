@@ -10,14 +10,14 @@ namespace Satchel.BetterPreloads{
 
             foreach (var prop in typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
+                var PreloadInfo = prop.GetCustomAttribute<PreloadAttribute>();
                 if(PreloadInfo != null){
                     preloadNames.Add((PreloadInfo.scene, PreloadInfo.objPath));
                 }
             }
             foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
+                var PreloadInfo = prop.GetCustomAttribute<PreloadAttribute>();
                 if(PreloadInfo != null){
                     preloadNames.Add((PreloadInfo.scene, PreloadInfo.objPath));
                 }
@@ -31,14 +31,14 @@ namespace Satchel.BetterPreloads{
             }
             foreach (var prop in typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
+                var PreloadInfo = prop.GetCustomAttribute<PreloadAttribute>();
                 if(PreloadInfo != null){
                     ReflectionHelper.SetField(Preloads,prop.Name,preloadedObjects[PreloadInfo.scene][PreloadInfo.objPath]);
                 }
             }
             foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
+                var PreloadInfo = prop.GetCustomAttribute<PreloadAttribute>();
                 if(PreloadInfo != null){
                     ReflectionHelper.SetProperty(Preloads,prop.Name,preloadedObjects[PreloadInfo.scene][PreloadInfo.objPath]);
                 }

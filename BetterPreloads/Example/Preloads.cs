@@ -7,6 +7,7 @@ using InControl;
 using Satchel;
 using Satchel.BetterPreloads;
 
+#pragma warning disable CS0649 //because we'll set the values later using reflection
 namespace SatchelBetterPreloads.Example 
 {
     public class MyPreloads {
