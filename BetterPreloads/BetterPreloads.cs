@@ -26,6 +26,9 @@ namespace Satchel.BetterPreloads{
         }
 
         public override void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects){
+            if(preloadedObjects == null){
+                return;
+            }
             foreach (var prop in typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
                 var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
