@@ -6,26 +6,39 @@ namespace Satchel.BetterPreloads{
         public static T Preloads = new T();
         public override List<(string, string)> GetPreloadNames(){
 
-            List<(string, string)> preloadNames = new List<(string, string)> ();
+            List<(string, string)> preloadNames = new();
 
-            foreach (FieldInfo prop in typeof(T).GetFields())
+            foreach (var prop in typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                var PreloadInfo = prop.GetCustomAttributes().FirstOrDefault(x => x.GetType() == typeof(Preload)) as Preload;
+                var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
                 if(PreloadInfo != null){
                     preloadNames.Add((PreloadInfo.scene, PreloadInfo.objPath));
                 }
-
             }
-            
+            foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
+                if(PreloadInfo != null){
+                    preloadNames.Add((PreloadInfo.scene, PreloadInfo.objPath));
+                }
+            }
             return preloadNames;
         }
 
         public override void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects){
-            foreach (FieldInfo prop in typeof(T).GetFields())
+            foreach (var prop in typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                
-                var PreloadInfo = prop.GetCustomAttributes().FirstOrDefault(x => x.GetType() == typeof(Preload))  as Preload;
-                ReflectionHelper.SetField(Preloads,prop.Name,preloadedObjects[PreloadInfo.scene][PreloadInfo.objPath]);
+                var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
+                if(PreloadInfo != null){
+                    ReflectionHelper.SetField(Preloads,prop.Name,preloadedObjects[PreloadInfo.scene][PreloadInfo.objPath]);
+                }
+            }
+            foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                var PreloadInfo = prop.GetCustomAttributes<Preload>().FirstOrDefault();
+                if(PreloadInfo != null){
+                    ReflectionHelper.SetProperty(Preloads,prop.Name,preloadedObjects[PreloadInfo.scene][PreloadInfo.objPath]);
+                }
             }
         }
     }

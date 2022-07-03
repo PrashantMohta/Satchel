@@ -12,9 +12,9 @@ namespace SatchelBetterPreloads.Example
     public class MyPreloads {
 
         [Preload("Cliffs_01","Cornifer Card")]
-        public GameObject cornifierCard;
+        public GameObject cornifierCard {set; get;}
 
         [Preload("GG_Hornet_2", "Boss Holder/Hornet Boss 2")]
-        public GameObject hornetTwo;
+        internal GameObject hornetTwo;
     }
 }
