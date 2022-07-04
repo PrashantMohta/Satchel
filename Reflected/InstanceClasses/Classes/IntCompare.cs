@@ -1,128 +1,139 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of IntCompare allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class IntCompareR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.IntCompare>
+public class IntCompareR : InstanceClassWrapper<IntCompare>
 {
-public IntCompareR(HutongGames.PlayMaker.Actions.IntCompare _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmInt integer1
-{
-get => orig.integer1;
-set => orig.integer1 = value;
-}
+    public IntCompareR(IntCompare _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmInt integer2
-{
-get => orig.integer2;
-set => orig.integer2 = value;
-}
+    public FsmInt integer1
+    {
+        get => orig.integer1;
+        set => orig.integer1 = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent equal
-{
-get => orig.equal;
-set => orig.equal = value;
-}
+    public FsmInt integer2
+    {
+        get => orig.integer2;
+        set => orig.integer2 = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent lessThan
-{
-get => orig.lessThan;
-set => orig.lessThan = value;
-}
+    public FsmEvent equal
+    {
+        get => orig.equal;
+        set => orig.equal = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent greaterThan
-{
-get => orig.greaterThan;
-set => orig.greaterThan = value;
-}
+    public FsmEvent lessThan
+    {
+        get => orig.lessThan;
+        set => orig.lessThan = value;
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmEvent greaterThan
+    {
+        get => orig.greaterThan;
+        set => orig.greaterThan = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoIntCompare () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-public string ErrorCheck () =>
-orig.ErrorCheck();
+    public void DoIntCompare()
+    {
+        CallMethod();
+    }
 
-}
+    public string ErrorCheck()
+    {
+        return orig.ErrorCheck();
+    }
 }

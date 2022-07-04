@@ -1,32 +1,31 @@
-namespace Satchel.Reflected
-{
+using System.Reflection;
+using Modding.Delegates;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of OnEnableEnemyHandler allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class OnEnableEnemyHandlerR:InstanceClassWrapper<Modding.Delegates.OnEnableEnemyHandler>
+public class OnEnableEnemyHandlerR : InstanceClassWrapper<OnEnableEnemyHandler>
 {
-public OnEnableEnemyHandlerR(Modding.Delegates.OnEnableEnemyHandler _orig) : base(_orig) {}
-public bool HasSingleTarget
-{
-get => GetProperty<bool>();
-}
+    public OnEnableEnemyHandlerR(OnEnableEnemyHandler _orig) : base(_orig)
+    {
+    }
 
-public System.Reflection.MethodInfo Method
-{
-get => orig.Method;
-}
+    public bool HasSingleTarget => GetProperty<bool>();
 
-public System.Object Target
-{
-get => orig.Target;
-}
+    public MethodInfo Method => orig.Method;
 
-public bool Invoke (UnityEngine.GameObject enemy, bool isAlreadyDead) =>
-orig.Invoke(enemy, isAlreadyDead);
+    public object Target => orig.Target;
 
-public bool EndInvoke (System.IAsyncResult result) =>
-orig.EndInvoke(result);
+    public bool Invoke(GameObject enemy, bool isAlreadyDead)
+    {
+        return orig.Invoke(enemy, isAlreadyDead);
+    }
 
-}
+    public bool EndInvoke(IAsyncResult result)
+    {
+        return orig.EndInvoke(result);
+    }
 }

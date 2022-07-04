@@ -1,125 +1,138 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of Tk2dTextMeshSetAnchor allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class Tk2dTextMeshSetAnchorR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.Tk2dTextMeshSetAnchor>
+public class Tk2dTextMeshSetAnchorR : InstanceClassWrapper<Tk2dTextMeshSetAnchor>
 {
-public Tk2dTextMeshSetAnchorR(HutongGames.PlayMaker.Actions.Tk2dTextMeshSetAnchor _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public Tk2dTextMeshSetAnchorR(Tk2dTextMeshSetAnchor _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.TextAnchor textAnchor
-{
-get => orig.textAnchor;
-set => orig.textAnchor = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmString OrTextAnchorString
-{
-get => orig.OrTextAnchorString;
-set => orig.OrTextAnchorString = value;
-}
+    public TextAnchor textAnchor
+    {
+        get => orig.textAnchor;
+        set => orig.textAnchor = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool commit
-{
-get => orig.commit;
-set => orig.commit = value;
-}
+    public FsmString OrTextAnchorString
+    {
+        get => orig.OrTextAnchorString;
+        set => orig.OrTextAnchorString = value;
+    }
 
-public tk2dTextMesh _textMesh
-{
-get => GetField<tk2dTextMesh>();
-set => SetField(value);
-}
+    public FsmBool commit
+    {
+        get => orig.commit;
+        set => orig.commit = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public tk2dTextMesh _textMesh
+    {
+        get => GetField<tk2dTextMesh>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void _getTextMesh () =>
-CallMethod();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public void _getTextMesh()
+    {
+        CallMethod();
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void DoSetAnchor () =>
-CallMethod();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public string ErrorCheck () =>
-orig.ErrorCheck();
+    public void DoSetAnchor()
+    {
+        CallMethod();
+    }
 
-public UnityEngine.TextAnchor getTextAnchorFromString (string textAnchorString, bool isValid) =>
-CallMethod<UnityEngine.TextAnchor>(new object[] {textAnchorString, isValid});
+    public string ErrorCheck()
+    {
+        return orig.ErrorCheck();
+    }
 
-}
+    public TextAnchor getTextAnchorFromString(string textAnchorString, bool isValid)
+    {
+        return CallMethod<TextAnchor>(new object[] { textAnchorString, isValid });
+    }
 }

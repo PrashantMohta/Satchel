@@ -1,110 +1,117 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ReflectAngle allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ReflectAngleR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.ReflectAngle>
+public class ReflectAngleR : InstanceClassWrapper<ReflectAngle>
 {
-public ReflectAngleR(HutongGames.PlayMaker.Actions.ReflectAngle _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmFloat angle
-{
-get => orig.angle;
-set => orig.angle = value;
-}
+    public ReflectAngleR(ReflectAngle _orig) : base(_orig)
+    {
+    }
 
-public bool reflectHorizontally
-{
-get => orig.reflectHorizontally;
-set => orig.reflectHorizontally = value;
-}
+    public FsmFloat angle
+    {
+        get => orig.angle;
+        set => orig.angle = value;
+    }
 
-public bool reflectVertically
-{
-get => orig.reflectVertically;
-set => orig.reflectVertically = value;
-}
+    public bool reflectHorizontally
+    {
+        get => orig.reflectHorizontally;
+        set => orig.reflectHorizontally = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat storeResult
-{
-get => orig.storeResult;
-set => orig.storeResult = value;
-}
+    public bool reflectVertically
+    {
+        get => orig.reflectVertically;
+        set => orig.reflectVertically = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public FsmFloat storeResult
+    {
+        get => orig.storeResult;
+        set => orig.storeResult = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void DoReflectAngle () =>
-CallMethod();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-}
+    public void DoReflectAngle()
+    {
+        CallMethod();
+    }
 }

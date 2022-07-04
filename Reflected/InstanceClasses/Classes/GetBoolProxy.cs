@@ -1,29 +1,26 @@
-namespace Satchel.Reflected
-{
+using System.Reflection;
+using Modding.Delegates;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GetBoolProxy allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GetBoolProxyR:InstanceClassWrapper<Modding.Delegates.GetBoolProxy>
+public class GetBoolProxyR : InstanceClassWrapper<GetBoolProxy>
 {
-public GetBoolProxyR(Modding.Delegates.GetBoolProxy _orig) : base(_orig) {}
-public bool HasSingleTarget
-{
-get => GetProperty<bool>();
-}
+    public GetBoolProxyR(GetBoolProxy _orig) : base(_orig)
+    {
+    }
 
-public System.Reflection.MethodInfo Method
-{
-get => orig.Method;
-}
+    public bool HasSingleTarget => GetProperty<bool>();
 
-public System.Object Target
-{
-get => orig.Target;
-}
+    public MethodInfo Method => orig.Method;
 
-public bool EndInvoke (System.IAsyncResult result) =>
-orig.EndInvoke(result);
+    public object Target => orig.Target;
 
-}
+    public bool EndInvoke(IAsyncResult result)
+    {
+        return orig.EndInvoke(result);
+    }
 }

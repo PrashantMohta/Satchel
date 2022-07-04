@@ -1,62 +1,84 @@
-namespace Satchel.Reflected
-{
+using Modding.Menu;
+using Modding.Menu.Config;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of MenuBuilder allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class MenuBuilderR:InstanceClassWrapper<Modding.Menu.MenuBuilder>
+public class MenuBuilderR : InstanceClassWrapper<MenuBuilder>
 {
-public MenuBuilderR(Modding.Menu.MenuBuilder _orig) : base(_orig) {}
-public System.Action<Modding.Menu.MenuBuilder> OnBuild
-{
-get => GetField<System.Action<Modding.Menu.MenuBuilder>>();
-set => SetField(value);
-}
+    public MenuBuilderR(MenuBuilder _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.GameObject MenuObject
-{
-get => orig.MenuObject;
-set => orig.MenuObject = value;
-}
+    public Action<MenuBuilder> OnBuild
+    {
+        get => GetField<Action<MenuBuilder>>();
+        set => SetField(value);
+    }
 
-public MenuScreen Screen
-{
-get => orig.Screen;
-set => orig.Screen = value;
-}
+    public GameObject MenuObject
+    {
+        get => orig.MenuObject;
+        set => orig.MenuObject = value;
+    }
 
-public Modding.Menu.INavigationGraph DefaultNavGraph
-{
-get => orig.DefaultNavGraph;
-set => SetProperty(value);
-}
+    public MenuScreen Screen
+    {
+        get => orig.Screen;
+        set => orig.Screen = value;
+    }
 
-public MenuScreen Build () =>
-orig.Build();
+    public INavigationGraph DefaultNavGraph
+    {
+        get => orig.DefaultNavGraph;
+        set => SetProperty(value);
+    }
 
-public Modding.Menu.MenuBuilder AddContent (Modding.Menu.IContentLayout layout, Modding.Menu.INavigationGraph navgraph, System.Action<Modding.Menu.ContentArea> action) =>
-orig.AddContent(layout, navgraph, action);
+    public MenuScreen Build()
+    {
+        return orig.Build();
+    }
 
-public Modding.Menu.MenuBuilder AddContent (Modding.Menu.IContentLayout layout, System.Action<Modding.Menu.ContentArea> action) =>
-orig.AddContent(layout, action);
+    public MenuBuilder AddContent(IContentLayout layout, INavigationGraph navgraph, Action<ContentArea> action)
+    {
+        return orig.AddContent(layout, navgraph, action);
+    }
 
-public Modding.Menu.MenuBuilder AddControls (Modding.Menu.IContentLayout layout, Modding.Menu.INavigationGraph navgraph, System.Action<Modding.Menu.ContentArea> action) =>
-orig.AddControls(layout, navgraph, action);
+    public MenuBuilder AddContent(IContentLayout layout, Action<ContentArea> action)
+    {
+        return orig.AddContent(layout, action);
+    }
 
-public Modding.Menu.MenuBuilder AddControls (Modding.Menu.IContentLayout layout, System.Action<Modding.Menu.ContentArea> action) =>
-orig.AddControls(layout, action);
+    public MenuBuilder AddControls(IContentLayout layout, INavigationGraph navgraph, Action<ContentArea> action)
+    {
+        return orig.AddControls(layout, navgraph, action);
+    }
 
-public Modding.Menu.MenuBuilder CreateTitle (string title, Modding.Menu.Config.MenuTitleStyle style) =>
-orig.CreateTitle(title, style);
+    public MenuBuilder AddControls(IContentLayout layout, Action<ContentArea> action)
+    {
+        return orig.AddControls(layout, action);
+    }
 
-public Modding.Menu.MenuBuilder CreateContentPane (Modding.Menu.RectTransformData style) =>
-orig.CreateContentPane(style);
+    public MenuBuilder CreateTitle(string title, MenuTitleStyle style)
+    {
+        return orig.CreateTitle(title, style);
+    }
 
-public Modding.Menu.MenuBuilder CreateControlPane (Modding.Menu.RectTransformData style) =>
-orig.CreateControlPane(style);
+    public MenuBuilder CreateContentPane(RectTransformData style)
+    {
+        return orig.CreateContentPane(style);
+    }
 
-public Modding.Menu.MenuBuilder SetDefaultNavGraph (Modding.Menu.INavigationGraph navGraph) =>
-orig.SetDefaultNavGraph(navGraph);
+    public MenuBuilder CreateControlPane(RectTransformData style)
+    {
+        return orig.CreateControlPane(style);
+    }
 
-}
+    public MenuBuilder SetDefaultNavGraph(INavigationGraph navGraph)
+    {
+        return orig.SetDefaultNavGraph(navGraph);
+    }
 }

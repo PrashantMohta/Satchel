@@ -1,119 +1,124 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GetIPhoneSettings allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GetIPhoneSettingsR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.GetIPhoneSettings>
+public class GetIPhoneSettingsR : InstanceClassWrapper<GetIPhoneSettings>
 {
-public GetIPhoneSettingsR(HutongGames.PlayMaker.Actions.GetIPhoneSettings _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmBool getScreenCanDarken
-{
-get => orig.getScreenCanDarken;
-set => orig.getScreenCanDarken = value;
-}
+    public GetIPhoneSettingsR(GetIPhoneSettings _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString getUniqueIdentifier
-{
-get => orig.getUniqueIdentifier;
-set => orig.getUniqueIdentifier = value;
-}
+    public FsmBool getScreenCanDarken
+    {
+        get => orig.getScreenCanDarken;
+        set => orig.getScreenCanDarken = value;
+    }
 
-public HutongGames.PlayMaker.FsmString getName
-{
-get => orig.getName;
-set => orig.getName = value;
-}
+    public FsmString getUniqueIdentifier
+    {
+        get => orig.getUniqueIdentifier;
+        set => orig.getUniqueIdentifier = value;
+    }
 
-public HutongGames.PlayMaker.FsmString getModel
-{
-get => orig.getModel;
-set => orig.getModel = value;
-}
+    public FsmString getName
+    {
+        get => orig.getName;
+        set => orig.getName = value;
+    }
 
-public HutongGames.PlayMaker.FsmString getSystemName
-{
-get => orig.getSystemName;
-set => orig.getSystemName = value;
-}
+    public FsmString getModel
+    {
+        get => orig.getModel;
+        set => orig.getModel = value;
+    }
 
-public HutongGames.PlayMaker.FsmString getGeneration
-{
-get => orig.getGeneration;
-set => orig.getGeneration = value;
-}
+    public FsmString getSystemName
+    {
+        get => orig.getSystemName;
+        set => orig.getSystemName = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public FsmString getGeneration
+    {
+        get => orig.getGeneration;
+        set => orig.getGeneration = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-}
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 }

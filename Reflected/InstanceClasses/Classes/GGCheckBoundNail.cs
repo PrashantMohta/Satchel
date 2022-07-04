@@ -1,94 +1,92 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GGCheckBoundNail allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GGCheckBoundNailR:InstanceClassWrapper<GGCheckBoundNail>
+public class GGCheckBoundNailR : InstanceClassWrapper<GGCheckBoundNail>
 {
-public GGCheckBoundNailR(GGCheckBoundNail _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmEvent trueEvent
-{
-get => orig.trueEvent;
-set => orig.trueEvent = value;
-}
+    public GGCheckBoundNailR(GGCheckBoundNail _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmEvent falseEvent
-{
-get => orig.falseEvent;
-set => orig.falseEvent = value;
-}
+    public FsmEvent trueEvent
+    {
+        get => orig.trueEvent;
+        set => orig.trueEvent = value;
+    }
 
-public bool IsTrue
-{
-get => orig.IsTrue;
-}
+    public FsmEvent falseEvent
+    {
+        get => orig.falseEvent;
+        set => orig.falseEvent = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public bool IsTrue => orig.IsTrue;
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-}
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 }

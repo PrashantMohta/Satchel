@@ -1,64 +1,77 @@
-namespace Satchel.Reflected
-{
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ControllerProfileButton allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ControllerProfileButtonR:InstanceClassWrapper<UnityEngine.UI.ControllerProfileButton>
+public class ControllerProfileButtonR : InstanceClassWrapper<ControllerProfileButton>
 {
-public ControllerProfileButtonR(UnityEngine.UI.ControllerProfileButton _orig) : base(_orig) {}
-public UnityEngine.Animator leftCursor
-{
-get => orig.leftCursor;
-set => orig.leftCursor = value;
-}
+    public ControllerProfileButtonR(ControllerProfileButton _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.Animator rightCursor
-{
-get => orig.rightCursor;
-set => orig.rightCursor = value;
-}
+    public Animator leftCursor
+    {
+        get => orig.leftCursor;
+        set => orig.leftCursor = value;
+    }
 
-public UnityEngine.UI.Image highlightCursor
-{
-get => orig.highlightCursor;
-set => orig.highlightCursor = value;
-}
+    public Animator rightCursor
+    {
+        get => orig.rightCursor;
+        set => orig.rightCursor = value;
+    }
 
-public MenuAudioController uiAudioPlayer
-{
-get => orig.uiAudioPlayer;
-set => orig.uiAudioPlayer = value;
-}
+    public Image highlightCursor
+    {
+        get => orig.highlightCursor;
+        set => orig.highlightCursor = value;
+    }
 
-public UnityEngine.GameObject prevSelectedObject
-{
-get => GetField<UnityEngine.GameObject>();
-set => SetField(value);
-}
+    public MenuAudioController uiAudioPlayer
+    {
+        get => orig.uiAudioPlayer;
+        set => orig.uiAudioPlayer = value;
+    }
 
-public bool dontPlaySelectSound
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public GameObject prevSelectedObject
+    {
+        get => GetField<GameObject>();
+        set => SetField(value);
+    }
+
+    public bool dontPlaySelectSound
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
 
+    public void OnSelect(BaseEventData eventData)
+    {
+        orig.OnSelect(eventData);
+    }
 
-public void OnSelect (UnityEngine.EventSystems.BaseEventData eventData) =>
-orig.OnSelect(eventData);
+    public void OnDeselect(BaseEventData eventData)
+    {
+        orig.OnDeselect(eventData);
+    }
 
-public void OnDeselect (UnityEngine.EventSystems.BaseEventData eventData) =>
-orig.OnDeselect(eventData);
+    public void OnSubmit(BaseEventData eventData)
+    {
+        orig.OnSubmit(eventData);
+    }
 
-public void OnSubmit (UnityEngine.EventSystems.BaseEventData eventData) =>
-orig.OnSubmit(eventData);
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        orig.OnPointerClick(eventData);
+    }
 
-public void OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) =>
-orig.OnPointerClick(eventData);
-
-public System.Collections.IEnumerator ValidateDeselect () =>
-CallMethod<System.Collections.IEnumerator>();
-
-}
+    public IEnumerator ValidateDeselect()
+    {
+        return CallMethod<IEnumerator>();
+    }
 }

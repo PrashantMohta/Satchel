@@ -1,111 +1,146 @@
-namespace Satchel.Reflected
-{
+using Microsoft.Xbox;
+using UnityEngine.UI;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of XboxSdk allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class XboxSdkR:InstanceClassWrapper<Microsoft.Xbox.XboxSdk>
+public class XboxSdkR : InstanceClassWrapper<XboxSdk>
 {
-public XboxSdkR(Microsoft.Xbox.XboxSdk _orig) : base(_orig) {}
-public string scid
-{
-get => orig.scid;
-set => orig.scid = value;
-}
+    public XboxSdkR(XboxSdk _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.UI.Text gamertagLabel
-{
-get => orig.gamertagLabel;
-set => orig.gamertagLabel = value;
-}
+    public string scid
+    {
+        get => orig.scid;
+        set => orig.scid = value;
+    }
 
-public bool signInOnStart
-{
-get => orig.signInOnStart;
-set => orig.signInOnStart = value;
-}
+    public Text gamertagLabel
+    {
+        get => orig.gamertagLabel;
+        set => orig.gamertagLabel = value;
+    }
 
-public Microsoft.Xbox.XboxSdk _xboxHelpers
-{
-get => GetFieldStatic<Microsoft.Xbox.XboxSdk>();
-set => SetField(value);
-}
+    public bool signInOnStart
+    {
+        get => orig.signInOnStart;
+        set => orig.signInOnStart = value;
+    }
 
-public bool _initialized
-{
-get => GetFieldStatic<bool>();
-set => SetField(value);
-}
-public string _GAME_SAVE_CONTAINER_NAME
-{
-get => GetFieldStatic<string>();
-set => SetField(value);
-}
+    public XboxSdk _xboxHelpers
+    {
+        get => GetFieldStatic<XboxSdk>();
+        set => SetField(value);
+    }
 
-public string _GAME_SAVE_BLOB_NAME
-{
-get => GetFieldStatic<string>();
-set => SetField(value);
-}
+    public bool _initialized
+    {
+        get => GetFieldStatic<bool>();
+        set => SetField(value);
+    }
 
-public Microsoft.Xbox.XboxSdk Helpers
-{
-get => Microsoft.Xbox.XboxSdk.Helpers;
-}
+    public string _GAME_SAVE_CONTAINER_NAME
+    {
+        get => GetFieldStatic<string>();
+        set => SetField(value);
+    }
 
+    public string _GAME_SAVE_BLOB_NAME
+    {
+        get => GetFieldStatic<string>();
+        set => SetField(value);
+    }
 
-
-public void Start () =>
-CallMethod();
-
-public void _Initialize () =>
-CallMethod();
-
-public void SignIn () =>
-orig.SignIn();
-
-public void Save (System.Byte[] data) =>
-orig.Save(data);
-
-public void LoadSaveData () =>
-orig.LoadSaveData();
-
-public void UnlockAchievement (string achievementId) =>
-orig.UnlockAchievement(achievementId);
-
-public void SignInImpl () =>
-CallMethod();
+    public XboxSdk Helpers => XboxSdk.Helpers;
 
 
-public void CompletePostSignInInitialization () =>
-CallMethod();
+    public void Start()
+    {
+        CallMethod();
+    }
 
-public void InitializeGameSaves () =>
-CallMethod();
+    public void _Initialize()
+    {
+        CallMethod();
+    }
 
-public void SaveImpl (System.Byte[] data) =>
-CallMethod(new object[] {data});
+    public void SignIn()
+    {
+        orig.SignIn();
+    }
 
-public void GameSaveSubmitUpdateCompleted (int hresult) =>
-CallMethod(new object[] {hresult});
+    public void Save(byte[] data)
+    {
+        orig.Save(data);
+    }
 
-public void LoadSaveDataImpl () =>
-CallMethod();
+    public void LoadSaveData()
+    {
+        orig.LoadSaveData();
+    }
 
-public void UnlockAchievementImpl (string achievementId) =>
-CallMethod(new object[] {achievementId});
+    public void UnlockAchievement(string achievementId)
+    {
+        orig.UnlockAchievement(achievementId);
+    }
 
-public void UnlockAchievementComplete (int hresult) =>
-CallMethod(new object[] {hresult});
+    public void SignInImpl()
+    {
+        CallMethod();
+    }
 
-public void Update () =>
-CallMethod();
 
-public bool Succeeded (int hresult, string operationFriendlyName) =>
-CallMethodStatic<bool>(new object[] {hresult, operationFriendlyName});
+    public void CompletePostSignInInitialization()
+    {
+        CallMethod();
+    }
 
-public void _LogError (string message) =>
-CallMethodStatic(new object[] {message});
+    public void InitializeGameSaves()
+    {
+        CallMethod();
+    }
 
-}
+    public void SaveImpl(byte[] data)
+    {
+        CallMethod(new object[] { data });
+    }
+
+    public void GameSaveSubmitUpdateCompleted(int hresult)
+    {
+        CallMethod(new object[] { hresult });
+    }
+
+    public void LoadSaveDataImpl()
+    {
+        CallMethod();
+    }
+
+    public void UnlockAchievementImpl(string achievementId)
+    {
+        CallMethod(new object[] { achievementId });
+    }
+
+    public void UnlockAchievementComplete(int hresult)
+    {
+        CallMethod(new object[] { hresult });
+    }
+
+    public void Update()
+    {
+        CallMethod();
+    }
+
+    public bool Succeeded(int hresult, string operationFriendlyName)
+    {
+        return CallMethodStatic<bool>(new object[] { hresult, operationFriendlyName });
+    }
+
+    public void _LogError(string message)
+    {
+        CallMethodStatic(new object[] { message });
+    }
 }

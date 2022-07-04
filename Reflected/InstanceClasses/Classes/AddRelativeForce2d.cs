@@ -1,169 +1,159 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of AddRelativeForce2d allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class AddRelativeForce2dR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.AddRelativeForce2d>
+public class AddRelativeForce2dR : InstanceClassWrapper<AddRelativeForce2d>
 {
-public AddRelativeForce2dR(HutongGames.PlayMaker.Actions.AddRelativeForce2d _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public AddRelativeForce2dR(AddRelativeForce2d _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.ForceMode2D forceMode
-{
-get => orig.forceMode;
-set => orig.forceMode = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmVector2 vector
-{
-get => orig.vector;
-set => orig.vector = value;
-}
+    public ForceMode2D forceMode
+    {
+        get => orig.forceMode;
+        set => orig.forceMode = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat x
-{
-get => orig.x;
-set => orig.x = value;
-}
+    public FsmVector2 vector
+    {
+        get => orig.vector;
+        set => orig.vector = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat y
-{
-get => orig.y;
-set => orig.y = value;
-}
+    public FsmFloat x
+    {
+        get => orig.x;
+        set => orig.x = value;
+    }
 
-public HutongGames.PlayMaker.FsmVector3 vector3
-{
-get => orig.vector3;
-set => orig.vector3 = value;
-}
+    public FsmFloat y
+    {
+        get => orig.y;
+        set => orig.y = value;
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmVector3 vector3
+    {
+        get => orig.vector3;
+        set => orig.vector3 = value;
+    }
 
-public UnityEngine.Rigidbody rigidbody
-{
-get => GetProperty<UnityEngine.Rigidbody>();
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public UnityEngine.Rigidbody2D rigidbody2d
-{
-get => GetProperty<UnityEngine.Rigidbody2D>();
-}
+    public Rigidbody rigidbody => GetProperty<Rigidbody>();
 
-public UnityEngine.Renderer renderer
-{
-get => GetProperty<UnityEngine.Renderer>();
-}
+    public Rigidbody2D rigidbody2d => GetProperty<Rigidbody2D>();
 
-public UnityEngine.Animation animation
-{
-get => GetProperty<UnityEngine.Animation>();
-}
+    public Renderer renderer => GetProperty<Renderer>();
 
-public UnityEngine.AudioSource audio
-{
-get => GetProperty<UnityEngine.AudioSource>();
-}
+    public UnityEngine.Animation animation => GetProperty<UnityEngine.Animation>();
 
-public UnityEngine.Camera camera
-{
-get => GetProperty<UnityEngine.Camera>();
-}
+    public AudioSource audio => GetProperty<AudioSource>();
 
-public UnityEngine.Light light
-{
-get => GetProperty<UnityEngine.Light>();
-}
+    public Camera camera => GetProperty<Camera>();
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Light light => GetProperty<Light>();
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnPreprocess () =>
-orig.OnPreprocess();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void OnPreprocess()
+    {
+        orig.OnPreprocess();
+    }
 
-public void OnFixedUpdate () =>
-orig.OnFixedUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoAddRelativeForce () =>
-CallMethod();
+    public void OnFixedUpdate()
+    {
+        orig.OnFixedUpdate();
+    }
 
-}
+    public void DoAddRelativeForce()
+    {
+        CallMethod();
+    }
 }

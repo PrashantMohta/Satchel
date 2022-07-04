@@ -1,49 +1,56 @@
-namespace Satchel.Reflected
-{
+using Modding.Menu;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of RegularGridLayout allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class RegularGridLayoutR:InstanceClassWrapper<Modding.Menu.RegularGridLayout>
+public class RegularGridLayoutR : InstanceClassWrapper<RegularGridLayout>
 {
-public RegularGridLayoutR(Modding.Menu.RegularGridLayout _orig) : base(_orig) {}
-public Modding.Menu.RelVector2 ItemAdvance
-{
-get => orig.ItemAdvance;
-set => orig.ItemAdvance = value;
-}
+    public RegularGridLayoutR(RegularGridLayout _orig) : base(_orig)
+    {
+    }
 
-public Modding.Menu.AnchoredPosition Start
-{
-get => orig.Start;
-set => orig.Start = value;
-}
+    public RelVector2 ItemAdvance
+    {
+        get => orig.ItemAdvance;
+        set => orig.ItemAdvance = value;
+    }
 
-public int Columns
-{
-get => orig.Columns;
-set => orig.Columns = value;
-}
+    public AnchoredPosition Start
+    {
+        get => orig.Start;
+        set => orig.Start = value;
+    }
 
-public int Index
-{
-get => orig.Index;
-set => orig.Index = value;
-}
+    public int Columns
+    {
+        get => orig.Columns;
+        set => orig.Columns = value;
+    }
 
-public UnityEngine.Vector2Int IndexPos
-{
-get => orig.IndexPos;
-}
+    public int Index
+    {
+        get => orig.Index;
+        set => orig.Index = value;
+    }
 
-public Modding.Menu.RegularGridLayout CreateVerticalLayout (float itemHeight, UnityEngine.Vector2 start = default) =>
-Modding.Menu.RegularGridLayout.CreateVerticalLayout(itemHeight, start);
+    public Vector2Int IndexPos => orig.IndexPos;
 
-public void ModifyNext (UnityEngine.RectTransform rt) =>
-orig.ModifyNext(rt);
+    public RegularGridLayout CreateVerticalLayout(float itemHeight, Vector2 start = default)
+    {
+        return RegularGridLayout.CreateVerticalLayout(itemHeight, start);
+    }
 
-public void ChangeColumns (int columns, float originalAnchor = 0.5f, Modding.Menu.RelVector2? newSize = null, float newAnchor = 0.5f) =>
-orig.ChangeColumns(columns, originalAnchor, newSize, newAnchor);
+    public void ModifyNext(RectTransform rt)
+    {
+        orig.ModifyNext(rt);
+    }
 
-}
+    public void ChangeColumns(int columns, float originalAnchor = 0.5f, RelVector2? newSize = null,
+        float newAnchor = 0.5f)
+    {
+        orig.ChangeColumns(columns, originalAnchor, newSize, newAnchor);
+    }
 }

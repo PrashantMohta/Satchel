@@ -1,44 +1,59 @@
-namespace Satchel.Reflected
-{
+using System.Collections.ObjectModel;
+using InControl;
+using Touch = InControl.Touch;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of TouchPool allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class TouchPoolR:InstanceClassWrapper<InControl.TouchPool>
+public class TouchPoolR : InstanceClassWrapper<TouchPool>
 {
-public TouchPoolR(InControl.TouchPool _orig) : base(_orig) {}
-public System.Collections.ObjectModel.ReadOnlyCollection<InControl.Touch> Touches
-{
-get => orig.Touches;
-set => SetField(value);
-}
+    public TouchPoolR(TouchPool _orig) : base(_orig)
+    {
+    }
 
-public System.Collections.Generic.List<InControl.Touch> usedTouches
-{
-get => GetField<System.Collections.Generic.List<InControl.Touch>>();
-set => SetField(value);
-}
+    public ReadOnlyCollection<Touch> Touches
+    {
+        get => orig.Touches;
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<InControl.Touch> freeTouches
-{
-get => GetField<System.Collections.Generic.List<InControl.Touch>>();
-set => SetField(value);
-}
+    public List<Touch> usedTouches
+    {
+        get => GetField<List<Touch>>();
+        set => SetField(value);
+    }
 
-public InControl.Touch FindOrCreateTouch (int fingerId) =>
-orig.FindOrCreateTouch(fingerId);
+    public List<Touch> freeTouches
+    {
+        get => GetField<List<Touch>>();
+        set => SetField(value);
+    }
 
-public InControl.Touch FindTouch (int fingerId) =>
-orig.FindTouch(fingerId);
+    public Touch FindOrCreateTouch(int fingerId)
+    {
+        return orig.FindOrCreateTouch(fingerId);
+    }
 
-public InControl.Touch NewTouch () =>
-CallMethod<InControl.Touch>();
+    public Touch FindTouch(int fingerId)
+    {
+        return orig.FindTouch(fingerId);
+    }
 
-public void FreeTouch (InControl.Touch touch) =>
-orig.FreeTouch(touch);
+    public Touch NewTouch()
+    {
+        return CallMethod<Touch>();
+    }
 
-public void FreeEndedTouches () =>
-orig.FreeEndedTouches();
+    public void FreeTouch(Touch touch)
+    {
+        orig.FreeTouch(touch);
+    }
 
-}
+    public void FreeEndedTouches()
+    {
+        orig.FreeEndedTouches();
+    }
 }

@@ -1,173 +1,182 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of CheckTargetDirection allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class CheckTargetDirectionR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.CheckTargetDirection>
+public class CheckTargetDirectionR : InstanceClassWrapper<CheckTargetDirection>
 {
-public CheckTargetDirectionR(HutongGames.PlayMaker.Actions.CheckTargetDirection _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public CheckTargetDirectionR(CheckTargetDirection _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmGameObject target
-{
-get => orig.target;
-set => orig.target = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent aboveEvent
-{
-get => orig.aboveEvent;
-set => orig.aboveEvent = value;
-}
+    public FsmGameObject target
+    {
+        get => orig.target;
+        set => orig.target = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent belowEvent
-{
-get => orig.belowEvent;
-set => orig.belowEvent = value;
-}
+    public FsmEvent aboveEvent
+    {
+        get => orig.aboveEvent;
+        set => orig.aboveEvent = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent rightEvent
-{
-get => orig.rightEvent;
-set => orig.rightEvent = value;
-}
+    public FsmEvent belowEvent
+    {
+        get => orig.belowEvent;
+        set => orig.belowEvent = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent leftEvent
-{
-get => orig.leftEvent;
-set => orig.leftEvent = value;
-}
+    public FsmEvent rightEvent
+    {
+        get => orig.rightEvent;
+        set => orig.rightEvent = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool aboveBool
-{
-get => orig.aboveBool;
-set => orig.aboveBool = value;
-}
+    public FsmEvent leftEvent
+    {
+        get => orig.leftEvent;
+        set => orig.leftEvent = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool belowBool
-{
-get => orig.belowBool;
-set => orig.belowBool = value;
-}
+    public FsmBool aboveBool
+    {
+        get => orig.aboveBool;
+        set => orig.aboveBool = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool rightBool
-{
-get => orig.rightBool;
-set => orig.rightBool = value;
-}
+    public FsmBool belowBool
+    {
+        get => orig.belowBool;
+        set => orig.belowBool = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool leftBool
-{
-get => orig.leftBool;
-set => orig.leftBool = value;
-}
+    public FsmBool rightBool
+    {
+        get => orig.rightBool;
+        set => orig.rightBool = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject self
-{
-get => GetField<HutongGames.PlayMaker.FsmGameObject>();
-set => SetField(value);
-}
+    public FsmBool leftBool
+    {
+        get => orig.leftBool;
+        set => orig.leftBool = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat x
-{
-get => GetField<HutongGames.PlayMaker.FsmFloat>();
-set => SetField(value);
-}
+    public FsmGameObject self
+    {
+        get => GetField<FsmGameObject>();
+        set => SetField(value);
+    }
 
-public HutongGames.PlayMaker.FsmFloat y
-{
-get => GetField<HutongGames.PlayMaker.FsmFloat>();
-set => SetField(value);
-}
+    public FsmFloat x
+    {
+        get => GetField<FsmFloat>();
+        set => SetField(value);
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmFloat y
+    {
+        get => GetField<FsmFloat>();
+        set => SetField(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoCheckDirection () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void DoCheckDirection()
+    {
+        CallMethod();
+    }
 }

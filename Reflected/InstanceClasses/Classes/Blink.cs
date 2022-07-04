@@ -1,178 +1,166 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of Blink allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class BlinkR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.Blink>
+public class BlinkR : InstanceClassWrapper<Blink>
 {
-public BlinkR(HutongGames.PlayMaker.Actions.Blink _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public BlinkR(Blink _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmFloat timeOff
-{
-get => orig.timeOff;
-set => orig.timeOff = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat timeOn
-{
-get => orig.timeOn;
-set => orig.timeOn = value;
-}
+    public FsmFloat timeOff
+    {
+        get => orig.timeOff;
+        set => orig.timeOff = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool startOn
-{
-get => orig.startOn;
-set => orig.startOn = value;
-}
+    public FsmFloat timeOn
+    {
+        get => orig.timeOn;
+        set => orig.timeOn = value;
+    }
 
-public bool rendererOnly
-{
-get => orig.rendererOnly;
-set => orig.rendererOnly = value;
-}
+    public FsmBool startOn
+    {
+        get => orig.startOn;
+        set => orig.startOn = value;
+    }
 
-public bool realTime
-{
-get => orig.realTime;
-set => orig.realTime = value;
-}
+    public bool rendererOnly
+    {
+        get => orig.rendererOnly;
+        set => orig.rendererOnly = value;
+    }
 
-public float startTime
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public bool realTime
+    {
+        get => orig.realTime;
+        set => orig.realTime = value;
+    }
 
-public float timer
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public float startTime
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public bool blinkOn
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public float timer
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Rigidbody rigidbody
-{
-get => GetProperty<UnityEngine.Rigidbody>();
-}
+    public bool blinkOn
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Rigidbody2D rigidbody2d
-{
-get => GetProperty<UnityEngine.Rigidbody2D>();
-}
+    public Rigidbody rigidbody => GetProperty<Rigidbody>();
 
-public UnityEngine.Renderer renderer
-{
-get => GetProperty<UnityEngine.Renderer>();
-}
+    public Rigidbody2D rigidbody2d => GetProperty<Rigidbody2D>();
 
-public UnityEngine.Animation animation
-{
-get => GetProperty<UnityEngine.Animation>();
-}
+    public Renderer renderer => GetProperty<Renderer>();
 
-public UnityEngine.AudioSource audio
-{
-get => GetProperty<UnityEngine.AudioSource>();
-}
+    public UnityEngine.Animation animation => GetProperty<UnityEngine.Animation>();
 
-public UnityEngine.Camera camera
-{
-get => GetProperty<UnityEngine.Camera>();
-}
+    public AudioSource audio => GetProperty<AudioSource>();
 
-public UnityEngine.Light light
-{
-get => GetProperty<UnityEngine.Light>();
-}
+    public Camera camera => GetProperty<Camera>();
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Light light => GetProperty<Light>();
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void UpdateBlinkState (bool state) =>
-CallMethod(new object[] {state});
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void UpdateBlinkState(bool state)
+    {
+        CallMethod(new object[] { state });
+    }
 }

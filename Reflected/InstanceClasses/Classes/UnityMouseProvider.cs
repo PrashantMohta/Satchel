@@ -1,98 +1,127 @@
-namespace Satchel.Reflected
-{
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of UnityMouseProvider allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class UnityMouseProviderR:InstanceClassWrapper<InControl.UnityMouseProvider>
+public class UnityMouseProviderR : InstanceClassWrapper<UnityMouseProvider>
 {
-public UnityMouseProviderR(InControl.UnityMouseProvider _orig) : base(_orig) {}
-public string mouseXAxis
-{
-get => GetFieldStatic<string>();
-set => SetField(value);
-}
+    public UnityMouseProviderR(UnityMouseProvider _orig) : base(_orig)
+    {
+    }
 
-public string mouseYAxis
-{
-get => GetFieldStatic<string>();
-set => SetField(value);
-}
+    public string mouseXAxis
+    {
+        get => GetFieldStatic<string>();
+        set => SetField(value);
+    }
 
-public System.Boolean[] lastButtonPressed
-{
-get => GetField<System.Boolean[]>();
-set => SetField(value);
-}
+    public string mouseYAxis
+    {
+        get => GetFieldStatic<string>();
+        set => SetField(value);
+    }
 
-public System.Boolean[] buttonPressed
-{
-get => GetField<System.Boolean[]>();
-set => SetField(value);
-}
+    public bool[] lastButtonPressed
+    {
+        get => GetField<bool[]>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Vector2 lastPosition
-{
-get => GetField<UnityEngine.Vector2>();
-set => SetField(value);
-}
+    public bool[] buttonPressed
+    {
+        get => GetField<bool[]>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Vector2 position
-{
-get => GetField<UnityEngine.Vector2>();
-set => SetField(value);
-}
+    public Vector2 lastPosition
+    {
+        get => GetField<Vector2>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Vector2 delta
-{
-get => GetField<UnityEngine.Vector2>();
-set => SetField(value);
-}
+    public Vector2 position
+    {
+        get => GetField<Vector2>();
+        set => SetField(value);
+    }
 
-public float scroll
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public Vector2 delta
+    {
+        get => GetField<Vector2>();
+        set => SetField(value);
+    }
 
-public void Setup () =>
-orig.Setup();
+    public float scroll
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public void Reset () =>
-orig.Reset();
+    public void Setup()
+    {
+        orig.Setup();
+    }
 
-public void Update () =>
-orig.Update();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public bool SafeGetMouseButton (int button) =>
-CallMethodStatic<bool>(new object[] {button});
+    public void Update()
+    {
+        orig.Update();
+    }
 
-public void ClearState () =>
-CallMethod();
+    public bool SafeGetMouseButton(int button)
+    {
+        return CallMethodStatic<bool>(new object[] { button });
+    }
 
-public UnityEngine.Vector2 GetPosition () =>
-orig.GetPosition();
+    public void ClearState()
+    {
+        CallMethod();
+    }
 
-public float GetDeltaX () =>
-orig.GetDeltaX();
+    public Vector2 GetPosition()
+    {
+        return orig.GetPosition();
+    }
 
-public float GetDeltaY () =>
-orig.GetDeltaY();
+    public float GetDeltaX()
+    {
+        return orig.GetDeltaX();
+    }
 
-public float GetDeltaScroll () =>
-orig.GetDeltaScroll();
+    public float GetDeltaY()
+    {
+        return orig.GetDeltaY();
+    }
 
-public bool GetButtonIsPressed (InControl.Mouse control) =>
-orig.GetButtonIsPressed(control);
+    public float GetDeltaScroll()
+    {
+        return orig.GetDeltaScroll();
+    }
 
-public bool GetButtonWasPressed (InControl.Mouse control) =>
-orig.GetButtonWasPressed(control);
+    public bool GetButtonIsPressed(Mouse control)
+    {
+        return orig.GetButtonIsPressed(control);
+    }
 
-public bool GetButtonWasReleased (InControl.Mouse control) =>
-orig.GetButtonWasReleased(control);
+    public bool GetButtonWasPressed(Mouse control)
+    {
+        return orig.GetButtonWasPressed(control);
+    }
 
-public bool HasMousePresent () =>
-orig.HasMousePresent();
+    public bool GetButtonWasReleased(Mouse control)
+    {
+        return orig.GetButtonWasReleased(control);
+    }
 
-}
+    public bool HasMousePresent()
+    {
+        return orig.HasMousePresent();
+    }
 }

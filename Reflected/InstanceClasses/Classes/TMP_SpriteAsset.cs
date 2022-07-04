@@ -1,79 +1,85 @@
-namespace Satchel.Reflected
-{
+using TMPro;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of TMP_SpriteAsset allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class TMP_SpriteAssetR:InstanceClassWrapper<TMPro.TMP_SpriteAsset>
+public class TMP_SpriteAssetR : InstanceClassWrapper<TMP_SpriteAsset>
 {
-public TMP_SpriteAssetR(TMPro.TMP_SpriteAsset _orig) : base(_orig) {}
-public TMPro.TMP_SpriteAsset m_defaultSpriteAsset
-{
-get => TMPro.TMP_SpriteAsset.m_defaultSpriteAsset;
-set => TMPro.TMP_SpriteAsset.m_defaultSpriteAsset = value;
-}
+    public TMP_SpriteAssetR(TMP_SpriteAsset _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.Texture spriteSheet
-{
-get => orig.spriteSheet;
-set => orig.spriteSheet = value;
-}
+    public TMP_SpriteAsset m_defaultSpriteAsset
+    {
+        get => TMP_SpriteAsset.m_defaultSpriteAsset;
+        set => TMP_SpriteAsset.m_defaultSpriteAsset = value;
+    }
 
-public System.Collections.Generic.List<TMPro.TMP_Sprite> spriteInfoList
-{
-get => orig.spriteInfoList;
-set => orig.spriteInfoList = value;
-}
+    public Texture spriteSheet
+    {
+        get => orig.spriteSheet;
+        set => orig.spriteSheet = value;
+    }
 
-public System.Collections.Generic.List<UnityEngine.Sprite> m_sprites
-{
-get => GetField<System.Collections.Generic.List<UnityEngine.Sprite>>();
-set => SetField(value);
-}
+    public List<TMP_Sprite> spriteInfoList
+    {
+        get => orig.spriteInfoList;
+        set => orig.spriteInfoList = value;
+    }
 
-public int hashCode
-{
-get => orig.hashCode;
-set => orig.hashCode = value;
-}
+    public List<Sprite> m_sprites
+    {
+        get => GetField<List<Sprite>>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Material material
-{
-get => orig.material;
-set => orig.material = value;
-}
+    public int hashCode
+    {
+        get => orig.hashCode;
+        set => orig.hashCode = value;
+    }
 
-public int materialHashCode
-{
-get => orig.materialHashCode;
-set => orig.materialHashCode = value;
-}
+    public Material material
+    {
+        get => orig.material;
+        set => orig.material = value;
+    }
 
-public TMPro.TMP_SpriteAsset defaultSpriteAsset
-{
-get => TMPro.TMP_SpriteAsset.defaultSpriteAsset;
-}
+    public int materialHashCode
+    {
+        get => orig.materialHashCode;
+        set => orig.materialHashCode = value;
+    }
 
-public string name
-{
-get => orig.name;
-set => orig.name = value;
-}
+    public TMP_SpriteAsset defaultSpriteAsset => TMP_SpriteAsset.defaultSpriteAsset;
 
-public UnityEngine.HideFlags hideFlags
-{
-get => orig.hideFlags;
-set => orig.hideFlags = value;
-}
+    public string name
+    {
+        get => orig.name;
+        set => orig.name = value;
+    }
 
-public void OnEnable () =>
-CallMethod();
+    public HideFlags hideFlags
+    {
+        get => orig.hideFlags;
+        set => orig.hideFlags = value;
+    }
 
-public UnityEngine.Material GetDefaultSpriteMaterial () =>
-CallMethod<UnityEngine.Material>();
+    public void OnEnable()
+    {
+        CallMethod();
+    }
 
-public int GetSpriteIndex (int hashCode) =>
-orig.GetSpriteIndex(hashCode);
+    public Material GetDefaultSpriteMaterial()
+    {
+        return CallMethod<Material>();
+    }
 
-}
+    public int GetSpriteIndex(int hashCode)
+    {
+        return orig.GetSpriteIndex(hashCode);
+    }
 }

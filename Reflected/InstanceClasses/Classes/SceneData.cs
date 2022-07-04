@@ -1,77 +1,102 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SceneData allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SceneDataR:InstanceClassWrapper<SceneData>
+public class SceneDataR : InstanceClassWrapper<SceneData>
 {
-public SceneDataR(SceneData _orig) : base(_orig) {}
-public System.Collections.Generic.List<GeoRockData> geoRocks
-{
-get => orig.geoRocks;
-set => orig.geoRocks = value;
-}
+    public SceneDataR(SceneData _orig) : base(_orig)
+    {
+    }
 
-public System.Collections.Generic.List<PersistentBoolData> persistentBoolItems
-{
-get => orig.persistentBoolItems;
-set => orig.persistentBoolItems = value;
-}
+    public List<GeoRockData> geoRocks
+    {
+        get => orig.geoRocks;
+        set => orig.geoRocks = value;
+    }
 
-public System.Collections.Generic.List<PersistentIntData> persistentIntItems
-{
-get => orig.persistentIntItems;
-set => orig.persistentIntItems = value;
-}
+    public List<PersistentBoolData> persistentBoolItems
+    {
+        get => orig.persistentBoolItems;
+        set => orig.persistentBoolItems = value;
+    }
 
-public SceneData _instance
-{
-get => GetFieldStatic<SceneData>();
-set => SetField(value);
-}
+    public List<PersistentIntData> persistentIntItems
+    {
+        get => orig.persistentIntItems;
+        set => orig.persistentIntItems = value;
+    }
 
-public SceneData instance
-{
-get => SceneData.instance;
-set => SceneData.instance = value;
-}
+    public SceneData _instance
+    {
+        get => GetFieldStatic<SceneData>();
+        set => SetField(value);
+    }
 
-public void Reset () =>
-orig.Reset();
+    public SceneData instance
+    {
+        get => SceneData.instance;
+        set => SceneData.instance = value;
+    }
 
-public void SaveMyState (GeoRockData geoRockData) =>
-orig.SaveMyState(geoRockData);
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void SaveMyState (PersistentBoolData persistentBoolData) =>
-orig.SaveMyState(persistentBoolData);
+    public void SaveMyState(GeoRockData geoRockData)
+    {
+        orig.SaveMyState(geoRockData);
+    }
 
-public void SaveMyState (PersistentIntData persistentIntData) =>
-orig.SaveMyState(persistentIntData);
+    public void SaveMyState(PersistentBoolData persistentBoolData)
+    {
+        orig.SaveMyState(persistentBoolData);
+    }
 
-public void ResetSemiPersistentItems () =>
-orig.ResetSemiPersistentItems();
+    public void SaveMyState(PersistentIntData persistentIntData)
+    {
+        orig.SaveMyState(persistentIntData);
+    }
 
-public GeoRockData FindMyState (GeoRockData grd) =>
-orig.FindMyState(grd);
+    public void ResetSemiPersistentItems()
+    {
+        orig.ResetSemiPersistentItems();
+    }
 
-public PersistentBoolData FindMyState (PersistentBoolData persistentBoolData) =>
-orig.FindMyState(persistentBoolData);
+    public GeoRockData FindMyState(GeoRockData grd)
+    {
+        return orig.FindMyState(grd);
+    }
 
-public PersistentIntData FindMyState (PersistentIntData persistentIntData) =>
-orig.FindMyState(persistentIntData);
+    public PersistentBoolData FindMyState(PersistentBoolData persistentBoolData)
+    {
+        return orig.FindMyState(persistentBoolData);
+    }
 
-public void SetupNewSceneData () =>
-CallMethod();
+    public PersistentIntData FindMyState(PersistentIntData persistentIntData)
+    {
+        return orig.FindMyState(persistentIntData);
+    }
 
-public int FindGeoRockInList (GeoRockData grd) =>
-CallMethod<int>(new object[] {grd});
+    public void SetupNewSceneData()
+    {
+        CallMethod();
+    }
 
-public int FindPersistentBoolItemInList (PersistentBoolData pbd) =>
-CallMethod<int>(new object[] {pbd});
+    public int FindGeoRockInList(GeoRockData grd)
+    {
+        return CallMethod<int>(new object[] { grd });
+    }
 
-public int FindPersistentIntItemInList (PersistentIntData pid) =>
-CallMethod<int>(new object[] {pid});
+    public int FindPersistentBoolItemInList(PersistentBoolData pbd)
+    {
+        return CallMethod<int>(new object[] { pbd });
+    }
 
-}
+    public int FindPersistentIntItemInList(PersistentIntData pid)
+    {
+        return CallMethod<int>(new object[] { pid });
+    }
 }

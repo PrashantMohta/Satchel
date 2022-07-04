@@ -1,146 +1,153 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ArrayListContainsGameObject allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ArrayListContainsGameObjectR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.ArrayListContainsGameObject>
+public class ArrayListContainsGameObjectR : InstanceClassWrapper<ArrayListContainsGameObject>
 {
-public ArrayListContainsGameObjectR(HutongGames.PlayMaker.Actions.ArrayListContainsGameObject _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public ArrayListContainsGameObjectR(ArrayListContainsGameObject _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString reference
-{
-get => orig.reference;
-set => orig.reference = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmString gameObjectName
-{
-get => orig.gameObjectName;
-set => orig.gameObjectName = value;
-}
+    public FsmString reference
+    {
+        get => orig.reference;
+        set => orig.reference = value;
+    }
 
-public HutongGames.PlayMaker.FsmString withTag
-{
-get => orig.withTag;
-set => orig.withTag = value;
-}
+    public FsmString gameObjectName
+    {
+        get => orig.gameObjectName;
+        set => orig.gameObjectName = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject result
-{
-get => orig.result;
-set => orig.result = value;
-}
+    public FsmString withTag
+    {
+        get => orig.withTag;
+        set => orig.withTag = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt resultIndex
-{
-get => orig.resultIndex;
-set => orig.resultIndex = value;
-}
+    public FsmGameObject result
+    {
+        get => orig.result;
+        set => orig.result = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool isContained
-{
-get => orig.isContained;
-set => orig.isContained = value;
-}
+    public FsmInt resultIndex
+    {
+        get => orig.resultIndex;
+        set => orig.resultIndex = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent isContainedEvent
-{
-get => orig.isContainedEvent;
-set => orig.isContainedEvent = value;
-}
+    public FsmBool isContained
+    {
+        get => orig.isContained;
+        set => orig.isContained = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent isNotContainedEvent
-{
-get => orig.isNotContainedEvent;
-set => orig.isNotContainedEvent = value;
-}
+    public FsmEvent isContainedEvent
+    {
+        get => orig.isContainedEvent;
+        set => orig.isContainedEvent = value;
+    }
 
-public PlayMakerArrayListProxy proxy
-{
-get => GetField<PlayMakerArrayListProxy>();
-set => SetField(value);
-}
+    public FsmEvent isNotContainedEvent
+    {
+        get => orig.isNotContainedEvent;
+        set => orig.isNotContainedEvent = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public PlayMakerArrayListProxy proxy
+    {
+        get => GetField<PlayMakerArrayListProxy>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public int DoContainsGo () =>
-CallMethod<int>();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-}
+    public int DoContainsGo()
+    {
+        return CallMethod<int>();
+    }
 }

@@ -1,32 +1,31 @@
-namespace Satchel.Reflected
-{
+using System.Reflection;
+using Modding.Delegates;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SetStringProxy allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SetStringProxyR:InstanceClassWrapper<Modding.Delegates.SetStringProxy>
+public class SetStringProxyR : InstanceClassWrapper<SetStringProxy>
 {
-public SetStringProxyR(Modding.Delegates.SetStringProxy _orig) : base(_orig) {}
-public bool HasSingleTarget
-{
-get => GetProperty<bool>();
-}
+    public SetStringProxyR(SetStringProxy _orig) : base(_orig)
+    {
+    }
 
-public System.Reflection.MethodInfo Method
-{
-get => orig.Method;
-}
+    public bool HasSingleTarget => GetProperty<bool>();
 
-public System.Object Target
-{
-get => orig.Target;
-}
+    public MethodInfo Method => orig.Method;
 
-public string Invoke (string name, string res) =>
-orig.Invoke(name, res);
+    public object Target => orig.Target;
 
-public string EndInvoke (System.IAsyncResult result) =>
-orig.EndInvoke(result);
+    public string Invoke(string name, string res)
+    {
+        return orig.Invoke(name, res);
+    }
 
-}
+    public string EndInvoke(IAsyncResult result)
+    {
+        return orig.EndInvoke(result);
+    }
 }

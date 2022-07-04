@@ -1,83 +1,89 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of tk2dUIMask allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class tk2dUIMaskR:InstanceClassWrapper<tk2dUIMask>
+public class tk2dUIMaskR : InstanceClassWrapper<tk2dUIMask>
 {
-public tk2dUIMaskR(tk2dUIMask _orig) : base(_orig) {}
-public UnityEngine.Vector2 size
-{
-get => orig.size;
-set => orig.size = value;
-}
+    public tk2dUIMaskR(tk2dUIMask _orig) : base(_orig)
+    {
+    }
 
-public float depth
-{
-get => orig.depth;
-set => orig.depth = value;
-}
+    public Vector2 size
+    {
+        get => orig.size;
+        set => orig.size = value;
+    }
 
-public bool createBoxCollider
-{
-get => orig.createBoxCollider;
-set => orig.createBoxCollider = value;
-}
+    public float depth
+    {
+        get => orig.depth;
+        set => orig.depth = value;
+    }
 
-public UnityEngine.MeshFilter _thisMeshFilter
-{
-get => GetField<UnityEngine.MeshFilter>();
-set => SetField(value);
-}
+    public bool createBoxCollider
+    {
+        get => orig.createBoxCollider;
+        set => orig.createBoxCollider = value;
+    }
 
-public UnityEngine.BoxCollider _thisBoxCollider
-{
-get => GetField<UnityEngine.BoxCollider>();
-set => SetField(value);
-}
+    public MeshFilter _thisMeshFilter
+    {
+        get => GetField<MeshFilter>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Vector2[] uv
-{
-get => GetFieldStatic<UnityEngine.Vector2[]>();
-set => SetField(value);
-}
+    public BoxCollider _thisBoxCollider
+    {
+        get => GetField<BoxCollider>();
+        set => SetField(value);
+    }
 
-public System.Int32[] indices
-{
-get => GetFieldStatic<System.Int32[]>();
-set => SetField(value);
-}
+    public Vector2[] uv
+    {
+        get => GetFieldStatic<Vector2[]>();
+        set => SetField(value);
+    }
 
-public UnityEngine.MeshFilter ThisMeshFilter
-{
-get => GetProperty<UnityEngine.MeshFilter>();
-}
+    public int[] indices
+    {
+        get => GetFieldStatic<int[]>();
+        set => SetField(value);
+    }
 
-public UnityEngine.BoxCollider ThisBoxCollider
-{
-get => GetProperty<UnityEngine.BoxCollider>();
-}
+    public MeshFilter ThisMeshFilter => GetProperty<MeshFilter>();
+
+    public BoxCollider ThisBoxCollider => GetProperty<BoxCollider>();
 
 
+    public void Awake()
+    {
+        CallMethod();
+    }
 
-public void Awake () =>
-CallMethod();
+    public void OnDestroy()
+    {
+        CallMethod();
+    }
 
-public void OnDestroy () =>
-CallMethod();
+    public Mesh FillMesh(Mesh mesh)
+    {
+        return CallMethod<Mesh>(new object[] { mesh });
+    }
 
-public UnityEngine.Mesh FillMesh (UnityEngine.Mesh mesh) =>
-CallMethod<UnityEngine.Mesh>(new object[] {mesh});
+    public void OnDrawGizmosSelected()
+    {
+        CallMethod();
+    }
 
-public void OnDrawGizmosSelected () =>
-CallMethod();
+    public void Build()
+    {
+        orig.Build();
+    }
 
-public void Build () =>
-orig.Build();
-
-public void ReshapeBounds (UnityEngine.Vector3 dMin, UnityEngine.Vector3 dMax) =>
-orig.ReshapeBounds(dMin, dMax);
-
-}
+    public void ReshapeBounds(Vector3 dMin, Vector3 dMax)
+    {
+        orig.ReshapeBounds(dMin, dMax);
+    }
 }

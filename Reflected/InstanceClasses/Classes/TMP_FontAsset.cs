@@ -1,216 +1,228 @@
-namespace Satchel.Reflected
-{
+using TMPro;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of TMP_FontAsset allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class TMP_FontAssetR:InstanceClassWrapper<TMPro.TMP_FontAsset>
+public class TMP_FontAssetR : InstanceClassWrapper<TMP_FontAsset>
 {
-public TMP_FontAssetR(TMPro.TMP_FontAsset _orig) : base(_orig) {}
-public TMPro.TMP_FontAsset s_defaultFontAsset
-{
-get => GetFieldStatic<TMPro.TMP_FontAsset>();
-set => SetField(value);
-}
+    public TMP_FontAssetR(TMP_FontAsset _orig) : base(_orig)
+    {
+    }
 
-public TMPro.FaceInfo m_fontInfo
-{
-get => GetField<TMPro.FaceInfo>();
-set => SetField(value);
-}
+    public TMP_FontAsset s_defaultFontAsset
+    {
+        get => GetFieldStatic<TMP_FontAsset>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Texture2D atlas
-{
-get => orig.atlas;
-set => orig.atlas = value;
-}
+    public FaceInfo m_fontInfo
+    {
+        get => GetField<FaceInfo>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<TMPro.TMP_Glyph> m_glyphInfoList
-{
-get => GetField<System.Collections.Generic.List<TMPro.TMP_Glyph>>();
-set => SetField(value);
-}
+    public Texture2D atlas
+    {
+        get => orig.atlas;
+        set => orig.atlas = value;
+    }
 
-public System.Collections.Generic.Dictionary<System.Int32,TMPro.TMP_Glyph> m_characterDictionary
-{
-get => GetField<System.Collections.Generic.Dictionary<System.Int32,TMPro.TMP_Glyph>>();
-set => SetField(value);
-}
+    public List<TMP_Glyph> m_glyphInfoList
+    {
+        get => GetField<List<TMP_Glyph>>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.Dictionary<System.Int32,TMPro.KerningPair> m_kerningDictionary
-{
-get => GetField<System.Collections.Generic.Dictionary<System.Int32,TMPro.KerningPair>>();
-set => SetField(value);
-}
+    public Dictionary<int, TMP_Glyph> m_characterDictionary
+    {
+        get => GetField<Dictionary<int, TMP_Glyph>>();
+        set => SetField(value);
+    }
 
-public TMPro.KerningTable m_kerningInfo
-{
-get => GetField<TMPro.KerningTable>();
-set => SetField(value);
-}
+    public Dictionary<int, KerningPair> m_kerningDictionary
+    {
+        get => GetField<Dictionary<int, KerningPair>>();
+        set => SetField(value);
+    }
 
-public TMPro.KerningPair m_kerningPair
-{
-get => GetField<TMPro.KerningPair>();
-set => SetField(value);
-}
+    public KerningTable m_kerningInfo
+    {
+        get => GetField<KerningTable>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<TMPro.TMP_FontAsset> fallbackFontAssets
-{
-get => orig.fallbackFontAssets;
-set => orig.fallbackFontAssets = value;
-}
+    public KerningPair m_kerningPair
+    {
+        get => GetField<KerningPair>();
+        set => SetField(value);
+    }
 
-public TMPro.FontCreationSetting fontCreationSettings
-{
-get => orig.fontCreationSettings;
-set => orig.fontCreationSettings = value;
-}
+    public List<TMP_FontAsset> fallbackFontAssets
+    {
+        get => orig.fallbackFontAssets;
+        set => orig.fallbackFontAssets = value;
+    }
 
-public TMPro.TMP_FontWeights[] fontWeights
-{
-get => orig.fontWeights;
-set => orig.fontWeights = value;
-}
+    public FontCreationSetting fontCreationSettings
+    {
+        get => orig.fontCreationSettings;
+        set => orig.fontCreationSettings = value;
+    }
 
-public System.Int32[] m_characterSet
-{
-get => GetField<System.Int32[]>();
-set => SetField(value);
-}
+    public TMP_FontWeights[] fontWeights
+    {
+        get => orig.fontWeights;
+        set => orig.fontWeights = value;
+    }
 
-public float normalStyle
-{
-get => orig.normalStyle;
-set => orig.normalStyle = value;
-}
+    public int[] m_characterSet
+    {
+        get => GetField<int[]>();
+        set => SetField(value);
+    }
 
-public float normalSpacingOffset
-{
-get => orig.normalSpacingOffset;
-set => orig.normalSpacingOffset = value;
-}
+    public float normalStyle
+    {
+        get => orig.normalStyle;
+        set => orig.normalStyle = value;
+    }
 
-public float boldStyle
-{
-get => orig.boldStyle;
-set => orig.boldStyle = value;
-}
+    public float normalSpacingOffset
+    {
+        get => orig.normalSpacingOffset;
+        set => orig.normalSpacingOffset = value;
+    }
 
-public float boldSpacing
-{
-get => orig.boldSpacing;
-set => orig.boldSpacing = value;
-}
+    public float boldStyle
+    {
+        get => orig.boldStyle;
+        set => orig.boldStyle = value;
+    }
 
-public System.Byte italicStyle
-{
-get => orig.italicStyle;
-set => orig.italicStyle = value;
-}
+    public float boldSpacing
+    {
+        get => orig.boldSpacing;
+        set => orig.boldSpacing = value;
+    }
 
-public System.Byte tabSize
-{
-get => orig.tabSize;
-set => orig.tabSize = value;
-}
+    public byte italicStyle
+    {
+        get => orig.italicStyle;
+        set => orig.italicStyle = value;
+    }
 
-public System.Byte m_oldTabSize
-{
-get => GetField<System.Byte>();
-set => SetField(value);
-}
+    public byte tabSize
+    {
+        get => orig.tabSize;
+        set => orig.tabSize = value;
+    }
 
-public int hashCode
-{
-get => orig.hashCode;
-set => orig.hashCode = value;
-}
+    public byte m_oldTabSize
+    {
+        get => GetField<byte>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Material material
-{
-get => orig.material;
-set => orig.material = value;
-}
+    public int hashCode
+    {
+        get => orig.hashCode;
+        set => orig.hashCode = value;
+    }
 
-public int materialHashCode
-{
-get => orig.materialHashCode;
-set => orig.materialHashCode = value;
-}
+    public Material material
+    {
+        get => orig.material;
+        set => orig.material = value;
+    }
 
-public TMPro.TMP_FontAsset defaultFontAsset
-{
-get => TMPro.TMP_FontAsset.defaultFontAsset;
-}
+    public int materialHashCode
+    {
+        get => orig.materialHashCode;
+        set => orig.materialHashCode = value;
+    }
 
-public TMPro.FaceInfo fontInfo
-{
-get => orig.fontInfo;
-}
+    public TMP_FontAsset defaultFontAsset => TMP_FontAsset.defaultFontAsset;
 
-public System.Collections.Generic.Dictionary<System.Int32,TMPro.TMP_Glyph> characterDictionary
-{
-get => orig.characterDictionary;
-}
+    public FaceInfo fontInfo => orig.fontInfo;
 
-public System.Collections.Generic.Dictionary<System.Int32,TMPro.KerningPair> kerningDictionary
-{
-get => orig.kerningDictionary;
-}
+    public Dictionary<int, TMP_Glyph> characterDictionary => orig.characterDictionary;
 
-public TMPro.KerningTable kerningInfo
-{
-get => orig.kerningInfo;
-}
+    public Dictionary<int, KerningPair> kerningDictionary => orig.kerningDictionary;
 
-public string name
-{
-get => orig.name;
-set => orig.name = value;
-}
+    public KerningTable kerningInfo => orig.kerningInfo;
 
-public UnityEngine.HideFlags hideFlags
-{
-get => orig.hideFlags;
-set => orig.hideFlags = value;
-}
+    public string name
+    {
+        get => orig.name;
+        set => orig.name = value;
+    }
 
-public void OnEnable () =>
-CallMethod();
+    public HideFlags hideFlags
+    {
+        get => orig.hideFlags;
+        set => orig.hideFlags = value;
+    }
 
-public void OnDisable () =>
-CallMethod();
+    public void OnEnable()
+    {
+        CallMethod();
+    }
 
-public void AddFaceInfo (TMPro.FaceInfo faceInfo) =>
-orig.AddFaceInfo(faceInfo);
+    public void OnDisable()
+    {
+        CallMethod();
+    }
 
-public void AddGlyphInfo (TMPro.TMP_Glyph[] glyphInfo) =>
-orig.AddGlyphInfo(glyphInfo);
+    public void AddFaceInfo(FaceInfo faceInfo)
+    {
+        orig.AddFaceInfo(faceInfo);
+    }
 
-public void AddKerningInfo (TMPro.KerningTable kerningTable) =>
-orig.AddKerningInfo(kerningTable);
+    public void AddGlyphInfo(TMP_Glyph[] glyphInfo)
+    {
+        orig.AddGlyphInfo(glyphInfo);
+    }
 
-public void ReadFontDefinition () =>
-orig.ReadFontDefinition();
+    public void AddKerningInfo(KerningTable kerningTable)
+    {
+        orig.AddKerningInfo(kerningTable);
+    }
 
-public bool HasCharacter (int character) =>
-orig.HasCharacter(character);
+    public void ReadFontDefinition()
+    {
+        orig.ReadFontDefinition();
+    }
 
-public bool HasCharacter (System.Char character) =>
-orig.HasCharacter(character);
+    public bool HasCharacter(int character)
+    {
+        return orig.HasCharacter(character);
+    }
 
-public bool HasCharacter (System.Char character, bool searchFallbacks) =>
-orig.HasCharacter(character, searchFallbacks);
+    public bool HasCharacter(char character)
+    {
+        return orig.HasCharacter(character);
+    }
 
-public bool HasCharacters (string text, out System.Collections.Generic.List<System.Char> missingCharacters) =>
-orig.HasCharacters(text, out missingCharacters);
+    public bool HasCharacter(char character, bool searchFallbacks)
+    {
+        return orig.HasCharacter(character, searchFallbacks);
+    }
 
-public string GetCharacters (TMPro.TMP_FontAsset fontAsset) =>
-TMPro.TMP_FontAsset.GetCharacters(fontAsset);
+    public bool HasCharacters(string text, out List<char> missingCharacters)
+    {
+        return orig.HasCharacters(text, out missingCharacters);
+    }
 
-public System.Int32[] GetCharactersArray (TMPro.TMP_FontAsset fontAsset) =>
-TMPro.TMP_FontAsset.GetCharactersArray(fontAsset);
+    public string GetCharacters(TMP_FontAsset fontAsset)
+    {
+        return TMP_FontAsset.GetCharacters(fontAsset);
+    }
 
-}
+    public int[] GetCharactersArray(TMP_FontAsset fontAsset)
+    {
+        return TMP_FontAsset.GetCharactersArray(fontAsset);
+    }
 }

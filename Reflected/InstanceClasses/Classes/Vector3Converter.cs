@@ -1,27 +1,29 @@
-namespace Satchel.Reflected
-{
+using Modding.Converters;
+using Newtonsoft.Json;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of Vector3Converter allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class Vector3ConverterR:InstanceClassWrapper<Modding.Converters.Vector3Converter>
+public class Vector3ConverterR : InstanceClassWrapper<Vector3Converter>
 {
-public Vector3ConverterR(Modding.Converters.Vector3Converter _orig) : base(_orig) {}
-public bool CanRead
-{
-get => orig.CanRead;
-}
+    public Vector3ConverterR(Vector3Converter _orig) : base(_orig)
+    {
+    }
 
-public bool CanWrite
-{
-get => orig.CanWrite;
-}
+    public bool CanRead => orig.CanRead;
 
-public UnityEngine.Vector3 ReadJson (System.Collections.Generic.Dictionary<System.String,System.Object> token, System.Object existingValue) =>
-orig.ReadJson(token, existingValue);
+    public bool CanWrite => orig.CanWrite;
 
-public void WriteJson (Newtonsoft.Json.JsonWriter writer, UnityEngine.Vector3 value) =>
-orig.WriteJson(writer, value);
+    public Vector3 ReadJson(Dictionary<string, object> token, object existingValue)
+    {
+        return orig.ReadJson(token, existingValue);
+    }
 
-}
+    public void WriteJson(JsonWriter writer, Vector3 value)
+    {
+        orig.WriteJson(writer, value);
+    }
 }

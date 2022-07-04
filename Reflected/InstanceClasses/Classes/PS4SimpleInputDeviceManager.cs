@@ -1,43 +1,49 @@
-namespace Satchel.Reflected
-{
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of PS4SimpleInputDeviceManager allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class PS4SimpleInputDeviceManagerR:InstanceClassWrapper<InControl.PS4SimpleInputDeviceManager>
+public class PS4SimpleInputDeviceManagerR : InstanceClassWrapper<PS4SimpleInputDeviceManager>
 {
-public PS4SimpleInputDeviceManagerR(InControl.PS4SimpleInputDeviceManager _orig) : base(_orig) {}
-public InControl.PS4SimpleInputDevice device
-{
-get => GetField<InControl.PS4SimpleInputDevice>();
-set => SetField(value);
-}
+    public PS4SimpleInputDeviceManagerR(PS4SimpleInputDeviceManager _orig) : base(_orig)
+    {
+    }
 
-public bool isDeviceAttached
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public PS4SimpleInputDevice device
+    {
+        get => GetField<PS4SimpleInputDevice>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<InControl.InputDevice> devices
-{
-get => GetField<System.Collections.Generic.List<InControl.InputDevice>>();
-set => SetField(value);
-}
+    public bool isDeviceAttached
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public InControl.PS4SimpleInputDevice Device
-{
-get => orig.Device;
-}
+    public List<InputDevice> devices
+    {
+        get => GetField<List<InputDevice>>();
+        set => SetField(value);
+    }
 
-public void Update (System.UInt64 updateTick, float deltaTime) =>
-orig.Update(updateTick, deltaTime);
+    public PS4SimpleInputDevice Device => orig.Device;
 
-public bool CheckPlatformSupport (System.Collections.Generic.ICollection<System.String>errors) =>
-InControl.PS4SimpleInputDeviceManager.CheckPlatformSupport(errors);
+    public void Update(ulong updateTick, float deltaTime)
+    {
+        orig.Update(updateTick, deltaTime);
+    }
 
-public bool Enable () =>
-CallMethodStatic<bool>();
+    public bool CheckPlatformSupport(ICollection<string> errors)
+    {
+        return PS4SimpleInputDeviceManager.CheckPlatformSupport(errors);
+    }
 
-}
+    public bool Enable()
+    {
+        return CallMethodStatic<bool>();
+    }
 }

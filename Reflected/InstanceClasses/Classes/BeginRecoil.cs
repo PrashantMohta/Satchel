@@ -1,107 +1,112 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of BeginRecoil allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class BeginRecoilR:InstanceClassWrapper<BeginRecoil>
+public class BeginRecoilR : InstanceClassWrapper<BeginRecoil>
 {
-public BeginRecoilR(BeginRecoil _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault target
-{
-get => orig.target;
-set => orig.target = value;
-}
+    public BeginRecoilR(BeginRecoil _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmFloat attackDirection
-{
-get => orig.attackDirection;
-set => orig.attackDirection = value;
-}
+    public FsmOwnerDefault target
+    {
+        get => orig.target;
+        set => orig.target = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt attackType
-{
-get => orig.attackType;
-set => orig.attackType = value;
-}
+    public FsmFloat attackDirection
+    {
+        get => orig.attackDirection;
+        set => orig.attackDirection = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat attackMagnitude
-{
-get => orig.attackMagnitude;
-set => orig.attackMagnitude = value;
-}
+    public FsmInt attackType
+    {
+        get => orig.attackType;
+        set => orig.attackType = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public FsmFloat attackMagnitude
+    {
+        get => orig.attackMagnitude;
+        set => orig.attackMagnitude = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-}
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 }

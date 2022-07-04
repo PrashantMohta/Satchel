@@ -1,100 +1,110 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of BossSequence allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class BossSequenceR:InstanceClassWrapper<BossSequence>
+public class BossSequenceR : InstanceClassWrapper<BossSequence>
 {
-public BossSequenceR(BossSequence _orig) : base(_orig) {}
-public BossScene[] bossScenes
-{
-get => GetField<BossScene[]>();
-set => SetField(value);
-}
+    public BossSequenceR(BossSequence _orig) : base(_orig)
+    {
+    }
 
-public bool useSceneUnlocks
-{
-get => orig.useSceneUnlocks;
-set => orig.useSceneUnlocks = value;
-}
+    public BossScene[] bossScenes
+    {
+        get => GetField<BossScene[]>();
+        set => SetField(value);
+    }
 
-public BossScene.BossTest[] tests
-{
-get => orig.tests;
-set => orig.tests = value;
-}
+    public bool useSceneUnlocks
+    {
+        get => orig.useSceneUnlocks;
+        set => orig.useSceneUnlocks = value;
+    }
 
-public string achievementKey
-{
-get => orig.achievementKey;
-set => orig.achievementKey = value;
-}
+    public BossScene.BossTest[] tests
+    {
+        get => orig.tests;
+        set => orig.tests = value;
+    }
 
-public string customEndScene
-{
-get => orig.customEndScene;
-set => orig.customEndScene = value;
-}
+    public string achievementKey
+    {
+        get => orig.achievementKey;
+        set => orig.achievementKey = value;
+    }
 
-public string customEndScenePlayerData
-{
-get => orig.customEndScenePlayerData;
-set => orig.customEndScenePlayerData = value;
-}
+    public string customEndScene
+    {
+        get => orig.customEndScene;
+        set => orig.customEndScene = value;
+    }
 
-public int nailDamage
-{
-get => orig.nailDamage;
-set => orig.nailDamage = value;
-}
+    public string customEndScenePlayerData
+    {
+        get => orig.customEndScenePlayerData;
+        set => orig.customEndScenePlayerData = value;
+    }
 
-public float lowerNailDamagePercentage
-{
-get => orig.lowerNailDamagePercentage;
-set => orig.lowerNailDamagePercentage = value;
-}
+    public int nailDamage
+    {
+        get => orig.nailDamage;
+        set => orig.nailDamage = value;
+    }
 
-public int maxHealth
-{
-get => orig.maxHealth;
-set => orig.maxHealth = value;
-}
+    public float lowerNailDamagePercentage
+    {
+        get => orig.lowerNailDamagePercentage;
+        set => orig.lowerNailDamagePercentage = value;
+    }
 
-public int Count
-{
-get => orig.Count;
-}
+    public int maxHealth
+    {
+        get => orig.maxHealth;
+        set => orig.maxHealth = value;
+    }
 
-public string name
-{
-get => orig.name;
-set => orig.name = value;
-}
+    public int Count => orig.Count;
 
-public UnityEngine.HideFlags hideFlags
-{
-get => orig.hideFlags;
-set => orig.hideFlags = value;
-}
+    public string name
+    {
+        get => orig.name;
+        set => orig.name = value;
+    }
 
-public string GetSceneAt (int index) =>
-orig.GetSceneAt(index);
+    public HideFlags hideFlags
+    {
+        get => orig.hideFlags;
+        set => orig.hideFlags = value;
+    }
 
-public string GetSceneObjectName (int index) =>
-orig.GetSceneObjectName(index);
+    public string GetSceneAt(int index)
+    {
+        return orig.GetSceneAt(index);
+    }
 
-public bool CanLoad (int index) =>
-orig.CanLoad(index);
+    public string GetSceneObjectName(int index)
+    {
+        return orig.GetSceneObjectName(index);
+    }
 
-public BossScene GetBossScene (int index) =>
-orig.GetBossScene(index);
+    public bool CanLoad(int index)
+    {
+        return orig.CanLoad(index);
+    }
 
-public bool IsUnlocked () =>
-orig.IsUnlocked();
+    public BossScene GetBossScene(int index)
+    {
+        return orig.GetBossScene(index);
+    }
 
-public bool IsSceneHidden (int index) =>
-orig.IsSceneHidden(index);
+    public bool IsUnlocked()
+    {
+        return orig.IsUnlocked();
+    }
 
-}
+    public bool IsSceneHidden(int index)
+    {
+        return orig.IsSceneHidden(index);
+    }
 }

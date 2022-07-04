@@ -1,202 +1,159 @@
-namespace Satchel.Reflected
-{
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of InputControl allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class InputControlR:InstanceClassWrapper<InControl.InputControl>
+public class InputControlR : InstanceClassWrapper<InputControl>
 {
-public InputControlR(InControl.InputControl _orig) : base(_orig) {}
-public InControl.InputControl Null
-{
-get => InControl.InputControl.Null;
-set => SetField(value);
-}
+    public InputControlR(InputControl _orig) : base(_orig)
+    {
+    }
 
-public bool Passive
-{
-get => orig.Passive;
-set => orig.Passive = value;
-}
+    public InputControl Null
+    {
+        get => InputControl.Null;
+        set => SetField(value);
+    }
 
-public System.UInt64 zeroTick
-{
-get => GetField<System.UInt64>();
-set => SetField(value);
-}
+    public bool Passive
+    {
+        get => orig.Passive;
+        set => orig.Passive = value;
+    }
 
-public bool isNullControl
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public ulong zeroTick
+    {
+        get => GetField<ulong>();
+        set => SetField(value);
+    }
 
-public float FirstRepeatDelay
-{
-get => orig.FirstRepeatDelay;
-set => orig.FirstRepeatDelay = value;
-}
+    public bool isNullControl
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public float RepeatDelay
-{
-get => orig.RepeatDelay;
-set => orig.RepeatDelay = value;
-}
+    public float FirstRepeatDelay
+    {
+        get => orig.FirstRepeatDelay;
+        set => orig.FirstRepeatDelay = value;
+    }
 
-public bool Raw
-{
-get => orig.Raw;
-set => orig.Raw = value;
-}
+    public float RepeatDelay
+    {
+        get => orig.RepeatDelay;
+        set => orig.RepeatDelay = value;
+    }
 
-public bool ownerEnabled
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool Raw
+    {
+        get => orig.Raw;
+        set => orig.Raw = value;
+    }
 
-public string Handle
-{
-get => orig.Handle;
-set => SetProperty(value);
-}
+    public bool ownerEnabled
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public InControl.InputControlType Target
-{
-get => orig.Target;
-set => SetProperty(value);
-}
+    public string Handle
+    {
+        get => orig.Handle;
+        set => SetProperty(value);
+    }
 
-public bool IsButton
-{
-get => orig.IsButton;
-set => SetProperty(value);
-}
+    public InputControlType Target
+    {
+        get => orig.Target;
+        set => SetProperty(value);
+    }
 
-public bool IsAnalog
-{
-get => orig.IsAnalog;
-set => SetProperty(value);
-}
+    public bool IsButton
+    {
+        get => orig.IsButton;
+        set => SetProperty(value);
+    }
 
-public bool IsOnZeroTick
-{
-get => GetProperty<bool>();
-}
+    public bool IsAnalog
+    {
+        get => orig.IsAnalog;
+        set => SetProperty(value);
+    }
 
-public bool IsStandard
-{
-get => orig.IsStandard;
-}
+    public bool IsOnZeroTick => GetProperty<bool>();
 
-public System.UInt64 UpdateTick
-{
-get => orig.UpdateTick;
-set => SetProperty(value);
-}
+    public bool IsStandard => orig.IsStandard;
 
-public bool State
-{
-get => orig.State;
-}
+    public ulong UpdateTick
+    {
+        get => orig.UpdateTick;
+        set => SetProperty(value);
+    }
 
-public bool LastState
-{
-get => orig.LastState;
-}
+    public bool State => orig.State;
 
-public float Value
-{
-get => orig.Value;
-}
+    public bool LastState => orig.LastState;
 
-public float LastValue
-{
-get => orig.LastValue;
-}
+    public float Value => orig.Value;
 
-public float RawValue
-{
-get => orig.RawValue;
-}
+    public float LastValue => orig.LastValue;
 
-public float NextRawValue
-{
-get => GetProperty<float>();
-}
+    public float RawValue => orig.RawValue;
 
-public bool HasInput
-{
-get => GetProperty<bool>();
-}
+    public float NextRawValue => GetProperty<float>();
 
-public bool HasChanged
-{
-get => orig.HasChanged;
-}
+    public bool HasInput => GetProperty<bool>();
 
-public bool IsPressed
-{
-get => orig.IsPressed;
-}
+    public bool HasChanged => orig.HasChanged;
 
-public bool WasPressed
-{
-get => orig.WasPressed;
-}
+    public bool IsPressed => orig.IsPressed;
 
-public bool WasReleased
-{
-get => orig.WasReleased;
-}
+    public bool WasPressed => orig.WasPressed;
 
-public bool WasRepeated
-{
-get => orig.WasRepeated;
-}
+    public bool WasReleased => orig.WasReleased;
 
-public float Sensitivity
-{
-get => orig.Sensitivity;
-set => orig.Sensitivity = value;
-}
+    public bool WasRepeated => orig.WasRepeated;
 
-public float LowerDeadZone
-{
-get => orig.LowerDeadZone;
-set => orig.LowerDeadZone = value;
-}
+    public float Sensitivity
+    {
+        get => orig.Sensitivity;
+        set => orig.Sensitivity = value;
+    }
 
-public float UpperDeadZone
-{
-get => orig.UpperDeadZone;
-set => orig.UpperDeadZone = value;
-}
+    public float LowerDeadZone
+    {
+        get => orig.LowerDeadZone;
+        set => orig.LowerDeadZone = value;
+    }
 
-public float StateThreshold
-{
-get => orig.StateThreshold;
-set => orig.StateThreshold = value;
-}
+    public float UpperDeadZone
+    {
+        get => orig.UpperDeadZone;
+        set => orig.UpperDeadZone = value;
+    }
 
-public bool IsNullControl
-{
-get => orig.IsNullControl;
-}
+    public float StateThreshold
+    {
+        get => orig.StateThreshold;
+        set => orig.StateThreshold = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public bool IsNullControl => orig.IsNullControl;
 
-public bool EnabledInHierarchy
-{
-get => orig.EnabledInHierarchy;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public void SetZeroTick () =>
-CallMethod();
+    public bool EnabledInHierarchy => orig.EnabledInHierarchy;
 
-}
+    public void SetZeroTick()
+    {
+        CallMethod();
+    }
 }

@@ -1,134 +1,141 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SplitTextToArrayList allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SplitTextToArrayListR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.SplitTextToArrayList>
+public class SplitTextToArrayListR : InstanceClassWrapper<SplitTextToArrayList>
 {
-public SplitTextToArrayListR(HutongGames.PlayMaker.Actions.SplitTextToArrayList _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public SplitTextToArrayListR(SplitTextToArrayList _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString reference
-{
-get => orig.reference;
-set => orig.reference = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt startIndex
-{
-get => orig.startIndex;
-set => orig.startIndex = value;
-}
+    public FsmString reference
+    {
+        get => orig.reference;
+        set => orig.reference = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt parseRange
-{
-get => orig.parseRange;
-set => orig.parseRange = value;
-}
+    public FsmInt startIndex
+    {
+        get => orig.startIndex;
+        set => orig.startIndex = value;
+    }
 
-public UnityEngine.TextAsset textAsset
-{
-get => orig.textAsset;
-set => orig.textAsset = value;
-}
+    public FsmInt parseRange
+    {
+        get => orig.parseRange;
+        set => orig.parseRange = value;
+    }
 
-public HutongGames.PlayMaker.FsmString OrThisString
-{
-get => orig.OrThisString;
-set => orig.OrThisString = value;
-}
+    public TextAsset textAsset
+    {
+        get => orig.textAsset;
+        set => orig.textAsset = value;
+    }
 
-public HutongGames.PlayMaker.FsmString OrThisChar
-{
-get => orig.OrThisChar;
-set => orig.OrThisChar = value;
-}
+    public FsmString OrThisString
+    {
+        get => orig.OrThisString;
+        set => orig.OrThisString = value;
+    }
 
-public PlayMakerArrayListProxy proxy
-{
-get => GetField<PlayMakerArrayListProxy>();
-set => SetField(value);
-}
+    public FsmString OrThisChar
+    {
+        get => orig.OrThisChar;
+        set => orig.OrThisChar = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public PlayMakerArrayListProxy proxy
+    {
+        get => GetField<PlayMakerArrayListProxy>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void splitText () =>
-orig.splitText();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-}
+    public void splitText()
+    {
+        orig.splitText();
+    }
 }

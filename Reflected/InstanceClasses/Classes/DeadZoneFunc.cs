@@ -1,32 +1,31 @@
-namespace Satchel.Reflected
-{
+using System.Reflection;
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of DeadZoneFunc allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class DeadZoneFuncR:InstanceClassWrapper<InControl.DeadZoneFunc>
+public class DeadZoneFuncR : InstanceClassWrapper<DeadZoneFunc>
 {
-public DeadZoneFuncR(InControl.DeadZoneFunc _orig) : base(_orig) {}
-public bool HasSingleTarget
-{
-get => GetProperty<bool>();
-}
+    public DeadZoneFuncR(DeadZoneFunc _orig) : base(_orig)
+    {
+    }
 
-public System.Reflection.MethodInfo Method
-{
-get => orig.Method;
-}
+    public bool HasSingleTarget => GetProperty<bool>();
 
-public System.Object Target
-{
-get => orig.Target;
-}
+    public MethodInfo Method => orig.Method;
 
-public UnityEngine.Vector2 Invoke (float x, float y, float lowerDeadZone, float upperDeadZone) =>
-orig.Invoke(x, y, lowerDeadZone, upperDeadZone);
+    public object Target => orig.Target;
 
-public UnityEngine.Vector2 EndInvoke (System.IAsyncResult result) =>
-orig.EndInvoke(result);
+    public Vector2 Invoke(float x, float y, float lowerDeadZone, float upperDeadZone)
+    {
+        return orig.Invoke(x, y, lowerDeadZone, upperDeadZone);
+    }
 
-}
+    public Vector2 EndInvoke(IAsyncResult result)
+    {
+        return orig.EndInvoke(result);
+    }
 }

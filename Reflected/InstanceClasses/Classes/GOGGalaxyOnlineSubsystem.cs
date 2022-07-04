@@ -1,94 +1,90 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GOGGalaxyOnlineSubsystem allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GOGGalaxyOnlineSubsystemR:InstanceClassWrapper<GOGGalaxyOnlineSubsystem>
+public class GOGGalaxyOnlineSubsystemR : InstanceClassWrapper<GOGGalaxyOnlineSubsystem>
 {
-public GOGGalaxyOnlineSubsystemR(GOGGalaxyOnlineSubsystem _orig) : base(_orig) {}
-public string ClientId
-{
-get => GetFieldStatic<string>();
-set => SetField(value);
-}
+    public GOGGalaxyOnlineSubsystemR(GOGGalaxyOnlineSubsystem _orig) : base(_orig)
+    {
+    }
 
-public string ClientSecret
-{
-get => GetFieldStatic<string>();
-set => SetField(value);
-}
+    public string ClientId
+    {
+        get => GetFieldStatic<string>();
+        set => SetField(value);
+    }
 
-public DesktopPlatform platform
-{
-get => GetField<DesktopPlatform>();
-set => SetField(value);
-}
+    public string ClientSecret
+    {
+        get => GetFieldStatic<string>();
+        set => SetField(value);
+    }
 
-public bool didInitialize
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public DesktopPlatform platform
+    {
+        get => GetField<DesktopPlatform>();
+        set => SetField(value);
+    }
 
-public bool DidInitialize
-{
-get => orig.DidInitialize;
-}
+    public bool didInitialize
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public bool AreAchievementsFetched
-{
-get => orig.AreAchievementsFetched;
-}
+    public bool DidInitialize => orig.DidInitialize;
 
-public bool HasNativeAchievementsDialog
-{
-get => orig.HasNativeAchievementsDialog;
-}
+    public bool AreAchievementsFetched => orig.AreAchievementsFetched;
 
-public bool HandlesGameSaves
-{
-get => orig.HandlesGameSaves;
-}
+    public bool HasNativeAchievementsDialog => orig.HasNativeAchievementsDialog;
 
-public bool WillPreloadSaveFiles
-{
-get => orig.WillPreloadSaveFiles;
-}
+    public bool HandlesGameSaves => orig.HandlesGameSaves;
 
-public string EngagedDisplayName
-{
-get => orig.EngagedDisplayName;
-}
+    public bool WillPreloadSaveFiles => orig.WillPreloadSaveFiles;
 
-public UnityEngine.Texture2D EngagedDisplayImage
-{
-get => orig.EngagedDisplayImage;
-}
+    public string EngagedDisplayName => orig.EngagedDisplayName;
 
-public bool IsPackaged (DesktopPlatform desktopPlatform) =>
-GOGGalaxyOnlineSubsystem.IsPackaged(desktopPlatform);
+    public Texture2D EngagedDisplayImage => orig.EngagedDisplayImage;
 
-public void Dispose () =>
-orig.Dispose();
+    public bool IsPackaged(DesktopPlatform desktopPlatform)
+    {
+        return GOGGalaxyOnlineSubsystem.IsPackaged(desktopPlatform);
+    }
 
-public void Update () =>
-orig.Update();
+    public void Dispose()
+    {
+        orig.Dispose();
+    }
 
-public void OnAuthorized () =>
-CallMethod();
+    public void Update()
+    {
+        orig.Update();
+    }
 
-public void OnStatisticsReceived () =>
-CallMethod();
+    public void OnAuthorized()
+    {
+        CallMethod();
+    }
 
-public System.Boolean? IsAchievementUnlocked (string achievementId) =>
-orig.IsAchievementUnlocked(achievementId);
+    public void OnStatisticsReceived()
+    {
+        CallMethod();
+    }
 
-public void PushAchievementUnlock (string achievementId) =>
-orig.PushAchievementUnlock(achievementId);
+    public bool? IsAchievementUnlocked(string achievementId)
+    {
+        return orig.IsAchievementUnlocked(achievementId);
+    }
 
-public void ResetAchievements () =>
-orig.ResetAchievements();
+    public void PushAchievementUnlock(string achievementId)
+    {
+        orig.PushAchievementUnlock(achievementId);
+    }
 
-}
+    public void ResetAchievements()
+    {
+        orig.ResetAchievements();
+    }
 }

@@ -1,143 +1,152 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ListenForUp allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ListenForUpR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.ListenForUp>
+public class ListenForUpR : InstanceClassWrapper<ListenForUp>
 {
-public ListenForUpR(HutongGames.PlayMaker.Actions.ListenForUp _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmEventTarget eventTarget
-{
-get => orig.eventTarget;
-set => orig.eventTarget = value;
-}
+    public ListenForUpR(ListenForUp _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmEvent wasPressed
-{
-get => orig.wasPressed;
-set => orig.wasPressed = value;
-}
+    public FsmEventTarget eventTarget
+    {
+        get => orig.eventTarget;
+        set => orig.eventTarget = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent wasReleased
-{
-get => orig.wasReleased;
-set => orig.wasReleased = value;
-}
+    public FsmEvent wasPressed
+    {
+        get => orig.wasPressed;
+        set => orig.wasPressed = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent isPressed
-{
-get => orig.isPressed;
-set => orig.isPressed = value;
-}
+    public FsmEvent wasReleased
+    {
+        get => orig.wasReleased;
+        set => orig.wasReleased = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent isNotPressed
-{
-get => orig.isNotPressed;
-set => orig.isNotPressed = value;
-}
+    public FsmEvent isPressed
+    {
+        get => orig.isPressed;
+        set => orig.isPressed = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool isPressedBool
-{
-get => orig.isPressedBool;
-set => orig.isPressedBool = value;
-}
+    public FsmEvent isNotPressed
+    {
+        get => orig.isNotPressed;
+        set => orig.isNotPressed = value;
+    }
 
-public bool stateEntryOnly
-{
-get => orig.stateEntryOnly;
-set => orig.stateEntryOnly = value;
-}
+    public FsmBool isPressedBool
+    {
+        get => orig.isPressedBool;
+        set => orig.isPressedBool = value;
+    }
 
-public GameManager gm
-{
-get => GetField<GameManager>();
-set => SetField(value);
-}
+    public bool stateEntryOnly
+    {
+        get => orig.stateEntryOnly;
+        set => orig.stateEntryOnly = value;
+    }
 
-public InputHandler inputHandler
-{
-get => GetField<InputHandler>();
-set => SetField(value);
-}
+    public GameManager gm
+    {
+        get => GetField<GameManager>();
+        set => SetField(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public InputHandler inputHandler
+    {
+        get => GetField<InputHandler>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void CheckForInput () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void CheckForInput()
+    {
+        CallMethod();
+    }
 }

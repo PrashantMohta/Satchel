@@ -1,113 +1,122 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of Vector3Add allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class Vector3AddR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.Vector3Add>
+public class Vector3AddR : InstanceClassWrapper<Vector3Add>
 {
-public Vector3AddR(HutongGames.PlayMaker.Actions.Vector3Add _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmVector3 vector3Variable
-{
-get => orig.vector3Variable;
-set => orig.vector3Variable = value;
-}
+    public Vector3AddR(Vector3Add _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmVector3 addVector
-{
-get => orig.addVector;
-set => orig.addVector = value;
-}
+    public FsmVector3 vector3Variable
+    {
+        get => orig.vector3Variable;
+        set => orig.vector3Variable = value;
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmVector3 addVector
+    {
+        get => orig.addVector;
+        set => orig.addVector = value;
+    }
 
-public bool perSecond
-{
-get => orig.perSecond;
-set => orig.perSecond = value;
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public bool perSecond
+    {
+        get => orig.perSecond;
+        set => orig.perSecond = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoVector3Add () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void DoVector3Add()
+    {
+        CallMethod();
+    }
 }

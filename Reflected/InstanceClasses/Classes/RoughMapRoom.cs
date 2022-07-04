@@ -1,49 +1,53 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of RoughMapRoom allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class RoughMapRoomR:InstanceClassWrapper<RoughMapRoom>
+public class RoughMapRoomR : InstanceClassWrapper<RoughMapRoom>
 {
-public RoughMapRoomR(RoughMapRoom _orig) : base(_orig) {}
-public UnityEngine.Sprite fullSprite
-{
-get => orig.fullSprite;
-set => orig.fullSprite = value;
-}
+    public RoughMapRoomR(RoughMapRoom _orig) : base(_orig)
+    {
+    }
 
-public PlayerData pd
-{
-get => orig.pd;
-set => orig.pd = value;
-}
+    public Sprite fullSprite
+    {
+        get => orig.fullSprite;
+        set => orig.fullSprite = value;
+    }
 
-public GameManager gm
-{
-get => GetField<GameManager>();
-set => SetField(value);
-}
+    public PlayerData pd
+    {
+        get => orig.pd;
+        set => orig.pd = value;
+    }
 
-public UnityEngine.SpriteRenderer sr
-{
-get => GetField<UnityEngine.SpriteRenderer>();
-set => SetField(value);
-}
+    public GameManager gm
+    {
+        get => GetField<GameManager>();
+        set => SetField(value);
+    }
 
-public bool fullSpriteDisplayed
-{
-get => orig.fullSpriteDisplayed;
-set => orig.fullSpriteDisplayed = value;
-}
+    public SpriteRenderer sr
+    {
+        get => GetField<SpriteRenderer>();
+        set => SetField(value);
+    }
+
+    public bool fullSpriteDisplayed
+    {
+        get => orig.fullSpriteDisplayed;
+        set => orig.fullSpriteDisplayed = value;
+    }
 
 
+    public void Start()
+    {
+        CallMethod();
+    }
 
-public void Start () =>
-CallMethod();
-
-public void OnEnable () =>
-CallMethod();
-
-}
+    public void OnEnable()
+    {
+        CallMethod();
+    }
 }

@@ -1,466 +1,327 @@
-namespace Satchel.Reflected
-{
+using System.Collections.ObjectModel;
+using System.Text;
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of NativeInputDevice allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class NativeInputDeviceR:InstanceClassWrapper<InControl.NativeInputDevice>
-{
-public NativeInputDeviceR(InControl.NativeInputDevice _orig) : base(_orig) {}
-public int maxUnknownButtons
-{
-get => GetFieldStatic<int>();
-set => SetField(value);
-}
-
-public int maxUnknownAnalogs
-{
-get => GetFieldStatic<int>();
-set => SetField(value);
-}
-
-public System.Int16[] buttons
-{
-get => GetField<System.Int16[]>();
-set => SetField(value);
-}
-
-public System.Int16[] analogs
-{
-get => GetField<System.Int16[]>();
-set => SetField(value);
-}
-
-public InControl.InputDeviceProfile profile
-{
-get => GetField<InControl.InputDeviceProfile>();
-set => SetField(value);
-}
-
-public int skipUpdateFrames
-{
-get => GetField<int>();
-set => SetField(value);
-}
-
-public int numUnknownButtons
-{
-get => GetField<int>();
-set => SetField(value);
-}
-
-public int numUnknownAnalogs
-{
-get => GetField<int>();
-set => SetField(value);
-}
-
-public InControl.InputControlSource[] controlSourceByTarget
-{
-get => GetField<InControl.InputControlSource[]>();
-set => SetField(value);
-}
-
-public System.Text.StringBuilder glyphName
-{
-get => GetField<System.Text.StringBuilder>();
-set => SetField(value);
-}
-
-public string defaultGlyphName
-{
-get => GetFieldStatic<string>();
-set => SetField(value);
-}
-
-public bool Passive
-{
-get => orig.Passive;
-set => orig.Passive = value;
-}
-
-public System.UInt32 Handle
-{
-get => orig.Handle;
-set => SetProperty(value);
-}
-
-public InControl.InputDeviceInfo Info
-{
-get => orig.Info;
-set => SetProperty(value);
-}
-
-public bool IsSupportedOnThisPlatform
-{
-get => orig.IsSupportedOnThisPlatform;
-}
+public class NativeInputDeviceR : InstanceClassWrapper<NativeInputDevice>
+{
+    public NativeInputDeviceR(NativeInputDevice _orig) : base(_orig)
+    {
+    }
+
+    public int maxUnknownButtons
+    {
+        get => GetFieldStatic<int>();
+        set => SetField(value);
+    }
+
+    public int maxUnknownAnalogs
+    {
+        get => GetFieldStatic<int>();
+        set => SetField(value);
+    }
+
+    public short[] buttons
+    {
+        get => GetField<short[]>();
+        set => SetField(value);
+    }
+
+    public short[] analogs
+    {
+        get => GetField<short[]>();
+        set => SetField(value);
+    }
+
+    public InputDeviceProfile profile
+    {
+        get => GetField<InputDeviceProfile>();
+        set => SetField(value);
+    }
+
+    public int skipUpdateFrames
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
+
+    public int numUnknownButtons
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
+
+    public int numUnknownAnalogs
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
+
+    public InputControlSource[] controlSourceByTarget
+    {
+        get => GetField<InputControlSource[]>();
+        set => SetField(value);
+    }
+
+    public StringBuilder glyphName
+    {
+        get => GetField<StringBuilder>();
+        set => SetField(value);
+    }
+
+    public string defaultGlyphName
+    {
+        get => GetFieldStatic<string>();
+        set => SetField(value);
+    }
 
-public bool IsKnown
-{
-get => orig.IsKnown;
-}
+    public bool Passive
+    {
+        get => orig.Passive;
+        set => orig.Passive = value;
+    }
 
-public int NumUnknownButtons
-{
-get => orig.NumUnknownButtons;
-}
+    public uint Handle
+    {
+        get => orig.Handle;
+        set => SetProperty(value);
+    }
 
-public int NumUnknownAnalogs
-{
-get => orig.NumUnknownAnalogs;
-}
+    public InputDeviceInfo Info
+    {
+        get => orig.Info;
+        set => SetProperty(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => SetProperty(value);
-}
-
-public string Meta
-{
-get => orig.Meta;
-set => SetProperty(value);
-}
-
-public int SortOrder
-{
-get => orig.SortOrder;
-set => SetProperty(value);
-}
-
-public InControl.InputDeviceClass DeviceClass
-{
-get => orig.DeviceClass;
-set => SetProperty(value);
-}
-
-public InControl.InputDeviceStyle DeviceStyle
-{
-get => orig.DeviceStyle;
-set => SetProperty(value);
-}
-
-public System.Guid GUID
-{
-get => orig.GUID;
-}
+    public bool IsSupportedOnThisPlatform => orig.IsSupportedOnThisPlatform;
 
-public System.UInt64 LastInputTick
-{
-get => orig.LastInputTick;
-}
+    public bool IsKnown => orig.IsKnown;
 
-public bool IsActive
-{
-get => orig.IsActive;
-}
+    public int NumUnknownButtons => orig.NumUnknownButtons;
 
-public bool IsAttached
-{
-get => orig.IsAttached;
-}
+    public int NumUnknownAnalogs => orig.NumUnknownAnalogs;
 
-public bool RawSticks
-{
-get => GetProperty<bool>();
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => SetProperty(value);
+    }
 
-public System.Collections.ObjectModel.ReadOnlyCollection<InControl.InputControl> Controls
-{
-get => orig.Controls;
-set => SetProperty(value);
-}
-
-public InControl.InputControl[] ControlsByTarget
-{
-get => GetProperty<InControl.InputControl[]>();
-}
+    public string Meta
+    {
+        get => orig.Meta;
+        set => SetProperty(value);
+    }
 
-public InControl.TwoAxisInputControl LeftStick
-{
-get => orig.LeftStick;
-}
+    public int SortOrder
+    {
+        get => orig.SortOrder;
+        set => SetProperty(value);
+    }
 
-public InControl.TwoAxisInputControl RightStick
-{
-get => orig.RightStick;
-}
+    public InputDeviceClass DeviceClass
+    {
+        get => orig.DeviceClass;
+        set => SetProperty(value);
+    }
 
-public InControl.TwoAxisInputControl DPad
-{
-get => orig.DPad;
-}
+    public InputDeviceStyle DeviceStyle
+    {
+        get => orig.DeviceStyle;
+        set => SetProperty(value);
+    }
 
-public InControl.InputControlType LeftCommandControl
-{
-get => orig.LeftCommandControl;
-}
+    public Guid GUID => orig.GUID;
 
-public InControl.InputControlType RightCommandControl
-{
-get => orig.RightCommandControl;
-}
+    public ulong LastInputTick => orig.LastInputTick;
 
-public bool IsUnknown
-{
-get => orig.IsUnknown;
-}
+    public bool IsActive => orig.IsActive;
 
-public bool MenuIsPressed
-{
-get => orig.MenuIsPressed;
-}
+    public bool IsAttached => orig.IsAttached;
 
-public bool MenuWasPressed
-{
-get => orig.MenuWasPressed;
-}
+    public bool RawSticks => GetProperty<bool>();
 
-public bool MenuWasReleased
-{
-get => orig.MenuWasReleased;
-}
+    public ReadOnlyCollection<InputControl> Controls
+    {
+        get => orig.Controls;
+        set => SetProperty(value);
+    }
 
-public bool CommandIsPressed
-{
-get => orig.CommandIsPressed;
-}
+    public InputControl[] ControlsByTarget => GetProperty<InputControl[]>();
 
-public bool CommandWasPressed
-{
-get => orig.CommandWasPressed;
-}
+    public TwoAxisInputControl LeftStick => orig.LeftStick;
 
-public bool CommandWasReleased
-{
-get => orig.CommandWasReleased;
-}
+    public TwoAxisInputControl RightStick => orig.RightStick;
 
-public InControl.InputControl AnyButton
-{
-get => orig.AnyButton;
-}
+    public TwoAxisInputControl DPad => orig.DPad;
 
-public bool AnyButtonIsPressed
-{
-get => orig.AnyButtonIsPressed;
-}
+    public InputControlType LeftCommandControl => orig.LeftCommandControl;
 
-public bool AnyButtonWasPressed
-{
-get => orig.AnyButtonWasPressed;
-}
+    public InputControlType RightCommandControl => orig.RightCommandControl;
 
-public bool AnyButtonWasReleased
-{
-get => orig.AnyButtonWasReleased;
-}
+    public bool IsUnknown => orig.IsUnknown;
 
-public InControl.TwoAxisInputControl Direction
-{
-get => orig.Direction;
-}
+    public bool MenuIsPressed => orig.MenuIsPressed;
 
-public InControl.InputControl LeftStickUp
-{
-get => orig.LeftStickUp;
-}
+    public bool MenuWasPressed => orig.MenuWasPressed;
 
-public InControl.InputControl LeftStickDown
-{
-get => orig.LeftStickDown;
-}
+    public bool MenuWasReleased => orig.MenuWasReleased;
 
-public InControl.InputControl LeftStickLeft
-{
-get => orig.LeftStickLeft;
-}
+    public bool CommandIsPressed => orig.CommandIsPressed;
 
-public InControl.InputControl LeftStickRight
-{
-get => orig.LeftStickRight;
-}
+    public bool CommandWasPressed => orig.CommandWasPressed;
 
-public InControl.InputControl RightStickUp
-{
-get => orig.RightStickUp;
-}
+    public bool CommandWasReleased => orig.CommandWasReleased;
 
-public InControl.InputControl RightStickDown
-{
-get => orig.RightStickDown;
-}
+    public InputControl AnyButton => orig.AnyButton;
 
-public InControl.InputControl RightStickLeft
-{
-get => orig.RightStickLeft;
-}
+    public bool AnyButtonIsPressed => orig.AnyButtonIsPressed;
 
-public InControl.InputControl RightStickRight
-{
-get => orig.RightStickRight;
-}
+    public bool AnyButtonWasPressed => orig.AnyButtonWasPressed;
 
-public InControl.InputControl DPadUp
-{
-get => orig.DPadUp;
-}
+    public bool AnyButtonWasReleased => orig.AnyButtonWasReleased;
 
-public InControl.InputControl DPadDown
-{
-get => orig.DPadDown;
-}
+    public TwoAxisInputControl Direction => orig.Direction;
 
-public InControl.InputControl DPadLeft
-{
-get => orig.DPadLeft;
-}
+    public InputControl LeftStickUp => orig.LeftStickUp;
 
-public InControl.InputControl DPadRight
-{
-get => orig.DPadRight;
-}
+    public InputControl LeftStickDown => orig.LeftStickDown;
 
-public InControl.InputControl Action1
-{
-get => orig.Action1;
-}
+    public InputControl LeftStickLeft => orig.LeftStickLeft;
 
-public InControl.InputControl Action2
-{
-get => orig.Action2;
-}
+    public InputControl LeftStickRight => orig.LeftStickRight;
 
-public InControl.InputControl Action3
-{
-get => orig.Action3;
-}
+    public InputControl RightStickUp => orig.RightStickUp;
 
-public InControl.InputControl Action4
-{
-get => orig.Action4;
-}
+    public InputControl RightStickDown => orig.RightStickDown;
 
-public InControl.InputControl LeftTrigger
-{
-get => orig.LeftTrigger;
-}
+    public InputControl RightStickLeft => orig.RightStickLeft;
 
-public InControl.InputControl RightTrigger
-{
-get => orig.RightTrigger;
-}
+    public InputControl RightStickRight => orig.RightStickRight;
 
-public InControl.InputControl LeftBumper
-{
-get => orig.LeftBumper;
-}
+    public InputControl DPadUp => orig.DPadUp;
 
-public InControl.InputControl RightBumper
-{
-get => orig.RightBumper;
-}
+    public InputControl DPadDown => orig.DPadDown;
 
-public InControl.InputControl LeftStickButton
-{
-get => orig.LeftStickButton;
-}
+    public InputControl DPadLeft => orig.DPadLeft;
 
-public InControl.InputControl RightStickButton
-{
-get => orig.RightStickButton;
-}
+    public InputControl DPadRight => orig.DPadRight;
 
-public InControl.InputControl LeftStickX
-{
-get => orig.LeftStickX;
-}
+    public InputControl Action1 => orig.Action1;
 
-public InControl.InputControl LeftStickY
-{
-get => orig.LeftStickY;
-}
+    public InputControl Action2 => orig.Action2;
 
-public InControl.InputControl RightStickX
-{
-get => orig.RightStickX;
-}
+    public InputControl Action3 => orig.Action3;
 
-public InControl.InputControl RightStickY
-{
-get => orig.RightStickY;
-}
+    public InputControl Action4 => orig.Action4;
 
-public InControl.InputControl DPadX
-{
-get => orig.DPadX;
-}
+    public InputControl LeftTrigger => orig.LeftTrigger;
 
-public InControl.InputControl DPadY
-{
-get => orig.DPadY;
-}
+    public InputControl RightTrigger => orig.RightTrigger;
 
-public InControl.InputControl Command
-{
-get => orig.Command;
-}
+    public InputControl LeftBumper => orig.LeftBumper;
 
-public InControl.InputControl LeftCommand
-{
-get => orig.LeftCommand;
-}
+    public InputControl RightBumper => orig.RightBumper;
 
-public InControl.InputControl RightCommand
-{
-get => orig.RightCommand;
-}
+    public InputControl LeftStickButton => orig.LeftStickButton;
+
+    public InputControl RightStickButton => orig.RightStickButton;
+
+    public InputControl LeftStickX => orig.LeftStickX;
+
+    public InputControl LeftStickY => orig.LeftStickY;
+
+    public InputControl RightStickX => orig.RightStickX;
+
+    public InputControl RightStickY => orig.RightStickY;
+
+    public InputControl DPadX => orig.DPadX;
+
+    public InputControl DPadY => orig.DPadY;
+
+    public InputControl Command => orig.Command;
+
+    public InputControl LeftCommand => orig.LeftCommand;
 
-public void Initialize (System.UInt32 deviceHandle, InControl.InputDeviceInfo deviceInfo, InControl.InputDeviceProfile deviceProfile) =>
-CallMethod(new object[] {deviceHandle, deviceInfo, deviceProfile});
+    public InputControl RightCommand => orig.RightCommand;
 
-public void Initialize (System.UInt32 deviceHandle, InControl.InputDeviceInfo deviceInfo) =>
-CallMethod(new object[] {deviceHandle, deviceInfo});
+    public void Initialize(uint deviceHandle, InputDeviceInfo deviceInfo, InputDeviceProfile deviceProfile)
+    {
+        CallMethod(new object[] { deviceHandle, deviceInfo, deviceProfile });
+    }
 
-public void Update (System.UInt64 updateTick, float deltaTime) =>
-orig.Update(updateTick, deltaTime);
+    public void Initialize(uint deviceHandle, InputDeviceInfo deviceInfo)
+    {
+        CallMethod(new object[] { deviceHandle, deviceInfo });
+    }
 
-public bool ReadRawButtonState (int index) =>
-orig.ReadRawButtonState(index);
+    public void Update(ulong updateTick, float deltaTime)
+    {
+        orig.Update(updateTick, deltaTime);
+    }
 
-public float ReadRawAnalogValue (int index) =>
-orig.ReadRawAnalogValue(index);
+    public bool ReadRawButtonState(int index)
+    {
+        return orig.ReadRawButtonState(index);
+    }
 
-public System.Byte FloatToByte (float value) =>
-CallMethodStatic<System.Byte>(new object[] {value});
+    public float ReadRawAnalogValue(int index)
+    {
+        return orig.ReadRawAnalogValue(index);
+    }
 
-public void Vibrate (float leftMotor, float rightMotor) =>
-orig.Vibrate(leftMotor, rightMotor);
+    public byte FloatToByte(float value)
+    {
+        return CallMethodStatic<byte>(new object[] { value });
+    }
 
-public void SetLightColor (float red, float green, float blue) =>
-orig.SetLightColor(red, green, blue);
+    public void Vibrate(float leftMotor, float rightMotor)
+    {
+        orig.Vibrate(leftMotor, rightMotor);
+    }
 
-public void SetLightFlash (float flashOnDuration, float flashOffDuration) =>
-orig.SetLightFlash(flashOnDuration, flashOffDuration);
+    public void SetLightColor(float red, float green, float blue)
+    {
+        orig.SetLightColor(red, green, blue);
+    }
 
-public string GetAppleGlyphNameForControl (InControl.InputControlType controlType) =>
-orig.GetAppleGlyphNameForControl(controlType);
+    public void SetLightFlash(float flashOnDuration, float flashOffDuration)
+    {
+        orig.SetLightFlash(flashOnDuration, flashOffDuration);
+    }
 
-public bool HasSameVendorID (InControl.InputDeviceInfo deviceInfo) =>
-orig.HasSameVendorID(deviceInfo);
+    public string GetAppleGlyphNameForControl(InputControlType controlType)
+    {
+        return orig.GetAppleGlyphNameForControl(controlType);
+    }
 
-public bool HasSameProductID (InControl.InputDeviceInfo deviceInfo) =>
-orig.HasSameProductID(deviceInfo);
+    public bool HasSameVendorID(InputDeviceInfo deviceInfo)
+    {
+        return orig.HasSameVendorID(deviceInfo);
+    }
 
-public bool HasSameVersionNumber (InControl.InputDeviceInfo deviceInfo) =>
-orig.HasSameVersionNumber(deviceInfo);
+    public bool HasSameProductID(InputDeviceInfo deviceInfo)
+    {
+        return orig.HasSameProductID(deviceInfo);
+    }
 
-public bool HasSameLocation (InControl.InputDeviceInfo deviceInfo) =>
-orig.HasSameLocation(deviceInfo);
+    public bool HasSameVersionNumber(InputDeviceInfo deviceInfo)
+    {
+        return orig.HasSameVersionNumber(deviceInfo);
+    }
 
-public bool HasSameSerialNumber (InControl.InputDeviceInfo deviceInfo) =>
-orig.HasSameSerialNumber(deviceInfo);
+    public bool HasSameLocation(InputDeviceInfo deviceInfo)
+    {
+        return orig.HasSameLocation(deviceInfo);
+    }
 
-}
+    public bool HasSameSerialNumber(InputDeviceInfo deviceInfo)
+    {
+        return orig.HasSameSerialNumber(deviceInfo);
+    }
 }

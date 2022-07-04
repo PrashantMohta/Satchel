@@ -1,137 +1,150 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SetVelocityAsAngle allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SetVelocityAsAngleR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.SetVelocityAsAngle>
+public class SetVelocityAsAngleR : InstanceClassWrapper<SetVelocityAsAngle>
 {
-public SetVelocityAsAngleR(HutongGames.PlayMaker.Actions.SetVelocityAsAngle _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public SetVelocityAsAngleR(SetVelocityAsAngle _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmFloat angle
-{
-get => orig.angle;
-set => orig.angle = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat speed
-{
-get => orig.speed;
-set => orig.speed = value;
-}
+    public FsmFloat angle
+    {
+        get => orig.angle;
+        set => orig.angle = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat x
-{
-get => GetField<HutongGames.PlayMaker.FsmFloat>();
-set => SetField(value);
-}
+    public FsmFloat speed
+    {
+        get => orig.speed;
+        set => orig.speed = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat y
-{
-get => GetField<HutongGames.PlayMaker.FsmFloat>();
-set => SetField(value);
-}
+    public FsmFloat x
+    {
+        get => GetField<FsmFloat>();
+        set => SetField(value);
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmFloat y
+    {
+        get => GetField<FsmFloat>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Rigidbody2D rb2d
-{
-get => GetField<UnityEngine.Rigidbody2D>();
-set => SetField(value);
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Rigidbody2D rb2d
+    {
+        get => GetField<Rigidbody2D>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void Awake () =>
-orig.Awake();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnPreprocess () =>
-orig.OnPreprocess();
+    public void Awake()
+    {
+        orig.Awake();
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void OnPreprocess()
+    {
+        orig.OnPreprocess();
+    }
 
-public void OnFixedUpdate () =>
-orig.OnFixedUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoSetVelocity () =>
-CallMethod();
+    public void OnFixedUpdate()
+    {
+        orig.OnFixedUpdate();
+    }
 
-}
+    public void DoSetVelocity()
+    {
+        CallMethod();
+    }
 }

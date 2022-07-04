@@ -1,32 +1,31 @@
-namespace Satchel.Reflected
-{
+using System.Reflection;
+using Modding.Delegates;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of CharmUpdateHandler allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class CharmUpdateHandlerR:InstanceClassWrapper<Modding.Delegates.CharmUpdateHandler>
+public class CharmUpdateHandlerR : InstanceClassWrapper<CharmUpdateHandler>
 {
-public CharmUpdateHandlerR(Modding.Delegates.CharmUpdateHandler _orig) : base(_orig) {}
-public bool HasSingleTarget
-{
-get => GetProperty<bool>();
-}
+    public CharmUpdateHandlerR(CharmUpdateHandler _orig) : base(_orig)
+    {
+    }
 
-public System.Reflection.MethodInfo Method
-{
-get => orig.Method;
-}
+    public bool HasSingleTarget => GetProperty<bool>();
 
-public System.Object Target
-{
-get => orig.Target;
-}
+    public MethodInfo Method => orig.Method;
 
-public void Invoke (PlayerData data, HeroController controller) =>
-orig.Invoke(data, controller);
+    public object Target => orig.Target;
 
-public void EndInvoke (System.IAsyncResult result) =>
-orig.EndInvoke(result);
+    public void Invoke(PlayerData data, HeroController controller)
+    {
+        orig.Invoke(data, controller);
+    }
 
-}
+    public void EndInvoke(IAsyncResult result)
+    {
+        orig.EndInvoke(result);
+    }
 }

@@ -1,160 +1,148 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SetTextureScale allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SetTextureScaleR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.SetTextureScale>
+public class SetTextureScaleR : InstanceClassWrapper<SetTextureScale>
 {
-public SetTextureScaleR(HutongGames.PlayMaker.Actions.SetTextureScale _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public SetTextureScaleR(SetTextureScale _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmInt materialIndex
-{
-get => orig.materialIndex;
-set => orig.materialIndex = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmString namedTexture
-{
-get => orig.namedTexture;
-set => orig.namedTexture = value;
-}
+    public FsmInt materialIndex
+    {
+        get => orig.materialIndex;
+        set => orig.materialIndex = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat scaleX
-{
-get => orig.scaleX;
-set => orig.scaleX = value;
-}
+    public FsmString namedTexture
+    {
+        get => orig.namedTexture;
+        set => orig.namedTexture = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat scaleY
-{
-get => orig.scaleY;
-set => orig.scaleY = value;
-}
+    public FsmFloat scaleX
+    {
+        get => orig.scaleX;
+        set => orig.scaleX = value;
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmFloat scaleY
+    {
+        get => orig.scaleY;
+        set => orig.scaleY = value;
+    }
 
-public UnityEngine.Rigidbody rigidbody
-{
-get => GetProperty<UnityEngine.Rigidbody>();
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public UnityEngine.Rigidbody2D rigidbody2d
-{
-get => GetProperty<UnityEngine.Rigidbody2D>();
-}
+    public Rigidbody rigidbody => GetProperty<Rigidbody>();
 
-public UnityEngine.Renderer renderer
-{
-get => GetProperty<UnityEngine.Renderer>();
-}
+    public Rigidbody2D rigidbody2d => GetProperty<Rigidbody2D>();
 
-public UnityEngine.Animation animation
-{
-get => GetProperty<UnityEngine.Animation>();
-}
+    public Renderer renderer => GetProperty<Renderer>();
 
-public UnityEngine.AudioSource audio
-{
-get => GetProperty<UnityEngine.AudioSource>();
-}
+    public UnityEngine.Animation animation => GetProperty<UnityEngine.Animation>();
 
-public UnityEngine.Camera camera
-{
-get => GetProperty<UnityEngine.Camera>();
-}
+    public AudioSource audio => GetProperty<AudioSource>();
 
-public UnityEngine.Light light
-{
-get => GetProperty<UnityEngine.Light>();
-}
+    public Camera camera => GetProperty<Camera>();
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Light light => GetProperty<Light>();
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoSetTextureScale () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void DoSetTextureScale()
+    {
+        CallMethod();
+    }
 }

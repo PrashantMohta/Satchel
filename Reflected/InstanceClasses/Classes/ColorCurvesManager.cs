@@ -1,228 +1,257 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ColorCurvesManager allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ColorCurvesManagerR:InstanceClassWrapper<ColorCurvesManager>
+public class ColorCurvesManagerR : InstanceClassWrapper<ColorCurvesManager>
 {
-public ColorCurvesManagerR(ColorCurvesManager _orig) : base(_orig) {}
-public float Factor
-{
-get => orig.Factor;
-set => orig.Factor = value;
-}
+    public ColorCurvesManagerR(ColorCurvesManager _orig) : base(_orig)
+    {
+    }
 
-public float SaturationA
-{
-get => orig.SaturationA;
-set => orig.SaturationA = value;
-}
+    public float Factor
+    {
+        get => orig.Factor;
+        set => orig.Factor = value;
+    }
 
-public UnityEngine.AnimationCurve RedA
-{
-get => orig.RedA;
-set => orig.RedA = value;
-}
+    public float SaturationA
+    {
+        get => orig.SaturationA;
+        set => orig.SaturationA = value;
+    }
 
-public UnityEngine.AnimationCurve GreenA
-{
-get => orig.GreenA;
-set => orig.GreenA = value;
-}
+    public AnimationCurve RedA
+    {
+        get => orig.RedA;
+        set => orig.RedA = value;
+    }
 
-public UnityEngine.AnimationCurve BlueA
-{
-get => orig.BlueA;
-set => orig.BlueA = value;
-}
+    public AnimationCurve GreenA
+    {
+        get => orig.GreenA;
+        set => orig.GreenA = value;
+    }
 
-public UnityEngine.Color AmbientColorA
-{
-get => orig.AmbientColorA;
-set => orig.AmbientColorA = value;
-}
+    public AnimationCurve BlueA
+    {
+        get => orig.BlueA;
+        set => orig.BlueA = value;
+    }
 
-public float AmbientIntensityA
-{
-get => orig.AmbientIntensityA;
-set => orig.AmbientIntensityA = value;
-}
+    public Color AmbientColorA
+    {
+        get => orig.AmbientColorA;
+        set => orig.AmbientColorA = value;
+    }
 
-public UnityEngine.Color HeroLightColorA
-{
-get => orig.HeroLightColorA;
-set => orig.HeroLightColorA = value;
-}
+    public float AmbientIntensityA
+    {
+        get => orig.AmbientIntensityA;
+        set => orig.AmbientIntensityA = value;
+    }
 
-public float SaturationB
-{
-get => orig.SaturationB;
-set => orig.SaturationB = value;
-}
+    public Color HeroLightColorA
+    {
+        get => orig.HeroLightColorA;
+        set => orig.HeroLightColorA = value;
+    }
 
-public UnityEngine.AnimationCurve RedB
-{
-get => orig.RedB;
-set => orig.RedB = value;
-}
+    public float SaturationB
+    {
+        get => orig.SaturationB;
+        set => orig.SaturationB = value;
+    }
 
-public UnityEngine.AnimationCurve GreenB
-{
-get => orig.GreenB;
-set => orig.GreenB = value;
-}
+    public AnimationCurve RedB
+    {
+        get => orig.RedB;
+        set => orig.RedB = value;
+    }
 
-public UnityEngine.AnimationCurve BlueB
-{
-get => orig.BlueB;
-set => orig.BlueB = value;
-}
+    public AnimationCurve GreenB
+    {
+        get => orig.GreenB;
+        set => orig.GreenB = value;
+    }
 
-public UnityEngine.Color AmbientColorB
-{
-get => orig.AmbientColorB;
-set => orig.AmbientColorB = value;
-}
+    public AnimationCurve BlueB
+    {
+        get => orig.BlueB;
+        set => orig.BlueB = value;
+    }
 
-public float AmbientIntensityB
-{
-get => orig.AmbientIntensityB;
-set => orig.AmbientIntensityB = value;
-}
+    public Color AmbientColorB
+    {
+        get => orig.AmbientColorB;
+        set => orig.AmbientColorB = value;
+    }
 
-public UnityEngine.Color HeroLightColorB
-{
-get => orig.HeroLightColorB;
-set => orig.HeroLightColorB = value;
-}
+    public float AmbientIntensityB
+    {
+        get => orig.AmbientIntensityB;
+        set => orig.AmbientIntensityB = value;
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> RedPairedKeyframes
-{
-get => GetField<System.Collections.Generic.List<UnityEngine.Keyframe[]>>();
-set => SetField(value);
-}
+    public Color HeroLightColorB
+    {
+        get => orig.HeroLightColorB;
+        set => orig.HeroLightColorB = value;
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> GreenPairedKeyframes
-{
-get => GetField<System.Collections.Generic.List<UnityEngine.Keyframe[]>>();
-set => SetField(value);
-}
+    public List<Keyframe[]> RedPairedKeyframes
+    {
+        get => GetField<List<Keyframe[]>>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> BluePairedKeyframes
-{
-get => GetField<System.Collections.Generic.List<UnityEngine.Keyframe[]>>();
-set => SetField(value);
-}
+    public List<Keyframe[]> GreenPairedKeyframes
+    {
+        get => GetField<List<Keyframe[]>>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> DepthRedPairedKeyframes
-{
-get => GetField<System.Collections.Generic.List<UnityEngine.Keyframe[]>>();
-set => SetField(value);
-}
+    public List<Keyframe[]> BluePairedKeyframes
+    {
+        get => GetField<List<Keyframe[]>>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> DepthGreenPairedKeyframes
-{
-get => GetField<System.Collections.Generic.List<UnityEngine.Keyframe[]>>();
-set => SetField(value);
-}
+    public List<Keyframe[]> DepthRedPairedKeyframes
+    {
+        get => GetField<List<Keyframe[]>>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> DepthBluePairedKeyframes
-{
-get => GetField<System.Collections.Generic.List<UnityEngine.Keyframe[]>>();
-set => SetField(value);
-}
+    public List<Keyframe[]> DepthGreenPairedKeyframes
+    {
+        get => GetField<List<Keyframe[]>>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> ZCurvePairedKeyframes
-{
-get => GetField<System.Collections.Generic.List<UnityEngine.Keyframe[]>>();
-set => SetField(value);
-}
+    public List<Keyframe[]> DepthBluePairedKeyframes
+    {
+        get => GetField<List<Keyframe[]>>();
+        set => SetField(value);
+    }
 
-
-
-public float PAIRING_DISTANCE
-{
-get => GetFieldStatic<float>();
-set => SetField(value);
-}
-
-public float TANGENT_DISTANCE
-{
-get => GetFieldStatic<float>();
-set => SetField(value);
-}
-
-public bool ChangesInEditor
-{
-get => GetField<bool>();
-set => SetField(value);
-}
-
-public float LastFactor
-{
-get => GetField<float>();
-set => SetField(value);
-}
-
-public float LastSaturationA
-{
-get => GetField<float>();
-set => SetField(value);
-}
-
-public float LastSaturationB
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public List<Keyframe[]> ZCurvePairedKeyframes
+    {
+        get => GetField<List<Keyframe[]>>();
+        set => SetField(value);
+    }
 
 
+    public float PAIRING_DISTANCE
+    {
+        get => GetFieldStatic<float>();
+        set => SetField(value);
+    }
 
-public void SetFactor (float factor) =>
-orig.SetFactor(factor);
+    public float TANGENT_DISTANCE
+    {
+        get => GetFieldStatic<float>();
+        set => SetField(value);
+    }
 
-public void SetSaturationA (float saturationA) =>
-orig.SetSaturationA(saturationA);
+    public bool ChangesInEditor
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public void SetSaturationB (float saturationB) =>
-orig.SetSaturationB(saturationB);
+    public float LastFactor
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public void Start () =>
-CallMethod();
+    public float LastSaturationA
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public void Update () =>
-CallMethod();
+    public float LastSaturationB
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public void UpdateScript () =>
-CallMethod();
 
-public void EditorHasChanged () =>
-CallMethod();
+    public void SetFactor(float factor)
+    {
+        orig.SetFactor(factor);
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> PairKeyframes (UnityEngine.AnimationCurve curveA, UnityEngine.AnimationCurve curveB) =>
-ColorCurvesManager.PairKeyframes(curveA, curveB);
+    public void SetSaturationA(float saturationA)
+    {
+        orig.SetSaturationA(saturationA);
+    }
 
-public System.Collections.Generic.List<UnityEngine.Keyframe[]> SimplePairKeyframes (UnityEngine.AnimationCurve curveA, UnityEngine.AnimationCurve curveB) =>
-CallMethodStatic<System.Collections.Generic.List<UnityEngine.Keyframe[]>>(new object[] {curveA, curveB});
+    public void SetSaturationB(float saturationB)
+    {
+        orig.SetSaturationB(saturationB);
+    }
 
-public UnityEngine.Keyframe CreatePair (UnityEngine.Keyframe kf, UnityEngine.AnimationCurve curve) =>
-CallMethodStatic<UnityEngine.Keyframe>(new object[] {kf, curve});
+    public void Start()
+    {
+        CallMethod();
+    }
 
-public UnityEngine.AnimationCurve CreateCurveFromKeyframes (System.Collections.Generic.IList<UnityEngine.Keyframe[]> keyframePairs, float factor) =>
-ColorCurvesManager.CreateCurveFromKeyframes(keyframePairs, factor);
+    public void Update()
+    {
+        CallMethod();
+    }
 
-public UnityEngine.Keyframe AverageKeyframe (UnityEngine.Keyframe a, UnityEngine.Keyframe b, float factor) =>
-ColorCurvesManager.AverageKeyframe(a, b, factor);
+    public void UpdateScript()
+    {
+        CallMethod();
+    }
 
-public void PairCurvesKeyframes () =>
-CallMethod();
+    public void EditorHasChanged()
+    {
+        CallMethod();
+    }
 
-public void UpdateScriptParameters () =>
-CallMethod();
+    public List<Keyframe[]> PairKeyframes(AnimationCurve curveA, AnimationCurve curveB)
+    {
+        return ColorCurvesManager.PairKeyframes(curveA, curveB);
+    }
 
-public bool PairedListsInitiated () =>
-CallMethod<bool>();
+    public List<Keyframe[]> SimplePairKeyframes(AnimationCurve curveA, AnimationCurve curveB)
+    {
+        return CallMethodStatic<List<Keyframe[]>>(new object[] { curveA, curveB });
+    }
 
-}
+    public Keyframe CreatePair(Keyframe kf, AnimationCurve curve)
+    {
+        return CallMethodStatic<Keyframe>(new object[] { kf, curve });
+    }
+
+    public AnimationCurve CreateCurveFromKeyframes(IList<Keyframe[]> keyframePairs, float factor)
+    {
+        return ColorCurvesManager.CreateCurveFromKeyframes(keyframePairs, factor);
+    }
+
+    public Keyframe AverageKeyframe(Keyframe a, Keyframe b, float factor)
+    {
+        return ColorCurvesManager.AverageKeyframe(a, b, factor);
+    }
+
+    public void PairCurvesKeyframes()
+    {
+        CallMethod();
+    }
+
+    public void UpdateScriptParameters()
+    {
+        CallMethod();
+    }
+
+    public bool PairedListsInitiated()
+    {
+        return CallMethod<bool>();
+    }
 }

@@ -1,82 +1,67 @@
-namespace Satchel.Reflected
-{
+using System.Diagnostics;
+using System.Reflection;
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
-///     A class that contains all (public and private) fields and methods of OptionalTypeHasNoValueException allowing you to
+///     A class that contains all (public and private) fields and methods of OptionalTypeHasNoValueException allowing you
+///     to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class OptionalTypeHasNoValueExceptionR:InstanceClassWrapper<InControl.OptionalTypeHasNoValueException>
+public class OptionalTypeHasNoValueExceptionR : InstanceClassWrapper<OptionalTypeHasNoValueException>
 {
-public OptionalTypeHasNoValueExceptionR(InControl.OptionalTypeHasNoValueException _orig) : base(_orig) {}
-public string _message
-{
-get => GetField<string>();
-set => SetField(value);
-}
+    public OptionalTypeHasNoValueExceptionR(OptionalTypeHasNoValueException _orig) : base(_orig)
+    {
+    }
 
-public int _HResult
-{
-get => GetField<int>();
-set => SetField(value);
-}
+    public string _message
+    {
+        get => GetField<string>();
+        set => SetField(value);
+    }
 
-public System.Diagnostics.StackTrace[] captured_traces
-{
-get => GetField<System.Diagnostics.StackTrace[]>();
-set => SetField(value);
-}
+    public int _HResult
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
 
-public string Message
-{
-get => orig.Message;
-}
+    public StackTrace[] captured_traces
+    {
+        get => GetField<StackTrace[]>();
+        set => SetField(value);
+    }
 
-public System.Collections.IDictionary Data
-{
-get => orig.Data;
-}
+    public string Message => orig.Message;
 
-public System.Exception InnerException
-{
-get => orig.InnerException;
-}
+    public IDictionary Data => orig.Data;
 
-public System.Reflection.MethodBase TargetSite
-{
-get => orig.TargetSite;
-}
+    public Exception InnerException => orig.InnerException;
 
-public string StackTrace
-{
-get => orig.StackTrace;
-}
+    public MethodBase TargetSite => orig.TargetSite;
 
-public string HelpLink
-{
-get => orig.HelpLink;
-set => orig.HelpLink = value;
-}
+    public string StackTrace => orig.StackTrace;
 
-public string Source
-{
-get => orig.Source;
-set => orig.Source = value;
-}
+    public string HelpLink
+    {
+        get => orig.HelpLink;
+        set => orig.HelpLink = value;
+    }
 
-public string RemoteStackTrace
-{
-get => GetProperty<string>();
-}
+    public string Source
+    {
+        get => orig.Source;
+        set => orig.Source = value;
+    }
 
-public int HResult
-{
-get => orig.HResult;
-set => SetProperty(value);
-}
+    public string RemoteStackTrace => GetProperty<string>();
 
-public bool IsTransient
-{
-get => GetProperty<bool>();
-}
+    public int HResult
+    {
+        get => orig.HResult;
+        set => SetProperty(value);
+    }
 
-}
+    public bool IsTransient => GetProperty<bool>();
 }

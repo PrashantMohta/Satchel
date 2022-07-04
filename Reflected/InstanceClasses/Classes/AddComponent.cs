@@ -1,119 +1,128 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of AddComponent allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class AddComponentR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.AddComponent>
+public class AddComponentR : InstanceClassWrapper<AddComponent>
 {
-public AddComponentR(HutongGames.PlayMaker.Actions.AddComponent _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public AddComponentR(AddComponent _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString component
-{
-get => orig.component;
-set => orig.component = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmObject storeComponent
-{
-get => orig.storeComponent;
-set => orig.storeComponent = value;
-}
+    public FsmString component
+    {
+        get => orig.component;
+        set => orig.component = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool removeOnExit
-{
-get => orig.removeOnExit;
-set => orig.removeOnExit = value;
-}
+    public FsmObject storeComponent
+    {
+        get => orig.storeComponent;
+        set => orig.storeComponent = value;
+    }
 
-public UnityEngine.Component addedComponent
-{
-get => GetField<UnityEngine.Component>();
-set => SetField(value);
-}
+    public FsmBool removeOnExit
+    {
+        get => orig.removeOnExit;
+        set => orig.removeOnExit = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Component addedComponent
+    {
+        get => GetField<Component>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnExit () =>
-orig.OnExit();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoAddComponent () =>
-CallMethod();
+    public void OnExit()
+    {
+        orig.OnExit();
+    }
 
-}
+    public void DoAddComponent()
+    {
+        CallMethod();
+    }
 }

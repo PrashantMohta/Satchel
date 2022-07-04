@@ -1,55 +1,63 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of BossStatueTrophyPlaque allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class BossStatueTrophyPlaqueR:InstanceClassWrapper<BossStatueTrophyPlaque>
+public class BossStatueTrophyPlaqueR : InstanceClassWrapper<BossStatueTrophyPlaque>
 {
-public BossStatueTrophyPlaqueR(BossStatueTrophyPlaque _orig) : base(_orig) {}
-public UnityEngine.GameObject[] displayObjects
-{
-get => orig.displayObjects;
-set => orig.displayObjects = value;
-}
+    public BossStatueTrophyPlaqueR(BossStatueTrophyPlaque _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.Transform tierCompleteEffectPoint
-{
-get => orig.tierCompleteEffectPoint;
-set => orig.tierCompleteEffectPoint = value;
-}
+    public GameObject[] displayObjects
+    {
+        get => orig.displayObjects;
+        set => orig.displayObjects = value;
+    }
 
-public float tierCompleteEffectDelay
-{
-get => orig.tierCompleteEffectDelay;
-set => orig.tierCompleteEffectDelay = value;
-}
+    public Transform tierCompleteEffectPoint
+    {
+        get => orig.tierCompleteEffectPoint;
+        set => orig.tierCompleteEffectPoint = value;
+    }
 
-public UnityEngine.GameObject[] tierCompleteEffectPrefabs
-{
-get => orig.tierCompleteEffectPrefabs;
-set => orig.tierCompleteEffectPrefabs = value;
-}
+    public float tierCompleteEffectDelay
+    {
+        get => orig.tierCompleteEffectDelay;
+        set => orig.tierCompleteEffectDelay = value;
+    }
 
-public UnityEngine.GameObject spawnedCompleteEffect
-{
-get => GetField<UnityEngine.GameObject>();
-set => SetField(value);
-}
+    public GameObject[] tierCompleteEffectPrefabs
+    {
+        get => orig.tierCompleteEffectPrefabs;
+        set => orig.tierCompleteEffectPrefabs = value;
+    }
+
+    public GameObject spawnedCompleteEffect
+    {
+        get => GetField<GameObject>();
+        set => SetField(value);
+    }
 
 
+    public void SetDisplay(BossStatueTrophyPlaque.DisplayType type)
+    {
+        orig.SetDisplay(type);
+    }
 
-public void SetDisplay (BossStatueTrophyPlaque.DisplayType type) =>
-orig.SetDisplay(type);
+    public void DoTierCompleteEffect(BossStatueTrophyPlaque.DisplayType type)
+    {
+        orig.DoTierCompleteEffect(type);
+    }
 
-public void DoTierCompleteEffect (BossStatueTrophyPlaque.DisplayType type) =>
-orig.DoTierCompleteEffect(type);
+    public IEnumerator TierCompleteEffectDelayed()
+    {
+        return CallMethod<IEnumerator>();
+    }
 
-public System.Collections.IEnumerator TierCompleteEffectDelayed () =>
-CallMethod<System.Collections.IEnumerator>();
-
-public void SetDisplayObject (BossStatueTrophyPlaque.DisplayType type) =>
-CallMethod(new object[] {type});
-
-}
+    public void SetDisplayObject(BossStatueTrophyPlaque.DisplayType type)
+    {
+        CallMethod(new object[] { type });
+    }
 }

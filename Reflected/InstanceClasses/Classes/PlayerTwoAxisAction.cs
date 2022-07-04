@@ -1,200 +1,180 @@
-namespace Satchel.Reflected
-{
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of PlayerTwoAxisAction allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class PlayerTwoAxisActionR:InstanceClassWrapper<InControl.PlayerTwoAxisAction>
+public class PlayerTwoAxisActionR : InstanceClassWrapper<PlayerTwoAxisAction>
 {
-public PlayerTwoAxisActionR(InControl.PlayerTwoAxisAction _orig) : base(_orig) {}
-public InControl.PlayerAction negativeXAction
-{
-get => GetField<InControl.PlayerAction>();
-set => SetField(value);
-}
+    public PlayerTwoAxisActionR(PlayerTwoAxisAction _orig) : base(_orig)
+    {
+    }
 
-public InControl.PlayerAction positiveXAction
-{
-get => GetField<InControl.PlayerAction>();
-set => SetField(value);
-}
+    public PlayerAction negativeXAction
+    {
+        get => GetField<PlayerAction>();
+        set => SetField(value);
+    }
 
-public InControl.PlayerAction negativeYAction
-{
-get => GetField<InControl.PlayerAction>();
-set => SetField(value);
-}
+    public PlayerAction positiveXAction
+    {
+        get => GetField<PlayerAction>();
+        set => SetField(value);
+    }
 
-public InControl.PlayerAction positiveYAction
-{
-get => GetField<InControl.PlayerAction>();
-set => SetField(value);
-}
+    public PlayerAction negativeYAction
+    {
+        get => GetField<PlayerAction>();
+        set => SetField(value);
+    }
 
-public InControl.BindingSourceType LastInputType
-{
-get => orig.LastInputType;
-set => orig.LastInputType = value;
-}
+    public PlayerAction positiveYAction
+    {
+        get => GetField<PlayerAction>();
+        set => SetField(value);
+    }
 
-public System.Action<InControl.BindingSourceType> OnLastInputTypeChanged
-{
-get => GetField<System.Action<InControl.BindingSourceType>>();
-set => SetField(value);
-}
+    public BindingSourceType LastInputType
+    {
+        get => orig.LastInputType;
+        set => orig.LastInputType = value;
+    }
 
-public InControl.DeadZoneFunc DeadZoneFunc
-{
-get => orig.DeadZoneFunc;
-set => orig.DeadZoneFunc = value;
-}
+    public Action<BindingSourceType> OnLastInputTypeChanged
+    {
+        get => GetField<Action<BindingSourceType>>();
+        set => SetField(value);
+    }
 
-public bool Raw
-{
-get => orig.Raw;
-set => orig.Raw = value;
-}
+    public DeadZoneFunc DeadZoneFunc
+    {
+        get => orig.DeadZoneFunc;
+        set => orig.DeadZoneFunc = value;
+    }
 
-public bool InvertXAxis
-{
-get => orig.InvertXAxis;
-set => orig.InvertXAxis = value;
-}
+    public bool Raw
+    {
+        get => orig.Raw;
+        set => orig.Raw = value;
+    }
 
-public bool InvertYAxis
-{
-get => orig.InvertYAxis;
-set => orig.InvertYAxis = value;
-}
+    public bool InvertXAxis
+    {
+        get => orig.InvertXAxis;
+        set => orig.InvertXAxis = value;
+    }
 
-public System.Object UserData
-{
-get => orig.UserData;
-set => orig.UserData = value;
-}
+    public bool InvertYAxis
+    {
+        get => orig.InvertYAxis;
+        set => orig.InvertYAxis = value;
+    }
 
-public float LowerDeadZone
-{
-get => orig.LowerDeadZone;
-set => orig.LowerDeadZone = value;
-}
+    public object UserData
+    {
+        get => orig.UserData;
+        set => orig.UserData = value;
+    }
 
-public float UpperDeadZone
-{
-get => orig.UpperDeadZone;
-set => orig.UpperDeadZone = value;
-}
+    public float LowerDeadZone
+    {
+        get => orig.LowerDeadZone;
+        set => orig.LowerDeadZone = value;
+    }
 
-public float X
-{
-get => orig.X;
-set => SetProperty(value);
-}
+    public float UpperDeadZone
+    {
+        get => orig.UpperDeadZone;
+        set => orig.UpperDeadZone = value;
+    }
 
-public float Y
-{
-get => orig.Y;
-set => SetProperty(value);
-}
+    public float X
+    {
+        get => orig.X;
+        set => SetProperty(value);
+    }
 
-public InControl.OneAxisInputControl Left
-{
-get => orig.Left;
-set => SetProperty(value);
-}
+    public float Y
+    {
+        get => orig.Y;
+        set => SetProperty(value);
+    }
 
-public InControl.OneAxisInputControl Right
-{
-get => orig.Right;
-set => SetProperty(value);
-}
+    public OneAxisInputControl Left
+    {
+        get => orig.Left;
+        set => SetProperty(value);
+    }
 
-public InControl.OneAxisInputControl Up
-{
-get => orig.Up;
-set => SetProperty(value);
-}
+    public OneAxisInputControl Right
+    {
+        get => orig.Right;
+        set => SetProperty(value);
+    }
 
-public InControl.OneAxisInputControl Down
-{
-get => orig.Down;
-set => SetProperty(value);
-}
+    public OneAxisInputControl Up
+    {
+        get => orig.Up;
+        set => SetProperty(value);
+    }
 
-public System.UInt64 UpdateTick
-{
-get => orig.UpdateTick;
-set => SetProperty(value);
-}
+    public OneAxisInputControl Down
+    {
+        get => orig.Down;
+        set => SetProperty(value);
+    }
 
-public float Sensitivity
-{
-get => orig.Sensitivity;
-set => orig.Sensitivity = value;
-}
+    public ulong UpdateTick
+    {
+        get => orig.UpdateTick;
+        set => SetProperty(value);
+    }
 
-public float StateThreshold
-{
-get => orig.StateThreshold;
-set => orig.StateThreshold = value;
-}
+    public float Sensitivity
+    {
+        get => orig.Sensitivity;
+        set => orig.Sensitivity = value;
+    }
 
-public bool State
-{
-get => orig.State;
-}
+    public float StateThreshold
+    {
+        get => orig.StateThreshold;
+        set => orig.StateThreshold = value;
+    }
 
-public bool LastState
-{
-get => orig.LastState;
-}
+    public bool State => orig.State;
 
-public UnityEngine.Vector2 Value
-{
-get => orig.Value;
-}
+    public bool LastState => orig.LastState;
 
-public UnityEngine.Vector2 LastValue
-{
-get => orig.LastValue;
-}
+    public Vector2 Value => orig.Value;
 
-public UnityEngine.Vector2 Vector
-{
-get => orig.Vector;
-}
+    public Vector2 LastValue => orig.LastValue;
 
-public bool HasChanged
-{
-get => orig.HasChanged;
-set => SetProperty(value);
-}
+    public Vector2 Vector => orig.Vector;
 
-public bool IsPressed
-{
-get => orig.IsPressed;
-}
+    public bool HasChanged
+    {
+        get => orig.HasChanged;
+        set => SetProperty(value);
+    }
 
-public bool WasPressed
-{
-get => orig.WasPressed;
-}
+    public bool IsPressed => orig.IsPressed;
 
-public bool WasReleased
-{
-get => orig.WasReleased;
-}
+    public bool WasPressed => orig.WasPressed;
 
-public float Angle
-{
-get => orig.Angle;
-}
+    public bool WasReleased => orig.WasReleased;
 
-public void Update (System.UInt64 updateTick, float deltaTime) =>
-CallMethod(new object[] {updateTick, deltaTime});
+    public float Angle => orig.Angle;
 
-public void ProcessActionUpdate (InControl.PlayerAction action) =>
-CallMethod(new object[] {action});
+    public void Update(ulong updateTick, float deltaTime)
+    {
+        CallMethod(new object[] { updateTick, deltaTime });
+    }
 
-}
+    public void ProcessActionUpdate(PlayerAction action)
+    {
+        CallMethod(new object[] { action });
+    }
 }

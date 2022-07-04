@@ -1,209 +1,218 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of AnimateRect allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class AnimateRectR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.AnimateRect>
+public class AnimateRectR : InstanceClassWrapper<AnimateRect>
 {
-public AnimateRectR(HutongGames.PlayMaker.Actions.AnimateRect _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmRect rectVariable
-{
-get => orig.rectVariable;
-set => orig.rectVariable = value;
-}
+    public AnimateRectR(AnimateRect _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmAnimationCurve curveX
-{
-get => orig.curveX;
-set => orig.curveX = value;
-}
+    public FsmRect rectVariable
+    {
+        get => orig.rectVariable;
+        set => orig.rectVariable = value;
+    }
 
-public HutongGames.PlayMaker.FsmAnimationCurve curveY
-{
-get => orig.curveY;
-set => orig.curveY = value;
-}
+    public FsmAnimationCurve curveX
+    {
+        get => orig.curveX;
+        set => orig.curveX = value;
+    }
 
-public HutongGames.PlayMaker.FsmAnimationCurve curveW
-{
-get => orig.curveW;
-set => orig.curveW = value;
-}
+    public FsmAnimationCurve curveY
+    {
+        get => orig.curveY;
+        set => orig.curveY = value;
+    }
 
-public HutongGames.PlayMaker.FsmAnimationCurve curveH
-{
-get => orig.curveH;
-set => orig.curveH = value;
-}
+    public FsmAnimationCurve curveW
+    {
+        get => orig.curveW;
+        set => orig.curveW = value;
+    }
 
-public bool finishInNextStep
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public FsmAnimationCurve curveH
+    {
+        get => orig.curveH;
+        set => orig.curveH = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat time
-{
-get => orig.time;
-set => orig.time = value;
-}
+    public bool finishInNextStep
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public HutongGames.PlayMaker.FsmFloat speed
-{
-get => orig.speed;
-set => orig.speed = value;
-}
+    public FsmFloat time
+    {
+        get => orig.time;
+        set => orig.time = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat delay
-{
-get => orig.delay;
-set => orig.delay = value;
-}
+    public FsmFloat speed
+    {
+        get => orig.speed;
+        set => orig.speed = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool ignoreCurveOffset
-{
-get => orig.ignoreCurveOffset;
-set => orig.ignoreCurveOffset = value;
-}
+    public FsmFloat delay
+    {
+        get => orig.delay;
+        set => orig.delay = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent finishEvent
-{
-get => orig.finishEvent;
-set => orig.finishEvent = value;
-}
+    public FsmBool ignoreCurveOffset
+    {
+        get => orig.ignoreCurveOffset;
+        set => orig.ignoreCurveOffset = value;
+    }
 
-public bool realTime
-{
-get => orig.realTime;
-set => orig.realTime = value;
-}
+    public FsmEvent finishEvent
+    {
+        get => orig.finishEvent;
+        set => orig.finishEvent = value;
+    }
 
-public UnityEngine.AnimationCurve[] curves
-{
-get => GetField<UnityEngine.AnimationCurve[]>();
-set => SetField(value);
-}
+    public bool realTime
+    {
+        get => orig.realTime;
+        set => orig.realTime = value;
+    }
 
-public HutongGames.PlayMaker.Actions.AnimateFsmAction.Calculation[] calculations
-{
-get => GetField<HutongGames.PlayMaker.Actions.AnimateFsmAction.Calculation[]>();
-set => SetField(value);
-}
+    public AnimationCurve[] curves
+    {
+        get => GetField<AnimationCurve[]>();
+        set => SetField(value);
+    }
 
-public System.Single[] resultFloats
-{
-get => GetField<System.Single[]>();
-set => SetField(value);
-}
+    public AnimateFsmAction.Calculation[] calculations
+    {
+        get => GetField<AnimateFsmAction.Calculation[]>();
+        set => SetField(value);
+    }
 
-public System.Single[] fromFloats
-{
-get => GetField<System.Single[]>();
-set => SetField(value);
-}
+    public float[] resultFloats
+    {
+        get => GetField<float[]>();
+        set => SetField(value);
+    }
 
-public System.Single[] toFloats
-{
-get => GetField<System.Single[]>();
-set => SetField(value);
-}
+    public float[] fromFloats
+    {
+        get => GetField<float[]>();
+        set => SetField(value);
+    }
 
-public bool finishAction
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public float[] toFloats
+    {
+        get => GetField<float[]>();
+        set => SetField(value);
+    }
 
-public bool isRunning
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool finishAction
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public bool looping
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool isRunning
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public bool looping
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void UpdateVariableValue () =>
-CallMethod();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void UpdateVariableValue()
+    {
+        CallMethod();
+    }
 
-}
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 }

@@ -1,82 +1,96 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of tk2dUIMultiStateToggleButton allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class tk2dUIMultiStateToggleButtonR:InstanceClassWrapper<tk2dUIMultiStateToggleButton>
+public class tk2dUIMultiStateToggleButtonR : InstanceClassWrapper<tk2dUIMultiStateToggleButton>
 {
-public tk2dUIMultiStateToggleButtonR(tk2dUIMultiStateToggleButton _orig) : base(_orig) {}
-public UnityEngine.GameObject[] states
-{
-get => orig.states;
-set => orig.states = value;
-}
+    public tk2dUIMultiStateToggleButtonR(tk2dUIMultiStateToggleButton _orig) : base(_orig)
+    {
+    }
 
-public bool activateOnPress
-{
-get => orig.activateOnPress;
-set => orig.activateOnPress = value;
-}
+    public GameObject[] states
+    {
+        get => orig.states;
+        set => orig.states = value;
+    }
 
-public System.Action<tk2dUIMultiStateToggleButton> OnStateToggle
-{
-get => GetField<System.Action<tk2dUIMultiStateToggleButton>>();
-set => SetField(value);
-}
+    public bool activateOnPress
+    {
+        get => orig.activateOnPress;
+        set => orig.activateOnPress = value;
+    }
 
-public int index
-{
-get => GetField<int>();
-set => SetField(value);
-}
+    public Action<tk2dUIMultiStateToggleButton> OnStateToggle
+    {
+        get => GetField<Action<tk2dUIMultiStateToggleButton>>();
+        set => SetField(value);
+    }
 
-public string SendMessageOnStateToggleMethodName
-{
-get => orig.SendMessageOnStateToggleMethodName;
-set => orig.SendMessageOnStateToggleMethodName = value;
-}
+    public int index
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
 
-public tk2dUIItem uiItem
-{
-get => orig.uiItem;
-set => orig.uiItem = value;
-}
+    public string SendMessageOnStateToggleMethodName
+    {
+        get => orig.SendMessageOnStateToggleMethodName;
+        set => orig.SendMessageOnStateToggleMethodName = value;
+    }
 
-public int Index
-{
-get => orig.Index;
-set => orig.Index = value;
-}
+    public tk2dUIItem uiItem
+    {
+        get => orig.uiItem;
+        set => orig.uiItem = value;
+    }
 
-public UnityEngine.GameObject SendMessageTarget
-{
-get => orig.SendMessageTarget;
-set => orig.SendMessageTarget = value;
-}
+    public int Index
+    {
+        get => orig.Index;
+        set => orig.Index = value;
+    }
+
+    public GameObject SendMessageTarget
+    {
+        get => orig.SendMessageTarget;
+        set => orig.SendMessageTarget = value;
+    }
 
 
+    public void Start()
+    {
+        CallMethod();
+    }
 
-public void Start () =>
-CallMethod();
+    public void OnEnable()
+    {
+        CallMethod();
+    }
 
-public void OnEnable () =>
-CallMethod();
+    public void OnDisable()
+    {
+        CallMethod();
+    }
 
-public void OnDisable () =>
-CallMethod();
+    public void ButtonClick()
+    {
+        CallMethod();
+    }
 
-public void ButtonClick () =>
-CallMethod();
+    public void ButtonDown()
+    {
+        CallMethod();
+    }
 
-public void ButtonDown () =>
-CallMethod();
+    public void ButtonToggle()
+    {
+        CallMethod();
+    }
 
-public void ButtonToggle () =>
-CallMethod();
-
-public void SetState () =>
-CallMethod();
-
-}
+    public void SetState()
+    {
+        CallMethod();
+    }
 }

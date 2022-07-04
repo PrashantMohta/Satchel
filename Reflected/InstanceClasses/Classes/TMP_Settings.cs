@@ -1,264 +1,221 @@
-namespace Satchel.Reflected
-{
+using TMPro;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of TMP_Settings allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class TMP_SettingsR:InstanceClassWrapper<TMPro.TMP_Settings>
+public class TMP_SettingsR : InstanceClassWrapper<TMP_Settings>
 {
-public TMP_SettingsR(TMPro.TMP_Settings _orig) : base(_orig) {}
-public TMPro.TMP_Settings s_Instance
-{
-get => GetFieldStatic<TMPro.TMP_Settings>();
-set => SetField(value);
-}
+    public TMP_SettingsR(TMP_Settings _orig) : base(_orig)
+    {
+    }
 
-public bool m_enableWordWrapping
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public TMP_Settings s_Instance
+    {
+        get => GetFieldStatic<TMP_Settings>();
+        set => SetField(value);
+    }
 
-public bool m_enableKerning
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool m_enableWordWrapping
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public bool m_enableExtraPadding
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool m_enableKerning
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public bool m_enableTintAllSprites
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool m_enableExtraPadding
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public bool m_enableParseEscapeCharacters
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool m_enableTintAllSprites
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public int m_missingGlyphCharacter
-{
-get => GetField<int>();
-set => SetField(value);
-}
+    public bool m_enableParseEscapeCharacters
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public bool m_warningsDisabled
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public int m_missingGlyphCharacter
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
 
-public TMPro.TMP_FontAsset m_defaultFontAsset
-{
-get => GetField<TMPro.TMP_FontAsset>();
-set => SetField(value);
-}
+    public bool m_warningsDisabled
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public string m_defaultFontAssetPath
-{
-get => GetField<string>();
-set => SetField(value);
-}
+    public TMP_FontAsset m_defaultFontAsset
+    {
+        get => GetField<TMP_FontAsset>();
+        set => SetField(value);
+    }
 
-public float m_defaultFontSize
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public string m_defaultFontAssetPath
+    {
+        get => GetField<string>();
+        set => SetField(value);
+    }
 
-public float m_defaultTextContainerWidth
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public float m_defaultFontSize
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public float m_defaultTextContainerHeight
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public float m_defaultTextContainerWidth
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<TMPro.TMP_FontAsset> m_fallbackFontAssets
-{
-get => GetField<System.Collections.Generic.List<TMPro.TMP_FontAsset>>();
-set => SetField(value);
-}
+    public float m_defaultTextContainerHeight
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public bool m_matchMaterialPreset
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public List<TMP_FontAsset> m_fallbackFontAssets
+    {
+        get => GetField<List<TMP_FontAsset>>();
+        set => SetField(value);
+    }
 
-public TMPro.TMP_SpriteAsset m_defaultSpriteAsset
-{
-get => GetField<TMPro.TMP_SpriteAsset>();
-set => SetField(value);
-}
+    public bool m_matchMaterialPreset
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public string m_defaultSpriteAssetPath
-{
-get => GetField<string>();
-set => SetField(value);
-}
+    public TMP_SpriteAsset m_defaultSpriteAsset
+    {
+        get => GetField<TMP_SpriteAsset>();
+        set => SetField(value);
+    }
 
-public TMPro.TMP_StyleSheet m_defaultStyleSheet
-{
-get => GetField<TMPro.TMP_StyleSheet>();
-set => SetField(value);
-}
+    public string m_defaultSpriteAssetPath
+    {
+        get => GetField<string>();
+        set => SetField(value);
+    }
 
-public UnityEngine.TextAsset m_leadingCharacters
-{
-get => GetField<UnityEngine.TextAsset>();
-set => SetField(value);
-}
+    public TMP_StyleSheet m_defaultStyleSheet
+    {
+        get => GetField<TMP_StyleSheet>();
+        set => SetField(value);
+    }
 
-public UnityEngine.TextAsset m_followingCharacters
-{
-get => GetField<UnityEngine.TextAsset>();
-set => SetField(value);
-}
+    public TextAsset m_leadingCharacters
+    {
+        get => GetField<TextAsset>();
+        set => SetField(value);
+    }
 
-public bool enableWordWrapping
-{
-get => TMPro.TMP_Settings.enableWordWrapping;
-}
+    public TextAsset m_followingCharacters
+    {
+        get => GetField<TextAsset>();
+        set => SetField(value);
+    }
 
-public bool enableKerning
-{
-get => TMPro.TMP_Settings.enableKerning;
-}
+    public bool enableWordWrapping => TMP_Settings.enableWordWrapping;
 
-public bool enableExtraPadding
-{
-get => TMPro.TMP_Settings.enableExtraPadding;
-}
+    public bool enableKerning => TMP_Settings.enableKerning;
 
-public bool enableTintAllSprites
-{
-get => TMPro.TMP_Settings.enableTintAllSprites;
-}
+    public bool enableExtraPadding => TMP_Settings.enableExtraPadding;
 
-public bool enableParseEscapeCharacters
-{
-get => TMPro.TMP_Settings.enableParseEscapeCharacters;
-}
+    public bool enableTintAllSprites => TMP_Settings.enableTintAllSprites;
 
-public int missingGlyphCharacter
-{
-get => TMPro.TMP_Settings.missingGlyphCharacter;
-}
+    public bool enableParseEscapeCharacters => TMP_Settings.enableParseEscapeCharacters;
 
-public bool warningsDisabled
-{
-get => TMPro.TMP_Settings.warningsDisabled;
-}
+    public int missingGlyphCharacter => TMP_Settings.missingGlyphCharacter;
 
-public TMPro.TMP_FontAsset defaultFontAsset
-{
-get => TMPro.TMP_Settings.defaultFontAsset;
-}
+    public bool warningsDisabled => TMP_Settings.warningsDisabled;
 
-public string defaultFontAssetPath
-{
-get => TMPro.TMP_Settings.defaultFontAssetPath;
-}
+    public TMP_FontAsset defaultFontAsset => TMP_Settings.defaultFontAsset;
 
-public float defaultFontSize
-{
-get => TMPro.TMP_Settings.defaultFontSize;
-}
+    public string defaultFontAssetPath => TMP_Settings.defaultFontAssetPath;
 
-public float defaultTextContainerWidth
-{
-get => TMPro.TMP_Settings.defaultTextContainerWidth;
-}
+    public float defaultFontSize => TMP_Settings.defaultFontSize;
 
-public float defaultTextContainerHeight
-{
-get => TMPro.TMP_Settings.defaultTextContainerHeight;
-}
+    public float defaultTextContainerWidth => TMP_Settings.defaultTextContainerWidth;
 
-public System.Collections.Generic.List<TMPro.TMP_FontAsset> fallbackFontAssets
-{
-get => TMPro.TMP_Settings.fallbackFontAssets;
-}
+    public float defaultTextContainerHeight => TMP_Settings.defaultTextContainerHeight;
 
-public bool matchMaterialPreset
-{
-get => TMPro.TMP_Settings.matchMaterialPreset;
-}
+    public List<TMP_FontAsset> fallbackFontAssets => TMP_Settings.fallbackFontAssets;
 
-public TMPro.TMP_SpriteAsset defaultSpriteAsset
-{
-get => TMPro.TMP_Settings.defaultSpriteAsset;
-}
+    public bool matchMaterialPreset => TMP_Settings.matchMaterialPreset;
 
-public string defaultSpriteAssetPath
-{
-get => TMPro.TMP_Settings.defaultSpriteAssetPath;
-}
+    public TMP_SpriteAsset defaultSpriteAsset => TMP_Settings.defaultSpriteAsset;
 
-public TMPro.TMP_StyleSheet defaultStyleSheet
-{
-get => TMPro.TMP_Settings.defaultStyleSheet;
-}
+    public string defaultSpriteAssetPath => TMP_Settings.defaultSpriteAssetPath;
 
-public UnityEngine.TextAsset leadingCharacters
-{
-get => TMPro.TMP_Settings.leadingCharacters;
-}
+    public TMP_StyleSheet defaultStyleSheet => TMP_Settings.defaultStyleSheet;
 
-public UnityEngine.TextAsset followingCharacters
-{
-get => TMPro.TMP_Settings.followingCharacters;
-}
+    public TextAsset leadingCharacters => TMP_Settings.leadingCharacters;
 
-public TMPro.TMP_Settings instance
-{
-get => TMPro.TMP_Settings.instance;
-}
+    public TextAsset followingCharacters => TMP_Settings.followingCharacters;
 
-public string name
-{
-get => orig.name;
-set => orig.name = value;
-}
+    public TMP_Settings instance => TMP_Settings.instance;
 
-public UnityEngine.HideFlags hideFlags
-{
-get => orig.hideFlags;
-set => orig.hideFlags = value;
-}
+    public string name
+    {
+        get => orig.name;
+        set => orig.name = value;
+    }
 
-public TMPro.TMP_Settings LoadDefaultSettings () =>
-TMPro.TMP_Settings.LoadDefaultSettings();
+    public HideFlags hideFlags
+    {
+        get => orig.hideFlags;
+        set => orig.hideFlags = value;
+    }
 
-public TMPro.TMP_Settings GetSettings () =>
-TMPro.TMP_Settings.GetSettings();
+    public TMP_Settings LoadDefaultSettings()
+    {
+        return TMP_Settings.LoadDefaultSettings();
+    }
 
-public TMPro.TMP_FontAsset GetFontAsset () =>
-TMPro.TMP_Settings.GetFontAsset();
+    public TMP_Settings GetSettings()
+    {
+        return TMP_Settings.GetSettings();
+    }
 
-public TMPro.TMP_SpriteAsset GetSpriteAsset () =>
-TMPro.TMP_Settings.GetSpriteAsset();
+    public TMP_FontAsset GetFontAsset()
+    {
+        return TMP_Settings.GetFontAsset();
+    }
 
-public TMPro.TMP_StyleSheet GetStyleSheet () =>
-TMPro.TMP_Settings.GetStyleSheet();
+    public TMP_SpriteAsset GetSpriteAsset()
+    {
+        return TMP_Settings.GetSpriteAsset();
+    }
 
-public void LoadLinebreakingRules () =>
-TMPro.TMP_Settings.LoadLinebreakingRules();
+    public TMP_StyleSheet GetStyleSheet()
+    {
+        return TMP_Settings.GetStyleSheet();
+    }
 
-public System.Collections.Generic.Dictionary<System.Int32,System.Char> GetCharacters (UnityEngine.TextAsset file) =>
-CallMethodStatic<System.Collections.Generic.Dictionary<System.Int32,System.Char>>(new object[] {file});
+    public void LoadLinebreakingRules()
+    {
+        TMP_Settings.LoadLinebreakingRules();
+    }
 
-}
+    public Dictionary<int, char> GetCharacters(TextAsset file)
+    {
+        return CallMethodStatic<Dictionary<int, char>>(new object[] { file });
+    }
 }

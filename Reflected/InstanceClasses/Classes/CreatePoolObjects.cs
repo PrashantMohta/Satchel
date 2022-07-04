@@ -1,149 +1,154 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of CreatePoolObjects allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class CreatePoolObjectsR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.CreatePoolObjects>
+public class CreatePoolObjectsR : InstanceClassWrapper<CreatePoolObjects>
 {
-public CreatePoolObjectsR(HutongGames.PlayMaker.Actions.CreatePoolObjects _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmGameObject gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public CreatePoolObjectsR(CreatePoolObjects _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmGameObject pool
-{
-get => orig.pool;
-set => orig.pool = value;
-}
+    public FsmGameObject gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmVector3 position
-{
-get => orig.position;
-set => orig.position = value;
-}
+    public FsmGameObject pool
+    {
+        get => orig.pool;
+        set => orig.pool = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt amount
-{
-get => orig.amount;
-set => orig.amount = value;
-}
+    public FsmVector3 position
+    {
+        get => orig.position;
+        set => orig.position = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat originVariationX
-{
-get => orig.originVariationX;
-set => orig.originVariationX = value;
-}
+    public FsmInt amount
+    {
+        get => orig.amount;
+        set => orig.amount = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat originVariationY
-{
-get => orig.originVariationY;
-set => orig.originVariationY = value;
-}
+    public FsmFloat originVariationX
+    {
+        get => orig.originVariationX;
+        set => orig.originVariationX = value;
+    }
 
-public bool deactivate
-{
-get => orig.deactivate;
-set => orig.deactivate = value;
-}
+    public FsmFloat originVariationY
+    {
+        get => orig.originVariationY;
+        set => orig.originVariationY = value;
+    }
 
-public float vectorX
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public bool deactivate
+    {
+        get => orig.deactivate;
+        set => orig.deactivate = value;
+    }
 
-public float vectorY
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public float vectorX
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public bool originAdjusted
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public float vectorY
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Rigidbody2D rb2d
-{
-get => GetField<UnityEngine.Rigidbody2D>();
-set => SetField(value);
-}
+    public bool originAdjusted
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Rigidbody2D rb2d
+    {
+        get => GetField<Rigidbody2D>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-}
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 }

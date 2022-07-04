@@ -1,237 +1,191 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of DesktopPlatform allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class DesktopPlatformR:InstanceClassWrapper<DesktopPlatform>
+public class DesktopPlatformR : InstanceClassWrapper<DesktopPlatform>
 {
-public DesktopPlatformR(DesktopPlatform _orig) : base(_orig) {}
-public string saveDirPath
-{
-get => GetField<string>();
-set => SetField(value);
-}
+    public DesktopPlatformR(DesktopPlatform _orig) : base(_orig)
+    {
+    }
 
-public PlayerPrefsSharedData sharedData
-{
-get => GetField<PlayerPrefsSharedData>();
-set => SetField(value);
-}
+    public string saveDirPath
+    {
+        get => GetField<string>();
+        set => SetField(value);
+    }
 
-public PlayerPrefsSharedData encryptedSharedData
-{
-get => GetField<PlayerPrefsSharedData>();
-set => SetField(value);
-}
+    public PlayerPrefsSharedData sharedData
+    {
+        get => GetField<PlayerPrefsSharedData>();
+        set => SetField(value);
+    }
 
-public DesktopOnlineSubsystem onlineSubsystem
-{
-get => GetField<DesktopOnlineSubsystem>();
-set => SetField(value);
-}
+    public PlayerPrefsSharedData encryptedSharedData
+    {
+        get => GetField<PlayerPrefsSharedData>();
+        set => SetField(value);
+    }
 
-public PlatformVibrationHelper vibrationHelper
-{
-get => GetField<PlatformVibrationHelper>();
-set => SetField(value);
-}
+    public DesktopOnlineSubsystem onlineSubsystem
+    {
+        get => GetField<DesktopOnlineSubsystem>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-}
+    public PlatformVibrationHelper vibrationHelper
+    {
+        get => GetField<PlatformVibrationHelper>();
+        set => SetField(value);
+    }
 
-public bool AreAchievementsFetched
-{
-get => orig.AreAchievementsFetched;
-}
+    public string DisplayName => orig.DisplayName;
 
-public bool HasNativeAchievementsDialog
-{
-get => orig.HasNativeAchievementsDialog;
-}
+    public bool AreAchievementsFetched => orig.AreAchievementsFetched;
 
-public bool ShowLanguageSelect
-{
-get => orig.ShowLanguageSelect;
-}
+    public bool HasNativeAchievementsDialog => orig.HasNativeAchievementsDialog;
 
-public bool IsControllerImplicit
-{
-get => orig.IsControllerImplicit;
-}
+    public bool ShowLanguageSelect => orig.ShowLanguageSelect;
 
-public bool WillPreloadSaveFiles
-{
-get => orig.WillPreloadSaveFiles;
-}
+    public bool IsControllerImplicit => orig.IsControllerImplicit;
 
-public string EngagedDisplayName
-{
-get => orig.EngagedDisplayName;
-}
+    public bool WillPreloadSaveFiles => orig.WillPreloadSaveFiles;
 
-public UnityEngine.Texture2D EngagedDisplayImage
-{
-get => orig.EngagedDisplayImage;
-}
+    public string EngagedDisplayName => orig.EngagedDisplayName;
 
-public bool IsFileSystemProtected
-{
-get => orig.IsFileSystemProtected;
-}
+    public Texture2D EngagedDisplayImage => orig.EngagedDisplayImage;
 
-public bool IsSaveStoreMounted
-{
-get => orig.IsSaveStoreMounted;
-}
+    public bool IsFileSystemProtected => orig.IsFileSystemProtected;
 
-public bool IsFiringAchievementsFromSavesAllowed
-{
-get => orig.IsFiringAchievementsFromSavesAllowed;
-}
+    public bool IsSaveStoreMounted => orig.IsSaveStoreMounted;
 
-public bool WillManageResolution
-{
-get => orig.WillManageResolution;
-}
+    public bool IsFiringAchievementsFromSavesAllowed => orig.IsFiringAchievementsFromSavesAllowed;
 
-public bool WillDisplayGraphicsSettings
-{
-get => orig.WillDisplayGraphicsSettings;
-}
+    public bool WillManageResolution => orig.WillManageResolution;
 
-public bool IsSpriteScalingApplied
-{
-get => orig.IsSpriteScalingApplied;
-}
+    public bool WillDisplayGraphicsSettings => orig.WillDisplayGraphicsSettings;
 
-public float SpriteScalingFactor
-{
-get => orig.SpriteScalingFactor;
-}
+    public bool IsSpriteScalingApplied => orig.IsSpriteScalingApplied;
 
-public bool WillDisplayControllerSettings
-{
-get => orig.WillDisplayControllerSettings;
-}
+    public float SpriteScalingFactor => orig.SpriteScalingFactor;
 
-public bool WillDisplayKeyboardSettings
-{
-get => orig.WillDisplayKeyboardSettings;
-}
+    public bool WillDisplayControllerSettings => orig.WillDisplayControllerSettings;
 
-public bool WillDisplayQuitButton
-{
-get => orig.WillDisplayQuitButton;
-}
+    public bool WillDisplayKeyboardSettings => orig.WillDisplayKeyboardSettings;
 
-public bool IsMouseSupported
-{
-get => orig.IsMouseSupported;
-}
+    public bool WillDisplayQuitButton => orig.WillDisplayQuitButton;
 
-public bool WillEverPauseOnControllerDisconnected
-{
-get => orig.WillEverPauseOnControllerDisconnected;
-}
+    public bool IsMouseSupported => orig.IsMouseSupported;
 
-public bool IsPausingOnControllerDisconnected
-{
-get => orig.IsPausingOnControllerDisconnected;
-}
+    public bool WillEverPauseOnControllerDisconnected => orig.WillEverPauseOnControllerDisconnected;
 
-public bool FetchScenesBeforeFade
-{
-get => orig.FetchScenesBeforeFade;
-}
+    public bool IsPausingOnControllerDisconnected => orig.IsPausingOnControllerDisconnected;
 
-public float MaximumLoadDurationForNonCriticalGarbageCollection
-{
-get => orig.MaximumLoadDurationForNonCriticalGarbageCollection;
-}
+    public bool FetchScenesBeforeFade => orig.FetchScenesBeforeFade;
 
-public int MaximumSceneTransitionsWithoutNonCriticalGarbageCollection
-{
-get => orig.MaximumSceneTransitionsWithoutNonCriticalGarbageCollection;
-}
+    public float MaximumLoadDurationForNonCriticalGarbageCollection =>
+        orig.MaximumLoadDurationForNonCriticalGarbageCollection;
 
-public bool IsSavingAllowedByEngagement
-{
-get => orig.IsSavingAllowedByEngagement;
-}
+    public int MaximumSceneTransitionsWithoutNonCriticalGarbageCollection =>
+        orig.MaximumSceneTransitionsWithoutNonCriticalGarbageCollection;
 
-public bool CanReEngage
-{
-get => orig.CanReEngage;
-}
+    public bool IsSavingAllowedByEngagement => orig.IsSavingAllowedByEngagement;
 
-public bool IsPlayerPrefsLoaded
-{
-get => orig.IsPlayerPrefsLoaded;
-}
+    public bool CanReEngage => orig.CanReEngage;
 
-public bool RequiresPreferencesSyncOnEngage
-{
-get => orig.RequiresPreferencesSyncOnEngage;
-}
+    public bool IsPlayerPrefsLoaded => orig.IsPlayerPrefsLoaded;
+
+    public bool RequiresPreferencesSyncOnEngage => orig.RequiresPreferencesSyncOnEngage;
 
 
+    public void Awake()
+    {
+        CallMethod();
+    }
 
-public void Awake () =>
-CallMethod();
+    public void CreateOnlineSubsystem()
+    {
+        CallMethod();
+    }
 
-public void CreateOnlineSubsystem () =>
-CallMethod();
+    public void OnDestroy()
+    {
+        CallMethod();
+    }
 
-public void OnDestroy () =>
-CallMethod();
+    public void Update()
+    {
+        CallMethod();
+    }
 
-public void Update () =>
-CallMethod();
+    public void IsSaveSlotInUse(int slotIndex, Action<bool> callback)
+    {
+        orig.IsSaveSlotInUse(slotIndex, callback);
+    }
 
-public void IsSaveSlotInUse (int slotIndex, System.Action<System.Boolean> callback) =>
-orig.IsSaveSlotInUse(slotIndex, callback);
+    public void LocalIsSaveSlotInUse(int slotIndex, Action<bool> callback)
+    {
+        orig.LocalIsSaveSlotInUse(slotIndex, callback);
+    }
 
-public void LocalIsSaveSlotInUse (int slotIndex, System.Action<System.Boolean> callback) =>
-orig.LocalIsSaveSlotInUse(slotIndex, callback);
+    public void ReadSaveSlot(int slotIndex, Action<byte[]> callback)
+    {
+        orig.ReadSaveSlot(slotIndex, callback);
+    }
 
-public void ReadSaveSlot (int slotIndex, System.Action<System.Byte[]> callback) =>
-orig.ReadSaveSlot(slotIndex, callback);
+    public void LocalReadSaveSlot(int slotIndex, Action<byte[]> callback)
+    {
+        orig.LocalReadSaveSlot(slotIndex, callback);
+    }
 
-public void LocalReadSaveSlot (int slotIndex, System.Action<System.Byte[]> callback) =>
-orig.LocalReadSaveSlot(slotIndex, callback);
+    public void EnsureSaveSlotSpace(int slotIndex, Action<bool> callback)
+    {
+        orig.EnsureSaveSlotSpace(slotIndex, callback);
+    }
 
-public void EnsureSaveSlotSpace (int slotIndex, System.Action<System.Boolean> callback) =>
-orig.EnsureSaveSlotSpace(slotIndex, callback);
+    public void WriteSaveSlot(int slotIndex, byte[] bytes, Action<bool> callback)
+    {
+        orig.WriteSaveSlot(slotIndex, bytes, callback);
+    }
 
-public void WriteSaveSlot (int slotIndex, System.Byte[] bytes, System.Action<System.Boolean> callback) =>
-orig.WriteSaveSlot(slotIndex, bytes, callback);
+    public int GetBackupNumber(string backupPath)
+    {
+        return CallMethod<int>(new object[] { backupPath });
+    }
 
-public int GetBackupNumber (string backupPath) =>
-CallMethod<int>(new object[] {backupPath});
+    public void ClearSaveSlot(int slotIndex, Action<bool> callback)
+    {
+        orig.ClearSaveSlot(slotIndex, callback);
+    }
 
-public void ClearSaveSlot (int slotIndex, System.Action<System.Boolean> callback) =>
-orig.ClearSaveSlot(slotIndex, callback);
+    public bool? IsAchievementUnlocked(string achievementId)
+    {
+        return orig.IsAchievementUnlocked(achievementId);
+    }
 
-public System.Boolean? IsAchievementUnlocked (string achievementId) =>
-orig.IsAchievementUnlocked(achievementId);
+    public void PushAchievementUnlock(string achievementId)
+    {
+        orig.PushAchievementUnlock(achievementId);
+    }
 
-public void PushAchievementUnlock (string achievementId) =>
-orig.PushAchievementUnlock(achievementId);
+    public void ResetAchievements()
+    {
+        orig.ResetAchievements();
+    }
 
-public void ResetAchievements () =>
-orig.ResetAchievements();
+    public bool IncludesPlugin(string pluginName)
+    {
+        return orig.IncludesPlugin(pluginName);
+    }
 
-public bool IncludesPlugin (string pluginName) =>
-orig.IncludesPlugin(pluginName);
+    public void OnOnlineSubsystemAchievementsFetched()
+    {
+        orig.OnOnlineSubsystemAchievementsFetched();
+    }
 
-public void OnOnlineSubsystemAchievementsFetched () =>
-orig.OnOnlineSubsystemAchievementsFetched();
-
-public VibrationMixer GetVibrationMixer () =>
-orig.GetVibrationMixer();
-
-}
+    public VibrationMixer GetVibrationMixer()
+    {
+        return orig.GetVibrationMixer();
+    }
 }

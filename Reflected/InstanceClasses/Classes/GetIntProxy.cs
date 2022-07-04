@@ -1,29 +1,26 @@
-namespace Satchel.Reflected
-{
+using System.Reflection;
+using Modding.Delegates;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GetIntProxy allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GetIntProxyR:InstanceClassWrapper<Modding.Delegates.GetIntProxy>
+public class GetIntProxyR : InstanceClassWrapper<GetIntProxy>
 {
-public GetIntProxyR(Modding.Delegates.GetIntProxy _orig) : base(_orig) {}
-public bool HasSingleTarget
-{
-get => GetProperty<bool>();
-}
+    public GetIntProxyR(GetIntProxy _orig) : base(_orig)
+    {
+    }
 
-public System.Reflection.MethodInfo Method
-{
-get => orig.Method;
-}
+    public bool HasSingleTarget => GetProperty<bool>();
 
-public System.Object Target
-{
-get => orig.Target;
-}
+    public MethodInfo Method => orig.Method;
 
-public int EndInvoke (System.IAsyncResult result) =>
-orig.EndInvoke(result);
+    public object Target => orig.Target;
 
-}
+    public int EndInvoke(IAsyncResult result)
+    {
+        return orig.EndInvoke(result);
+    }
 }

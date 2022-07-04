@@ -1,71 +1,113 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of PlayMakerUtils allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class PlayMakerUtilsR:InstanceClassWrapper<PlayMakerUtils>
+public class PlayMakerUtilsR : InstanceClassWrapper<PlayMakerUtils>
 {
-public PlayMakerUtilsR(PlayMakerUtils _orig) : base(_orig) {}
-public void SendEventToGameObject (PlayMakerFSM fromFsm, UnityEngine.GameObject target, string fsmEvent, bool includeChildren) =>
-PlayMakerUtils.SendEventToGameObject(fromFsm, target, fsmEvent, includeChildren);
+    public PlayMakerUtilsR(PlayMakerUtils _orig) : base(_orig)
+    {
+    }
 
-public void SendEventToGameObject (PlayMakerFSM fromFsm, UnityEngine.GameObject target, string fsmEvent) =>
-PlayMakerUtils.SendEventToGameObject(fromFsm, target, fsmEvent);
+    public void SendEventToGameObject(PlayMakerFSM fromFsm, GameObject target, string fsmEvent, bool includeChildren)
+    {
+        PlayMakerUtils.SendEventToGameObject(fromFsm, target, fsmEvent, includeChildren);
+    }
 
-public void SendEventToGameObject (PlayMakerFSM fromFsm, UnityEngine.GameObject target, string fsmEvent, HutongGames.PlayMaker.FsmEventData eventData) =>
-PlayMakerUtils.SendEventToGameObject(fromFsm, target, fsmEvent, eventData);
+    public void SendEventToGameObject(PlayMakerFSM fromFsm, GameObject target, string fsmEvent)
+    {
+        PlayMakerUtils.SendEventToGameObject(fromFsm, target, fsmEvent);
+    }
 
-public void SendEventToGameObject (PlayMakerFSM fromFsm, UnityEngine.GameObject target, string fsmEvent, bool includeChildren, HutongGames.PlayMaker.FsmEventData eventData) =>
-PlayMakerUtils.SendEventToGameObject(fromFsm, target, fsmEvent, includeChildren, eventData);
+    public void SendEventToGameObject(PlayMakerFSM fromFsm, GameObject target, string fsmEvent, FsmEventData eventData)
+    {
+        PlayMakerUtils.SendEventToGameObject(fromFsm, target, fsmEvent, eventData);
+    }
 
-public bool DoesTargetImplementsEvent (HutongGames.PlayMaker.FsmEventTarget target, string eventName) =>
-PlayMakerUtils.DoesTargetImplementsEvent(target, eventName);
+    public void SendEventToGameObject(PlayMakerFSM fromFsm, GameObject target, string fsmEvent, bool includeChildren,
+        FsmEventData eventData)
+    {
+        PlayMakerUtils.SendEventToGameObject(fromFsm, target, fsmEvent, includeChildren, eventData);
+    }
 
-public bool DoesGameObjectImplementsEvent (UnityEngine.GameObject go, string fsmEvent) =>
-PlayMakerUtils.DoesGameObjectImplementsEvent(go, fsmEvent);
+    public bool DoesTargetImplementsEvent(FsmEventTarget target, string eventName)
+    {
+        return PlayMakerUtils.DoesTargetImplementsEvent(target, eventName);
+    }
 
-public bool DoesGameObjectImplementsEvent (UnityEngine.GameObject go, string fsmName, string fsmEvent) =>
-PlayMakerUtils.DoesGameObjectImplementsEvent(go, fsmName, fsmEvent);
+    public bool DoesGameObjectImplementsEvent(GameObject go, string fsmEvent)
+    {
+        return PlayMakerUtils.DoesGameObjectImplementsEvent(go, fsmEvent);
+    }
 
-public bool DoesFsmImplementsEvent (PlayMakerFSM fsm, string fsmEvent) =>
-PlayMakerUtils.DoesFsmImplementsEvent(fsm, fsmEvent);
+    public bool DoesGameObjectImplementsEvent(GameObject go, string fsmName, string fsmEvent)
+    {
+        return PlayMakerUtils.DoesGameObjectImplementsEvent(go, fsmName, fsmEvent);
+    }
 
-public PlayMakerFSM FindFsmOnGameObject (UnityEngine.GameObject go, string fsmName) =>
-PlayMakerUtils.FindFsmOnGameObject(go, fsmName);
+    public bool DoesFsmImplementsEvent(PlayMakerFSM fsm, string fsmEvent)
+    {
+        return PlayMakerUtils.DoesFsmImplementsEvent(fsm, fsmEvent);
+    }
 
-public void RefreshValueFromFsmVar (HutongGames.PlayMaker.Fsm fromFsm, HutongGames.PlayMaker.FsmVar fsmVar) =>
-PlayMakerUtils.RefreshValueFromFsmVar(fromFsm, fsmVar);
+    public PlayMakerFSM FindFsmOnGameObject(GameObject go, string fsmName)
+    {
+        return PlayMakerUtils.FindFsmOnGameObject(go, fsmName);
+    }
 
-public System.Object GetValueFromFsmVar (HutongGames.PlayMaker.Fsm fromFsm, HutongGames.PlayMaker.FsmVar fsmVar) =>
-PlayMakerUtils.GetValueFromFsmVar(fromFsm, fsmVar);
+    public void RefreshValueFromFsmVar(Fsm fromFsm, FsmVar fsmVar)
+    {
+        PlayMakerUtils.RefreshValueFromFsmVar(fromFsm, fsmVar);
+    }
 
-public bool ApplyValueToFsmVar (HutongGames.PlayMaker.Fsm fromFsm, HutongGames.PlayMaker.FsmVar fsmVar, System.Object value) =>
-PlayMakerUtils.ApplyValueToFsmVar(fromFsm, fsmVar, value);
+    public object GetValueFromFsmVar(Fsm fromFsm, FsmVar fsmVar)
+    {
+        return PlayMakerUtils.GetValueFromFsmVar(fromFsm, fsmVar);
+    }
 
-public float GetFloatFromObject (System.Object _obj, HutongGames.PlayMaker.VariableType targetType, bool fastProcessingIfPossible) =>
-PlayMakerUtils.GetFloatFromObject(_obj, targetType, fastProcessingIfPossible);
+    public bool ApplyValueToFsmVar(Fsm fromFsm, FsmVar fsmVar, object value)
+    {
+        return PlayMakerUtils.ApplyValueToFsmVar(fromFsm, fsmVar, value);
+    }
 
-public string ParseFsmVarToString (HutongGames.PlayMaker.Fsm fsm, HutongGames.PlayMaker.FsmVar fsmVar) =>
-PlayMakerUtils.ParseFsmVarToString(fsm, fsmVar);
+    public float GetFloatFromObject(object _obj, VariableType targetType, bool fastProcessingIfPossible)
+    {
+        return PlayMakerUtils.GetFloatFromObject(_obj, targetType, fastProcessingIfPossible);
+    }
 
-public string ParseValueToString (System.Object item, bool useBytes) =>
-PlayMakerUtils.ParseValueToString(item, useBytes);
+    public string ParseFsmVarToString(Fsm fsm, FsmVar fsmVar)
+    {
+        return PlayMakerUtils.ParseFsmVarToString(fsm, fsmVar);
+    }
 
-public string ParseValueToString (System.Object item) =>
-PlayMakerUtils.ParseValueToString(item);
+    public string ParseValueToString(object item, bool useBytes)
+    {
+        return PlayMakerUtils.ParseValueToString(item, useBytes);
+    }
 
-public System.Object ParseValueFromString (string source, bool useBytes) =>
-PlayMakerUtils.ParseValueFromString(source, useBytes);
+    public string ParseValueToString(object item)
+    {
+        return PlayMakerUtils.ParseValueToString(item);
+    }
 
-public System.Object ParseValueFromString (string source, HutongGames.PlayMaker.VariableType type) =>
-PlayMakerUtils.ParseValueFromString(source, type);
+    public object ParseValueFromString(string source, bool useBytes)
+    {
+        return PlayMakerUtils.ParseValueFromString(source, useBytes);
+    }
 
-public System.Object ParseValueFromString (string source, System.Type type) =>
-PlayMakerUtils.ParseValueFromString(source, type);
+    public object ParseValueFromString(string source, VariableType type)
+    {
+        return PlayMakerUtils.ParseValueFromString(source, type);
+    }
 
-public System.Object ParseValueFromString (string source) =>
-PlayMakerUtils.ParseValueFromString(source);
+    public object ParseValueFromString(string source, Type type)
+    {
+        return PlayMakerUtils.ParseValueFromString(source, type);
+    }
 
-}
+    public object ParseValueFromString(string source)
+    {
+        return PlayMakerUtils.ParseValueFromString(source);
+    }
 }

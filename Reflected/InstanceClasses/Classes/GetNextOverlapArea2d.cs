@@ -1,179 +1,188 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GetNextOverlapArea2d allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GetNextOverlapArea2dR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.GetNextOverlapArea2d>
+public class GetNextOverlapArea2dR : InstanceClassWrapper<GetNextOverlapArea2d>
 {
-public GetNextOverlapArea2dR(HutongGames.PlayMaker.Actions.GetNextOverlapArea2d _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault firstCornerGameObject
-{
-get => orig.firstCornerGameObject;
-set => orig.firstCornerGameObject = value;
-}
+    public GetNextOverlapArea2dR(GetNextOverlapArea2d _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmVector2 firstCornerPosition
-{
-get => orig.firstCornerPosition;
-set => orig.firstCornerPosition = value;
-}
+    public FsmOwnerDefault firstCornerGameObject
+    {
+        get => orig.firstCornerGameObject;
+        set => orig.firstCornerGameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject secondCornerGameObject
-{
-get => orig.secondCornerGameObject;
-set => orig.secondCornerGameObject = value;
-}
+    public FsmVector2 firstCornerPosition
+    {
+        get => orig.firstCornerPosition;
+        set => orig.firstCornerPosition = value;
+    }
 
-public HutongGames.PlayMaker.FsmVector2 secondCornerPosition
-{
-get => orig.secondCornerPosition;
-set => orig.secondCornerPosition = value;
-}
+    public FsmGameObject secondCornerGameObject
+    {
+        get => orig.secondCornerGameObject;
+        set => orig.secondCornerGameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt minDepth
-{
-get => orig.minDepth;
-set => orig.minDepth = value;
-}
+    public FsmVector2 secondCornerPosition
+    {
+        get => orig.secondCornerPosition;
+        set => orig.secondCornerPosition = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt maxDepth
-{
-get => orig.maxDepth;
-set => orig.maxDepth = value;
-}
+    public FsmInt minDepth
+    {
+        get => orig.minDepth;
+        set => orig.minDepth = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt[] layerMask
-{
-get => orig.layerMask;
-set => orig.layerMask = value;
-}
+    public FsmInt maxDepth
+    {
+        get => orig.maxDepth;
+        set => orig.maxDepth = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool invertMask
-{
-get => orig.invertMask;
-set => orig.invertMask = value;
-}
+    public FsmInt[] layerMask
+    {
+        get => orig.layerMask;
+        set => orig.layerMask = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt collidersCount
-{
-get => orig.collidersCount;
-set => orig.collidersCount = value;
-}
+    public FsmBool invertMask
+    {
+        get => orig.invertMask;
+        set => orig.invertMask = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject storeNextCollider
-{
-get => orig.storeNextCollider;
-set => orig.storeNextCollider = value;
-}
+    public FsmInt collidersCount
+    {
+        get => orig.collidersCount;
+        set => orig.collidersCount = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent loopEvent
-{
-get => orig.loopEvent;
-set => orig.loopEvent = value;
-}
+    public FsmGameObject storeNextCollider
+    {
+        get => orig.storeNextCollider;
+        set => orig.storeNextCollider = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent finishedEvent
-{
-get => orig.finishedEvent;
-set => orig.finishedEvent = value;
-}
+    public FsmEvent loopEvent
+    {
+        get => orig.loopEvent;
+        set => orig.loopEvent = value;
+    }
 
-public UnityEngine.Collider2D[] colliders
-{
-get => GetField<UnityEngine.Collider2D[]>();
-set => SetField(value);
-}
+    public FsmEvent finishedEvent
+    {
+        get => orig.finishedEvent;
+        set => orig.finishedEvent = value;
+    }
 
-public int colliderCount
-{
-get => GetField<int>();
-set => SetField(value);
-}
+    public Collider2D[] colliders
+    {
+        get => GetField<Collider2D[]>();
+        set => SetField(value);
+    }
 
-public int nextColliderIndex
-{
-get => GetField<int>();
-set => SetField(value);
-}
+    public int colliderCount
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public int nextColliderIndex
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void DoGetNextCollider () =>
-CallMethod();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public UnityEngine.Collider2D[] GetOverlapAreaAll () =>
-CallMethod<UnityEngine.Collider2D[]>();
+    public void DoGetNextCollider()
+    {
+        CallMethod();
+    }
 
-}
+    public Collider2D[] GetOverlapAreaAll()
+    {
+        return CallMethod<Collider2D[]>();
+    }
 }

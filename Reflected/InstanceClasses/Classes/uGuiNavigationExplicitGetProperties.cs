@@ -1,122 +1,132 @@
-namespace Satchel.Reflected
-{
+using UnityEngine.UI;
+
+namespace Satchel.Reflected;
+
 /// <summary>
-///     A class that contains all (public and private) fields and methods of uGuiNavigationExplicitGetProperties allowing you to
+///     A class that contains all (public and private) fields and methods of uGuiNavigationExplicitGetProperties allowing
+///     you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class uGuiNavigationExplicitGetPropertiesR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.uGuiNavigationExplicitGetProperties>
+public class uGuiNavigationExplicitGetPropertiesR : InstanceClassWrapper<uGuiNavigationExplicitGetProperties>
 {
-public uGuiNavigationExplicitGetPropertiesR(HutongGames.PlayMaker.Actions.uGuiNavigationExplicitGetProperties _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public uGuiNavigationExplicitGetPropertiesR(uGuiNavigationExplicitGetProperties _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmGameObject selectOnDown
-{
-get => orig.selectOnDown;
-set => orig.selectOnDown = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject selectOnUp
-{
-get => orig.selectOnUp;
-set => orig.selectOnUp = value;
-}
+    public FsmGameObject selectOnDown
+    {
+        get => orig.selectOnDown;
+        set => orig.selectOnDown = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject selectOnLeft
-{
-get => orig.selectOnLeft;
-set => orig.selectOnLeft = value;
-}
+    public FsmGameObject selectOnUp
+    {
+        get => orig.selectOnUp;
+        set => orig.selectOnUp = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject selectOnRight
-{
-get => orig.selectOnRight;
-set => orig.selectOnRight = value;
-}
+    public FsmGameObject selectOnLeft
+    {
+        get => orig.selectOnLeft;
+        set => orig.selectOnLeft = value;
+    }
 
-public UnityEngine.UI.Selectable _selectable
-{
-get => GetField<UnityEngine.UI.Selectable>();
-set => SetField(value);
-}
+    public FsmGameObject selectOnRight
+    {
+        get => orig.selectOnRight;
+        set => orig.selectOnRight = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Selectable _selectable
+    {
+        get => GetField<Selectable>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void DoGetValue () =>
-CallMethod();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-}
+    public void DoGetValue()
+    {
+        CallMethod();
+    }
 }

@@ -1,110 +1,118 @@
-namespace Satchel.Reflected
-{
+using System.IO;
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of MouseBindingSource allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class MouseBindingSourceR:InstanceClassWrapper<InControl.MouseBindingSource>
+public class MouseBindingSourceR : InstanceClassWrapper<MouseBindingSource>
 {
-public MouseBindingSourceR(InControl.MouseBindingSource _orig) : base(_orig) {}
-public float ScaleX
-{
-get => InControl.MouseBindingSource.ScaleX;
-set => InControl.MouseBindingSource.ScaleX = value;
-}
+    public MouseBindingSourceR(MouseBindingSource _orig) : base(_orig)
+    {
+    }
 
-public float ScaleY
-{
-get => InControl.MouseBindingSource.ScaleY;
-set => InControl.MouseBindingSource.ScaleY = value;
-}
+    public float ScaleX
+    {
+        get => MouseBindingSource.ScaleX;
+        set => MouseBindingSource.ScaleX = value;
+    }
 
-public float ScaleZ
-{
-get => InControl.MouseBindingSource.ScaleZ;
-set => InControl.MouseBindingSource.ScaleZ = value;
-}
+    public float ScaleY
+    {
+        get => MouseBindingSource.ScaleY;
+        set => MouseBindingSource.ScaleY = value;
+    }
 
-public float JitterThreshold
-{
-get => InControl.MouseBindingSource.JitterThreshold;
-set => InControl.MouseBindingSource.JitterThreshold = value;
-}
+    public float ScaleZ
+    {
+        get => MouseBindingSource.ScaleZ;
+        set => MouseBindingSource.ScaleZ = value;
+    }
 
-public InControl.Mouse Control
-{
-get => orig.Control;
-set => SetProperty(value);
-}
+    public float JitterThreshold
+    {
+        get => MouseBindingSource.JitterThreshold;
+        set => MouseBindingSource.JitterThreshold = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-}
+    public Mouse Control
+    {
+        get => orig.Control;
+        set => SetProperty(value);
+    }
 
-public string DeviceName
-{
-get => orig.DeviceName;
-}
+    public string Name => orig.Name;
 
-public InControl.InputDeviceClass DeviceClass
-{
-get => orig.DeviceClass;
-}
+    public string DeviceName => orig.DeviceName;
 
-public InControl.InputDeviceStyle DeviceStyle
-{
-get => orig.DeviceStyle;
-}
+    public InputDeviceClass DeviceClass => orig.DeviceClass;
 
-public InControl.BindingSourceType BindingSourceType
-{
-get => orig.BindingSourceType;
-}
+    public InputDeviceStyle DeviceStyle => orig.DeviceStyle;
 
-public InControl.PlayerAction BoundTo
-{
-get => GetProperty<InControl.PlayerAction>();
-set => SetProperty(value);
-}
+    public BindingSourceType BindingSourceType => orig.BindingSourceType;
 
-public bool IsValid
-{
-get => GetProperty<bool>();
-}
+    public PlayerAction BoundTo
+    {
+        get => GetProperty<PlayerAction>();
+        set => SetProperty(value);
+    }
 
-public bool ButtonIsPressed (InControl.Mouse control) =>
-CallMethodStatic<bool>(new object[] {control});
+    public bool IsValid => GetProperty<bool>();
 
-public bool NegativeScrollWheelIsActive (float threshold) =>
-CallMethodStatic<bool>(new object[] {threshold});
+    public bool ButtonIsPressed(Mouse control)
+    {
+        return CallMethodStatic<bool>(new object[] { control });
+    }
 
-public bool PositiveScrollWheelIsActive (float threshold) =>
-CallMethodStatic<bool>(new object[] {threshold});
+    public bool NegativeScrollWheelIsActive(float threshold)
+    {
+        return CallMethodStatic<bool>(new object[] { threshold });
+    }
 
-public float GetValue (InControl.Mouse mouseControl) =>
-CallMethodStatic<float>(new object[] {mouseControl});
+    public bool PositiveScrollWheelIsActive(float threshold)
+    {
+        return CallMethodStatic<bool>(new object[] { threshold });
+    }
 
-public float GetValue (InControl.InputDevice inputDevice) =>
-orig.GetValue(inputDevice);
+    public float GetValue(Mouse mouseControl)
+    {
+        return CallMethodStatic<float>(new object[] { mouseControl });
+    }
 
-public bool GetState (InControl.InputDevice inputDevice) =>
-orig.GetState(inputDevice);
+    public float GetValue(InputDevice inputDevice)
+    {
+        return orig.GetValue(inputDevice);
+    }
 
-public bool Equals (InControl.BindingSource other) =>
-orig.Equals(other);
+    public bool GetState(InputDevice inputDevice)
+    {
+        return orig.GetState(inputDevice);
+    }
 
-public bool Equals (System.Object other) =>
-orig.Equals(other);
+    public bool Equals(BindingSource other)
+    {
+        return orig.Equals(other);
+    }
 
-public int GetHashCode () =>
-orig.GetHashCode();
+    public bool Equals(object other)
+    {
+        return orig.Equals(other);
+    }
 
-public void Save (System.IO.BinaryWriter writer) =>
-orig.Save(writer);
+    public int GetHashCode()
+    {
+        return orig.GetHashCode();
+    }
 
-public void Load (System.IO.BinaryReader reader, System.UInt16 dataFormatVersion) =>
-orig.Load(reader, dataFormatVersion);
+    public void Save(BinaryWriter writer)
+    {
+        orig.Save(writer);
+    }
 
-}
+    public void Load(BinaryReader reader, ushort dataFormatVersion)
+    {
+        orig.Load(reader, dataFormatVersion);
+    }
 }

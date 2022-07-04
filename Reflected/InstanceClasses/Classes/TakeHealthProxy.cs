@@ -1,32 +1,31 @@
-namespace Satchel.Reflected
-{
+using System.Reflection;
+using Modding.Delegates;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of TakeHealthProxy allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class TakeHealthProxyR:InstanceClassWrapper<Modding.Delegates.TakeHealthProxy>
+public class TakeHealthProxyR : InstanceClassWrapper<TakeHealthProxy>
 {
-public TakeHealthProxyR(Modding.Delegates.TakeHealthProxy _orig) : base(_orig) {}
-public bool HasSingleTarget
-{
-get => GetProperty<bool>();
-}
+    public TakeHealthProxyR(TakeHealthProxy _orig) : base(_orig)
+    {
+    }
 
-public System.Reflection.MethodInfo Method
-{
-get => orig.Method;
-}
+    public bool HasSingleTarget => GetProperty<bool>();
 
-public System.Object Target
-{
-get => orig.Target;
-}
+    public MethodInfo Method => orig.Method;
 
-public int Invoke (int damage) =>
-orig.Invoke(damage);
+    public object Target => orig.Target;
 
-public int EndInvoke (System.IAsyncResult result) =>
-orig.EndInvoke(result);
+    public int Invoke(int damage)
+    {
+        return orig.Invoke(damage);
+    }
 
-}
+    public int EndInvoke(IAsyncResult result)
+    {
+        return orig.EndInvoke(result);
+    }
 }

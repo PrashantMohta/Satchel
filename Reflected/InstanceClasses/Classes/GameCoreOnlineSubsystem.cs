@@ -1,119 +1,130 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GameCoreOnlineSubsystem allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GameCoreOnlineSubsystemR:InstanceClassWrapper<GameCoreOnlineSubsystem>
+public class GameCoreOnlineSubsystemR : InstanceClassWrapper<GameCoreOnlineSubsystem>
 {
-public GameCoreOnlineSubsystemR(GameCoreOnlineSubsystem _orig) : base(_orig) {}
-public string SCID
-{
-get => GetFieldStatic<string>();
-set => SetField(value);
-}
+    public GameCoreOnlineSubsystemR(GameCoreOnlineSubsystem _orig) : base(_orig)
+    {
+    }
 
-public AchievementIDMap achievementIdMap
-{
-get => GetField<AchievementIDMap>();
-set => SetField(value);
-}
+    public string SCID
+    {
+        get => GetFieldStatic<string>();
+        set => SetField(value);
+    }
 
-public System.Collections.Generic.List<System.Int32> awardedAchievements
-{
-get => GetField<System.Collections.Generic.List<System.Int32>>();
-set => SetField(value);
-}
+    public AchievementIDMap achievementIdMap
+    {
+        get => GetField<AchievementIDMap>();
+        set => SetField(value);
+    }
 
-public string userDisplayName
-{
-get => GetField<string>();
-set => SetField(value);
-}
+    public List<int> awardedAchievements
+    {
+        get => GetField<List<int>>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Texture2D userDisplayImage
-{
-get => GetField<UnityEngine.Texture2D>();
-set => SetField(value);
-}
+    public string userDisplayName
+    {
+        get => GetField<string>();
+        set => SetField(value);
+    }
 
-public DesktopPlatform platform
-{
-get => GetField<DesktopPlatform>();
-set => SetField(value);
-}
+    public Texture2D userDisplayImage
+    {
+        get => GetField<Texture2D>();
+        set => SetField(value);
+    }
 
-public string EngagedDisplayName
-{
-get => orig.EngagedDisplayName;
-}
+    public DesktopPlatform platform
+    {
+        get => GetField<DesktopPlatform>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Texture2D EngagedDisplayImage
-{
-get => orig.EngagedDisplayImage;
-}
+    public string EngagedDisplayName => orig.EngagedDisplayName;
 
-public bool AreAchievementsFetched
-{
-get => orig.AreAchievementsFetched;
-}
+    public Texture2D EngagedDisplayImage => orig.EngagedDisplayImage;
 
-public bool HasNativeAchievementsDialog
-{
-get => orig.HasNativeAchievementsDialog;
-}
+    public bool AreAchievementsFetched => orig.AreAchievementsFetched;
 
-public bool HandlesGameSaves
-{
-get => orig.HandlesGameSaves;
-}
+    public bool HasNativeAchievementsDialog => orig.HasNativeAchievementsDialog;
 
-public bool WillPreloadSaveFiles
-{
-get => orig.WillPreloadSaveFiles;
-}
+    public bool HandlesGameSaves => orig.HandlesGameSaves;
 
-public bool IsPackaged (DesktopPlatform desktopPlatform) =>
-GameCoreOnlineSubsystem.IsPackaged(desktopPlatform);
+    public bool WillPreloadSaveFiles => orig.WillPreloadSaveFiles;
 
-public void Update () =>
-orig.Update();
+    public bool IsPackaged(DesktopPlatform desktopPlatform)
+    {
+        return GameCoreOnlineSubsystem.IsPackaged(desktopPlatform);
+    }
 
-public void PushAchievementUnlock (string achievementId) =>
-orig.PushAchievementUnlock(achievementId);
+    public void Update()
+    {
+        orig.Update();
+    }
 
-public System.Boolean? IsAchievementUnlocked (string achievementId) =>
-orig.IsAchievementUnlocked(achievementId);
+    public void PushAchievementUnlock(string achievementId)
+    {
+        orig.PushAchievementUnlock(achievementId);
+    }
 
-public void ResetAchievements () =>
-orig.ResetAchievements();
+    public bool? IsAchievementUnlocked(string achievementId)
+    {
+        return orig.IsAchievementUnlocked(achievementId);
+    }
 
-public string GetSaveContainerName (int slotIndex) =>
-CallMethod<string>(new object[] {slotIndex});
+    public void ResetAchievements()
+    {
+        orig.ResetAchievements();
+    }
 
-public string GetSaveFileName (int slotIndex) =>
-CallMethod<string>(new object[] {slotIndex});
+    public string GetSaveContainerName(int slotIndex)
+    {
+        return CallMethod<string>(new object[] { slotIndex });
+    }
 
-public void IsSaveSlotInUse (int slotIndex, System.Action<System.Boolean> callback) =>
-orig.IsSaveSlotInUse(slotIndex, callback);
+    public string GetSaveFileName(int slotIndex)
+    {
+        return CallMethod<string>(new object[] { slotIndex });
+    }
 
-public void ReadSaveSlot (int slotIndex, System.Action<System.Byte[]> callback) =>
-orig.ReadSaveSlot(slotIndex, callback);
+    public void IsSaveSlotInUse(int slotIndex, Action<bool> callback)
+    {
+        orig.IsSaveSlotInUse(slotIndex, callback);
+    }
 
-public void WriteSaveSlot (int slotIndex, System.Byte[] bytes, System.Action<System.Boolean> callback) =>
-orig.WriteSaveSlot(slotIndex, bytes, callback);
+    public void ReadSaveSlot(int slotIndex, Action<byte[]> callback)
+    {
+        orig.ReadSaveSlot(slotIndex, callback);
+    }
 
-public void ClearSaveSlot (int slotIndex, System.Action<System.Boolean> callback) =>
-orig.ClearSaveSlot(slotIndex, callback);
+    public void WriteSaveSlot(int slotIndex, byte[] bytes, Action<bool> callback)
+    {
+        orig.WriteSaveSlot(slotIndex, bytes, callback);
+    }
 
-public bool Succeeded (int hresult, string operationFriendlyName) =>
-CallMethodStatic<bool>(new object[] {hresult, operationFriendlyName});
+    public void ClearSaveSlot(int slotIndex, Action<bool> callback)
+    {
+        orig.ClearSaveSlot(slotIndex, callback);
+    }
 
-public void CompletePostSignInInitialization () =>
-CallMethod();
+    public bool Succeeded(int hresult, string operationFriendlyName)
+    {
+        return CallMethodStatic<bool>(new object[] { hresult, operationFriendlyName });
+    }
 
-public void MigrateLocalSaves () =>
-CallMethod();
+    public void CompletePostSignInInitialization()
+    {
+        CallMethod();
+    }
 
-}
+    public void MigrateLocalSaves()
+    {
+        CallMethod();
+    }
 }

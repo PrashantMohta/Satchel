@@ -1,95 +1,104 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SaveStats allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SaveStatsR:InstanceClassWrapper<SaveStats>
+public class SaveStatsR : InstanceClassWrapper<SaveStats>
 {
-public SaveStatsR(SaveStats _orig) : base(_orig) {}
-public PlayTime playTimeStruct
-{
-get => GetField<PlayTime>();
-set => SetField(value);
-}
+    public SaveStatsR(SaveStats _orig) : base(_orig)
+    {
+    }
 
-public int maxHealth
-{
-get => orig.maxHealth;
-set => SetProperty(value);
-}
+    public PlayTime playTimeStruct
+    {
+        get => GetField<PlayTime>();
+        set => SetField(value);
+    }
 
-public int geo
-{
-get => orig.geo;
-set => SetProperty(value);
-}
+    public int maxHealth
+    {
+        get => orig.maxHealth;
+        set => SetProperty(value);
+    }
 
-public GlobalEnums.MapZone mapZone
-{
-get => orig.mapZone;
-set => SetProperty(value);
-}
+    public int geo
+    {
+        get => orig.geo;
+        set => SetProperty(value);
+    }
 
-public float playTime
-{
-get => orig.playTime;
-set => SetProperty(value);
-}
+    public MapZone mapZone
+    {
+        get => orig.mapZone;
+        set => SetProperty(value);
+    }
 
-public int maxMPReserve
-{
-get => orig.maxMPReserve;
-set => SetProperty(value);
-}
+    public float playTime
+    {
+        get => orig.playTime;
+        set => SetProperty(value);
+    }
 
-public int permadeathMode
-{
-get => orig.permadeathMode;
-set => SetProperty(value);
-}
+    public int maxMPReserve
+    {
+        get => orig.maxMPReserve;
+        set => SetProperty(value);
+    }
 
-public bool bossRushMode
-{
-get => orig.bossRushMode;
-set => SetProperty(value);
-}
+    public int permadeathMode
+    {
+        get => orig.permadeathMode;
+        set => SetProperty(value);
+    }
 
-public float completionPercentage
-{
-get => orig.completionPercentage;
-set => SetProperty(value);
-}
+    public bool bossRushMode
+    {
+        get => orig.bossRushMode;
+        set => SetProperty(value);
+    }
 
-public bool unlockedCompletionRate
-{
-get => orig.unlockedCompletionRate;
-set => SetProperty(value);
-}
+    public float completionPercentage
+    {
+        get => orig.completionPercentage;
+        set => SetProperty(value);
+    }
 
-public System.Collections.Generic.Dictionary<System.String,System.String> LoadedMods
-{
-get => orig.LoadedMods;
-set => orig.LoadedMods = value;
-}
+    public bool unlockedCompletionRate
+    {
+        get => orig.unlockedCompletionRate;
+        set => SetProperty(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Dictionary<string, string> LoadedMods
+    {
+        get => orig.LoadedMods;
+        set => orig.LoadedMods = value;
+    }
 
-public string GetPlaytimeHHMM () =>
-orig.GetPlaytimeHHMM();
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public string GetPlaytimeHHMMSS () =>
-orig.GetPlaytimeHHMMSS();
+    public string GetPlaytimeHHMM()
+    {
+        return orig.GetPlaytimeHHMM();
+    }
 
-public string GetCompletionPercentage () =>
-orig.GetCompletionPercentage();
+    public string GetPlaytimeHHMMSS()
+    {
+        return orig.GetPlaytimeHHMMSS();
+    }
 
-public int GetMPSlotsVisible () =>
-orig.GetMPSlotsVisible();
+    public string GetCompletionPercentage()
+    {
+        return orig.GetCompletionPercentage();
+    }
 
-}
+    public int GetMPSlotsVisible()
+    {
+        return orig.GetMPSlotsVisible();
+    }
 }

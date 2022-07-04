@@ -1,32 +1,31 @@
-namespace Satchel.Reflected
-{
+using System.Reflection;
+using Modding.Delegates;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SetVariableProxy allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SetVariableProxyR:InstanceClassWrapper<Modding.Delegates.SetVariableProxy>
+public class SetVariableProxyR : InstanceClassWrapper<SetVariableProxy>
 {
-public SetVariableProxyR(Modding.Delegates.SetVariableProxy _orig) : base(_orig) {}
-public bool HasSingleTarget
-{
-get => GetProperty<bool>();
-}
+    public SetVariableProxyR(SetVariableProxy _orig) : base(_orig)
+    {
+    }
 
-public System.Reflection.MethodInfo Method
-{
-get => orig.Method;
-}
+    public bool HasSingleTarget => GetProperty<bool>();
 
-public System.Object Target
-{
-get => orig.Target;
-}
+    public MethodInfo Method => orig.Method;
 
-public System.Object Invoke (System.Type type, string name, System.Object value) =>
-orig.Invoke(type, name, value);
+    public object Target => orig.Target;
 
-public System.Object EndInvoke (System.IAsyncResult result) =>
-orig.EndInvoke(result);
+    public object Invoke(Type type, string name, object value)
+    {
+        return orig.Invoke(type, name, value);
+    }
 
-}
+    public object EndInvoke(IAsyncResult result)
+    {
+        return orig.EndInvoke(result);
+    }
 }

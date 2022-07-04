@@ -1,131 +1,140 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ArrayListSetVertexPositions allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ArrayListSetVertexPositionsR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.ArrayListSetVertexPositions>
+public class ArrayListSetVertexPositionsR : InstanceClassWrapper<ArrayListSetVertexPositions>
 {
-public ArrayListSetVertexPositionsR(HutongGames.PlayMaker.Actions.ArrayListSetVertexPositions _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public ArrayListSetVertexPositionsR(ArrayListSetVertexPositions _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString reference
-{
-get => orig.reference;
-set => orig.reference = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject mesh
-{
-get => orig.mesh;
-set => orig.mesh = value;
-}
+    public FsmString reference
+    {
+        get => orig.reference;
+        set => orig.reference = value;
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmGameObject mesh
+    {
+        get => orig.mesh;
+        set => orig.mesh = value;
+    }
 
-public UnityEngine.Mesh _mesh
-{
-get => GetField<UnityEngine.Mesh>();
-set => SetField(value);
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public UnityEngine.Vector3[] _vertices
-{
-get => GetField<UnityEngine.Vector3[]>();
-set => SetField(value);
-}
+    public Mesh _mesh
+    {
+        get => GetField<Mesh>();
+        set => SetField(value);
+    }
 
-public PlayMakerArrayListProxy proxy
-{
-get => GetField<PlayMakerArrayListProxy>();
-set => SetField(value);
-}
+    public Vector3[] _vertices
+    {
+        get => GetField<Vector3[]>();
+        set => SetField(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public PlayMakerArrayListProxy proxy
+    {
+        get => GetField<PlayMakerArrayListProxy>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void SetVertexPositions () =>
-orig.SetVertexPositions();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void SetVertexPositions()
+    {
+        orig.SetVertexPositions();
+    }
 }

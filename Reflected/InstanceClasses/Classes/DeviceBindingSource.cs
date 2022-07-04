@@ -1,74 +1,74 @@
-namespace Satchel.Reflected
-{
+using System.IO;
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of DeviceBindingSource allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class DeviceBindingSourceR:InstanceClassWrapper<InControl.DeviceBindingSource>
+public class DeviceBindingSourceR : InstanceClassWrapper<DeviceBindingSource>
 {
-public DeviceBindingSourceR(InControl.DeviceBindingSource _orig) : base(_orig) {}
-public InControl.InputControlType Control
-{
-get => orig.Control;
-set => SetProperty(value);
-}
+    public DeviceBindingSourceR(DeviceBindingSource _orig) : base(_orig)
+    {
+    }
 
-public string Name
-{
-get => orig.Name;
-}
+    public InputControlType Control
+    {
+        get => orig.Control;
+        set => SetProperty(value);
+    }
 
-public string DeviceName
-{
-get => orig.DeviceName;
-}
+    public string Name => orig.Name;
 
-public InControl.InputDeviceClass DeviceClass
-{
-get => orig.DeviceClass;
-}
+    public string DeviceName => orig.DeviceName;
 
-public InControl.InputDeviceStyle DeviceStyle
-{
-get => orig.DeviceStyle;
-}
+    public InputDeviceClass DeviceClass => orig.DeviceClass;
 
-public InControl.BindingSourceType BindingSourceType
-{
-get => orig.BindingSourceType;
-}
+    public InputDeviceStyle DeviceStyle => orig.DeviceStyle;
 
-public bool IsValid
-{
-get => GetProperty<bool>();
-}
+    public BindingSourceType BindingSourceType => orig.BindingSourceType;
 
-public InControl.PlayerAction BoundTo
-{
-get => GetProperty<InControl.PlayerAction>();
-set => SetProperty(value);
-}
+    public bool IsValid => GetProperty<bool>();
 
-public float GetValue (InControl.InputDevice inputDevice) =>
-orig.GetValue(inputDevice);
+    public PlayerAction BoundTo
+    {
+        get => GetProperty<PlayerAction>();
+        set => SetProperty(value);
+    }
 
-public bool GetState (InControl.InputDevice inputDevice) =>
-orig.GetState(inputDevice);
+    public float GetValue(InputDevice inputDevice)
+    {
+        return orig.GetValue(inputDevice);
+    }
 
-public bool Equals (InControl.BindingSource other) =>
-orig.Equals(other);
+    public bool GetState(InputDevice inputDevice)
+    {
+        return orig.GetState(inputDevice);
+    }
 
-public bool Equals (System.Object other) =>
-orig.Equals(other);
+    public bool Equals(BindingSource other)
+    {
+        return orig.Equals(other);
+    }
 
-public int GetHashCode () =>
-orig.GetHashCode();
+    public bool Equals(object other)
+    {
+        return orig.Equals(other);
+    }
 
-public void Save (System.IO.BinaryWriter writer) =>
-orig.Save(writer);
+    public int GetHashCode()
+    {
+        return orig.GetHashCode();
+    }
 
-public void Load (System.IO.BinaryReader reader, System.UInt16 dataFormatVersion) =>
-orig.Load(reader, dataFormatVersion);
+    public void Save(BinaryWriter writer)
+    {
+        orig.Save(writer);
+    }
 
-}
+    public void Load(BinaryReader reader, ushort dataFormatVersion)
+    {
+        orig.Load(reader, dataFormatVersion);
+    }
 }

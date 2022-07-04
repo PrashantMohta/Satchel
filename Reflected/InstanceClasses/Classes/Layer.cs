@@ -1,147 +1,184 @@
-namespace Satchel.Reflected
-{
+using tk2dRuntime.TileMap;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of Layer allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class LayerR:InstanceClassWrapper<tk2dRuntime.TileMap.Layer>
+public class LayerR : InstanceClassWrapper<Layer>
 {
-public LayerR(tk2dRuntime.TileMap.Layer _orig) : base(_orig) {}
-public int hash
-{
-get => orig.hash;
-set => orig.hash = value;
-}
+    public LayerR(Layer _orig) : base(_orig)
+    {
+    }
 
-public tk2dRuntime.TileMap.SpriteChannel spriteChannel
-{
-get => orig.spriteChannel;
-set => orig.spriteChannel = value;
-}
+    public int hash
+    {
+        get => orig.hash;
+        set => orig.hash = value;
+    }
 
-public int tileMask
-{
-get => GetFieldStatic<int>();
-set => SetField(value);
-}
+    public SpriteChannel spriteChannel
+    {
+        get => orig.spriteChannel;
+        set => orig.spriteChannel = value;
+    }
 
-public int flagMask
-{
-get => GetFieldStatic<int>();
-set => SetField(value);
-}
+    public int tileMask
+    {
+        get => GetFieldStatic<int>();
+        set => SetField(value);
+    }
 
-public int width
-{
-get => orig.width;
-set => orig.width = value;
-}
+    public int flagMask
+    {
+        get => GetFieldStatic<int>();
+        set => SetField(value);
+    }
 
-public int height
-{
-get => orig.height;
-set => orig.height = value;
-}
+    public int width
+    {
+        get => orig.width;
+        set => orig.width = value;
+    }
 
-public int numColumns
-{
-get => orig.numColumns;
-set => orig.numColumns = value;
-}
+    public int height
+    {
+        get => orig.height;
+        set => orig.height = value;
+    }
 
-public int numRows
-{
-get => orig.numRows;
-set => orig.numRows = value;
-}
+    public int numColumns
+    {
+        get => orig.numColumns;
+        set => orig.numColumns = value;
+    }
 
-public int divX
-{
-get => orig.divX;
-set => orig.divX = value;
-}
+    public int numRows
+    {
+        get => orig.numRows;
+        set => orig.numRows = value;
+    }
 
-public int divY
-{
-get => orig.divY;
-set => orig.divY = value;
-}
+    public int divX
+    {
+        get => orig.divX;
+        set => orig.divX = value;
+    }
 
-public UnityEngine.GameObject gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public int divY
+    {
+        get => orig.divY;
+        set => orig.divY = value;
+    }
 
-public bool IsEmpty
-{
-get => orig.IsEmpty;
-}
+    public GameObject gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public int NumActiveChunks
-{
-get => orig.NumActiveChunks;
-}
+    public bool IsEmpty => orig.IsEmpty;
 
-public void Init (int hash, int width, int height, int divX, int divY) =>
-orig.Init(hash, width, height, divX, divY);
+    public int NumActiveChunks => orig.NumActiveChunks;
 
-public void Create () =>
-orig.Create();
+    public void Init(int hash, int width, int height, int divX, int divY)
+    {
+        orig.Init(hash, width, height, divX, divY);
+    }
 
-public System.Int32[] GetChunkData (int x, int y) =>
-orig.GetChunkData(x, y);
+    public void Create()
+    {
+        orig.Create();
+    }
 
-public tk2dRuntime.TileMap.SpriteChunk GetChunk (int x, int y) =>
-orig.GetChunk(x, y);
+    public int[] GetChunkData(int x, int y)
+    {
+        return orig.GetChunkData(x, y);
+    }
 
-public tk2dRuntime.TileMap.SpriteChunk FindChunkAndCoordinate (int x, int y, int offset) =>
-CallMethod<tk2dRuntime.TileMap.SpriteChunk>(new object[] {x, y, offset});
+    public SpriteChunk GetChunk(int x, int y)
+    {
+        return orig.GetChunk(x, y);
+    }
 
-public bool GetRawTileValue (int x, int y, int value) =>
-CallMethod<bool>(new object[] {x, y, value});
+    public SpriteChunk FindChunkAndCoordinate(int x, int y, int offset)
+    {
+        return CallMethod<SpriteChunk>(new object[] { x, y, offset });
+    }
 
-public void SetRawTileValue (int x, int y, int value) =>
-CallMethod(new object[] {x, y, value});
+    public bool GetRawTileValue(int x, int y, int value)
+    {
+        return CallMethod<bool>(new object[] { x, y, value });
+    }
 
-public void DestroyGameData (tk2dTileMap tilemap) =>
-orig.DestroyGameData(tilemap);
+    public void SetRawTileValue(int x, int y, int value)
+    {
+        CallMethod(new object[] { x, y, value });
+    }
 
-public int GetTile (int x, int y) =>
-orig.GetTile(x, y);
+    public void DestroyGameData(tk2dTileMap tilemap)
+    {
+        orig.DestroyGameData(tilemap);
+    }
 
-public tk2dTileFlags GetTileFlags (int x, int y) =>
-orig.GetTileFlags(x, y);
+    public int GetTile(int x, int y)
+    {
+        return orig.GetTile(x, y);
+    }
 
-public int GetRawTile (int x, int y) =>
-orig.GetRawTile(x, y);
+    public tk2dTileFlags GetTileFlags(int x, int y)
+    {
+        return orig.GetTileFlags(x, y);
+    }
 
-public void SetTile (int x, int y, int tile) =>
-orig.SetTile(x, y, tile);
+    public int GetRawTile(int x, int y)
+    {
+        return orig.GetRawTile(x, y);
+    }
 
-public void SetTileFlags (int x, int y, tk2dTileFlags flags) =>
-orig.SetTileFlags(x, y, flags);
+    public void SetTile(int x, int y, int tile)
+    {
+        orig.SetTile(x, y, tile);
+    }
 
-public void ClearTile (int x, int y) =>
-orig.ClearTile(x, y);
+    public void SetTileFlags(int x, int y, tk2dTileFlags flags)
+    {
+        orig.SetTileFlags(x, y, flags);
+    }
 
-public void SetRawTile (int x, int y, int rawTile) =>
-orig.SetRawTile(x, y, rawTile);
+    public void ClearTile(int x, int y)
+    {
+        orig.ClearTile(x, y);
+    }
 
-public void CreateChunk (tk2dRuntime.TileMap.SpriteChunk chunk) =>
-CallMethod(new object[] {chunk});
+    public void SetRawTile(int x, int y, int rawTile)
+    {
+        orig.SetRawTile(x, y, rawTile);
+    }
 
-public void Optimize (tk2dRuntime.TileMap.SpriteChunk chunk) =>
-CallMethod(new object[] {chunk});
+    public void CreateChunk(SpriteChunk chunk)
+    {
+        CallMethod(new object[] { chunk });
+    }
 
-public void Optimize () =>
-orig.Optimize();
+    public void Optimize(SpriteChunk chunk)
+    {
+        CallMethod(new object[] { chunk });
+    }
 
-public void OptimizeIncremental () =>
-orig.OptimizeIncremental();
+    public void Optimize()
+    {
+        orig.Optimize();
+    }
 
-public void ClearDirtyFlag () =>
-orig.ClearDirtyFlag();
+    public void OptimizeIncremental()
+    {
+        orig.OptimizeIncremental();
+    }
 
-}
+    public void ClearDirtyFlag()
+    {
+        orig.ClearDirtyFlag();
+    }
 }

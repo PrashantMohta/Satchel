@@ -1,29 +1,36 @@
-namespace Satchel.Reflected
-{
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of KeyBindingSourceListener allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class KeyBindingSourceListenerR:InstanceClassWrapper<InControl.KeyBindingSourceListener>
+public class KeyBindingSourceListenerR : InstanceClassWrapper<KeyBindingSourceListener>
 {
-public KeyBindingSourceListenerR(InControl.KeyBindingSourceListener _orig) : base(_orig) {}
-public InControl.KeyCombo detectFound
-{
-get => GetField<InControl.KeyCombo>();
-set => SetField(value);
-}
+    public KeyBindingSourceListenerR(KeyBindingSourceListener _orig) : base(_orig)
+    {
+    }
 
-public int detectPhase
-{
-get => GetField<int>();
-set => SetField(value);
-}
+    public KeyCombo detectFound
+    {
+        get => GetField<KeyCombo>();
+        set => SetField(value);
+    }
 
-public void Reset () =>
-orig.Reset();
+    public int detectPhase
+    {
+        get => GetField<int>();
+        set => SetField(value);
+    }
 
-public InControl.BindingSource Listen (InControl.BindingListenOptions listenOptions, InControl.InputDevice device) =>
-orig.Listen(listenOptions, device);
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-}
+    public BindingSource Listen(BindingListenOptions listenOptions, InputDevice device)
+    {
+        return orig.Listen(listenOptions, device);
+    }
 }

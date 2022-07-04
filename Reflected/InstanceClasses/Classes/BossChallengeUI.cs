@@ -1,118 +1,143 @@
-namespace Satchel.Reflected
-{
+using UnityEngine.UI;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of BossChallengeUI allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class BossChallengeUIR:InstanceClassWrapper<BossChallengeUI>
+public class BossChallengeUIR : InstanceClassWrapper<BossChallengeUI>
 {
-public BossChallengeUIR(BossChallengeUI _orig) : base(_orig) {}
-public BossStatue bossStatue
-{
-get => GetField<BossStatue>();
-set => SetField(value);
-}
+    public BossChallengeUIR(BossChallengeUI _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.UI.Text bossNameText
-{
-get => orig.bossNameText;
-set => orig.bossNameText = value;
-}
+    public BossStatue bossStatue
+    {
+        get => GetField<BossStatue>();
+        set => SetField(value);
+    }
 
-public UnityEngine.UI.Text descriptionText
-{
-get => orig.descriptionText;
-set => orig.descriptionText = value;
-}
+    public Text bossNameText
+    {
+        get => orig.bossNameText;
+        set => orig.bossNameText = value;
+    }
 
-public UnityEngine.UI.MenuSelectable firstSelected
-{
-get => orig.firstSelected;
-set => orig.firstSelected = value;
-}
+    public Text descriptionText
+    {
+        get => orig.descriptionText;
+        set => orig.descriptionText = value;
+    }
 
-public string closeStateName
-{
-get => orig.closeStateName;
-set => orig.closeStateName = value;
-}
+    public MenuSelectable firstSelected
+    {
+        get => orig.firstSelected;
+        set => orig.firstSelected = value;
+    }
 
-public UnityEngine.GameObject tier3UnlockEffect
-{
-get => orig.tier3UnlockEffect;
-set => orig.tier3UnlockEffect = value;
-}
+    public string closeStateName
+    {
+        get => orig.closeStateName;
+        set => orig.closeStateName = value;
+    }
 
-public float tier3UnlockEffectDelay
-{
-get => orig.tier3UnlockEffectDelay;
-set => orig.tier3UnlockEffectDelay = value;
-}
+    public GameObject tier3UnlockEffect
+    {
+        get => orig.tier3UnlockEffect;
+        set => orig.tier3UnlockEffect = value;
+    }
 
-public int lastSelectedButton
-{
-get => GetFieldStatic<int>();
-set => SetField(value);
-}
+    public float tier3UnlockEffectDelay
+    {
+        get => orig.tier3UnlockEffectDelay;
+        set => orig.tier3UnlockEffectDelay = value;
+    }
 
-public UnityEngine.Canvas canvas
-{
-get => GetField<UnityEngine.Canvas>();
-set => SetField(value);
-}
+    public int lastSelectedButton
+    {
+        get => GetFieldStatic<int>();
+        set => SetField(value);
+    }
 
-public UnityEngine.Animator animator
-{
-get => GetField<UnityEngine.Animator>();
-set => SetField(value);
-}
+    public Canvas canvas
+    {
+        get => GetField<Canvas>();
+        set => SetField(value);
+    }
 
-public UnityEngine.CanvasGroup group
-{
-get => GetField<UnityEngine.CanvasGroup>();
-set => SetField(value);
-}
+    public Animator animator
+    {
+        get => GetField<Animator>();
+        set => SetField(value);
+    }
 
-public bool started
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public CanvasGroup group
+    {
+        get => GetField<CanvasGroup>();
+        set => SetField(value);
+    }
+
+    public bool started
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
 
+    public void Awake()
+    {
+        CallMethod();
+    }
 
-public void Awake () =>
-CallMethod();
+    public void Start()
+    {
+        CallMethod();
+    }
 
-public void Start () =>
-CallMethod();
+    public void Setup(BossStatue bossStatue, string bossNameSheet, string bossNameKey, string descriptionSheet,
+        string descriptionKey)
+    {
+        orig.Setup(bossStatue, bossNameSheet, bossNameKey, descriptionSheet, descriptionKey);
+    }
 
-public void Setup (BossStatue bossStatue, string bossNameSheet, string bossNameKey, string descriptionSheet, string descriptionKey) =>
-orig.Setup(bossStatue, bossNameSheet, bossNameKey, descriptionSheet, descriptionKey);
+    public IEnumerator ShowUnlockEffect()
+    {
+        return CallMethod<IEnumerator>();
+    }
 
-public System.Collections.IEnumerator ShowUnlockEffect () =>
-CallMethod<System.Collections.IEnumerator>();
+    public IEnumerator SetFirstSelected()
+    {
+        return CallMethod<IEnumerator>();
+    }
 
-public System.Collections.IEnumerator SetFirstSelected () =>
-CallMethod<System.Collections.IEnumerator>();
+    public void Hide()
+    {
+        orig.Hide();
+    }
 
-public void Hide () =>
-orig.Hide();
+    public void Hide(bool doAnim)
+    {
+        orig.Hide(doAnim);
+    }
 
-public void Hide (bool doAnim) =>
-orig.Hide(doAnim);
+    public IEnumerator HideAnim()
+    {
+        return CallMethod<IEnumerator>();
+    }
 
-public System.Collections.IEnumerator HideAnim () =>
-CallMethod<System.Collections.IEnumerator>();
+    public void LoadBoss(int level)
+    {
+        orig.LoadBoss(level);
+    }
 
-public void LoadBoss (int level) =>
-orig.LoadBoss(level);
+    public void LoadBoss(int level, bool doHideAnim)
+    {
+        orig.LoadBoss(level, doHideAnim);
+    }
 
-public void LoadBoss (int level, bool doHideAnim) =>
-orig.LoadBoss(level, doHideAnim);
-
-public void RecordLastSelected (int index) =>
-orig.RecordLastSelected(index);
-
-}
+    public void RecordLastSelected(int index)
+    {
+        orig.RecordLastSelected(index);
+    }
 }

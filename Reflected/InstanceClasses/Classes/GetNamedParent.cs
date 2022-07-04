@@ -1,113 +1,122 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GetNamedParent allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GetNamedParentR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.GetNamedParent>
+public class GetNamedParentR : InstanceClassWrapper<GetNamedParent>
 {
-public GetNamedParentR(HutongGames.PlayMaker.Actions.GetNamedParent _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public GetNamedParentR(GetNamedParent _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString parentName
-{
-get => orig.parentName;
-set => orig.parentName = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmString withTag
-{
-get => orig.withTag;
-set => orig.withTag = value;
-}
+    public FsmString parentName
+    {
+        get => orig.parentName;
+        set => orig.parentName = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject storeResult
-{
-get => orig.storeResult;
-set => orig.storeResult = value;
-}
+    public FsmString withTag
+    {
+        get => orig.withTag;
+        set => orig.withTag = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public FsmGameObject storeResult
+    {
+        get => orig.storeResult;
+        set => orig.storeResult = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public UnityEngine.GameObject DoGetParentByName (UnityEngine.GameObject root, string name, string tag) =>
-CallMethodStatic<UnityEngine.GameObject>(new object[] {root, name, tag});
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public string ErrorCheck () =>
-orig.ErrorCheck();
+    public GameObject DoGetParentByName(GameObject root, string name, string tag)
+    {
+        return CallMethodStatic<GameObject>(new object[] { root, name, tag });
+    }
 
-}
+    public string ErrorCheck()
+    {
+        return orig.ErrorCheck();
+    }
 }

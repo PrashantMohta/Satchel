@@ -1,155 +1,164 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of AudioPlayerOneShot allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class AudioPlayerOneShotR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.AudioPlayerOneShot>
+public class AudioPlayerOneShotR : InstanceClassWrapper<AudioPlayerOneShot>
 {
-public AudioPlayerOneShotR(HutongGames.PlayMaker.Actions.AudioPlayerOneShot _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmGameObject audioPlayer
-{
-get => orig.audioPlayer;
-set => orig.audioPlayer = value;
-}
+    public AudioPlayerOneShotR(AudioPlayerOneShot _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmGameObject spawnPoint
-{
-get => orig.spawnPoint;
-set => orig.spawnPoint = value;
-}
+    public FsmGameObject audioPlayer
+    {
+        get => orig.audioPlayer;
+        set => orig.audioPlayer = value;
+    }
 
-public UnityEngine.AudioClip[] audioClips
-{
-get => orig.audioClips;
-set => orig.audioClips = value;
-}
+    public FsmGameObject spawnPoint
+    {
+        get => orig.spawnPoint;
+        set => orig.spawnPoint = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat[] weights
-{
-get => orig.weights;
-set => orig.weights = value;
-}
+    public AudioClip[] audioClips
+    {
+        get => orig.audioClips;
+        set => orig.audioClips = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat pitchMin
-{
-get => orig.pitchMin;
-set => orig.pitchMin = value;
-}
+    public FsmFloat[] weights
+    {
+        get => orig.weights;
+        set => orig.weights = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat pitchMax
-{
-get => orig.pitchMax;
-set => orig.pitchMax = value;
-}
+    public FsmFloat pitchMin
+    {
+        get => orig.pitchMin;
+        set => orig.pitchMin = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat volume
-{
-get => orig.volume;
-set => orig.volume = value;
-}
+    public FsmFloat pitchMax
+    {
+        get => orig.pitchMax;
+        set => orig.pitchMax = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat delay
-{
-get => orig.delay;
-set => orig.delay = value;
-}
+    public FsmFloat volume
+    {
+        get => orig.volume;
+        set => orig.volume = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject storePlayer
-{
-get => orig.storePlayer;
-set => orig.storePlayer = value;
-}
+    public FsmFloat delay
+    {
+        get => orig.delay;
+        set => orig.delay = value;
+    }
 
-public UnityEngine.AudioSource audio
-{
-get => GetField<UnityEngine.AudioSource>();
-set => SetField(value);
-}
+    public FsmGameObject storePlayer
+    {
+        get => orig.storePlayer;
+        set => orig.storePlayer = value;
+    }
 
-public float timer
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public AudioSource audio
+    {
+        get => GetField<AudioSource>();
+        set => SetField(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public float timer
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoPlayRandomClip () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void DoPlayRandomClip()
+    {
+        CallMethod();
+    }
 }

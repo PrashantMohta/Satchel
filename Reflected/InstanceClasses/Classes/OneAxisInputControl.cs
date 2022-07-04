@@ -1,255 +1,236 @@
-namespace Satchel.Reflected
-{
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of OneAxisInputControl allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class OneAxisInputControlR:InstanceClassWrapper<InControl.OneAxisInputControl>
+public class OneAxisInputControlR : InstanceClassWrapper<OneAxisInputControl>
 {
-public OneAxisInputControlR(InControl.OneAxisInputControl _orig) : base(_orig) {}
-public float sensitivity
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public OneAxisInputControlR(OneAxisInputControl _orig) : base(_orig)
+    {
+    }
 
-public float lowerDeadZone
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public float sensitivity
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public float upperDeadZone
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public float lowerDeadZone
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public float stateThreshold
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public float upperDeadZone
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public bool isNullControl
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public float stateThreshold
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public float FirstRepeatDelay
-{
-get => orig.FirstRepeatDelay;
-set => orig.FirstRepeatDelay = value;
-}
+    public bool isNullControl
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public float RepeatDelay
-{
-get => orig.RepeatDelay;
-set => orig.RepeatDelay = value;
-}
+    public float FirstRepeatDelay
+    {
+        get => orig.FirstRepeatDelay;
+        set => orig.FirstRepeatDelay = value;
+    }
 
-public bool Raw
-{
-get => orig.Raw;
-set => orig.Raw = value;
-}
+    public float RepeatDelay
+    {
+        get => orig.RepeatDelay;
+        set => orig.RepeatDelay = value;
+    }
 
-public bool enabled
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool Raw
+    {
+        get => orig.Raw;
+        set => orig.Raw = value;
+    }
 
-public bool ownerEnabled
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool enabled
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public System.UInt64 pendingTick
-{
-get => GetField<System.UInt64>();
-set => SetField(value);
-}
+    public bool ownerEnabled
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public bool pendingCommit
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public ulong pendingTick
+    {
+        get => GetField<ulong>();
+        set => SetField(value);
+    }
 
-public float nextRepeatTime
-{
-get => GetField<float>();
-set => SetField(value);
-}
+    public bool pendingCommit
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public bool wasRepeated
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public float nextRepeatTime
+    {
+        get => GetField<float>();
+        set => SetField(value);
+    }
 
-public bool clearInputState
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool wasRepeated
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public InControl.InputControlState lastState
-{
-get => GetField<InControl.InputControlState>();
-set => SetField(value);
-}
+    public bool clearInputState
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public InControl.InputControlState nextState
-{
-get => GetField<InControl.InputControlState>();
-set => SetField(value);
-}
+    public InputControlState lastState
+    {
+        get => GetField<InputControlState>();
+        set => SetField(value);
+    }
 
-public InControl.InputControlState thisState
-{
-get => GetField<InControl.InputControlState>();
-set => SetField(value);
-}
+    public InputControlState nextState
+    {
+        get => GetField<InputControlState>();
+        set => SetField(value);
+    }
 
-public System.UInt64 UpdateTick
-{
-get => orig.UpdateTick;
-set => SetProperty(value);
-}
+    public InputControlState thisState
+    {
+        get => GetField<InputControlState>();
+        set => SetField(value);
+    }
 
-public bool State
-{
-get => orig.State;
-}
+    public ulong UpdateTick
+    {
+        get => orig.UpdateTick;
+        set => SetProperty(value);
+    }
 
-public bool LastState
-{
-get => orig.LastState;
-}
+    public bool State => orig.State;
 
-public float Value
-{
-get => orig.Value;
-}
+    public bool LastState => orig.LastState;
 
-public float LastValue
-{
-get => orig.LastValue;
-}
+    public float Value => orig.Value;
 
-public float RawValue
-{
-get => orig.RawValue;
-}
+    public float LastValue => orig.LastValue;
 
-public float NextRawValue
-{
-get => GetProperty<float>();
-}
+    public float RawValue => orig.RawValue;
 
-public bool HasInput
-{
-get => GetProperty<bool>();
-}
+    public float NextRawValue => GetProperty<float>();
 
-public bool HasChanged
-{
-get => orig.HasChanged;
-}
+    public bool HasInput => GetProperty<bool>();
 
-public bool IsPressed
-{
-get => orig.IsPressed;
-}
+    public bool HasChanged => orig.HasChanged;
 
-public bool WasPressed
-{
-get => orig.WasPressed;
-}
+    public bool IsPressed => orig.IsPressed;
 
-public bool WasReleased
-{
-get => orig.WasReleased;
-}
+    public bool WasPressed => orig.WasPressed;
 
-public bool WasRepeated
-{
-get => orig.WasRepeated;
-}
+    public bool WasReleased => orig.WasReleased;
 
-public float Sensitivity
-{
-get => orig.Sensitivity;
-set => orig.Sensitivity = value;
-}
+    public bool WasRepeated => orig.WasRepeated;
 
-public float LowerDeadZone
-{
-get => orig.LowerDeadZone;
-set => orig.LowerDeadZone = value;
-}
+    public float Sensitivity
+    {
+        get => orig.Sensitivity;
+        set => orig.Sensitivity = value;
+    }
 
-public float UpperDeadZone
-{
-get => orig.UpperDeadZone;
-set => orig.UpperDeadZone = value;
-}
+    public float LowerDeadZone
+    {
+        get => orig.LowerDeadZone;
+        set => orig.LowerDeadZone = value;
+    }
 
-public float StateThreshold
-{
-get => orig.StateThreshold;
-set => orig.StateThreshold = value;
-}
+    public float UpperDeadZone
+    {
+        get => orig.UpperDeadZone;
+        set => orig.UpperDeadZone = value;
+    }
 
-public bool IsNullControl
-{
-get => orig.IsNullControl;
-}
+    public float StateThreshold
+    {
+        get => orig.StateThreshold;
+        set => orig.StateThreshold = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public bool IsNullControl => orig.IsNullControl;
 
-public bool EnabledInHierarchy
-{
-get => orig.EnabledInHierarchy;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public void PrepareForUpdate (System.UInt64 updateTick) =>
-CallMethod(new object[] {updateTick});
+    public bool EnabledInHierarchy => orig.EnabledInHierarchy;
 
-public bool UpdateWithState (bool state, System.UInt64 updateTick, float deltaTime) =>
-orig.UpdateWithState(state, updateTick, deltaTime);
+    public void PrepareForUpdate(ulong updateTick)
+    {
+        CallMethod(new object[] { updateTick });
+    }
 
-public bool UpdateWithValue (float value, System.UInt64 updateTick, float deltaTime) =>
-orig.UpdateWithValue(value, updateTick, deltaTime);
+    public bool UpdateWithState(bool state, ulong updateTick, float deltaTime)
+    {
+        return orig.UpdateWithState(state, updateTick, deltaTime);
+    }
 
-public bool UpdateWithRawValue (float value, System.UInt64 updateTick, float deltaTime) =>
-CallMethod<bool>(new object[] {value, updateTick, deltaTime});
+    public bool UpdateWithValue(float value, ulong updateTick, float deltaTime)
+    {
+        return orig.UpdateWithValue(value, updateTick, deltaTime);
+    }
 
-public void SetValue (float value, System.UInt64 updateTick) =>
-CallMethod(new object[] {value, updateTick});
+    public bool UpdateWithRawValue(float value, ulong updateTick, float deltaTime)
+    {
+        return CallMethod<bool>(new object[] { value, updateTick, deltaTime });
+    }
 
-public void ClearInputState () =>
-orig.ClearInputState();
+    public void SetValue(float value, ulong updateTick)
+    {
+        CallMethod(new object[] { value, updateTick });
+    }
 
-public void Commit () =>
-orig.Commit();
+    public void ClearInputState()
+    {
+        orig.ClearInputState();
+    }
 
-public void CommitWithState (bool state, System.UInt64 updateTick, float deltaTime) =>
-orig.CommitWithState(state, updateTick, deltaTime);
+    public void Commit()
+    {
+        orig.Commit();
+    }
 
-public void CommitWithValue (float value, System.UInt64 updateTick, float deltaTime) =>
-orig.CommitWithValue(value, updateTick, deltaTime);
+    public void CommitWithState(bool state, ulong updateTick, float deltaTime)
+    {
+        orig.CommitWithState(state, updateTick, deltaTime);
+    }
 
-public void CommitWithSides (InControl.InputControl negativeSide, InControl.InputControl positiveSide, System.UInt64 updateTick, float deltaTime) =>
-CallMethod(new object[] {negativeSide, positiveSide, updateTick, deltaTime});
+    public void CommitWithValue(float value, ulong updateTick, float deltaTime)
+    {
+        orig.CommitWithValue(value, updateTick, deltaTime);
+    }
 
-}
+    public void CommitWithSides(InputControl negativeSide, InputControl positiveSide, ulong updateTick, float deltaTime)
+    {
+        CallMethod(new object[] { negativeSide, positiveSide, updateTick, deltaTime });
+    }
 }

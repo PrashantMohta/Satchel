@@ -1,40 +1,46 @@
-namespace Satchel.Reflected
-{
+using Modding.Menu.Components;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ScrollPaneSelector allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ScrollPaneSelectorR:InstanceClassWrapper<Modding.Menu.Components.ScrollPaneSelector>
+public class ScrollPaneSelectorR : InstanceClassWrapper<ScrollPaneSelector>
 {
-public ScrollPaneSelectorR(Modding.Menu.Components.ScrollPaneSelector _orig) : base(_orig) {}
-public UnityEngine.RectTransform PaneRect
-{
-get => orig.PaneRect;
-set => orig.PaneRect = value;
-}
+    public ScrollPaneSelectorR(ScrollPaneSelector _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.RectTransform MaskRect
-{
-get => orig.MaskRect;
-set => orig.MaskRect = value;
-}
+    public RectTransform PaneRect
+    {
+        get => orig.PaneRect;
+        set => orig.PaneRect = value;
+    }
 
-public UnityEngine.UI.Scrollbar Scrollbar
-{
-get => orig.Scrollbar;
-set => orig.Scrollbar = value;
-}
+    public RectTransform MaskRect
+    {
+        get => orig.MaskRect;
+        set => orig.MaskRect = value;
+    }
 
-public System.Func<UnityEngine.RectTransform,(System.Single,System.Single)> SelectionPadding
-{
-get => orig.SelectionPadding;
-set => orig.SelectionPadding = value;
-}
+    public Scrollbar Scrollbar
+    {
+        get => orig.Scrollbar;
+        set => orig.Scrollbar = value;
+    }
+
+    public Func<RectTransform, (float, float)> SelectionPadding
+    {
+        get => orig.SelectionPadding;
+        set => orig.SelectionPadding = value;
+    }
 
 
-
-public void OnSelect (UnityEngine.EventSystems.BaseEventData eventData) =>
-orig.OnSelect(eventData);
-
-}
+    public void OnSelect(BaseEventData eventData)
+    {
+        orig.OnSelect(eventData);
+    }
 }

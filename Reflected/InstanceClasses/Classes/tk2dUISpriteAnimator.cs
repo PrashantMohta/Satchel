@@ -1,94 +1,78 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of tk2dUISpriteAnimator allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class tk2dUISpriteAnimatorR:InstanceClassWrapper<tk2dUISpriteAnimator>
+public class tk2dUISpriteAnimatorR : InstanceClassWrapper<tk2dUISpriteAnimator>
 {
-public tk2dUISpriteAnimatorR(tk2dUISpriteAnimator _orig) : base(_orig) {}
-public bool playAutomatically
-{
-get => orig.playAutomatically;
-set => orig.playAutomatically = value;
-}
+    public tk2dUISpriteAnimatorR(tk2dUISpriteAnimator _orig) : base(_orig)
+    {
+    }
 
-public System.Action<tk2dSpriteAnimator,tk2dSpriteAnimationClip> AnimationCompleted
-{
-get => orig.AnimationCompleted;
-set => orig.AnimationCompleted = value;
-}
+    public bool playAutomatically
+    {
+        get => orig.playAutomatically;
+        set => orig.playAutomatically = value;
+    }
 
-public System.Action<tk2dSpriteAnimator,tk2dSpriteAnimationClip,System.Int32> AnimationEventTriggered
-{
-get => orig.AnimationEventTriggered;
-set => orig.AnimationEventTriggered = value;
-}
+    public Action<tk2dSpriteAnimator, tk2dSpriteAnimationClip> AnimationCompleted
+    {
+        get => orig.AnimationCompleted;
+        set => orig.AnimationCompleted = value;
+    }
 
-public tk2dBaseSprite _sprite
-{
-get => GetField<tk2dBaseSprite>();
-set => SetField(value);
-}
+    public Action<tk2dSpriteAnimator, tk2dSpriteAnimationClip, int> AnimationEventTriggered
+    {
+        get => orig.AnimationEventTriggered;
+        set => orig.AnimationEventTriggered = value;
+    }
 
-public bool Paused
-{
-get => orig.Paused;
-set => orig.Paused = value;
-}
+    public tk2dBaseSprite _sprite
+    {
+        get => GetField<tk2dBaseSprite>();
+        set => SetField(value);
+    }
 
-public tk2dSpriteAnimation Library
-{
-get => orig.Library;
-set => orig.Library = value;
-}
+    public bool Paused
+    {
+        get => orig.Paused;
+        set => orig.Paused = value;
+    }
 
-public int DefaultClipId
-{
-get => orig.DefaultClipId;
-set => orig.DefaultClipId = value;
-}
+    public tk2dSpriteAnimation Library
+    {
+        get => orig.Library;
+        set => orig.Library = value;
+    }
 
-public tk2dSpriteAnimationClip DefaultClip
-{
-get => orig.DefaultClip;
-}
+    public int DefaultClipId
+    {
+        get => orig.DefaultClipId;
+        set => orig.DefaultClipId = value;
+    }
 
-public tk2dBaseSprite Sprite
-{
-get => orig.Sprite;
-}
+    public tk2dSpriteAnimationClip DefaultClip => orig.DefaultClip;
 
-public bool Playing
-{
-get => orig.Playing;
-}
+    public tk2dBaseSprite Sprite => orig.Sprite;
 
-public tk2dSpriteAnimationClip CurrentClip
-{
-get => orig.CurrentClip;
-}
+    public bool Playing => orig.Playing;
 
-public float ClipTimeSeconds
-{
-get => orig.ClipTimeSeconds;
-}
+    public tk2dSpriteAnimationClip CurrentClip => orig.CurrentClip;
 
-public float ClipFps
-{
-get => orig.ClipFps;
-set => orig.ClipFps = value;
-}
+    public float ClipTimeSeconds => orig.ClipTimeSeconds;
 
-public int CurrentFrame
-{
-get => orig.CurrentFrame;
-}
+    public float ClipFps
+    {
+        get => orig.ClipFps;
+        set => orig.ClipFps = value;
+    }
+
+    public int CurrentFrame => orig.CurrentFrame;
 
 
-
-public void LateUpdate () =>
-orig.LateUpdate();
-
-}
+    public void LateUpdate()
+    {
+        orig.LateUpdate();
+    }
 }

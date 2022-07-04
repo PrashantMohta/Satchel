@@ -1,70 +1,80 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of Crawler allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class CrawlerR:InstanceClassWrapper<Crawler>
+public class CrawlerR : InstanceClassWrapper<Crawler>
 {
-public CrawlerR(Crawler _orig) : base(_orig) {}
-public float speed
-{
-get => orig.speed;
-set => orig.speed = value;
-}
+    public CrawlerR(Crawler _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.Transform wallCheck
-{
-get => orig.wallCheck;
-set => orig.wallCheck = value;
-}
+    public float speed
+    {
+        get => orig.speed;
+        set => orig.speed = value;
+    }
 
-public UnityEngine.Transform groundCheck
-{
-get => orig.groundCheck;
-set => orig.groundCheck = value;
-}
+    public Transform wallCheck
+    {
+        get => orig.wallCheck;
+        set => orig.wallCheck = value;
+    }
 
-public UnityEngine.Vector2 velocity
-{
-get => GetField<UnityEngine.Vector2>();
-set => SetField(value);
-}
+    public Transform groundCheck
+    {
+        get => orig.groundCheck;
+        set => orig.groundCheck = value;
+    }
 
-public UnityEngine.Rigidbody2D body
-{
-get => GetField<UnityEngine.Rigidbody2D>();
-set => SetField(value);
-}
+    public Vector2 velocity
+    {
+        get => GetField<Vector2>();
+        set => SetField(value);
+    }
 
-public Recoil recoil
-{
-get => GetField<Recoil>();
-set => SetField(value);
-}
+    public Rigidbody2D body
+    {
+        get => GetField<Rigidbody2D>();
+        set => SetField(value);
+    }
 
-public tk2dSpriteAnimator anim
-{
-get => GetField<tk2dSpriteAnimator>();
-set => SetField(value);
-}
+    public Recoil recoil
+    {
+        get => GetField<Recoil>();
+        set => SetField(value);
+    }
+
+    public tk2dSpriteAnimator anim
+    {
+        get => GetField<tk2dSpriteAnimator>();
+        set => SetField(value);
+    }
 
 
+    public void Awake()
+    {
+        CallMethod();
+    }
 
-public void Awake () =>
-CallMethod();
+    public void Start()
+    {
+        CallMethod();
+    }
 
-public void Start () =>
-CallMethod();
+    public IEnumerator Walk()
+    {
+        return CallMethod<IEnumerator>();
+    }
 
-public System.Collections.IEnumerator Walk () =>
-CallMethod<System.Collections.IEnumerator>();
+    public IEnumerator Turn()
+    {
+        return CallMethod<IEnumerator>();
+    }
 
-public System.Collections.IEnumerator Turn () =>
-CallMethod<System.Collections.IEnumerator>();
-
-public bool CheckRayLocal (UnityEngine.Vector2 originLocal, UnityEngine.Vector2 directionLocal, float length) =>
-orig.CheckRayLocal(originLocal, directionLocal, length);
-
-}
+    public bool CheckRayLocal(Vector2 originLocal, Vector2 directionLocal, float length)
+    {
+        return orig.CheckRayLocal(originLocal, directionLocal, length);
+    }
 }

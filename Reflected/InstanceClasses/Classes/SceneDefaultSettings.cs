@@ -1,50 +1,63 @@
-namespace Satchel.Reflected
-{
+using TeamCherry;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SceneDefaultSettings allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SceneDefaultSettingsR:InstanceClassWrapper<TeamCherry.SceneDefaultSettings>
+public class SceneDefaultSettingsR : InstanceClassWrapper<SceneDefaultSettings>
 {
-public SceneDefaultSettingsR(TeamCherry.SceneDefaultSettings _orig) : base(_orig) {}
-public int selection
-{
-get => orig.selection;
-set => orig.selection = value;
-}
+    public SceneDefaultSettingsR(SceneDefaultSettings _orig) : base(_orig)
+    {
+    }
 
-public System.Collections.Generic.List<SceneManagerSettings> settingsList
-{
-get => orig.settingsList;
-set => orig.settingsList = value;
-}
+    public int selection
+    {
+        get => orig.selection;
+        set => orig.selection = value;
+    }
 
-public string name
-{
-get => orig.name;
-set => orig.name = value;
-}
+    public List<SceneManagerSettings> settingsList
+    {
+        get => orig.settingsList;
+        set => orig.settingsList = value;
+    }
 
-public UnityEngine.HideFlags hideFlags
-{
-get => orig.hideFlags;
-set => orig.hideFlags = value;
-}
+    public string name
+    {
+        get => orig.name;
+        set => orig.name = value;
+    }
 
-public void OnEnable () =>
-orig.OnEnable();
+    public HideFlags hideFlags
+    {
+        get => orig.hideFlags;
+        set => orig.hideFlags = value;
+    }
 
-public SceneManagerSettings GetMapZoneSettings (GlobalEnums.MapZone mapZone) =>
-orig.GetMapZoneSettings(mapZone);
+    public void OnEnable()
+    {
+        orig.OnEnable();
+    }
 
-public SceneManagerSettings GetCurrentMapZoneSettings () =>
-orig.GetCurrentMapZoneSettings();
+    public SceneManagerSettings GetMapZoneSettings(MapZone mapZone)
+    {
+        return orig.GetMapZoneSettings(mapZone);
+    }
 
-public void SaveSettings (SceneManagerSettings sms) =>
-orig.SaveSettings(sms);
+    public SceneManagerSettings GetCurrentMapZoneSettings()
+    {
+        return orig.GetCurrentMapZoneSettings();
+    }
 
-public GlobalEnums.MapZone GetCurrentSelection () =>
-orig.GetCurrentSelection();
+    public void SaveSettings(SceneManagerSettings sms)
+    {
+        orig.SaveSettings(sms);
+    }
 
-}
+    public MapZone GetCurrentSelection()
+    {
+        return orig.GetCurrentSelection();
+    }
 }

@@ -1,128 +1,135 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GUILayoutBeginAreaFollowObject allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GUILayoutBeginAreaFollowObjectR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.GUILayoutBeginAreaFollowObject>
+public class GUILayoutBeginAreaFollowObjectR : InstanceClassWrapper<GUILayoutBeginAreaFollowObject>
 {
-public GUILayoutBeginAreaFollowObjectR(HutongGames.PlayMaker.Actions.GUILayoutBeginAreaFollowObject _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmGameObject gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public GUILayoutBeginAreaFollowObjectR(GUILayoutBeginAreaFollowObject _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmFloat offsetLeft
-{
-get => orig.offsetLeft;
-set => orig.offsetLeft = value;
-}
+    public FsmGameObject gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat offsetTop
-{
-get => orig.offsetTop;
-set => orig.offsetTop = value;
-}
+    public FsmFloat offsetLeft
+    {
+        get => orig.offsetLeft;
+        set => orig.offsetLeft = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat width
-{
-get => orig.width;
-set => orig.width = value;
-}
+    public FsmFloat offsetTop
+    {
+        get => orig.offsetTop;
+        set => orig.offsetTop = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat height
-{
-get => orig.height;
-set => orig.height = value;
-}
+    public FsmFloat width
+    {
+        get => orig.width;
+        set => orig.width = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool normalized
-{
-get => orig.normalized;
-set => orig.normalized = value;
-}
+    public FsmFloat height
+    {
+        get => orig.height;
+        set => orig.height = value;
+    }
 
-public HutongGames.PlayMaker.FsmString style
-{
-get => orig.style;
-set => orig.style = value;
-}
+    public FsmBool normalized
+    {
+        get => orig.normalized;
+        set => orig.normalized = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public FsmString style
+    {
+        get => orig.style;
+        set => orig.style = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnGUI () =>
-orig.OnGUI();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void DummyBeginArea () =>
-CallMethodStatic();
+    public void OnGUI()
+    {
+        orig.OnGUI();
+    }
 
-}
+    public void DummyBeginArea()
+    {
+        CallMethodStatic();
+    }
 }

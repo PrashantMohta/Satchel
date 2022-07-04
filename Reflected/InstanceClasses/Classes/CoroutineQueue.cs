@@ -1,35 +1,40 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of CoroutineQueue allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class CoroutineQueueR:InstanceClassWrapper<CoroutineQueue>
+public class CoroutineQueueR : InstanceClassWrapper<CoroutineQueue>
 {
-public CoroutineQueueR(CoroutineQueue _orig) : base(_orig) {}
-public System.Collections.Generic.List<System.Collections.IEnumerator> pendingCoroutines
-{
-get => GetField<System.Collections.Generic.List<System.Collections.IEnumerator>>();
-set => SetField(value);
-}
+    public CoroutineQueueR(CoroutineQueue _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.MonoBehaviour runner
-{
-get => GetField<UnityEngine.MonoBehaviour>();
-set => SetField(value);
-}
+    public List<IEnumerator> pendingCoroutines
+    {
+        get => GetField<List<IEnumerator>>();
+        set => SetField(value);
+    }
 
-public bool isRunning
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public MonoBehaviour runner
+    {
+        get => GetField<MonoBehaviour>();
+        set => SetField(value);
+    }
 
-public void Enqueue (System.Collections.IEnumerator coroutine) =>
-orig.Enqueue(coroutine);
+    public bool isRunning
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public System.Collections.IEnumerator Run () =>
-orig.Run();
+    public void Enqueue(IEnumerator coroutine)
+    {
+        orig.Enqueue(coroutine);
+    }
 
-}
+    public IEnumerator Run()
+    {
+        return orig.Run();
+    }
 }

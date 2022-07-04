@@ -1,183 +1,148 @@
-namespace Satchel.Reflected
-{
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of PlayerOneAxisAction allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class PlayerOneAxisActionR:InstanceClassWrapper<InControl.PlayerOneAxisAction>
+public class PlayerOneAxisActionR : InstanceClassWrapper<PlayerOneAxisAction>
 {
-public PlayerOneAxisActionR(InControl.PlayerOneAxisAction _orig) : base(_orig) {}
-public InControl.PlayerAction negativeAction
-{
-get => GetField<InControl.PlayerAction>();
-set => SetField(value);
-}
+    public PlayerOneAxisActionR(PlayerOneAxisAction _orig) : base(_orig)
+    {
+    }
 
-public InControl.PlayerAction positiveAction
-{
-get => GetField<InControl.PlayerAction>();
-set => SetField(value);
-}
+    public PlayerAction negativeAction
+    {
+        get => GetField<PlayerAction>();
+        set => SetField(value);
+    }
 
-public InControl.BindingSourceType LastInputType
-{
-get => orig.LastInputType;
-set => orig.LastInputType = value;
-}
+    public PlayerAction positiveAction
+    {
+        get => GetField<PlayerAction>();
+        set => SetField(value);
+    }
 
-public System.Action<InControl.BindingSourceType> OnLastInputTypeChanged
-{
-get => GetField<System.Action<InControl.BindingSourceType>>();
-set => SetField(value);
-}
+    public BindingSourceType LastInputType
+    {
+        get => orig.LastInputType;
+        set => orig.LastInputType = value;
+    }
 
-public bool isNullControl
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public Action<BindingSourceType> OnLastInputTypeChanged
+    {
+        get => GetField<Action<BindingSourceType>>();
+        set => SetField(value);
+    }
 
-public float FirstRepeatDelay
-{
-get => orig.FirstRepeatDelay;
-set => orig.FirstRepeatDelay = value;
-}
+    public bool isNullControl
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public float RepeatDelay
-{
-get => orig.RepeatDelay;
-set => orig.RepeatDelay = value;
-}
+    public float FirstRepeatDelay
+    {
+        get => orig.FirstRepeatDelay;
+        set => orig.FirstRepeatDelay = value;
+    }
 
-public bool Raw
-{
-get => orig.Raw;
-set => orig.Raw = value;
-}
+    public float RepeatDelay
+    {
+        get => orig.RepeatDelay;
+        set => orig.RepeatDelay = value;
+    }
 
-public bool ownerEnabled
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public bool Raw
+    {
+        get => orig.Raw;
+        set => orig.Raw = value;
+    }
 
-public System.Object UserData
-{
-get => orig.UserData;
-set => orig.UserData = value;
-}
+    public bool ownerEnabled
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public float LowerDeadZone
-{
-get => orig.LowerDeadZone;
-set => orig.LowerDeadZone = value;
-}
+    public object UserData
+    {
+        get => orig.UserData;
+        set => orig.UserData = value;
+    }
 
-public float UpperDeadZone
-{
-get => orig.UpperDeadZone;
-set => orig.UpperDeadZone = value;
-}
+    public float LowerDeadZone
+    {
+        get => orig.LowerDeadZone;
+        set => orig.LowerDeadZone = value;
+    }
 
-public System.UInt64 UpdateTick
-{
-get => orig.UpdateTick;
-set => SetProperty(value);
-}
+    public float UpperDeadZone
+    {
+        get => orig.UpperDeadZone;
+        set => orig.UpperDeadZone = value;
+    }
 
-public bool State
-{
-get => orig.State;
-}
+    public ulong UpdateTick
+    {
+        get => orig.UpdateTick;
+        set => SetProperty(value);
+    }
 
-public bool LastState
-{
-get => orig.LastState;
-}
+    public bool State => orig.State;
 
-public float Value
-{
-get => orig.Value;
-}
+    public bool LastState => orig.LastState;
 
-public float LastValue
-{
-get => orig.LastValue;
-}
+    public float Value => orig.Value;
 
-public float RawValue
-{
-get => orig.RawValue;
-}
+    public float LastValue => orig.LastValue;
 
-public float NextRawValue
-{
-get => GetProperty<float>();
-}
+    public float RawValue => orig.RawValue;
 
-public bool HasInput
-{
-get => GetProperty<bool>();
-}
+    public float NextRawValue => GetProperty<float>();
 
-public bool HasChanged
-{
-get => orig.HasChanged;
-}
+    public bool HasInput => GetProperty<bool>();
 
-public bool IsPressed
-{
-get => orig.IsPressed;
-}
+    public bool HasChanged => orig.HasChanged;
 
-public bool WasPressed
-{
-get => orig.WasPressed;
-}
+    public bool IsPressed => orig.IsPressed;
 
-public bool WasReleased
-{
-get => orig.WasReleased;
-}
+    public bool WasPressed => orig.WasPressed;
 
-public bool WasRepeated
-{
-get => orig.WasRepeated;
-}
+    public bool WasReleased => orig.WasReleased;
 
-public float Sensitivity
-{
-get => orig.Sensitivity;
-set => orig.Sensitivity = value;
-}
+    public bool WasRepeated => orig.WasRepeated;
 
-public float StateThreshold
-{
-get => orig.StateThreshold;
-set => orig.StateThreshold = value;
-}
+    public float Sensitivity
+    {
+        get => orig.Sensitivity;
+        set => orig.Sensitivity = value;
+    }
 
-public bool IsNullControl
-{
-get => orig.IsNullControl;
-}
+    public float StateThreshold
+    {
+        get => orig.StateThreshold;
+        set => orig.StateThreshold = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public bool IsNullControl => orig.IsNullControl;
 
-public bool EnabledInHierarchy
-{
-get => orig.EnabledInHierarchy;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public void Update (System.UInt64 updateTick, float deltaTime) =>
-CallMethod(new object[] {updateTick, deltaTime});
+    public bool EnabledInHierarchy => orig.EnabledInHierarchy;
 
-public void ProcessActionUpdate (InControl.PlayerAction action) =>
-CallMethod(new object[] {action});
+    public void Update(ulong updateTick, float deltaTime)
+    {
+        CallMethod(new object[] { updateTick, deltaTime });
+    }
 
-}
+    public void ProcessActionUpdate(PlayerAction action)
+    {
+        CallMethod(new object[] { action });
+    }
 }

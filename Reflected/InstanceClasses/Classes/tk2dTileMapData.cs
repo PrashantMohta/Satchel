@@ -1,93 +1,98 @@
-namespace Satchel.Reflected
-{
+using tk2dRuntime.TileMap;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of tk2dTileMapData allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class tk2dTileMapDataR:InstanceClassWrapper<tk2dTileMapData>
+public class tk2dTileMapDataR : InstanceClassWrapper<tk2dTileMapData>
 {
-public tk2dTileMapDataR(tk2dTileMapData _orig) : base(_orig) {}
-public UnityEngine.Vector3 tileSize
-{
-get => orig.tileSize;
-set => orig.tileSize = value;
-}
+    public tk2dTileMapDataR(tk2dTileMapData _orig) : base(_orig)
+    {
+    }
 
-public UnityEngine.Vector3 tileOrigin
-{
-get => orig.tileOrigin;
-set => orig.tileOrigin = value;
-}
+    public Vector3 tileSize
+    {
+        get => orig.tileSize;
+        set => orig.tileSize = value;
+    }
 
-public bool generateUv2
-{
-get => orig.generateUv2;
-set => orig.generateUv2 = value;
-}
+    public Vector3 tileOrigin
+    {
+        get => orig.tileOrigin;
+        set => orig.tileOrigin = value;
+    }
 
-public bool layersFixedZ
-{
-get => orig.layersFixedZ;
-set => orig.layersFixedZ = value;
-}
+    public bool generateUv2
+    {
+        get => orig.generateUv2;
+        set => orig.generateUv2 = value;
+    }
 
-public bool useSortingLayers
-{
-get => orig.useSortingLayers;
-set => orig.useSortingLayers = value;
-}
+    public bool layersFixedZ
+    {
+        get => orig.layersFixedZ;
+        set => orig.layersFixedZ = value;
+    }
 
-public UnityEngine.GameObject[] tilePrefabs
-{
-get => orig.tilePrefabs;
-set => orig.tilePrefabs = value;
-}
+    public bool useSortingLayers
+    {
+        get => orig.useSortingLayers;
+        set => orig.useSortingLayers = value;
+    }
 
-public tk2dRuntime.TileMap.TileInfo[] tileInfo
-{
-get => GetField<tk2dRuntime.TileMap.TileInfo[]>();
-set => SetField(value);
-}
+    public GameObject[] tilePrefabs
+    {
+        get => orig.tilePrefabs;
+        set => orig.tilePrefabs = value;
+    }
 
-public System.Collections.Generic.List<tk2dRuntime.TileMap.LayerInfo> tileMapLayers
-{
-get => orig.tileMapLayers;
-set => orig.tileMapLayers = value;
-}
+    public TileInfo[] tileInfo
+    {
+        get => GetField<TileInfo[]>();
+        set => SetField(value);
+    }
 
-public int NumLayers
-{
-get => orig.NumLayers;
-}
+    public List<LayerInfo> tileMapLayers
+    {
+        get => orig.tileMapLayers;
+        set => orig.tileMapLayers = value;
+    }
 
-public tk2dRuntime.TileMap.LayerInfo[] Layers
-{
-get => orig.Layers;
-}
+    public int NumLayers => orig.NumLayers;
 
-public string name
-{
-get => orig.name;
-set => orig.name = value;
-}
+    public LayerInfo[] Layers => orig.Layers;
 
-public UnityEngine.HideFlags hideFlags
-{
-get => orig.hideFlags;
-set => orig.hideFlags = value;
-}
+    public string name
+    {
+        get => orig.name;
+        set => orig.name = value;
+    }
 
-public tk2dRuntime.TileMap.TileInfo GetTileInfoForSprite (int tileId) =>
-orig.GetTileInfoForSprite(tileId);
+    public HideFlags hideFlags
+    {
+        get => orig.hideFlags;
+        set => orig.hideFlags = value;
+    }
 
-public tk2dRuntime.TileMap.TileInfo[] GetOrCreateTileInfo (int numTiles) =>
-orig.GetOrCreateTileInfo(numTiles);
+    public TileInfo GetTileInfoForSprite(int tileId)
+    {
+        return orig.GetTileInfoForSprite(tileId);
+    }
 
-public void GetTileOffset (out float x,out float y) =>
-orig.GetTileOffset(out x,out y);
+    public TileInfo[] GetOrCreateTileInfo(int numTiles)
+    {
+        return orig.GetOrCreateTileInfo(numTiles);
+    }
 
-public void InitLayers () =>
-CallMethod();
+    public void GetTileOffset(out float x, out float y)
+    {
+        orig.GetTileOffset(out x, out y);
+    }
 
-}
+    public void InitLayers()
+    {
+        CallMethod();
+    }
 }

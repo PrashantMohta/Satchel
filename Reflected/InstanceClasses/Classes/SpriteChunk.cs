@@ -1,75 +1,76 @@
-namespace Satchel.Reflected
-{
+using tk2dRuntime.TileMap;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SpriteChunk allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SpriteChunkR:InstanceClassWrapper<tk2dRuntime.TileMap.SpriteChunk>
+public class SpriteChunkR : InstanceClassWrapper<SpriteChunk>
 {
-public SpriteChunkR(tk2dRuntime.TileMap.SpriteChunk _orig) : base(_orig) {}
-public bool dirty
-{
-get => GetField<bool>();
-set => SetField(value);
-}
+    public SpriteChunkR(SpriteChunk _orig) : base(_orig)
+    {
+    }
 
-public System.Int32[] spriteIds
-{
-get => orig.spriteIds;
-set => orig.spriteIds = value;
-}
+    public bool dirty
+    {
+        get => GetField<bool>();
+        set => SetField(value);
+    }
 
-public UnityEngine.GameObject gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public int[] spriteIds
+    {
+        get => orig.spriteIds;
+        set => orig.spriteIds = value;
+    }
 
-public UnityEngine.Mesh mesh
-{
-get => orig.mesh;
-set => orig.mesh = value;
-}
+    public GameObject gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public UnityEngine.MeshCollider meshCollider
-{
-get => orig.meshCollider;
-set => orig.meshCollider = value;
-}
+    public Mesh mesh
+    {
+        get => orig.mesh;
+        set => orig.mesh = value;
+    }
 
-public UnityEngine.Mesh colliderMesh
-{
-get => orig.colliderMesh;
-set => orig.colliderMesh = value;
-}
+    public MeshCollider meshCollider
+    {
+        get => orig.meshCollider;
+        set => orig.meshCollider = value;
+    }
 
-public System.Collections.Generic.List<UnityEngine.EdgeCollider2D> edgeColliders
-{
-get => orig.edgeColliders;
-set => orig.edgeColliders = value;
-}
+    public Mesh colliderMesh
+    {
+        get => orig.colliderMesh;
+        set => orig.colliderMesh = value;
+    }
 
-public bool Dirty
-{
-get => orig.Dirty;
-set => orig.Dirty = value;
-}
+    public List<EdgeCollider2D> edgeColliders
+    {
+        get => orig.edgeColliders;
+        set => orig.edgeColliders = value;
+    }
 
-public bool IsEmpty
-{
-get => orig.IsEmpty;
-}
+    public bool Dirty
+    {
+        get => orig.Dirty;
+        set => orig.Dirty = value;
+    }
 
-public bool HasGameData
-{
-get => orig.HasGameData;
-}
+    public bool IsEmpty => orig.IsEmpty;
 
-public void DestroyGameData (tk2dTileMap tileMap) =>
-orig.DestroyGameData(tileMap);
+    public bool HasGameData => orig.HasGameData;
 
-public void DestroyColliderData (tk2dTileMap tileMap) =>
-orig.DestroyColliderData(tileMap);
+    public void DestroyGameData(tk2dTileMap tileMap)
+    {
+        orig.DestroyGameData(tileMap);
+    }
 
-}
+    public void DestroyColliderData(tk2dTileMap tileMap)
+    {
+        orig.DestroyColliderData(tileMap);
+    }
 }

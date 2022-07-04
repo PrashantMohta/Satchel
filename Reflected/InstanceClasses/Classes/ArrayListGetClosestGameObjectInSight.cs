@@ -1,158 +1,170 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
-///     A class that contains all (public and private) fields and methods of ArrayListGetClosestGameObjectInSight allowing you to
+///     A class that contains all (public and private) fields and methods of ArrayListGetClosestGameObjectInSight allowing
+///     you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ArrayListGetClosestGameObjectInSightR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.ArrayListGetClosestGameObjectInSight>
+public class ArrayListGetClosestGameObjectInSightR : InstanceClassWrapper<ArrayListGetClosestGameObjectInSight>
 {
-public ArrayListGetClosestGameObjectInSightR(HutongGames.PlayMaker.Actions.ArrayListGetClosestGameObjectInSight _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public ArrayListGetClosestGameObjectInSightR(ArrayListGetClosestGameObjectInSight _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString reference
-{
-get => orig.reference;
-set => orig.reference = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject distanceFrom
-{
-get => orig.distanceFrom;
-set => orig.distanceFrom = value;
-}
+    public FsmString reference
+    {
+        get => orig.reference;
+        set => orig.reference = value;
+    }
 
-public HutongGames.PlayMaker.FsmVector3 orDistanceFromVector3
-{
-get => orig.orDistanceFromVector3;
-set => orig.orDistanceFromVector3 = value;
-}
+    public FsmGameObject distanceFrom
+    {
+        get => orig.distanceFrom;
+        set => orig.distanceFrom = value;
+    }
 
-public bool everyframe
-{
-get => orig.everyframe;
-set => orig.everyframe = value;
-}
+    public FsmVector3 orDistanceFromVector3
+    {
+        get => orig.orDistanceFromVector3;
+        set => orig.orDistanceFromVector3 = value;
+    }
 
-public HutongGames.PlayMaker.FsmOwnerDefault fromGameObject
-{
-get => orig.fromGameObject;
-set => orig.fromGameObject = value;
-}
+    public bool everyframe
+    {
+        get => orig.everyframe;
+        set => orig.everyframe = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt[] layerMask
-{
-get => orig.layerMask;
-set => orig.layerMask = value;
-}
+    public FsmOwnerDefault fromGameObject
+    {
+        get => orig.fromGameObject;
+        set => orig.fromGameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool invertMask
-{
-get => orig.invertMask;
-set => orig.invertMask = value;
-}
+    public FsmInt[] layerMask
+    {
+        get => orig.layerMask;
+        set => orig.layerMask = value;
+    }
 
-public HutongGames.PlayMaker.FsmGameObject closestGameObject
-{
-get => orig.closestGameObject;
-set => orig.closestGameObject = value;
-}
+    public FsmBool invertMask
+    {
+        get => orig.invertMask;
+        set => orig.invertMask = value;
+    }
 
-public HutongGames.PlayMaker.FsmInt closestIndex
-{
-get => orig.closestIndex;
-set => orig.closestIndex = value;
-}
+    public FsmGameObject closestGameObject
+    {
+        get => orig.closestGameObject;
+        set => orig.closestGameObject = value;
+    }
 
-public PlayMakerArrayListProxy proxy
-{
-get => GetField<PlayMakerArrayListProxy>();
-set => SetField(value);
-}
+    public FsmInt closestIndex
+    {
+        get => orig.closestIndex;
+        set => orig.closestIndex = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public PlayMakerArrayListProxy proxy
+    {
+        get => GetField<PlayMakerArrayListProxy>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoFindClosestGo () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-public bool DoLineCast (UnityEngine.GameObject toGameObject) =>
-CallMethod<bool>(new object[] {toGameObject});
+    public void DoFindClosestGo()
+    {
+        CallMethod();
+    }
 
-}
+    public bool DoLineCast(GameObject toGameObject)
+    {
+        return CallMethod<bool>(new object[] { toGameObject });
+    }
 }

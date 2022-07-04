@@ -1,65 +1,71 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of tk2dSpriteFromTexture allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class tk2dSpriteFromTextureR:InstanceClassWrapper<tk2dSpriteFromTexture>
+public class tk2dSpriteFromTextureR : InstanceClassWrapper<tk2dSpriteFromTexture>
 {
-public tk2dSpriteFromTextureR(tk2dSpriteFromTexture _orig) : base(_orig) {}
-public UnityEngine.Texture texture
-{
-get => orig.texture;
-set => orig.texture = value;
-}
+    public tk2dSpriteFromTextureR(tk2dSpriteFromTexture _orig) : base(_orig)
+    {
+    }
 
-public tk2dSpriteCollectionSize spriteCollectionSize
-{
-get => orig.spriteCollectionSize;
-set => orig.spriteCollectionSize = value;
-}
+    public Texture texture
+    {
+        get => orig.texture;
+        set => orig.texture = value;
+    }
 
-public tk2dSpriteCollectionData spriteCollection
-{
-get => GetField<tk2dSpriteCollectionData>();
-set => SetField(value);
-}
+    public tk2dSpriteCollectionSize spriteCollectionSize
+    {
+        get => orig.spriteCollectionSize;
+        set => orig.spriteCollectionSize = value;
+    }
 
-public tk2dBaseSprite _sprite
-{
-get => GetField<tk2dBaseSprite>();
-set => SetField(value);
-}
+    public tk2dSpriteCollectionData spriteCollection
+    {
+        get => GetField<tk2dSpriteCollectionData>();
+        set => SetField(value);
+    }
 
-public tk2dBaseSprite Sprite
-{
-get => GetProperty<tk2dBaseSprite>();
-}
+    public tk2dBaseSprite _sprite
+    {
+        get => GetField<tk2dBaseSprite>();
+        set => SetField(value);
+    }
 
-public bool HasSpriteCollection
-{
-get => orig.HasSpriteCollection;
-}
+    public tk2dBaseSprite Sprite => GetProperty<tk2dBaseSprite>();
+
+    public bool HasSpriteCollection => orig.HasSpriteCollection;
 
 
+    public void Awake()
+    {
+        CallMethod();
+    }
 
-public void Awake () =>
-CallMethod();
+    public void OnDestroy()
+    {
+        CallMethod();
+    }
 
-public void OnDestroy () =>
-CallMethod();
+    public void Create(tk2dSpriteCollectionSize spriteCollectionSize, Texture texture, tk2dBaseSprite.Anchor anchor)
+    {
+        orig.Create(spriteCollectionSize, texture, anchor);
+    }
 
-public void Create (tk2dSpriteCollectionSize spriteCollectionSize, UnityEngine.Texture texture, tk2dBaseSprite.Anchor anchor) =>
-orig.Create(spriteCollectionSize, texture, anchor);
+    public void Clear()
+    {
+        orig.Clear();
+    }
 
-public void Clear () =>
-orig.Clear();
+    public void ForceBuild()
+    {
+        orig.ForceBuild();
+    }
 
-public void ForceBuild () =>
-orig.ForceBuild();
-
-public void DestroyInternal () =>
-CallMethod();
-
-}
+    public void DestroyInternal()
+    {
+        CallMethod();
+    }
 }

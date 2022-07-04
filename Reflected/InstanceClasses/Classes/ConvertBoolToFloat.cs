@@ -1,119 +1,128 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ConvertBoolToFloat allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ConvertBoolToFloatR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.ConvertBoolToFloat>
+public class ConvertBoolToFloatR : InstanceClassWrapper<ConvertBoolToFloat>
 {
-public ConvertBoolToFloatR(HutongGames.PlayMaker.Actions.ConvertBoolToFloat _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmBool boolVariable
-{
-get => orig.boolVariable;
-set => orig.boolVariable = value;
-}
+    public ConvertBoolToFloatR(ConvertBoolToFloat _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmFloat floatVariable
-{
-get => orig.floatVariable;
-set => orig.floatVariable = value;
-}
+    public FsmBool boolVariable
+    {
+        get => orig.boolVariable;
+        set => orig.boolVariable = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat falseValue
-{
-get => orig.falseValue;
-set => orig.falseValue = value;
-}
+    public FsmFloat floatVariable
+    {
+        get => orig.floatVariable;
+        set => orig.floatVariable = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat trueValue
-{
-get => orig.trueValue;
-set => orig.trueValue = value;
-}
+    public FsmFloat falseValue
+    {
+        get => orig.falseValue;
+        set => orig.falseValue = value;
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmFloat trueValue
+    {
+        get => orig.trueValue;
+        set => orig.trueValue = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoConvertBoolToFloat () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void DoConvertBoolToFloat()
+    {
+        CallMethod();
+    }
 }

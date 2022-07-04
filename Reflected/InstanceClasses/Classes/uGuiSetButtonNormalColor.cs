@@ -1,140 +1,157 @@
-namespace Satchel.Reflected
-{
+using UnityEngine.UI;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of uGuiSetButtonNormalColor allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class uGuiSetButtonNormalColorR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.uGuiSetButtonNormalColor>
+public class uGuiSetButtonNormalColorR : InstanceClassWrapper<uGuiSetButtonNormalColor>
 {
-public uGuiSetButtonNormalColorR(HutongGames.PlayMaker.Actions.uGuiSetButtonNormalColor _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public uGuiSetButtonNormalColorR(uGuiSetButtonNormalColor _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmColor normalColor
-{
-get => orig.normalColor;
-set => orig.normalColor = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public bool resetOnExit
-{
-get => orig.resetOnExit;
-set => orig.resetOnExit = value;
-}
+    public FsmColor normalColor
+    {
+        get => orig.normalColor;
+        set => orig.normalColor = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool enabled
-{
-get => orig.enabled;
-set => orig.enabled = value;
-}
+    public bool resetOnExit
+    {
+        get => orig.resetOnExit;
+        set => orig.resetOnExit = value;
+    }
 
-public bool everyFrame
-{
-get => orig.everyFrame;
-set => orig.everyFrame = value;
-}
+    public FsmBool enabled
+    {
+        get => orig.enabled;
+        set => orig.enabled = value;
+    }
 
-public UnityEngine.UI.Button _Button
-{
-get => GetField<UnityEngine.UI.Button>();
-set => SetField(value);
-}
+    public bool everyFrame
+    {
+        get => orig.everyFrame;
+        set => orig.everyFrame = value;
+    }
 
-public UnityEngine.Color _OriginalNormalColor
-{
-get => GetField<UnityEngine.Color>();
-set => SetField(value);
-}
+    public Button _Button
+    {
+        get => GetField<Button>();
+        set => SetField(value);
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public Color _OriginalNormalColor
+    {
+        get => GetField<Color>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void OnExit () =>
-orig.OnExit();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-public void Initialize (UnityEngine.GameObject go) =>
-CallMethod(new object[] {go});
+    public void OnExit()
+    {
+        orig.OnExit();
+    }
 
-public void DoSetButtonColor () =>
-CallMethod();
+    public void Initialize(GameObject go)
+    {
+        CallMethod(new object[] { go });
+    }
 
-public void DoSetOldColorValue () =>
-CallMethod();
+    public void DoSetButtonColor()
+    {
+        CallMethod();
+    }
 
-}
+    public void DoSetOldColorValue()
+    {
+        CallMethod();
+    }
 }

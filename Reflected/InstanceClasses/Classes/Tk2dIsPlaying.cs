@@ -1,134 +1,145 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of Tk2dIsPlaying allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class Tk2dIsPlayingR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.Tk2dIsPlaying>
+public class Tk2dIsPlayingR : InstanceClassWrapper<Tk2dIsPlaying>
 {
-public Tk2dIsPlayingR(HutongGames.PlayMaker.Actions.Tk2dIsPlaying _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public Tk2dIsPlayingR(Tk2dIsPlaying _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString clipName
-{
-get => orig.clipName;
-set => orig.clipName = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmBool isPlaying
-{
-get => orig.isPlaying;
-set => orig.isPlaying = value;
-}
+    public FsmString clipName
+    {
+        get => orig.clipName;
+        set => orig.clipName = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent isPlayingEvent
-{
-get => orig.isPlayingEvent;
-set => orig.isPlayingEvent = value;
-}
+    public FsmBool isPlaying
+    {
+        get => orig.isPlaying;
+        set => orig.isPlaying = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent isNotPlayingEvent
-{
-get => orig.isNotPlayingEvent;
-set => orig.isNotPlayingEvent = value;
-}
+    public FsmEvent isPlayingEvent
+    {
+        get => orig.isPlayingEvent;
+        set => orig.isPlayingEvent = value;
+    }
 
-public bool everyframe
-{
-get => orig.everyframe;
-set => orig.everyframe = value;
-}
+    public FsmEvent isNotPlayingEvent
+    {
+        get => orig.isNotPlayingEvent;
+        set => orig.isNotPlayingEvent = value;
+    }
 
-public tk2dSpriteAnimator _sprite
-{
-get => GetField<tk2dSpriteAnimator>();
-set => SetField(value);
-}
+    public bool everyframe
+    {
+        get => orig.everyframe;
+        set => orig.everyframe = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public tk2dSpriteAnimator _sprite
+    {
+        get => GetField<tk2dSpriteAnimator>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void _getSprite () =>
-CallMethod();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public void _getSprite()
+    {
+        CallMethod();
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void OnUpdate () =>
-orig.OnUpdate();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-public void DoIsPlaying () =>
-CallMethod();
+    public void OnUpdate()
+    {
+        orig.OnUpdate();
+    }
 
-}
+    public void DoIsPlaying()
+    {
+        CallMethod();
+    }
 }

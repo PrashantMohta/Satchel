@@ -1,116 +1,123 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of ArrayListRemove allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class ArrayListRemoveR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.ArrayListRemove>
+public class ArrayListRemoveR : InstanceClassWrapper<ArrayListRemove>
 {
-public ArrayListRemoveR(HutongGames.PlayMaker.Actions.ArrayListRemove _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public ArrayListRemoveR(ArrayListRemove _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmString reference
-{
-get => orig.reference;
-set => orig.reference = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public HutongGames.PlayMaker.FsmVar variable
-{
-get => orig.variable;
-set => orig.variable = value;
-}
+    public FsmString reference
+    {
+        get => orig.reference;
+        set => orig.reference = value;
+    }
 
-public HutongGames.PlayMaker.FsmEvent notFoundEvent
-{
-get => orig.notFoundEvent;
-set => orig.notFoundEvent = value;
-}
+    public FsmVar variable
+    {
+        get => orig.variable;
+        set => orig.variable = value;
+    }
 
-public PlayMakerArrayListProxy proxy
-{
-get => GetField<PlayMakerArrayListProxy>();
-set => SetField(value);
-}
+    public FsmEvent notFoundEvent
+    {
+        get => orig.notFoundEvent;
+        set => orig.notFoundEvent = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public PlayMakerArrayListProxy proxy
+    {
+        get => GetField<PlayMakerArrayListProxy>();
+        set => SetField(value);
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void DoRemoveFromArrayList () =>
-orig.DoRemoveFromArrayList();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-}
+    public void DoRemoveFromArrayList()
+    {
+        orig.DoRemoveFromArrayList();
+    }
 }

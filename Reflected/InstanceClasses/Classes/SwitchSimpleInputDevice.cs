@@ -1,371 +1,199 @@
-namespace Satchel.Reflected
-{
+using System.Collections.ObjectModel;
+using InControl;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of SwitchSimpleInputDevice allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class SwitchSimpleInputDeviceR:InstanceClassWrapper<InControl.SwitchSimpleInputDevice>
+public class SwitchSimpleInputDeviceR : InstanceClassWrapper<SwitchSimpleInputDevice>
 {
-public SwitchSimpleInputDeviceR(InControl.SwitchSimpleInputDevice _orig) : base(_orig) {}
-public float LowerDeadZone
-{
-get => GetFieldStatic<float>();
-set => SetField(value);
-}
-
-public float UpperDeadZone
-{
-get => GetFieldStatic<float>();
-set => SetField(value);
-}
-
-public float AnalogStickNormalize
-{
-get => GetFieldStatic<float>();
-set => SetField(value);
-}
-
-public bool Passive
-{
-get => orig.Passive;
-set => orig.Passive = value;
-}
-
-public bool IsConnected
-{
-get => orig.IsConnected;
-}
+    public SwitchSimpleInputDeviceR(SwitchSimpleInputDevice _orig) : base(_orig)
+    {
+    }
 
-public string Name
-{
-get => orig.Name;
-set => SetProperty(value);
-}
-
-public string Meta
-{
-get => orig.Meta;
-set => SetProperty(value);
-}
-
-public int SortOrder
-{
-get => orig.SortOrder;
-set => SetProperty(value);
-}
-
-public InControl.InputDeviceClass DeviceClass
-{
-get => orig.DeviceClass;
-set => SetProperty(value);
-}
-
-public InControl.InputDeviceStyle DeviceStyle
-{
-get => orig.DeviceStyle;
-set => SetProperty(value);
-}
-
-public System.Guid GUID
-{
-get => orig.GUID;
-}
+    public float LowerDeadZone
+    {
+        get => GetFieldStatic<float>();
+        set => SetField(value);
+    }
 
-public System.UInt64 LastInputTick
-{
-get => orig.LastInputTick;
-}
+    public float UpperDeadZone
+    {
+        get => GetFieldStatic<float>();
+        set => SetField(value);
+    }
 
-public bool IsActive
-{
-get => orig.IsActive;
-}
+    public float AnalogStickNormalize
+    {
+        get => GetFieldStatic<float>();
+        set => SetField(value);
+    }
 
-public bool IsAttached
-{
-get => orig.IsAttached;
-}
+    public bool Passive
+    {
+        get => orig.Passive;
+        set => orig.Passive = value;
+    }
 
-public bool RawSticks
-{
-get => GetProperty<bool>();
-}
+    public bool IsConnected => orig.IsConnected;
 
-public System.Collections.ObjectModel.ReadOnlyCollection<InControl.InputControl> Controls
-{
-get => orig.Controls;
-set => SetProperty(value);
-}
-
-public InControl.InputControl[] ControlsByTarget
-{
-get => GetProperty<InControl.InputControl[]>();
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => SetProperty(value);
+    }
 
-public InControl.TwoAxisInputControl LeftStick
-{
-get => orig.LeftStick;
-}
+    public string Meta
+    {
+        get => orig.Meta;
+        set => SetProperty(value);
+    }
 
-public InControl.TwoAxisInputControl RightStick
-{
-get => orig.RightStick;
-}
+    public int SortOrder
+    {
+        get => orig.SortOrder;
+        set => SetProperty(value);
+    }
 
-public InControl.TwoAxisInputControl DPad
-{
-get => orig.DPad;
-}
+    public InputDeviceClass DeviceClass
+    {
+        get => orig.DeviceClass;
+        set => SetProperty(value);
+    }
 
-public InControl.InputControlType LeftCommandControl
-{
-get => orig.LeftCommandControl;
-}
+    public InputDeviceStyle DeviceStyle
+    {
+        get => orig.DeviceStyle;
+        set => SetProperty(value);
+    }
 
-public InControl.InputControlType RightCommandControl
-{
-get => orig.RightCommandControl;
-}
+    public Guid GUID => orig.GUID;
 
+    public ulong LastInputTick => orig.LastInputTick;
 
+    public bool IsActive => orig.IsActive;
 
-public bool IsSupportedOnThisPlatform
-{
-get => orig.IsSupportedOnThisPlatform;
-}
+    public bool IsAttached => orig.IsAttached;
 
-public bool IsKnown
-{
-get => orig.IsKnown;
-}
+    public bool RawSticks => GetProperty<bool>();
 
-public bool IsUnknown
-{
-get => orig.IsUnknown;
-}
+    public ReadOnlyCollection<InputControl> Controls
+    {
+        get => orig.Controls;
+        set => SetProperty(value);
+    }
 
-public bool MenuIsPressed
-{
-get => orig.MenuIsPressed;
-}
+    public InputControl[] ControlsByTarget => GetProperty<InputControl[]>();
 
-public bool MenuWasPressed
-{
-get => orig.MenuWasPressed;
-}
+    public TwoAxisInputControl LeftStick => orig.LeftStick;
 
-public bool MenuWasReleased
-{
-get => orig.MenuWasReleased;
-}
+    public TwoAxisInputControl RightStick => orig.RightStick;
 
-public bool CommandIsPressed
-{
-get => orig.CommandIsPressed;
-}
+    public TwoAxisInputControl DPad => orig.DPad;
 
-public bool CommandWasPressed
-{
-get => orig.CommandWasPressed;
-}
+    public InputControlType LeftCommandControl => orig.LeftCommandControl;
 
-public bool CommandWasReleased
-{
-get => orig.CommandWasReleased;
-}
+    public InputControlType RightCommandControl => orig.RightCommandControl;
 
-public InControl.InputControl AnyButton
-{
-get => orig.AnyButton;
-}
 
-public bool AnyButtonIsPressed
-{
-get => orig.AnyButtonIsPressed;
-}
+    public bool IsSupportedOnThisPlatform => orig.IsSupportedOnThisPlatform;
 
-public bool AnyButtonWasPressed
-{
-get => orig.AnyButtonWasPressed;
-}
+    public bool IsKnown => orig.IsKnown;
 
-public bool AnyButtonWasReleased
-{
-get => orig.AnyButtonWasReleased;
-}
+    public bool IsUnknown => orig.IsUnknown;
 
-public InControl.TwoAxisInputControl Direction
-{
-get => orig.Direction;
-}
+    public bool MenuIsPressed => orig.MenuIsPressed;
 
-public InControl.InputControl LeftStickUp
-{
-get => orig.LeftStickUp;
-}
+    public bool MenuWasPressed => orig.MenuWasPressed;
 
-public InControl.InputControl LeftStickDown
-{
-get => orig.LeftStickDown;
-}
+    public bool MenuWasReleased => orig.MenuWasReleased;
 
-public InControl.InputControl LeftStickLeft
-{
-get => orig.LeftStickLeft;
-}
+    public bool CommandIsPressed => orig.CommandIsPressed;
 
-public InControl.InputControl LeftStickRight
-{
-get => orig.LeftStickRight;
-}
+    public bool CommandWasPressed => orig.CommandWasPressed;
 
-public InControl.InputControl RightStickUp
-{
-get => orig.RightStickUp;
-}
+    public bool CommandWasReleased => orig.CommandWasReleased;
 
-public InControl.InputControl RightStickDown
-{
-get => orig.RightStickDown;
-}
+    public InputControl AnyButton => orig.AnyButton;
 
-public InControl.InputControl RightStickLeft
-{
-get => orig.RightStickLeft;
-}
+    public bool AnyButtonIsPressed => orig.AnyButtonIsPressed;
 
-public InControl.InputControl RightStickRight
-{
-get => orig.RightStickRight;
-}
+    public bool AnyButtonWasPressed => orig.AnyButtonWasPressed;
 
-public InControl.InputControl DPadUp
-{
-get => orig.DPadUp;
-}
+    public bool AnyButtonWasReleased => orig.AnyButtonWasReleased;
 
-public InControl.InputControl DPadDown
-{
-get => orig.DPadDown;
-}
+    public TwoAxisInputControl Direction => orig.Direction;
 
-public InControl.InputControl DPadLeft
-{
-get => orig.DPadLeft;
-}
+    public InputControl LeftStickUp => orig.LeftStickUp;
 
-public InControl.InputControl DPadRight
-{
-get => orig.DPadRight;
-}
+    public InputControl LeftStickDown => orig.LeftStickDown;
 
-public InControl.InputControl Action1
-{
-get => orig.Action1;
-}
+    public InputControl LeftStickLeft => orig.LeftStickLeft;
 
-public InControl.InputControl Action2
-{
-get => orig.Action2;
-}
+    public InputControl LeftStickRight => orig.LeftStickRight;
 
-public InControl.InputControl Action3
-{
-get => orig.Action3;
-}
+    public InputControl RightStickUp => orig.RightStickUp;
 
-public InControl.InputControl Action4
-{
-get => orig.Action4;
-}
+    public InputControl RightStickDown => orig.RightStickDown;
 
-public InControl.InputControl LeftTrigger
-{
-get => orig.LeftTrigger;
-}
+    public InputControl RightStickLeft => orig.RightStickLeft;
 
-public InControl.InputControl RightTrigger
-{
-get => orig.RightTrigger;
-}
+    public InputControl RightStickRight => orig.RightStickRight;
 
-public InControl.InputControl LeftBumper
-{
-get => orig.LeftBumper;
-}
+    public InputControl DPadUp => orig.DPadUp;
 
-public InControl.InputControl RightBumper
-{
-get => orig.RightBumper;
-}
+    public InputControl DPadDown => orig.DPadDown;
 
-public InControl.InputControl LeftStickButton
-{
-get => orig.LeftStickButton;
-}
+    public InputControl DPadLeft => orig.DPadLeft;
 
-public InControl.InputControl RightStickButton
-{
-get => orig.RightStickButton;
-}
+    public InputControl DPadRight => orig.DPadRight;
 
-public InControl.InputControl LeftStickX
-{
-get => orig.LeftStickX;
-}
+    public InputControl Action1 => orig.Action1;
 
-public InControl.InputControl LeftStickY
-{
-get => orig.LeftStickY;
-}
+    public InputControl Action2 => orig.Action2;
 
-public InControl.InputControl RightStickX
-{
-get => orig.RightStickX;
-}
+    public InputControl Action3 => orig.Action3;
 
-public InControl.InputControl RightStickY
-{
-get => orig.RightStickY;
-}
+    public InputControl Action4 => orig.Action4;
 
-public InControl.InputControl DPadX
-{
-get => orig.DPadX;
-}
+    public InputControl LeftTrigger => orig.LeftTrigger;
 
-public InControl.InputControl DPadY
-{
-get => orig.DPadY;
-}
+    public InputControl RightTrigger => orig.RightTrigger;
 
-public InControl.InputControl Command
-{
-get => orig.Command;
-}
+    public InputControl LeftBumper => orig.LeftBumper;
 
-public InControl.InputControl LeftCommand
-{
-get => orig.LeftCommand;
-}
+    public InputControl RightBumper => orig.RightBumper;
 
-public InControl.InputControl RightCommand
-{
-get => orig.RightCommand;
-}
+    public InputControl LeftStickButton => orig.LeftStickButton;
 
-public int NumUnknownAnalogs
-{
-get => orig.NumUnknownAnalogs;
-}
+    public InputControl RightStickButton => orig.RightStickButton;
 
-public int NumUnknownButtons
-{
-get => orig.NumUnknownButtons;
-}
+    public InputControl LeftStickX => orig.LeftStickX;
+
+    public InputControl LeftStickY => orig.LeftStickY;
+
+    public InputControl RightStickX => orig.RightStickX;
+
+    public InputControl RightStickY => orig.RightStickY;
+
+    public InputControl DPadX => orig.DPadX;
+
+    public InputControl DPadY => orig.DPadY;
+
+    public InputControl Command => orig.Command;
+
+    public InputControl LeftCommand => orig.LeftCommand;
+
+    public InputControl RightCommand => orig.RightCommand;
+
+    public int NumUnknownAnalogs => orig.NumUnknownAnalogs;
 
-public void Update (System.UInt64 updateTick, float deltaTime) =>
-orig.Update(updateTick, deltaTime);
+    public int NumUnknownButtons => orig.NumUnknownButtons;
 
-}
+    public void Update(ulong updateTick, float deltaTime)
+    {
+        orig.Update(updateTick, deltaTime);
+    }
 }

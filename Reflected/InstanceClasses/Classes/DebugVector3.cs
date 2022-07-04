@@ -1,101 +1,108 @@
-namespace Satchel.Reflected
-{
+using LogLevel = HutongGames.PlayMaker.LogLevel;
+
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of DebugVector3 allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class DebugVector3R:InstanceClassWrapper<HutongGames.PlayMaker.Actions.DebugVector3>
+public class DebugVector3R : InstanceClassWrapper<DebugVector3>
 {
-public DebugVector3R(HutongGames.PlayMaker.Actions.DebugVector3 _orig) : base(_orig) {}
-public HutongGames.PlayMaker.LogLevel logLevel
-{
-get => orig.logLevel;
-set => orig.logLevel = value;
-}
+    public DebugVector3R(DebugVector3 _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmVector3 vector3Variable
-{
-get => orig.vector3Variable;
-set => orig.vector3Variable = value;
-}
+    public LogLevel logLevel
+    {
+        get => orig.logLevel;
+        set => orig.logLevel = value;
+    }
 
-public bool sendToUnityLog
-{
-get => orig.sendToUnityLog;
-set => orig.sendToUnityLog = value;
-}
+    public FsmVector3 vector3Variable
+    {
+        get => orig.vector3Variable;
+        set => orig.vector3Variable = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public bool sendToUnityLog
+    {
+        get => orig.sendToUnityLog;
+        set => orig.sendToUnityLog = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-}
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 }

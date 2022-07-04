@@ -1,38 +1,41 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of GameVersionData allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class GameVersionDataR:InstanceClassWrapper<GameVersionData>
+public class GameVersionDataR : InstanceClassWrapper<GameVersionData>
 {
-public GameVersionDataR(GameVersionData _orig) : base(_orig) {}
-public GameVersion gameVersion
-{
-get => orig.gameVersion;
-set => orig.gameVersion = value;
-}
+    public GameVersionDataR(GameVersionData _orig) : base(_orig)
+    {
+    }
 
-public string version
-{
-get => orig.version;
-set => orig.version = value;
-}
+    public GameVersion gameVersion
+    {
+        get => orig.gameVersion;
+        set => orig.gameVersion = value;
+    }
 
-public string name
-{
-get => orig.name;
-set => orig.name = value;
-}
+    public string version
+    {
+        get => orig.version;
+        set => orig.version = value;
+    }
 
-public UnityEngine.HideFlags hideFlags
-{
-get => orig.hideFlags;
-set => orig.hideFlags = value;
-}
+    public string name
+    {
+        get => orig.name;
+        set => orig.name = value;
+    }
 
-public string GetGameVersionString () =>
-orig.GetGameVersionString();
+    public HideFlags hideFlags
+    {
+        get => orig.hideFlags;
+        set => orig.hideFlags = value;
+    }
 
-}
+    public string GetGameVersionString()
+    {
+        return orig.GetGameVersionString();
+    }
 }

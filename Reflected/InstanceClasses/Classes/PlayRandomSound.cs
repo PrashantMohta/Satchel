@@ -1,116 +1,123 @@
-namespace Satchel.Reflected
-{
+namespace Satchel.Reflected;
+
 /// <summary>
 ///     A class that contains all (public and private) fields and methods of PlayRandomSound allowing you to
 ///     easily get/set fields and call methods without dealing with reflection.
 /// </summary>
-public class PlayRandomSoundR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.PlayRandomSound>
+public class PlayRandomSoundR : InstanceClassWrapper<PlayRandomSound>
 {
-public PlayRandomSoundR(HutongGames.PlayMaker.Actions.PlayRandomSound _orig) : base(_orig) {}
-public HutongGames.PlayMaker.FsmOwnerDefault gameObject
-{
-get => orig.gameObject;
-set => orig.gameObject = value;
-}
+    public PlayRandomSoundR(PlayRandomSound _orig) : base(_orig)
+    {
+    }
 
-public HutongGames.PlayMaker.FsmVector3 position
-{
-get => orig.position;
-set => orig.position = value;
-}
+    public FsmOwnerDefault gameObject
+    {
+        get => orig.gameObject;
+        set => orig.gameObject = value;
+    }
 
-public UnityEngine.AudioClip[] audioClips
-{
-get => orig.audioClips;
-set => orig.audioClips = value;
-}
+    public FsmVector3 position
+    {
+        get => orig.position;
+        set => orig.position = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat[] weights
-{
-get => orig.weights;
-set => orig.weights = value;
-}
+    public AudioClip[] audioClips
+    {
+        get => orig.audioClips;
+        set => orig.audioClips = value;
+    }
 
-public HutongGames.PlayMaker.FsmFloat volume
-{
-get => orig.volume;
-set => orig.volume = value;
-}
+    public FsmFloat[] weights
+    {
+        get => orig.weights;
+        set => orig.weights = value;
+    }
 
-public string Name
-{
-get => orig.Name;
-set => orig.Name = value;
-}
+    public FsmFloat volume
+    {
+        get => orig.volume;
+        set => orig.volume = value;
+    }
 
-public string DisplayName
-{
-get => orig.DisplayName;
-set => orig.DisplayName = value;
-}
+    public string Name
+    {
+        get => orig.Name;
+        set => orig.Name = value;
+    }
 
-public HutongGames.PlayMaker.Fsm Fsm
-{
-get => orig.Fsm;
-set => orig.Fsm = value;
-}
+    public string DisplayName
+    {
+        get => orig.DisplayName;
+        set => orig.DisplayName = value;
+    }
 
-public UnityEngine.GameObject Owner
-{
-get => orig.Owner;
-set => orig.Owner = value;
-}
+    public Fsm Fsm
+    {
+        get => orig.Fsm;
+        set => orig.Fsm = value;
+    }
 
-public HutongGames.PlayMaker.FsmState State
-{
-get => orig.State;
-set => orig.State = value;
-}
+    public GameObject Owner
+    {
+        get => orig.Owner;
+        set => orig.Owner = value;
+    }
 
-public bool Enabled
-{
-get => orig.Enabled;
-set => orig.Enabled = value;
-}
+    public FsmState State
+    {
+        get => orig.State;
+        set => orig.State = value;
+    }
 
-public bool IsOpen
-{
-get => orig.IsOpen;
-set => orig.IsOpen = value;
-}
+    public bool Enabled
+    {
+        get => orig.Enabled;
+        set => orig.Enabled = value;
+    }
 
-public bool IsAutoNamed
-{
-get => orig.IsAutoNamed;
-set => orig.IsAutoNamed = value;
-}
+    public bool IsOpen
+    {
+        get => orig.IsOpen;
+        set => orig.IsOpen = value;
+    }
 
-public bool Entered
-{
-get => orig.Entered;
-set => orig.Entered = value;
-}
+    public bool IsAutoNamed
+    {
+        get => orig.IsAutoNamed;
+        set => orig.IsAutoNamed = value;
+    }
 
-public bool Finished
-{
-get => orig.Finished;
-set => orig.Finished = value;
-}
+    public bool Entered
+    {
+        get => orig.Entered;
+        set => orig.Entered = value;
+    }
 
-public bool Active
-{
-get => orig.Active;
-set => orig.Active = value;
-}
+    public bool Finished
+    {
+        get => orig.Finished;
+        set => orig.Finished = value;
+    }
 
-public void Reset () =>
-orig.Reset();
+    public bool Active
+    {
+        get => orig.Active;
+        set => orig.Active = value;
+    }
 
-public void OnEnter () =>
-orig.OnEnter();
+    public void Reset()
+    {
+        orig.Reset();
+    }
 
-public void DoPlayRandomClip () =>
-CallMethod();
+    public void OnEnter()
+    {
+        orig.OnEnter();
+    }
 
-}
+    public void DoPlayRandomClip()
+    {
+        CallMethod();
+    }
 }
