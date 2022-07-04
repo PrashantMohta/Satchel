@@ -1,0 +1,167 @@
+namespace Satchel.Reflected
+{
+/// <summary>
+///     A class that contains all (public and private) fields and methods of Tk2dTextMeshGetProperties allowing you to
+///     easily get/set fields and call methods without dealing with reflection.
+/// </summary>
+public class Tk2dTextMeshGetPropertiesR:InstanceClassWrapper<HutongGames.PlayMaker.Actions.Tk2dTextMeshGetProperties>
+{
+public Tk2dTextMeshGetPropertiesR(HutongGames.PlayMaker.Actions.Tk2dTextMeshGetProperties _orig) : base(_orig) {}
+public HutongGames.PlayMaker.FsmOwnerDefault gameObject
+{
+get => orig.gameObject;
+set => orig.gameObject = value;
+}
+
+public HutongGames.PlayMaker.FsmString text
+{
+get => orig.text;
+set => orig.text = value;
+}
+
+public HutongGames.PlayMaker.FsmBool inlineStyling
+{
+get => orig.inlineStyling;
+set => orig.inlineStyling = value;
+}
+
+public HutongGames.PlayMaker.FsmString anchor
+{
+get => orig.anchor;
+set => orig.anchor = value;
+}
+
+public HutongGames.PlayMaker.FsmBool kerning
+{
+get => orig.kerning;
+set => orig.kerning = value;
+}
+
+public HutongGames.PlayMaker.FsmInt maxChars
+{
+get => orig.maxChars;
+set => orig.maxChars = value;
+}
+
+public HutongGames.PlayMaker.FsmInt NumDrawnCharacters
+{
+get => orig.NumDrawnCharacters;
+set => orig.NumDrawnCharacters = value;
+}
+
+public HutongGames.PlayMaker.FsmColor mainColor
+{
+get => orig.mainColor;
+set => orig.mainColor = value;
+}
+
+public HutongGames.PlayMaker.FsmColor gradientColor
+{
+get => orig.gradientColor;
+set => orig.gradientColor = value;
+}
+
+public HutongGames.PlayMaker.FsmBool useGradient
+{
+get => orig.useGradient;
+set => orig.useGradient = value;
+}
+
+public HutongGames.PlayMaker.FsmInt textureGradient
+{
+get => orig.textureGradient;
+set => orig.textureGradient = value;
+}
+
+public HutongGames.PlayMaker.FsmVector3 scale
+{
+get => orig.scale;
+set => orig.scale = value;
+}
+
+public tk2dTextMesh _textMesh
+{
+get => GetField<tk2dTextMesh>();
+set => SetField(value);
+}
+
+public string Name
+{
+get => orig.Name;
+set => orig.Name = value;
+}
+
+public string DisplayName
+{
+get => orig.DisplayName;
+set => orig.DisplayName = value;
+}
+
+public HutongGames.PlayMaker.Fsm Fsm
+{
+get => orig.Fsm;
+set => orig.Fsm = value;
+}
+
+public UnityEngine.GameObject Owner
+{
+get => orig.Owner;
+set => orig.Owner = value;
+}
+
+public HutongGames.PlayMaker.FsmState State
+{
+get => orig.State;
+set => orig.State = value;
+}
+
+public bool Enabled
+{
+get => orig.Enabled;
+set => orig.Enabled = value;
+}
+
+public bool IsOpen
+{
+get => orig.IsOpen;
+set => orig.IsOpen = value;
+}
+
+public bool IsAutoNamed
+{
+get => orig.IsAutoNamed;
+set => orig.IsAutoNamed = value;
+}
+
+public bool Entered
+{
+get => orig.Entered;
+set => orig.Entered = value;
+}
+
+public bool Finished
+{
+get => orig.Finished;
+set => orig.Finished = value;
+}
+
+public bool Active
+{
+get => orig.Active;
+set => orig.Active = value;
+}
+
+public void _getTextMesh () =>
+CallMethod();
+
+public void Reset () =>
+orig.Reset();
+
+public void OnEnter () =>
+orig.OnEnter();
+
+public void DoGetProperties () =>
+CallMethod();
+
+}
+}

@@ -63,7 +63,7 @@ namespace Satchel.BetterMenus
             Instance = this;
             MenuOrder.Clear();
             ResetPositioners();
-            On.UIManager.ShowMenu += ShowMenu;
+            On.UIManager.ShowMenu += ShowMenu; 
         }
         private IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
             if(menu == this.menuScreen){
