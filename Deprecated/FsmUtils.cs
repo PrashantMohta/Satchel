@@ -23,5 +23,25 @@ namespace Satchel
         public static Dictionary<string,AudioClip> getAudioClips(this PlayMakerFSM self){
             return self.GetAudioClips();
         }
+
+        [Obsolete("Satchel.FsmUtil.AddCustomAction with stateName is deprecated, please use the overload without stateName.")]
+        public static void AddCustomAction(this FsmState state, string stateName, Action method){
+            state.AddCustomAction(method);
+        }	
+
+        [Obsolete("Satchel.FsmUtil.AddCustomAction with stateName is deprecated, please use the overload without stateName.")]
+        public static void AddCustomAction(this FsmState state, string stateName, Action<FsmState> method){
+            state.AddCustomAction(method);
+        }
+
+        [Obsolete("Satchel.FsmUtil.InsertCustomAction with stateName is deprecated, please use the overload without stateName.")]
+        public static void InsertCustomAction(this FsmState state, string stateName, Action method, int index){
+            state.InsertCustomAction(method,index);
+        }
+
+        [Obsolete("Satchel.FsmUtil.InsertCustomAction with stateName is deprecated, please use the overload without stateName.")]
+        public static void InsertCustomAction(this FsmState state, string stateName, Action<FsmState> method, int index){
+             state.InsertCustomAction(method,index);
+        }
     }
 }
