@@ -275,7 +275,7 @@ namespace Satchel.BetterMenus
             option = default;
             if (!disposedValue && LeftElement != null & RightElement != null)
             {
-                option = new MenuRow(LeftElement, RightElement,Id:Id);
+                option = new MenuRow(new List<Element>(){LeftElement, RightElement},Id:Id);
                 options.Add(option);
             }
             return this;

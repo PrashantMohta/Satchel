@@ -128,6 +128,8 @@ namespace Satchel.BetterMenus
             currentSlider.SetActive(true);
 
             //update slider value after slider event is replaced.
+            slider.minValue = minValue;
+            slider.maxValue = maxValue;
             value = LoadValue.Invoke();
             label.text = $"{Name}";
 
