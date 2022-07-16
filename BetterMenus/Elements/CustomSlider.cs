@@ -85,6 +85,24 @@ namespace Satchel.BetterMenus
                 newPrefab.SetActive(false);
 
                 //fix the prefab to be better to work with
+                var oldSlider = newPrefab.GetComponent<Slider>();
+                var direction = oldSlider.direction;
+                var fillRect = oldSlider.fillRect;
+                var handleRect = oldSlider.handleRect;
+                var image = oldSlider.image;
+                var spriteState = oldSlider.spriteState;
+                var targetGraphic = oldSlider.targetGraphic;
+                GameObject.DestroyImmediate(oldSlider);
+                newPrefab.RemoveComponent<Slider>();
+
+                var newSlider = newPrefab.AddComponent<Slider>(); 
+                newSlider.direction = direction;
+                newSlider.fillRect = fillRect;
+                newSlider.handleRect = handleRect;
+                newSlider.image = image;
+                newSlider.spriteState = spriteState;
+                newSlider.targetGraphic = targetGraphic;
+
                 newPrefab.RemoveComponent<MenuAudioSlider>(); 
                 newPrefab.Find("Label")?.RemoveComponent<AutoLocalizeTextUI>();
                 var mpd = newPrefab.GetComponent<MenuPreventDeselect>();
@@ -105,7 +123,7 @@ namespace Satchel.BetterMenus
                 valueLabel.text = $"{value:0.0}";
             }
         }
-
+        private bool isReady = false;
 
         public GameObject AddSlider(GameObject SliderParent){
             currentSlider = UnityEngine.Object.Instantiate(prefab,SliderParent.transform);
@@ -115,10 +133,14 @@ namespace Satchel.BetterMenus
 
             Action<float> updateOnEvent = newValue =>
             {
-                value = newValue;
-                label.text = Name; 
-                // call the StoreValue action with float
-                StoreValue?.Invoke(newValue);
+                if(isReady){
+                    value = newValue;
+                    label.text = Name; 
+                    
+                    Satchel.Instance.LogDebug( $"Slider {Id} new value "+ newValue);
+                    // call the StoreValue action with float
+                    StoreValue?.Invoke(newValue);
+                }
             };
             // stuff to happen whenever slider is moved
             var SliderEvent = new Slider.SliderEvent();
@@ -202,7 +224,7 @@ namespace Satchel.BetterMenus
             }
             gameObject = panel;
             ((IContainer)Parent).OnBuilt += (_,_) => {
-                Update();
+                Update();                
             };
             return new GameObjectRow(panel);
         }
@@ -211,13 +233,17 @@ namespace Satchel.BetterMenus
         {
             slider.wholeNumbers = wholeNumbers;
 
-            //update value after updating constraints
             value = LoadValue.Invoke();
             slider.value = value;
 
             slider.minValue = minValue;
             slider.maxValue = maxValue;
 
+            Satchel.Instance.LogDebug( $"Slider {Id} initial"+ value);
+            //update value after updating constraints
+            slider.value = value;
+            isReady = true;
+            Satchel.Instance.LogDebug( $"Slider {Id} After update"+ slider.value);
             //change Text
             label.text = Name;
 
