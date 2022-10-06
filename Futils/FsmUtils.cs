@@ -231,6 +231,7 @@ namespace Satchel
                 }
             }
             state.Actions = actions;
+            action.Init(state);
         }
         public static void InsertAction(this PlayMakerFSM fsm, string stateName, FsmStateAction action, int index)
         {
