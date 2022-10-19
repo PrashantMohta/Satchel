@@ -90,11 +90,19 @@ namespace Satchel.BetterMenus
             }
 			
 			gameObject = option.gameObject;
-            ((IContainer)Parent).OnBuilt += (_,Element) => {
-                if(option == null || option.menuSetting == null){
-                    return;
+
+            Action loadSettingOnBuild = () =>
+            {
+                if (option != null && option.menuSetting != null)
+                {
+                    option.menuSetting.RefreshValueFromGameSettings();
                 }
-                option.menuSetting.RefreshValueFromGameSettings();
+            };
+
+            OnBuilt += loadSettingOnBuild;
+            
+            ((IContainer)Parent).OnBuilt += (_,_) => {
+                OnBuiltInvoke();             
             };
             return new GameObjectRow(option.gameObject);
         }

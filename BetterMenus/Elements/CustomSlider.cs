@@ -223,8 +223,11 @@ namespace Satchel.BetterMenus
                 Instance.MenuOrder.Add(new GameObjectRow(panel));
             }
             gameObject = panel;
+
+            OnBuilt += Update;
+            
             ((IContainer)Parent).OnBuilt += (_,_) => {
-                Update();                
+                OnBuiltInvoke();             
             };
             return new GameObjectRow(panel);
         }

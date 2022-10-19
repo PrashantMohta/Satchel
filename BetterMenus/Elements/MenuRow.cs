@@ -82,6 +82,11 @@ namespace Satchel.BetterMenus
             {
                 Instance.MenuOrder.Add(gop);
             }
+            
+            ((IContainer)Parent).OnBuilt += (_,_) => {
+                OnBuiltInvoke();             
+            };
+            
             return gop;
         }
 
