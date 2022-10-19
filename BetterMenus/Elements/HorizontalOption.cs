@@ -39,7 +39,7 @@ namespace Satchel.BetterMenus
         /// <param name="loadSetting">The Func(int) to Invoke to load the current setting.</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
         public HorizontalOption(
-            string name , 
+            string name, 
             string description,
             string[] values, 
             Action<int> applySetting, 
