@@ -12,7 +12,7 @@ namespace Satchel.BetterMenus
         /// <param name="_true">the text that shows when bool is true</param>
         /// <param name="_false">the text that shows when bool is false</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
-        /// <returns></returns>
+        /// <returns>The Horizontal Option to add to the menu</returns>
         public static HorizontalOption HorizontalBoolOption(string name, 
             string description, 
             Action<bool> applySetting, 
