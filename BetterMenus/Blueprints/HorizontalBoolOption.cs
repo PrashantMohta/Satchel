@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+
 namespace Satchel.BetterMenus
 {
     public static partial class Blueprints
@@ -17,18 +19,17 @@ namespace Satchel.BetterMenus
             string description, 
             Action<bool> applySetting, 
             Func<bool> loadSetting, 
-            string _true = "True",
-            string _false = "False",
+            [CanBeNull] string _true = null,
+            [CanBeNull] string _false = null,
             string Id = "__UseName")
         {
-            if (Id == "__UseName")
-            {
-                Id = name;
-            }
-
             return new HorizontalOption(name,
                 description,
-                new []{_true, _false},
+                new []
+                {
+                    _true ?? Language.Language.Get("MOH_ON","MainMenu"), 
+                    _false ?? Language.Language.Get("MOH_OFF","MainMenu")
+                },
                 (i) => applySetting(i == 0),
                 () => loadSetting() ? 0 : 1,
                 Id
