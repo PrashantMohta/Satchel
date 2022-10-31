@@ -83,7 +83,7 @@ namespace Satchel.BetterMenus
             if(ElementDict.TryGetValue(ElementId, out var elem)){
                 return elem;
             }
-            Modding.Logger.LogError($"No such Element with id {ElementId}");
+            Satchel.Instance.LogError($"No such Element with id {ElementId}");
             return null;
         }
 
@@ -136,7 +136,7 @@ namespace Satchel.BetterMenus
                         ApplyElementVisibility(e);
                     }
                 } else {
-                    Modding.Logger.LogError($"No GameObject for {elem.GetType()} {elem.Name}");
+                    Satchel.Instance.LogError($"No GameObject for {elem.GetType()} {elem.Name}");
                 }
             } else {
                 elem.gameObject.SetActive(elem.isVisible);

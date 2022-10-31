@@ -50,7 +50,7 @@ namespace Satchel
         public void StartFlashColor(float time)
         {
             if(sr.material.shader != Core.spriteFlash) { 
-                Debug.Log("Cannot FlashSprite because the spriteFlash shader is not being used");
+                Satchel.Instance.LogWarn("Cannot FlashSprite because the spriteFlash shader is not being used");
                 return;
             } 
             IEnumerator Flash()

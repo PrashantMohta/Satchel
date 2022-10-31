@@ -59,7 +59,7 @@ namespace Satchel.BetterMenus
             foreach(var elem in Row){
                 if (elem is IShadowElement)
                 {
-                    Modding.Logger.LogError("[Satchel] - Cannot create an IShadowElement inside another IShadowElement");
+                    Satchel.Instance.LogError("[Satchel] - Cannot create an IShadowElement inside another IShadowElement");
                     return new GameObjectRow();
                 }
                 elem.Parent = this.Parent;

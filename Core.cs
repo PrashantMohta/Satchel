@@ -1,5 +1,3 @@
-using static Modding.Logger;
-
 namespace Satchel
 {
     /// <summary>
@@ -43,7 +41,7 @@ namespace Satchel
             }
         }
         static Core(){
-            Log(AssemblyUtils.Version());
+            Satchel.Instance.Log(AssemblyUtils.Version());
             LoadShaders();
         }
 
@@ -167,7 +165,7 @@ namespace Satchel
                 customScene.TileMap = TileMap;
                 customScene.SceneManager = SceneManager;
             } else {
-                Log("Error Creating scene : " + sceneName + " probably a scene with the same name already exists");
+                Satchel.Instance.Log("Error Creating scene : " + sceneName + " probably a scene with the same name already exists");
             }
             return customScene;
         }

@@ -1,6 +1,5 @@
 using Satchel.Futils;
 using TMPro;
-using static Modding.Logger;
 
 namespace Satchel
 {
@@ -110,7 +109,7 @@ namespace Satchel
         }
 
         private void AddSceneToZone(customMapZone Zone,customMap map){
-            Log($"processing scene {map.sceneName} for map");
+            Satchel.Instance.Log($"processing scene {map.sceneName} for map");
             var newZone = Zones[map.ZoneName];
             var tmpChildZ = gameMapComponent.areaCliffs.transform.GetChild(6).localPosition.z;
             var roomMat = UnityEngine.Object.Instantiate(gameMapComponent.areaCliffs.transform.GetChild(1).GetComponent<SpriteRenderer>().material);
@@ -453,7 +452,7 @@ namespace Satchel
             }
             else
             {
-                Debug.Log("Couldn't find current scene object!");
+                Satchel.Instance.Log("Couldn't find current scene object!");
                 if (posShade)
                 {
                     ReflectionHelper.GetField<GameMap, PlayerData>(self, "pd")
