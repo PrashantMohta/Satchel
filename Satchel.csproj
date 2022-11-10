@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -11,7 +11,6 @@
     <AssemblyName>Satchel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -37,12 +36,10 @@
     <DocumentationFile>bin\Release\Satchel.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
-
-    <!-- Create a LocalBuildProperties.props file which defines references directories
+  <!-- Create a LocalBuildProperties.props file which defines references directories
   and OutputDirectory (where the post-build event sends the dll to) -->
   <Import Project="LocalBuildProperties_example.props" Condition="Exists('LocalBuildProperties_example.props')" />
   <Import Project="LocalBuildProperties.props" Condition="Exists('LocalBuildProperties.props')" />
-
   <ItemGroup>
     <Reference Include="MonoMod.RuntimeDetour, Version=21.4.29.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(ModdingAPI)\MonoMod.RuntimeDetour.dll</HintPath>
@@ -112,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetterMenus\Elements\InputField.cs" />
     <Compile Include="GlobalUsings.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Core.cs" />
@@ -155,7 +153,14 @@
     <Compile Include="Custom\CustomShiny.cs" />
     <Compile Include="BetterMenus\Base\*.cs" />
     <Compile Include="BetterMenus\Elements\Builders\*.cs" />
-    <Compile Include="BetterMenus\Elements\*.cs" />
+    <Compile Include="BetterMenus\Elements\ButtonBind.cs" />
+    <Compile Include="BetterMenus\Elements\CustomSlider.cs" />
+    <Compile Include="BetterMenus\Elements\HorizontalOption.cs" />
+    <Compile Include="BetterMenus\Elements\KeyBind.cs" />
+    <Compile Include="BetterMenus\Elements\MenuButton.cs" />
+    <Compile Include="BetterMenus\Elements\MenuRow.cs" />
+    <Compile Include="BetterMenus\Elements\StaticPanel.cs" />
+    <Compile Include="BetterMenus\Elements\TextPanel.cs" />
     <Compile Include="BetterMenus\Blueprints\*.cs" />
     <Compile Include="BetterMenus\Menu.cs" />
     <Compile Include="BetterMenus\Utils.cs" />

@@ -25,7 +25,7 @@ namespace Satchel.BetterMenus
         };
 
         //list that stores the order.
-        internal List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
+        public List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
         #endregion
         
         

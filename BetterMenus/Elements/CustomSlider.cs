@@ -7,20 +7,18 @@ namespace Satchel.BetterMenus
     public class CustomSlider : Element //should be renamed to slider probs and probably needs to be remade slider needs to be added to nav graph
     {
         public GameObject currentSlider;
+        
+        private bool isReady = false;
+        
         public float minValue = 0f;
         public float maxValue = 5f;
         public bool wholeNumbers = false;
 
         private float _value = 0f;
-        public float value
-        {
-            get => _value;
-            set
-            {
-                _value = value;
-                UpdateValueLabel();
-            }
-        }
+        private Text _label;
+        private Text _valueLabel;
+        private Slider _slider;
+        private static GameObject _prefab;
 
         /// <summary>
         /// The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.
@@ -31,101 +29,10 @@ namespace Satchel.BetterMenus
         /// The initial value that you need the volume slider to be, probably from previous session or a default
         /// </summary>
         public Func<float> LoadValue;
-
-        private Text _label;
-        public Text label
-        {
-            get
-            {
-                if (_label == null)
-                {
-                    _label = currentSlider.Find("Label")?.GetComponent<Text>();
-                }
-                return _label;
-            }
-        }
-
-        private Text _valueLabel;
-
-        public Text valueLabel
-        {
-            get
-            {
-                if(_valueLabel == null)
-                {
-                    _valueLabel = currentSlider.Find("MusicValue")?.GetComponent<Text>();
-                }
-                return _valueLabel;
-            }   
-        }
-        private Slider _slider;
-
-        public Slider slider
-        {
-            get
-            {
-                if(_slider == null){
-                    _slider = currentSlider.GetComponent<Slider>();
-                }
-                return _slider;
-            }
-        }
-
-        private static GameObject _prefab;
-
-        public static GameObject prefab
-        {
-            get
-            {
-                if(_prefab != null){
-                    return _prefab;
-                }
-                //todo actually make the prefab instead of stealing from Music slider.
-                var newPrefab = UnityEngine.Object.Instantiate(UIManager.instance.gameObject.transform.Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject);
-                newPrefab.SetActive(false);
-
-                //fix the prefab to be better to work with
-                var oldSlider = newPrefab.GetComponent<Slider>();
-                var direction = oldSlider.direction;
-                var fillRect = oldSlider.fillRect;
-                var handleRect = oldSlider.handleRect;
-                var image = oldSlider.image;
-                var spriteState = oldSlider.spriteState;
-                var targetGraphic = oldSlider.targetGraphic;
-                GameObject.DestroyImmediate(oldSlider);
-                newPrefab.RemoveComponent<Slider>();
-
-                var newSlider = newPrefab.AddComponent<Slider>(); 
-                newSlider.direction = direction;
-                newSlider.fillRect = fillRect;
-                newSlider.handleRect = handleRect;
-                newSlider.image = image;
-                newSlider.spriteState = spriteState;
-                newSlider.targetGraphic = targetGraphic;
-
-                newPrefab.RemoveComponent<MenuAudioSlider>(); 
-                newPrefab.Find("Label")?.RemoveComponent<AutoLocalizeTextUI>();
-                var mpd = newPrefab.GetComponent<MenuPreventDeselect>();
-                mpd.cancelAction = CancelAction.CustomCancelAction; 
-
-                _prefab = newPrefab;
-                return _prefab;
-            }
-        }
         
 
-
-
-        private void UpdateValueLabel(){
-            if (wholeNumbers){
-                valueLabel.text = $"{value}";
-            } else {
-                valueLabel.text = $"{value:0.0}";
-            }
-        }
-        private bool isReady = false;
-
-        public GameObject AddSlider(GameObject SliderParent){
+        public GameObject AddSlider(GameObject SliderParent)
+        {
             currentSlider = UnityEngine.Object.Instantiate(prefab,SliderParent.transform);
             currentSlider.name = Name;
             currentSlider.transform.parent= SliderParent.transform;
@@ -156,10 +63,10 @@ namespace Satchel.BetterMenus
             return currentSlider;
         }
 
-        private void FixSliderNavigation(){
+        private void FixSliderNavigation()
+        {
             slider.navigation =  new Navigation
             {
-                //mode = Navigation.Mode.Vertical
                 mode = Navigation.Mode.Explicit,
                 selectOnUp = slider.navigation.selectOnUp,
                 selectOnDown = slider.navigation.selectOnDown,
@@ -173,8 +80,8 @@ namespace Satchel.BetterMenus
         /// Creates a new CustomSlider instance.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
-        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
-        /// <param name="loadValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
+        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float parameter to save the value to use in mod.</param>
+        /// <param name="loadValue">The initial value that you need the slider to be, probably from previous session or a default</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
         [Obsolete("This Constructor is obsolete, use the one with minValue and maxValue.")]
         public CustomSlider(string name, Action<float> storeValue, Func<float> loadValue, string Id = "__UseName") : base(Id, name)
@@ -189,7 +96,7 @@ namespace Satchel.BetterMenus
         /// Creates a new CustomSlider instance.
         /// </summary>
         /// <param name="name">The name to be displayed.</param>
-        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.</param>
+        /// <param name="storeValue">The Action that will be invoked when the slider is moved. Use the float parameter to save the value to use in mod.</param>
         /// <param name="loadValue">The initial value that you need the volume slider to be, probably from previous session or a default</param>
         /// <param name="minValue">the lowest value the slider will go to</param>
         /// <param name="maxValue">the highest value the slider will go to</param>
@@ -211,7 +118,7 @@ namespace Satchel.BetterMenus
             _ = StoreValue ?? throw new ArgumentNullException(nameof(StoreValue), "StoreValue cannot be null");
             _ = LoadValue ?? throw new ArgumentNullException(nameof(LoadValue), "SavedValue cannot be null");
 
-            c.AddStaticPanel(Name+"panel", new RelVector2(new Vector2(200f, 105f)), out GameObject panel);
+            c.AddStaticPanel(Name + "panel", new RelVector2(new Vector2(200f, 105f)), out GameObject panel);
             AddSlider(panel);
             
             c.NavGraph.AddNavigationNode(slider);
@@ -252,6 +159,93 @@ namespace Satchel.BetterMenus
 
             FixSliderNavigation(); // just in case the nav graph was changed
         }
-    }
+        
+        public static GameObject prefab
+        {
+            get
+            {
+                if (_prefab == null)
+                {
+                    //todo actually make the prefab instead of stealing from Music slider.
+                    var newPrefab = UnityEngine.Object.Instantiate(UIManager.instance.gameObject.transform
+                        .Find("UICanvas/AudioMenuScreen/Content/MusicVolume/MusicSlider").gameObject);
+                    newPrefab.SetActive(false);
 
+                    //fix the prefab to be better to work with
+                    var oldSlider = newPrefab.GetComponent<Slider>();
+                    var direction = oldSlider.direction;
+                    var fillRect = oldSlider.fillRect;
+                    var handleRect = oldSlider.handleRect;
+                    var image = oldSlider.image;
+                    var spriteState = oldSlider.spriteState;
+                    var targetGraphic = oldSlider.targetGraphic;
+                    GameObject.DestroyImmediate(oldSlider);
+                    newPrefab.RemoveComponent<Slider>();
+
+                    var newSlider = newPrefab.AddComponent<Slider>();
+                    newSlider.direction = direction;
+                    newSlider.fillRect = fillRect;
+                    newSlider.handleRect = handleRect;
+                    newSlider.image = image;
+                    newSlider.spriteState = spriteState;
+                    newSlider.targetGraphic = targetGraphic;
+
+                    newPrefab.RemoveComponent<MenuAudioSlider>();
+                    newPrefab.Find("Label")?.RemoveComponent<AutoLocalizeTextUI>();
+                    var mpd = newPrefab.GetComponent<MenuPreventDeselect>();
+                    mpd.cancelAction = CancelAction.CustomCancelAction;
+
+                    _prefab = newPrefab;
+                }
+                return _prefab; 
+            }
+        }
+        
+        public float value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+                UpdateValueLabel();
+            }
+        }
+        public Text label
+        {
+            get
+            {
+                if (_label == null)
+                {
+                    _label = currentSlider.Find("Label")?.GetComponent<Text>();
+                }
+                return _label;
+            }
+        }
+        public Text valueLabel
+        {
+            get
+            {
+                if(_valueLabel == null)
+                {
+                    _valueLabel = currentSlider.Find("MusicValue")?.GetComponent<Text>();
+                }
+                return _valueLabel;
+            }   
+        }
+        public Slider slider
+        {
+            get
+            {
+                if(_slider == null){
+                    _slider = currentSlider.GetComponent<Slider>();
+                }
+                return _slider;
+            }
+        }
+        
+        private void UpdateValueLabel()
+        {
+            valueLabel.text = wholeNumbers ? $"{value}" : $"{value:0.0}";
+        }
+    }
 }
