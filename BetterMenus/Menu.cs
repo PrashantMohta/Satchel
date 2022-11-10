@@ -50,7 +50,7 @@ namespace Satchel.BetterMenus
         
         /// <summary>
         /// Creates a new instance of Menu. This is used to create a better menu
-        /// <para/>Use Menu.Create for creating custom menus instead.
+        /// <param name="name">The title of the ModMenu"></param>
         /// </summary>
         public Menu(string name, Element[] elements)
         {
@@ -60,6 +60,21 @@ namespace Satchel.BetterMenus
             foreach(var elem in elements){
                AddElement(elem);
             }
+            Instance = this;
+            MenuOrder.Clear();
+            ResetPositioners();
+            On.UIManager.ShowMenu += ShowMenu;
+        }
+        
+        /// <summary>
+        /// Creates a new instance of Menu without any elements. use MenuRef.AddElement or the other constructor to add elements
+        /// <param name="name">The title of the ModMenu"></param>
+        /// </summary>
+        public Menu(string name)
+        {
+            Parent = null; // menu has no Parent
+            gameObject = null; // no go
+            Name = name;
             Instance = this;
             MenuOrder.Clear();
             ResetPositioners();
