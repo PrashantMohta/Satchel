@@ -51,6 +51,7 @@ namespace Satchel.BetterMenus
         /// <summary>
         /// Creates a new instance of Menu. This is used to create a better menu
         /// <param name="name">The title of the ModMenu"></param>
+        /// <param name="elements">An array of elements you want to add to the menu. You can add more elements later via MenuRef.AddElement</param>
         /// </summary>
         public Menu(string name, Element[] elements)
         {
