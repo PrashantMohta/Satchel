@@ -48,7 +48,7 @@ public class InputField : Element
     /// <param name="_loadValue">The initial value that you need the field to be, probably from previous session or a default</param>
     /// <param name="_placeholder">The text that shows when input text box is empty</param>
     /// <param name="_characterLimit">the maximum number of characters allowed in the box. default 10 </param>
-    /// <param name="_config">Configurations for the input text. If left null, defaults to InputFieldConfig.DefaultText. Config includes fontSize (default: 46), inputBoxWidth (default: 300f) and contentType (default: Alphanumeric).</param>
+    /// <param name="_config">Configurations for the input text. If left null, defaults to InputFieldConfig.DefaultText. Config includes fontSize (default: 46), inputBoxWidth (default: 300f) and contentType (default: Standard).</param>
     /// <param name="Id">the id of the element that can be used to search for it</param>
     public InputField(string name, Action<string> _storeValue, Func<string> _loadValue, string _placeholder = "", int _characterLimit = 10, Config.InputFieldConfig? _config = null,  string Id = "__Usename") : base(Id, name)
     {
@@ -110,13 +110,13 @@ public class InputField : Element
     /// <inheritdoc />
     public override void Update()
     {
-        placeholderText.text = placeholder;
-        label.text = base.Name;
-        userInput = loadValue();
-        
         inputField.contentType = config.contentType;
         inputField.textComponent.fontSize = config.fontSize;
         inputField.characterLimit = characterLimit;
+        
+        placeholderText.text = placeholder;
+        label.text = base.Name;
+        userInput = loadValue();
 
         var inputFieldRt = inputField.GetComponent<RectTransform>();
 
@@ -152,7 +152,7 @@ public class InputField : Element
                 //to be set on build
                 field.textComponent.text = "";
                 field.textComponent.fontSize = 46;
-                field.contentType = UnityEngine.UI.InputField.ContentType.Alphanumeric;
+                field.contentType = UnityEngine.UI.InputField.ContentType.Standard;
                 field.characterLimit = 10;
                 
                 var placeHolder = inputFieldObj.Find("Placeholder").GetComponent<Text>();

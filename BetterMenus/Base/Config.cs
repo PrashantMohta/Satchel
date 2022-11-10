@@ -38,6 +38,16 @@ public struct InputFieldConfig
         inputBoxWidth = 150f,
         contentType = UnityEngine.UI.InputField.ContentType.IntegerNumber
     };
+    
+    /// <summary>
+    /// the default config for floats
+    /// </summary>
+    public static readonly InputFieldConfig DefaultFloatNumber = new InputFieldConfig()
+    {
+        fontSize = 46,
+        inputBoxWidth = 210f,
+        contentType = UnityEngine.UI.InputField.ContentType.DecimalNumber
+    };
 }
 
 public enum SelectableArea
