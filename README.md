@@ -2,9 +2,9 @@
 A Bag-of-tricks Utility mod that aims to make it easier to mod hollow knight
 
 # Documentation
- 
-*  [Example Mod showcasing how to use BetterMenus ](https://github.com/PrashantMohta/Satchel/tree/master/BetterMenus/Example)
-*  Actual Documentation coming soon
+
+*  Core features [documentation](https://prashantmohta.github.io/ModdingDocs/Satchel/Satchel.html)
+*  BetterMenus [documentation](https://prashantmohta.github.io/ModdingDocs/Satchel/BetterMenus/better-menus.html) and [examples](https://github.com/TheMulhima/Satchel/tree/master/BetterMenus/Example)
 
 # Credits 
 
