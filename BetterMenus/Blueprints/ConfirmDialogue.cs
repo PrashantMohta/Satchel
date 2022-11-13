@@ -40,7 +40,7 @@ namespace Satchel.BetterMenus
         /// <param name="optionsPerRow"> Number of options to show in a single row</param>
         /// <returns>The Dialog Menu</returns>
         public static SMenu CreateDialogMenu(string title, string subTitle, string[] Options, Action<string> OnButtonPress, int optionsPerRow = 2) { 
-            var menu = new Menu("", Array.Empty<Element>());
+            var menu = new Menu("");
             if (title != string.Empty)
             {
                 menu.AddElement(new TextPanel(title, fontSize: 55)
