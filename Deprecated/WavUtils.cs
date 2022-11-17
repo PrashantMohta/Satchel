@@ -1,7 +1,6 @@
 using System.IO;
 using System.Text;
 
-
 namespace Satchel
 {
 	/// <summary>
@@ -17,6 +16,7 @@ namespace Satchel
 	/// <remarks>
 	/// For documentation and usage examples: https://github.com/deadlyfingers/UnityWav
 	/// </remarks>
+	[Obsolete("Use the nuget package WavLib by SFGrenade", false)]
 	public class WavUtils
 	{
 		// Force save as 16-bit .wav
