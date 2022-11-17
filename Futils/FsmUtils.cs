@@ -1,3 +1,4 @@
+using System.Linq;
 using Satchel.Futils;
 namespace Satchel
 {
@@ -216,6 +217,16 @@ namespace Satchel
             return fsm.GetState(stateName).GetActions<T>();
         }
 
+        public static T GetFirstActionOfType<T>(this FsmState state) where T : FsmStateAction
+        {
+            return state.GetActions<T>().FirstOrDefault();
+        }
+        
+        public static T GetFirstActionOfType<T>(this PlayMakerFSM fsm, string state) where T : FsmStateAction
+        {
+            return fsm.GetActions<T>(state).FirstOrDefault();
+        }
+
         public static void InsertAction(this FsmState state, FsmStateAction action, int index)
         {
             var currActions = state.Actions;
@@ -259,6 +270,16 @@ namespace Satchel
         public static void RemoveAction(this PlayMakerFSM fsm, string stateName, int index)
         {
             fsm.GetState(stateName).RemoveAction(index);
+        }
+        
+        public static void DisableAction(this FsmState state, int index)
+        {
+            state.GetAction(index).Enabled = false;
+        }
+        
+        public static void DisableAction(this PlayMakerFSM fsm, string state, int index)
+        {
+            fsm.GetState(state).DisableAction(index);
         }
 
         public static void AddCustomAction(this FsmState state, Action method)

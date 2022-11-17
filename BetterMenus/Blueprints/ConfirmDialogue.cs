@@ -1,8 +1,4 @@
-﻿using Modding.Menu;
-using Modding.Menu.Config;
-using On.InControl.NativeDeviceProfiles;
-using UnityEngine.UI;
-using SMenu =  Satchel.BetterMenus.Menu;
+﻿using Modding.Menu.Config;
 namespace Satchel.BetterMenus
 {
     public static partial class Blueprints
@@ -12,7 +8,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="initialMenu">The current Menu</param>
         /// <param name="DialogMenu">The new dialog menu you want to be shown on going back</param>
-        public static void AddConfirmDialog(this SMenu initialMenu, SMenu DialogMenu)
+        public static void AddConfirmDialog(this Menu initialMenu, Menu DialogMenu)
         {
             initialMenu.CancelAction = () =>
             {
@@ -25,7 +21,7 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="initialMenu">The current Menu</param>
         /// <param name="DialogMenu">The dialog menu</param>
-        public static void ShowDialog(this SMenu initialMenu, SMenu DialogMenu)
+        public static void ShowDialog(this Menu initialMenu, Menu DialogMenu)
         {
             DialogMenu.returnScreen = initialMenu.GetCachedMenuScreen(initialMenu.returnScreen);
             Utils.GoToMenuScreen(DialogMenu.GetCachedMenuScreen(DialogMenu.returnScreen));
@@ -39,7 +35,7 @@ namespace Satchel.BetterMenus
         /// <param name="OnButtonPress">Action that is invoked with the user's selection</param>
         /// <param name="optionsPerRow"> Number of options to show in a single row</param>
         /// <returns>The Dialog Menu</returns>
-        public static SMenu CreateDialogMenu(string title, string subTitle, string[] Options, Action<string> OnButtonPress, int optionsPerRow = 2) { 
+        public static Menu CreateDialogMenu(string title, string subTitle, string[] Options, Action<string> OnButtonPress, int optionsPerRow = 2) { 
             var menu = new Menu("");
             if (title != string.Empty)
             {
@@ -103,8 +99,8 @@ namespace Satchel.BetterMenus
         /// <param name="OnButtonPress">Action that is invoked with the user's selection</param>
         /// <param name="optionsPerRow"> Number of options to show in a single row</param>
         /// <returns>The Dialog Menu</returns>
-        public static SMenu AddConfirmDialog(
-            this SMenu initialMenu,
+        public static Menu AddConfirmDialog(
+            this Menu initialMenu,
             string title, 
             string subTitle, 
             string[] Options, 

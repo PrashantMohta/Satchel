@@ -110,15 +110,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BetterMenus\Elements\InputField.cs" />
+    <Compile Include="Deprecated\Reflected\GameManagerFields.cs" />
+    <Compile Include="Deprecated\Reflected\GameManagerILIEnumerators.cs" />
+    <Compile Include="Deprecated\Reflected\GameManagerMethods.cs" />
+    <Compile Include="Deprecated\Reflected\HeroControllerFields.cs" />
+    <Compile Include="Deprecated\Reflected\HeroControllerILIEnumerators.cs" />
+    <Compile Include="Deprecated\Reflected\HeroControllerMethods.cs" />
+    <Compile Include="Deprecated\WavUtils.cs" />
     <Compile Include="GlobalUsings.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Core.cs" />
-    <Compile Include="Reflected\GameManagerFields.cs" />
-    <Compile Include="Reflected\GameManagerILIEnumerators.cs" />
-    <Compile Include="Reflected\GameManagerMethods.cs" />
-    <Compile Include="Reflected\HeroControllerFields.cs" />
-    <Compile Include="Reflected\HeroControllerILIEnumerators.cs" />
-    <Compile Include="Reflected\HeroControllerMethods.cs" />
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
     <Compile Include="Utils\EnemyUtils.cs" />
@@ -128,7 +129,6 @@
     <Compile Include="Utils\SceneUtils.cs" />
     <Compile Include="Utils\SpriteUtils.cs" />
     <Compile Include="Utils\TextureUtils.cs" />
-    <Compile Include="Utils\WavUtils.cs" />
     <Compile Include="Utils\CoroutineHelper.cs" />
     <Compile Include="Utils\ObjectPoolManager.cs" />
     <Compile Include="Monobehaviour\Unity\AlertRangeMarker.cs" />
