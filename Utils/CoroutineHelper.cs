@@ -31,9 +31,9 @@ namespace Satchel
         /// </summary>
         /// <param name="numFrames">The number of frames to wait</param>
         /// <param name="codeToRun">the code to run</param>
-        public static void WaitForFramesBeforeInvoke(int numFrames, Action codeToRun)
+        public static Coroutine WaitForFramesBeforeInvoke(int numFrames, Action codeToRun)
         {
-            GetRunner().StartCoroutine(WaitBeforeInvokeRoutine(numFrames, codeToRun));
+            return GetRunner().StartCoroutine(WaitBeforeInvokeRoutine(numFrames, codeToRun));
         }
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace Satchel
         /// </summary>
         /// <param name="seconds">The number of seconds to wait</param>
         /// <param name="codeToRun">the code to run</param>
-        public static void WaitForSecondsBeforeInvoke(float seconds, Action codeToRun)
+        public static Coroutine WaitForSecondsBeforeInvoke(float seconds, Action codeToRun)
         {
-            GetRunner().StartCoroutine(WaitBeforeInvokeRoutine(seconds, codeToRun));
+            return GetRunner().StartCoroutine(WaitBeforeInvokeRoutine(seconds, codeToRun));
         }
     
         private static IEnumerator WaitBeforeInvokeRoutine(int numFrames, Action codeToRun)
