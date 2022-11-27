@@ -53,15 +53,15 @@ namespace Satchel.BetterMenus
         /// <param name="menuButtonName">The new menu button name, leave null if you dont want to change</param>
         /// <param name="menuButtonDesc">The new menu button description, leave null if you dont want to change</param>
         /// </summary>
-        public void SetMenuButtonName(Mod mod, string menuButtonName = null, string menuButtonDesc = null)
+        public void SetMenuButtonNameAndDesc(Mod mod, string menuButtonName = null, string menuButtonDesc = null)
         {
             _menuButtonName = menuButtonName;
             _menuButtonDesc = menuButtonDesc;
             callingMod = mod;
-            SetMenuButtonName();
+            SetMenuButtonNameAndDesc();
         }
         
-        private void SetMenuButtonName()
+        private void SetMenuButtonNameAndDesc()
         {
             if (_menuButtonName == null && _menuButtonDesc == null) return;
             
@@ -129,36 +129,9 @@ namespace Satchel.BetterMenus
             MenuOrder.Clear();
             ResetPositioners();
             On.UIManager.ShowMenu += ShowMenu;
-
-            //it is a flags enum
-            var bin = Convert.ToString((int) modLoadState.GetValue(null), 2);
-            //when mods are completely loaded the value is 111 
-            if (bin.Length == 3 && bin[0] == '1')
-            {
-                //we can safely hook onto this knowing it will be run after mapi's
-                UIManager.EditMenus -= ChangeButtonName;
-                UIManager.EditMenus += ChangeButtonName;
-            }
-            else
-            {
-                // we need to make sure we hook the hook after mapi does
-                ModHooks.FinishedLoadingModsHook += () =>  CoroutineHelper.WaitForFramesBeforeInvoke(1, () =>
-                {
-                    UIManager.EditMenus -= ChangeButtonName;
-                    UIManager.EditMenus += ChangeButtonName;
-                });
-                
-            }
+            UIManager.EditMenus += () => CoroutineHelper.WaitForFramesBeforeInvoke(2, SetMenuButtonNameAndDesc);
         }
 
-        private void ChangeButtonName()
-        {
-            if (_menuButtonName != null)
-            {
-                SetMenuButtonName();
-            }
-        }
-        
         private IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
             if(menu == this.menuScreen){
                 menu.screenCanvasGroup.alpha = 0f;
