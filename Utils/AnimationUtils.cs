@@ -1,5 +1,3 @@
-using static Modding.Logger;
-
 namespace Satchel
 {
     /// <summary>
@@ -79,9 +77,9 @@ namespace Satchel
         /// </summary>
         public static void logTk2dAnimationClips(this GameObject go) {
             tk2dSpriteAnimator spriteAnimator = go.GetComponent<tk2dSpriteAnimator>();
-            Log($"clip.names for {go.name}");
+            Satchel.Instance.Log($"clip.names for {go.name}");
             foreach(var clip in spriteAnimator.Library.clips){
-                Log(clip.name);
+                Satchel.Instance.Log(clip.name);
             }
         }
 
@@ -96,7 +94,7 @@ namespace Satchel
                 i=0;
             } 
             spriteAnimator.PlayFromFrame(clips[i], 0);
-            Log(clips[i].name);
+            Satchel.Instance.Log(clips[i].name);
             yield return new WaitForSeconds(2f);
             CoroutineHelper.GetRunner().StartCoroutine(go.playAllAnim(i));
         }

@@ -119,6 +119,10 @@ namespace Satchel.BetterMenus
         /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
         public abstract GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true);
         
+        ///<summary>Event to be invoked when element is built</summary> 
+        public event Action OnBuilt;
+
+        protected void OnBuiltInvoke() => OnBuilt?.Invoke();
         //todo implement AddImagePanel
     }
 

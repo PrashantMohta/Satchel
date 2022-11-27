@@ -5,7 +5,7 @@ namespace Satchel.Futils.Serialiser{
         internal static ActionScriptEntry GetActionData(HutongGames.PlayMaker.FsmState state,ActionScriptEntry ase, int i, int dataVersion){
             var ActionData = state.ActionData;
             var _actionNames = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<string>>(ActionData, "actionNames");
-            Modding.Logger.Log(_actionNames[i] + " | " + ase.Name );
+            Satchel.Instance.Log(_actionNames[i] + " | " + ase.Name );
             if(ase.Name != _actionNames[i]){ 
                 return ase; 
             }
@@ -174,7 +174,7 @@ namespace Satchel.Futils.Serialiser{
                     try{
                        utils.GetActionData(state,ase,j,dataVersion);
                     } catch(Exception e){
-                        Modding.Logger.Log(e.ToString());
+                        Satchel.Instance.Log(e.ToString());
                     }
                     j++;
                 }

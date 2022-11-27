@@ -4,6 +4,7 @@
     /// A class that contains all (public and private) fields and methods of GameManager allowing you to
     /// easily get/set fields and call methods without dealing with reflection.
     /// </summary>
+    [Obsolete("Please use HKMirror", true)]
     public static partial class GameManagerR
     {
         public static bool verboseMode

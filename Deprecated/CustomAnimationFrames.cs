@@ -1,5 +1,4 @@
 using System.IO;
-using static Modding.Logger;
 
 namespace Satchel
 {

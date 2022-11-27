@@ -25,5 +25,42 @@ namespace Satchel
             }
             return runner;
         }
+        
+        /// <summary>
+        /// Run some code after some frames
+        /// </summary>
+        /// <param name="numFrames">The number of frames to wait</param>
+        /// <param name="codeToRun">the code to run</param>
+        public static Coroutine WaitForFramesBeforeInvoke(int numFrames, Action codeToRun)
+        {
+            return GetRunner().StartCoroutine(WaitBeforeInvokeRoutine(numFrames, codeToRun));
+        }
+
+        /// <summary>
+        /// Run some code after some seconds
+        /// </summary>
+        /// <param name="seconds">The number of seconds to wait</param>
+        /// <param name="codeToRun">the code to run</param>
+        public static Coroutine WaitForSecondsBeforeInvoke(float seconds, Action codeToRun)
+        {
+            return GetRunner().StartCoroutine(WaitBeforeInvokeRoutine(seconds, codeToRun));
+        }
+    
+        private static IEnumerator WaitBeforeInvokeRoutine(int numFrames, Action codeToRun)
+        {
+            for (int i = 0; i < numFrames; i++)
+            {
+                yield return null;
+            }
+
+            codeToRun();
+        }
+
+        private static IEnumerator WaitBeforeInvokeRoutine(float seconds, Action codeToRun)
+        {
+            yield return new WaitForSeconds(seconds);
+
+            codeToRun();
+        }
     }
 }

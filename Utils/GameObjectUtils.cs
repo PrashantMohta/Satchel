@@ -113,21 +113,21 @@ namespace Satchel
         public static void Log(this GameObject gameObject)
         {
             if( gameObject == null ){ return; }
-            Modding.Logger.Log(gameObject.GetName());
-            Modding.Logger.Log(gameObject.GetPath());
-            Modding.Logger.Log("Layer : " + gameObject.layer);
-            Modding.Logger.Log("Position : " + gameObject.transform.position.ToString());
-            Modding.Logger.Log("Rotation : " + gameObject.transform.rotation.ToString());
-            Modding.Logger.Log("Scale : " + gameObject.transform.localScale.ToString());
+            Satchel.Instance.Log(gameObject.GetName());
+            Satchel.Instance.Log(gameObject.GetPath());
+            Satchel.Instance.Log("Layer : " + gameObject.layer);
+            Satchel.Instance.Log("Position : " + gameObject.transform.position.ToString());
+            Satchel.Instance.Log("Rotation : " + gameObject.transform.rotation.ToString());
+            Satchel.Instance.Log("Scale : " + gameObject.transform.localScale.ToString());
             
             foreach(Component comp in gameObject.GetComponents<Component>()){
-                Modding.Logger.Log("Component : "+ comp.GetType());
+                Satchel.Instance.Log("Component : "+ comp.GetType());
                 if(comp is PlayMakerFSM){
-                    Modding.Logger.Log("---- Fsm name :" + ( comp as PlayMakerFSM ).FsmName);
+                    Satchel.Instance.Log("---- Fsm name :" + ( comp as PlayMakerFSM ).FsmName);
                 }
                 /*
                 if(comp.GetType().GetProperty("name") != null){
-                    Modding.Logger.Log("---- name :" + comp.name);
+                    Satchel.Instance.Log("---- name :" + comp.name);
                 } else 
                 */
             }

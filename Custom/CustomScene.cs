@@ -1,4 +1,3 @@
-using static Modding.Logger;
 using BenchParams = Satchel.SceneUtils.BenchParams;
 using CustomSceneManagerSettings = Satchel.SceneUtils.CustomSceneManagerSettings;
 using GatewayParams = Satchel.SceneUtils.GatewayParams;
@@ -64,7 +63,7 @@ namespace Satchel
             } else if(gateway.toScene == sceneName){
                 gatesToScene.Add(gateway);
             } else {
-                Log("Tried to add a Gateway that does not connect to this scene");
+                Satchel.Instance.Log("Tried to add a Gateway that does not connect to this scene");
             }
         }
         
