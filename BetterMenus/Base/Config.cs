@@ -18,6 +18,10 @@ public struct InputFieldConfig
     /// the expected type of input, can be alphanumeric, integer or float
     /// </summary>
     public UnityEngine.UI.InputField.ContentType contentType;
+    /// <summary>
+    /// the expected type of input, can be none, integer, or decimal
+    /// </summary>
+    public UnityEngine.UI.InputField.CharacterValidation characterValidation;
 
     /// <summary>
     /// the default config for text input
@@ -26,7 +30,8 @@ public struct InputFieldConfig
     {
         fontSize = 46,
         inputBoxWidth = 300f,
-        contentType = UnityEngine.UI.InputField.ContentType.Standard
+        contentType = UnityEngine.UI.InputField.ContentType.Standard,
+        characterValidation = UnityEngine.UI.InputField.CharacterValidation.None
     };
     
     /// <summary>
@@ -36,7 +41,8 @@ public struct InputFieldConfig
     {
         fontSize = 46,
         inputBoxWidth = 150f,
-        contentType = UnityEngine.UI.InputField.ContentType.IntegerNumber
+        contentType = UnityEngine.UI.InputField.ContentType.IntegerNumber,
+        characterValidation = UnityEngine.UI.InputField.CharacterValidation.Integer
     };
     
     /// <summary>
@@ -46,7 +52,8 @@ public struct InputFieldConfig
     {
         fontSize = 46,
         inputBoxWidth = 210f,
-        contentType = UnityEngine.UI.InputField.ContentType.DecimalNumber
+        contentType = UnityEngine.UI.InputField.ContentType.DecimalNumber,
+        characterValidation = UnityEngine.UI.InputField.CharacterValidation.Decimal
     };
 }
 

@@ -66,9 +66,9 @@ public class InputField : Element
         currentField.name = base.Name;
         currentField.transform.parent = fieldParent.transform;
 
-        var FieldEvent = new UnityEngine.UI.InputField.OnChangeEvent();
+        var FieldEvent = new UnityEngine.UI.InputField.SubmitEvent();
         FieldEvent.AddListener(storeValue.Invoke);
-        inputField.onValueChanged = FieldEvent;
+        inputField.onEndEdit = FieldEvent;
 
         currentField.SetActive(true);
 
@@ -110,10 +110,12 @@ public class InputField : Element
     /// <inheritdoc />
     public override void Update()
     {
-        inputField.contentType = config.contentType;
+        inputField.contentType = UnityEngine.UI.InputField.ContentType.Custom;
+        inputField.characterValidation = UnityEngine.UI.InputField.CharacterValidation.None;
+        inputField.inputType = UnityEngine.UI.InputField.InputType.Standard;
         inputField.textComponent.fontSize = config.fontSize;
         inputField.characterLimit = characterLimit;
-        
+
         placeholderText.text = placeholder;
         label.text = base.Name;
         userInput = loadValue();
