@@ -97,11 +97,11 @@ namespace Satchel
                     ButtonSkin buttonSkinFor = uibs.GetButtonSkinFor(action);
                     var abicon = gameObject.GetComponentInChildren<ActionButtonIcon>();
                     if(abicon == null){
-                        Modding.Logger.Log("[Satchel] Couldn't get ActionButtonIcon skin for " + action);
+                        Satchel.Instance.Log("[Satchel] Couldn't get ActionButtonIcon skin for " + action);
                     }
                     if (buttonSkinFor == null)
                     {
-                        Modding.Logger.Log("[Satchel] Couldn't get button skin for " + action);
+                        Satchel.Instance.Log("[Satchel] Couldn't get button skin for " + action);
                     }
                     var label = abicon.label;
                     var textContainer = abicon.textContainer;

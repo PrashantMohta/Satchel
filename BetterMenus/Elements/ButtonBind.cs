@@ -61,6 +61,10 @@ namespace Satchel.BetterMenus
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
             }
+            
+            ((IContainer)Parent).OnBuilt += (_,_) => {
+                OnBuiltInvoke();             
+            };
             return new GameObjectRow(option.gameObject);
         }
 

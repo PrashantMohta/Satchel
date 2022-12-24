@@ -78,6 +78,11 @@ namespace Satchel.BetterMenus
             }
 
             gameObject = option.gameObject;
+            
+            ((IContainer)Parent).OnBuilt += (_,_) => {
+                OnBuiltInvoke();             
+            };
+            
             return new GameObjectRow(option.gameObject);
         }
 
@@ -86,7 +91,6 @@ namespace Satchel.BetterMenus
             gameObject.transform.Find("Label").GetComponent<Text>().text = Name;
             gameObject.transform.Find("Description").GetComponent<Text>().text = Description;
             gameObject.GetComponent<UnityEngine.UI.MenuButton>().submitAction = SubmitAction;
-
         }
     }
 

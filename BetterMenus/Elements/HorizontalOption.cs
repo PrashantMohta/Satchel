@@ -39,7 +39,7 @@ namespace Satchel.BetterMenus
         /// <param name="loadSetting">The Func(int) to Invoke to load the current setting.</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
         public HorizontalOption(
-            string name , 
+            string name, 
             string description,
             string[] values, 
             Action<int> applySetting, 
@@ -90,11 +90,19 @@ namespace Satchel.BetterMenus
             }
 			
 			gameObject = option.gameObject;
-            ((IContainer)Parent).OnBuilt += (_,Element) => {
-                if(option == null || option.menuSetting == null){
-                    return;
+
+            Action loadSettingOnBuild = () =>
+            {
+                if (option != null && option.menuSetting != null)
+                {
+                    option.menuSetting.RefreshValueFromGameSettings();
                 }
-                option.menuSetting.RefreshValueFromGameSettings();
+            };
+
+            OnBuilt += loadSettingOnBuild;
+            
+            ((IContainer)Parent).OnBuilt += (_,_) => {
+                OnBuiltInvoke();             
             };
             return new GameObjectRow(option.gameObject);
         }

@@ -15,7 +15,7 @@ namespace Satchel.Futils.Extractors
                     if (action is AudioPlay){
                         AudioPlay a = (AudioPlay) action;
                         if(a.oneShotClip == null){ 
-                            Modding.Logger.LogFine($"clip null in action {action.Name}");
+                            Satchel.Instance.LogFine($"clip null in action {action.Name}");
                             continue; 
                         }
                         var clip = a.oneShotClip.Value as AudioClip;
@@ -24,7 +24,7 @@ namespace Satchel.Futils.Extractors
                         AudioPlayerOneShot a = (AudioPlayerOneShot) action;
                         foreach( var clip in a.audioClips){
                             if(clip == null){ 
-                                Modding.Logger.LogFine($"clip null in action {action.Name}");
+                               Satchel.Instance.LogFine($"clip null in action {action.Name}");
                                 continue; 
                             }
                             ac[clip.name]=clip;
@@ -32,7 +32,7 @@ namespace Satchel.Futils.Extractors
                     }  else if(action is AudioPlayerOneShotSingle){
                         AudioPlayerOneShotSingle a = (AudioPlayerOneShotSingle) action;
                         if(a.audioClip == null){ 
-                            Modding.Logger.LogFine($"clip null in action {action.Name}");
+                           Satchel.Instance.LogFine($"clip null in action {action.Name}");
                             continue; 
                         }
                         var clip = a.audioClip.Value as AudioClip;
@@ -41,7 +41,7 @@ namespace Satchel.Futils.Extractors
                         AudioPlayRandom a = (AudioPlayRandom) action;
                         foreach( var clip in a.audioClips){
                             if(clip == null){ 
-                                Modding.Logger.LogFine($"clip null in action {action.Name}");
+                               Satchel.Instance.LogFine($"clip null in action {action.Name}");
                                 continue; 
                             }
                             ac[clip.name]=clip;
@@ -49,7 +49,7 @@ namespace Satchel.Futils.Extractors
                     } else if (action is AudioPlayRandomSingle){
                         AudioPlayRandomSingle a = (AudioPlayRandomSingle) action;
                         if(a.audioClip == null){ 
-                            Modding.Logger.LogFine($"clip null in action {action.Name}");
+                           Satchel.Instance.LogFine($"clip null in action {action.Name}");
                             continue; 
                         }
                         var clip = a.audioClip.Value as AudioClip;
@@ -57,7 +57,7 @@ namespace Satchel.Futils.Extractors
                     } else if (action is AudioPlaySimple){
                         AudioPlaySimple a = (AudioPlaySimple) action;
                         if(a.oneShotClip == null){ 
-                            Modding.Logger.LogFine($"clip null in action {action.Name}");
+                           Satchel.Instance.LogFine($"clip null in action {action.Name}");
                             continue; 
                         }
                         var clip = a.oneShotClip.Value as AudioClip;
@@ -65,7 +65,7 @@ namespace Satchel.Futils.Extractors
                     } else if (action is AudioPlayV2){
                         AudioPlayV2 a = (AudioPlayV2) action;
                         if(a.oneShotClip == null){ 
-                            Modding.Logger.LogFine($"clip null in action {action.Name}");
+                           Satchel.Instance.LogFine($"clip null in action {action.Name}");
                             continue; 
                         }
                         var clip = a.oneShotClip.Value as AudioClip;
@@ -74,7 +74,7 @@ namespace Satchel.Futils.Extractors
                         PlayRandomSound a = (PlayRandomSound) action;
                         foreach( var clip in a.audioClips){
                             if(clip == null){ 
-                                Modding.Logger.LogFine($"clip null in action {action.Name}");
+                               Satchel.Instance.LogFine($"clip null in action {action.Name}");
                                 continue; 
                             }
                             ac[clip.name]=clip;
@@ -82,7 +82,7 @@ namespace Satchel.Futils.Extractors
                     } else if (action is PlaySound){
                         PlaySound a = (PlaySound) action;
                         if(a.clip == null){ 
-                            Modding.Logger.LogFine($"clip null in action {action.Name}");
+                           Satchel.Instance.LogFine($"clip null in action {action.Name}");
                             continue; 
                         }
                         var clip = a.clip.Value as AudioClip;

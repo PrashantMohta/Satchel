@@ -102,7 +102,7 @@ namespace Satchel
                 maskMat.SetVector("_P2", mp2);
                 Graphics.Blit(mtex2, mtex, maskMat);
                 Graphics.Blit(mtex, mtex2);
-                //Modding.Logger.Log($"triangles: {mp0} {mp1} {mp2}");
+                //Satchel.Instance.Log($"triangles: {mp0} {mp1} {mp2}");
             }
             mtex2.Release();
             UnityEngine.Object.Destroy(maskMat);

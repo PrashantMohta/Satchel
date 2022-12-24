@@ -2,7 +2,6 @@
 {
     public static partial class HeroControllerR
     {
-
         public static void Awake() =>
             ReflectionHelper.CallMethod<HeroController>(HeroController.instance, "Awake");
 

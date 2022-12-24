@@ -73,6 +73,10 @@ namespace Satchel.BetterMenus
             }
 
             gameObject = option.gameObject;
+            
+            ((IContainer)Parent).OnBuilt += (_,_) => {
+                OnBuiltInvoke();             
+            };
 
             return new GameObjectRow(option.gameObject);
         }

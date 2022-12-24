@@ -12,7 +12,7 @@ namespace Satchel.Futils.Serialiser{
                 { 
                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                         Error = ( sender,  args) => {
-                            Debug.Log(args.ErrorContext.Error.Message);
+                            Satchel.Instance.LogError(args.ErrorContext.Error.Message);
                             args.ErrorContext.Handled = true;
                         },
                 });

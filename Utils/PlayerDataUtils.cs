@@ -86,7 +86,7 @@ namespace Satchel
                         catch (Exception)
                         {
                             // Not a huge deal, this happens on saves with mod data which haven't been converted yet.
-                            Modding.Logger.LogWarn($"Failed to get save stats for slot {saveSlot} using Json.NET, falling back");
+                            Satchel.Instance.LogWarn($"Failed to get save stats for slot {saveSlot} using Json.NET, falling back");
                             
                             saveGameData = JsonUtility.FromJson<SaveGameData>(json);
                         }
@@ -100,7 +100,7 @@ namespace Satchel
                     }
                     catch (Exception ex)
                     {
-                        Debug.LogError
+                        Satchel.Instance.LogError
                         (
                             string.Concat
                             (

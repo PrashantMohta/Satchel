@@ -11,13 +11,12 @@
     <AssemblyName>Satchel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -28,7 +27,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -37,12 +36,10 @@
     <DocumentationFile>bin\Release\Satchel.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
-
-    <!-- Create a LocalBuildProperties.props file which defines references directories
+  <!-- Create a LocalBuildProperties.props file which defines references directories
   and OutputDirectory (where the post-build event sends the dll to) -->
-  <Import Project="LocalBuildProperties_example.props" Condition="Exists('LocalBuildProperties_example.props')"/>
-  <Import Project="LocalBuildProperties.props" Condition="Exists('LocalBuildProperties.props')"/>
-
+  <Import Project="LocalBuildProperties_example.props" Condition="Exists('LocalBuildProperties_example.props')" />
+  <Import Project="LocalBuildProperties.props" Condition="Exists('LocalBuildProperties.props')" />
   <ItemGroup>
     <Reference Include="MonoMod.RuntimeDetour, Version=21.4.29.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(ModdingAPI)\MonoMod.RuntimeDetour.dll</HintPath>
@@ -110,20 +107,19 @@
     <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(VanillaFiles)\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
-    <Reference Include="Hkmp">
-      <HintPath>..\HKMP\ref\Hkmp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetterMenus\Elements\InputField.cs" />
+    <Compile Include="Deprecated\Reflected\GameManagerFields.cs" />
+    <Compile Include="Deprecated\Reflected\GameManagerILIEnumerators.cs" />
+    <Compile Include="Deprecated\Reflected\GameManagerMethods.cs" />
+    <Compile Include="Deprecated\Reflected\HeroControllerFields.cs" />
+    <Compile Include="Deprecated\Reflected\HeroControllerILIEnumerators.cs" />
+    <Compile Include="Deprecated\Reflected\HeroControllerMethods.cs" />
+    <Compile Include="Deprecated\WavUtils.cs" />
     <Compile Include="GlobalUsings.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Core.cs" />
-    <Compile Include="Reflected\GameManagerFields.cs" />
-    <Compile Include="Reflected\GameManagerILIEnumerators.cs" />
-    <Compile Include="Reflected\GameManagerMethods.cs" />
-    <Compile Include="Reflected\HeroControllerFields.cs" />
-    <Compile Include="Reflected\HeroControllerILIEnumerators.cs" />
-    <Compile Include="Reflected\HeroControllerMethods.cs" />
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
     <Compile Include="Utils\EnemyUtils.cs" />
@@ -133,7 +129,6 @@
     <Compile Include="Utils\SceneUtils.cs" />
     <Compile Include="Utils\SpriteUtils.cs" />
     <Compile Include="Utils\TextureUtils.cs" />
-    <Compile Include="Utils\WavUtils.cs" />
     <Compile Include="Utils\CoroutineHelper.cs" />
     <Compile Include="Utils\ObjectPoolManager.cs" />
     <Compile Include="Monobehaviour\Unity\AlertRangeMarker.cs" />
@@ -158,7 +153,14 @@
     <Compile Include="Custom\CustomShiny.cs" />
     <Compile Include="BetterMenus\Base\*.cs" />
     <Compile Include="BetterMenus\Elements\Builders\*.cs" />
-    <Compile Include="BetterMenus\Elements\*.cs" />
+    <Compile Include="BetterMenus\Elements\ButtonBind.cs" />
+    <Compile Include="BetterMenus\Elements\CustomSlider.cs" />
+    <Compile Include="BetterMenus\Elements\HorizontalOption.cs" />
+    <Compile Include="BetterMenus\Elements\KeyBind.cs" />
+    <Compile Include="BetterMenus\Elements\MenuButton.cs" />
+    <Compile Include="BetterMenus\Elements\MenuRow.cs" />
+    <Compile Include="BetterMenus\Elements\StaticPanel.cs" />
+    <Compile Include="BetterMenus\Elements\TextPanel.cs" />
     <Compile Include="BetterMenus\Blueprints\*.cs" />
     <Compile Include="BetterMenus\Menu.cs" />
     <Compile Include="BetterMenus\Utils.cs" />

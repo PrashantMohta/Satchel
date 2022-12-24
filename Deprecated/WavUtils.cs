@@ -1,7 +1,6 @@
 using System.IO;
 using System.Text;
 
-
 namespace Satchel
 {
 	/// <summary>
@@ -17,6 +16,7 @@ namespace Satchel
 	/// <remarks>
 	/// For documentation and usage examples: https://github.com/deadlyfingers/UnityWav
 	/// </remarks>
+	[Obsolete("Use the nuget package WavLib by SFGrenade", false)]
 	public class WavUtils
 	{
 		// Force save as 16-bit .wav
@@ -100,12 +100,12 @@ namespace Satchel
 
 			float[] data = new float[wavSize];
 
-			sbyte maxValue = sbyte.MaxValue;
+			float maxValue = byte.MaxValue / 2.0f;
 
 			int i = 0;
 			while (i < wavSize)
 			{
-				data[i] = (float) source[i] / maxValue;
+				data[i] = Mathf.Clamp((source[i] / maxValue) - 1.0f, -1.0f, 1.0f);
 				++i;
 			}
 

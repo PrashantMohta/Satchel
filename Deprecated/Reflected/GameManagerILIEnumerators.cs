@@ -9,6 +9,7 @@ namespace Satchel.Reflected
     /// A class that contains events to properly ILHook onto IEnumerators.
     /// Unlike the MAPI hooks, it uses GetStateMachineTarget which is required for the IL code to run after every "yield return"
     /// </summary>
+    [Obsolete("Please use HKMirror", true)]
     public class GameManagerILIEnumerators
     {
         public static event ILContext.Manipulator BeginSceneTransitionRoutine

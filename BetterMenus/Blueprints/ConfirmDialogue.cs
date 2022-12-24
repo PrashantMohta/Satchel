@@ -1,18 +1,14 @@
-﻿using Modding.Menu;
-using Modding.Menu.Config;
-using On.InControl.NativeDeviceProfiles;
-using UnityEngine.UI;
-using SMenu =  Satchel.BetterMenus.Menu;
+﻿using Modding.Menu.Config;
 namespace Satchel.BetterMenus
 {
     public static partial class Blueprints
     {
         /// <summary>
-        /// Show a Dialog instead of the default CancelAction
+        /// Change the inital menu's cancel action to make the supplied "DialogMenu" appear instead of the default CancelAction (when user tries to go to previous menu)
         /// </summary>
         /// <param name="initialMenu">The current Menu</param>
-        /// <param name="DialogMenu">The dialog Menu</param>
-        public static void AddConfirmDialog(this SMenu initialMenu, SMenu DialogMenu)
+        /// <param name="DialogMenu">The new dialog menu you want to be shown on going back</param>
+        public static void AddConfirmDialog(this Menu initialMenu, Menu DialogMenu)
         {
             initialMenu.CancelAction = () =>
             {
@@ -21,17 +17,17 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// Shows a dialog menu while hiding the existing menu
+        /// A function to close the current menu to make the dialogue menu appear.
         /// </summary>
         /// <param name="initialMenu">The current Menu</param>
-        /// <param name="DialogMenu">The dialog Menu</param>
-        public static void ShowDialog(this SMenu initialMenu, SMenu DialogMenu)
+        /// <param name="DialogMenu">The dialog menu</param>
+        public static void ShowDialog(this Menu initialMenu, Menu DialogMenu)
         {
             DialogMenu.returnScreen = initialMenu.GetCachedMenuScreen(initialMenu.returnScreen);
             Utils.GoToMenuScreen(DialogMenu.GetCachedMenuScreen(DialogMenu.returnScreen));
         }
         /// <summary>
-        /// Create a Dialog style menu
+        /// Creates a Menu that functions like a confirm dialog style menu. 
         /// </summary>
         /// <param name="title">Title of the dialog</param>
         /// <param name="subTitle">Subtitle of the dialog</param>
@@ -39,12 +35,8 @@ namespace Satchel.BetterMenus
         /// <param name="OnButtonPress">Action that is invoked with the user's selection</param>
         /// <param name="optionsPerRow"> Number of options to show in a single row</param>
         /// <returns>The Dialog Menu</returns>
-        public static SMenu CreateDialogMenu(string title,string subTitle,string[] Options,Action<string> OnButtonPress, int optionsPerRow = 2) { 
-            var menu = new Menu("", new Element[]
-            {
-                //new StaticPanel("space", _ => { }),
-                //new StaticPanel("fleur", _ => {}),
-            });
+        public static Menu CreateDialogMenu(string title, string subTitle, string[] Options, Action<string> OnButtonPress, int optionsPerRow = 2) { 
+            var menu = new Menu("");
             if (title != string.Empty)
             {
                 menu.AddElement(new TextPanel(title, fontSize: 55)
@@ -59,10 +51,10 @@ namespace Satchel.BetterMenus
                     Font = TextPanelConfig.TextFont.TrajanBold
                 });
             }
-            for(var i=0;i< Options.Length; i+=optionsPerRow)
+            for(var i = 0; i < Options.Length; i += optionsPerRow)
             {
                 List<Element> optionList = new List<Element>();
-                for (var j=0;(j < optionsPerRow && i+j < Options.Length); j++)
+                for (var j = 0; (j < optionsPerRow && i + j < Options.Length); j++)
                 {
                     var option = Options[i + j];
                     optionList.Add(
@@ -83,21 +75,8 @@ namespace Satchel.BetterMenus
                 var mobj = menu.menuScreen.gameObject;
                 var rt = mobj.GetComponent<RectTransform>();
                 rt.sizeDelta = new Vector2(0f, 250f);
-                //rt.pivot = new Vector2(0.5f, 0.5f);
-                //rt.anchorMin = new Vector2(0f, 0f);
-                //rt.anchorMax = new Vector2(1f, 1f);
                 rt.anchoredPosition = new Vector2(0f, -200f);
 
-                /*var panel = menu.Find("fleur").gameObject;
-                var fleur = menu.menuScreen.topFleur;
-                //fleur.transform.SetParent(panel.transform, false);
-                UnityEngine.Object.DontDestroyOnLoad(fleur);
-                AnchoredPosition.FromSiblingAnchor(
-                        new Vector2(0.5f, 0.5f),
-                        panel.GetComponent<RectTransform>(),
-                        new Vector2(0.5f, 0.5f),
-                        new Vector2(0.0f, 50))
-                    .Reposition(fleur.GetComponent<RectTransform>());*/
                 // destroy the back button 
                 // todo make this be optional in the menu itself
                 var backButton = menu.menuScreen.gameObject.Find("BackButton");
@@ -111,17 +90,17 @@ namespace Satchel.BetterMenus
         }
 
         /// <summary>
-        /// When back is pressed, ask user to confirm across a set of options
+        /// Adds a confirm dialogue style menu when back is pressed. It can be used to ask user to confirm across a set of options. Must be called before MenuScreen is returned to modding api
         /// </summary>
         /// <param name="initialMenu">Menu to add the confirm dialog on</param>
-        /// <param name="title">Title of the confirm dialog</param>
-        /// <param name="subTitle">Subtitle of the confirm dialog</param>
+        /// <param name="title">Title of the confirm dialog (can be left empty)</param>
+        /// <param name="subTitle">Subtitle of the confirm dialog (can be left empty) </param>
         /// <param name="Options">Options available in the confirm dialog</param>
         /// <param name="OnButtonPress">Action that is invoked with the user's selection</param>
         /// <param name="optionsPerRow"> Number of options to show in a single row</param>
         /// <returns>The Dialog Menu</returns>
-        public static SMenu AddConfirmDialog(
-            this SMenu initialMenu,
+        public static Menu AddConfirmDialog(
+            this Menu initialMenu,
             string title, 
             string subTitle, 
             string[] Options, 

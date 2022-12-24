@@ -1,5 +1,3 @@
-using static Modding.Logger;
-
 namespace Satchel
 {
     /// <summary>
@@ -114,7 +112,7 @@ namespace Satchel
                     HeroController.instance.RelinquishControl();
                 }
             } else {
-                Log("Component is null");
+                Satchel.Instance.Log("Component is null");
             }
         }
         private string LanguageGet( string key, string sheet, string orig){

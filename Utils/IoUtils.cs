@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using static Modding.Logger;
 
 namespace Satchel
 {
@@ -69,7 +68,7 @@ namespace Satchel
                 try{
                     File.Copy(file, Path.Combine(destination,Path.GetFileName(file)));
                 } catch (Exception e){
-                    Log("A File could not be Copied : " + e.ToString());
+                    Satchel.Instance.LogError("A File could not be Copied : " + e.ToString());
                 }
             }
         }
