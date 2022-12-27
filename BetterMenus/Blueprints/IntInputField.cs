@@ -29,11 +29,7 @@ public static partial class Blueprints
             }
             else
             {
-                if (s == string.Empty)
-                {
-                    _storeValue(_defaultValue);
-                }
-                else
+                if (s != string.Empty)
                 {
                     Satchel.Instance.LogWarn($"Inputted value {s} is not a valid integer in {name} input field");
                 }

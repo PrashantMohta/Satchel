@@ -29,7 +29,6 @@ public static partial class Blueprints
             }
             else
             {
-                _storeValue(_defaultValue);
                 if (s != string.Empty)
                 {
                     Satchel.Instance.LogWarn($"Inputted value {s} is not a valid float in {name} input field");
