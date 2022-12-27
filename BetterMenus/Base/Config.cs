@@ -18,6 +18,12 @@ public struct InputFieldConfig
     /// the expected type of input, can be alphanumeric, integer or float
     /// </summary>
     public UnityEngine.UI.InputField.ContentType contentType;
+
+    /// <summary>
+    /// when should the data be saved into the settings field, on submit or on change
+    /// </summary>
+    public InputFieldSaveType saveType;
+    
     /// <summary>
     /// the expected type of input, can be none, integer, or decimal
     /// </summary>
@@ -31,7 +37,8 @@ public struct InputFieldConfig
         fontSize = 46,
         inputBoxWidth = 300f,
         contentType = UnityEngine.UI.InputField.ContentType.Standard,
-        characterValidation = UnityEngine.UI.InputField.CharacterValidation.None
+        characterValidation = UnityEngine.UI.InputField.CharacterValidation.None,
+        saveType = InputFieldSaveType.ValueChanged,
     };
     
     /// <summary>
@@ -42,7 +49,8 @@ public struct InputFieldConfig
         fontSize = 46,
         inputBoxWidth = 150f,
         contentType = UnityEngine.UI.InputField.ContentType.IntegerNumber,
-        characterValidation = UnityEngine.UI.InputField.CharacterValidation.Integer
+        characterValidation = UnityEngine.UI.InputField.CharacterValidation.Integer,
+        saveType = InputFieldSaveType.EditEnd,
     };
     
     /// <summary>
@@ -53,7 +61,8 @@ public struct InputFieldConfig
         fontSize = 46,
         inputBoxWidth = 210f,
         contentType = UnityEngine.UI.InputField.ContentType.DecimalNumber,
-        characterValidation = UnityEngine.UI.InputField.CharacterValidation.Decimal
+        characterValidation = UnityEngine.UI.InputField.CharacterValidation.Decimal,
+        saveType = InputFieldSaveType.EditEnd,
     };
 }
 
@@ -121,6 +130,18 @@ public struct KeybindStyle
     /// The text size of the label text.
     /// </summary>
     public int LabelTextSize;
+}
+
+public enum InputFieldSaveType
+{
+    /// <summary>
+    /// Changes setting field after every change to the text box
+    /// </summary>
+    ValueChanged,
+    /// <summary>
+    /// Changes setting field after the user has fully inputted what they want
+    /// </summary>
+    EditEnd,
 }
 
 

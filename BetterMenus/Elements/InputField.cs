@@ -1,5 +1,6 @@
 ﻿using Modding.Menu;
 using Modding.Menu.Config;
+using Satchel.BetterMenus.Config;
 using UnityEngine.UI;
 
 namespace Satchel.BetterMenus;
@@ -66,9 +67,19 @@ public class InputField : Element
         currentField.name = base.Name;
         currentField.transform.parent = fieldParent.transform;
 
-        var FieldEvent = new UnityEngine.UI.InputField.SubmitEvent();
-        FieldEvent.AddListener(storeValue.Invoke);
-        inputField.onEndEdit = FieldEvent;
+        switch (config.saveType)
+        {
+            case InputFieldSaveType.ValueChanged:
+                var onChangeEvent = new UnityEngine.UI.InputField.OnChangeEvent();
+                onChangeEvent.AddListener(storeValue.Invoke);
+                inputField.onValueChanged = onChangeEvent;
+                break;
+            case InputFieldSaveType.EditEnd:
+                var submitEvent = new UnityEngine.UI.InputField.SubmitEvent();
+                submitEvent.AddListener(storeValue.Invoke);
+                inputField.onEndEdit = submitEvent;
+                break;
+        }
 
         currentField.SetActive(true);
 
