@@ -44,7 +44,6 @@ namespace Satchel.BetterMenus
                     value = newValue;
                     label.text = Name; 
                     
-                    Satchel.Instance.LogDebug( $"Slider {Id} new value "+ newValue);
                     // call the StoreValue action with float
                     StoreValue?.Invoke(newValue);
                 }
@@ -55,10 +54,6 @@ namespace Satchel.BetterMenus
             slider.onValueChanged = SliderEvent;
 
             currentSlider.SetActive(true);
-
-            //update slider value after slider event is replaced.
-            value = LoadValue.Invoke();
-            label.text = $"{Name}";
 
             return currentSlider;
         }
@@ -142,18 +137,12 @@ namespace Satchel.BetterMenus
         public override void Update()
         {
             slider.wholeNumbers = wholeNumbers;
-
-            value = LoadValue.Invoke();
-            slider.value = value;
-
             slider.minValue = minValue;
             slider.maxValue = maxValue;
 
-            Satchel.Instance.LogDebug( $"Slider {Id} initial"+ value);
-            //update value after updating constraints
+            value = LoadValue.Invoke();
             slider.value = value;
             isReady = true;
-            Satchel.Instance.LogDebug( $"Slider {Id} After update"+ slider.value);
             //change Text
             label.text = Name;
 
