@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Runtime.InteropServices;
 using Modding.Menu;
 using UnityEngine.UI;
@@ -40,7 +41,14 @@ namespace Satchel.BetterMenus
 
             Action<float> updateOnEvent = newValue =>
             {
-                if(isReady){
+                if(isReady &&
+
+                   //dont set value when faulty min/max/wholeNumber value
+                   Math.Abs(minValue - slider.minValue) < Mathf.Epsilon &&
+                   Math.Abs(maxValue - slider.maxValue) < Mathf.Epsilon &&
+                   wholeNumbers == slider.wholeNumbers
+                  )
+                {
                     value = newValue;
                     label.text = Name; 
                     
