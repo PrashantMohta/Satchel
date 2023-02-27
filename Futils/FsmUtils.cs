@@ -254,6 +254,14 @@ namespace Satchel
         public static void AddAction(this PlayMakerFSM fsm, string stateName, FsmStateAction action){
             fsm.GetState(stateName).AddAction(action);
         }
+        public static void AddFirstAction(this FsmState state, FsmStateAction action)
+        {
+            state.InsertAction(action, 0);
+        }
+        public static void AddFirstAction(this PlayMakerFSM fsm, string stateName, FsmStateAction action)
+        {
+            fsm.GetState(stateName).AddFirstAction(action);
+        }
 
         public static void RemoveAction(this FsmState state, int index)
         {
