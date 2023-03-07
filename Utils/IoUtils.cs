@@ -58,6 +58,17 @@ namespace Satchel
         /// <param name="destination"></param>
         /// <param name="create">Create destination directory if it does not exist</param>
         public static void DirectoryCopyAllFiles(string source,string destination,bool create = false){
+            DirectoryCopyAllFiles(source,destination,create,false);
+        }
+        
+        /// <summary>
+        /// Copy all files frm source into destination
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
+        /// <param name="create">Create destination directory if it does not exist</param>
+        /// <param name="recursive">Copy subdirectories recursively</param>
+        public static void DirectoryCopyAllFiles(string source,string destination,bool create, bool recursive){
             if(!Directory.Exists(source) || (!create && !Directory.Exists(destination))){
                 return;
             }
@@ -69,6 +80,15 @@ namespace Satchel
                     File.Copy(file, Path.Combine(destination,Path.GetFileName(file)));
                 } catch (Exception e){
                     Satchel.Instance.LogError("A File could not be Copied : " + e.ToString());
+                }
+            }
+            if (recursive)
+            {
+                string[] directories = Directory.GetDirectories(source);
+                foreach (var subDir in directories)
+                {
+                    string newDestinationDir = Path.Combine(destination, Path.GetFileName(subDir));
+                    DirectoryCopyAllFiles(subDir, newDestinationDir, create,recursive);
                 }
             }
         }
