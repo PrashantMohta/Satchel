@@ -9,38 +9,24 @@ public static class BuildMenuFromAttributes
     {
         var menuRef = new Menu(name);
 
-        foreach (var field in typeof(T).GetFields())
+        foreach (var member in typeof(T).GetMembers())
         {
-            if (field.GetCustomAttribute<BetterMenusIgnore>() != null) continue;
-
-            if (field.GetCustomAttribute<ElementAttribute>() is { } elementAttribute)
+            if (member.GetCustomAttribute<BetterMenusIgnore>() != null) continue;
+            
+            if (member.GetCustomAttribute<ElementAttribute>() is not { } elementAttribute) continue;
+            
+            if (elementAttribute.VerifyCorrectFieldType(member))
             {
-                if (elementAttribute.VerifyCorrectFieldType(field))
-                {
-                    elementAttribute.CreateElement(field, settings).ToList().ForEach(menuRef.AddElement);
-                }
-                else
-                {
-                    menuRef.AddElement(new TextPanel($"the type of {field.Name} ({field.FieldType}) is incorrect see docs"));
-                }
+                elementAttribute.CreateElement(member, settings).ToList().ForEach(menuRef.AddElement);
             }
             else
             {
-                var elem = CreateDefault(field, settings);
-                if (elem != null)
-                {
-                    menuRef.AddElement(elem);
-                }
+                menuRef.AddElement(new TextPanel($"the type of {member.Name} is incorrect see docs"));
             }
+            
         }
 
         return menuRef;
 
-    }
-
-    private static Element CreateDefault<T>(FieldInfo fieldInfo, T settings)
-    {
-        //TODO: implement
-        return null;
     }
 }
