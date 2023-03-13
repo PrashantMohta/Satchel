@@ -45,8 +45,7 @@ public class KeyAndButtonBindClassAttribute : ElementAttribute
     /// Requires the type this attribute is on to be an inherited class of <see cref="InControl.PlayerActionSet"/>
     /// Requires the fields in the custom class to have either KeyBindAttribute or ButtonBindAttribute
     /// </summary>
-    /// <param name="name">The name of the element to show in the menu. Also is the id></param>
-    public KeyAndButtonBindClassAttribute(string name) : base(name) { }
+    public KeyAndButtonBindClassAttribute() : base("") { }
 
     internal override bool VerifyCorrectFieldType(FieldInfo fieldInfo) => fieldInfo.FieldType == typeof(PlayerActionSet);
 
@@ -188,26 +187,6 @@ public class GenericHorizontalOptionAttribute<T> : ElementAttribute
     public List<string> Options;
     public string Description;
     public Func<string, T> FromStringConvertor;
-
-    /// <summary>
-    /// Add this attribute to create a <see cref="HorizontalOption"/> to set this element in mod menu
-    /// Requires the type this attribute is on to be <see cref="string"/>
-    /// Normally should not use this directly, instead use
-    /// <see cref="HorizontalStringOptionAttribute"/>, <see cref="HorizontalBoolOptionAttribute"/>
-    /// <see cref="HorizontalEnumOptionAttribute{T}"/>, <see cref="HorizontalIntOptionAttribute"/>
-    /// <see cref="HorizontalFloatOptionAttribute"/>,
-    /// </summary>
-    /// <param name="name">The name of the element to show in the menu. Also is the id></param>
-    /// <param name="description">The description of the element></param>
-    /// <param name="options">The possible options in the horizontal option></param>
-    /// <param name="fromStringConvertor">The function that will convert from <see cref="T"/> to a string</param>
-    public GenericHorizontalOptionAttribute(string name, string description, T[] options, Func<string, T> fromStringConvertor) : base(name)
-    {
-        Description = description;
-        Options = options.Select(x => x.ToString()).ToList();
-        FromStringConvertor = fromStringConvertor;
-
-    }
     
     /// <summary>
     /// Add this attribute to create a <see cref="HorizontalOption"/> to set this element in mod menu
@@ -220,14 +199,28 @@ public class GenericHorizontalOptionAttribute<T> : ElementAttribute
     /// <param name="name">The name of the element to show in the menu. Also is the id></param>
     /// <param name="description">The description of the element></param>
     /// <param name="options">The possible options in the horizontal option></param>
-    /// <param name="fromStringConvertor">The function that will convert from <see cref="T"/> to a string</param>
+    /// <param name="fromStringConvertor">The function that will convert from the generic type to a string</param>
     public GenericHorizontalOptionAttribute(string name, string description, string[] options, Func<string, T> fromStringConvertor) : base(name)
     {
         Description = description;
         Options = options.ToList();
         FromStringConvertor = fromStringConvertor;
-
     }
+
+    /// <summary>
+    /// Add this attribute to create a <see cref="HorizontalOption"/> to set this element in mod menu
+    /// Requires the type this attribute is on to be <see cref="string"/>
+    /// Normally should not use this directly, instead use
+    /// <see cref="HorizontalStringOptionAttribute"/>, <see cref="HorizontalBoolOptionAttribute"/>
+    /// <see cref="HorizontalEnumOptionAttribute{T}"/>, <see cref="HorizontalIntOptionAttribute"/>
+    /// <see cref="HorizontalFloatOptionAttribute"/>,
+    /// </summary>
+    /// <param name="name">The name of the element to show in the menu. Also is the id></param>
+    /// <param name="description">The description of the element></param>
+    /// <param name="options">The possible options in the horizontal option></param>
+    /// <param name="fromStringConvertor">The function that will convert from the generic type to a string</param>
+    public GenericHorizontalOptionAttribute(string name, string description, T[] options, Func<string, T> fromStringConvertor) : this(name, description, options.Select(x => x.ToString()).ToArray(), fromStringConvertor)
+    { }
 
     internal override bool VerifyCorrectFieldType(FieldInfo fieldInfo) => true;
     
@@ -343,8 +336,17 @@ public class HorizontalIntOptionAttribute : GenericHorizontalOptionAttribute<int
     /// <param name="start">The start of the sequence></param>
     /// <param name="stop">The end of the sequence></param>
     /// <param name="step">The amount increased between 2 elements in the sequence></param>
-    public HorizontalIntOptionAttribute(string name, string description, int start, int stop, int step = 1) : base(name, description, Enumerable.Range(start / step, Math.Abs(stop - start) / step + 1).Select(x => x * step).ToArray(), int.Parse)
+    public HorizontalIntOptionAttribute(string name, string description, int start, int stop, int step = 1) : base(name, description, GetOptions(start, stop, step), int.Parse)
     { }
+
+    private static int[] GetOptions(int start, int stop, int step)
+    {
+        List<int> options = new();
+        for (int i = start; i < stop; i += step) {
+			options.Add(i);
+		}
+        return options.ToArray();
+    }
 
     internal override bool VerifyCorrectFieldType(FieldInfo fieldInfo) => fieldInfo.FieldType == typeof(int);
 }
@@ -363,7 +365,33 @@ public class HorizontalFloatOptionAttribute : GenericHorizontalOptionAttribute<f
     /// <param name="description">The description of the element></param>
     /// <param name="options">The possible options in the horizontal option></param>
     public HorizontalFloatOptionAttribute(string name, string description, float[] options) : base(name, description, options, float.Parse)
+    { }
+
+    /// <summary>
+    /// Add this attribute to create a <see cref="HorizontalOption"/> to set this element in mod menu
+    /// Requires the type this attribute is on to be <see cref="float"/>
+    /// use this constructor when you have a options in a regular sequence (eg. [1,2,3,4])
+    /// </summary>
+    /// <param name="name">The name of the element to show in the menu. Also is the id></param>
+    /// <param name="description">The description of the element></param>
+    /// <param name="start">The start of the sequence></param>
+    /// <param name="stop">The end of the sequence></param>
+    /// <param name="step">The amount increased between 2 elements in the sequence></param>
+    public HorizontalFloatOptionAttribute(string name, string description, float start, float stop, float step = 1) : base(name, description, GetOptions(start, stop, step), float.Parse)
+    { }
+
+    private static float[] GetOptions(float start, float stop, float step)
     {
+        List<float> options = new();
+
+		decimal decimalStop = (decimal) stop, decimalStep = (decimal) step;
+		for (decimal i = (decimal) start; i < decimalStop; i += decimalStep) {
+			options.Add(decimal.ToSingle(i));
+		}
+
+		options.Add(stop);
+
+		return options.ToArray();
     }
 
     internal override bool VerifyCorrectFieldType(FieldInfo fieldInfo) => fieldInfo.FieldType == typeof(float);
