@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Satchel.BetterMenus.Attributes;
 
@@ -10,58 +9,57 @@ public abstract class ElementAttribute : Attribute
 {
     public string Name;
     
-    /// <summary>
-    /// The base element attribute for building menus
-    /// </summary>
+    /// <inheritdoc cref="ElementAttribute"/>
     /// <param name="name">The name of the element to show in the menu. Also is the id</param>
-    public ElementAttribute(string name)
+    protected ElementAttribute(string name)
     {
         Name = name;
     }
 
-    internal abstract bool VerifyCorrectFieldType(MemberInfo memberInfo);
-
-    //if null it wont be added to menu
-    internal abstract Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings);
-
+    public abstract bool VerifyCorrectFieldType(MemberInfo memberInfo);
+    public abstract Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings);
+    
     protected const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
 
-    protected bool CheckFieldType(MemberInfo memberInfo, Type type)
+    /// <summary>
+    /// Check if MemberInfo is a field or property and check if the type matches
+    /// </summary>
+    protected static bool CheckFieldOrPropertyType(MemberInfo memberInfo, Type type)
     {
         return memberInfo is FieldInfo fieldInfo && fieldInfo.FieldType == type ||
         memberInfo is PropertyInfo propertyInfo && propertyInfo.PropertyType == type;
     }
 
-    protected void SetValue<Settings>(MemberInfo member, Settings settings, object value)
+    /// <summary>
+    /// Used to set value when you have MemberInfo which is either a FieldInfo or PropertyInfo
+    /// </summary>
+    protected static void SetValue<Settings>(MemberInfo member, Settings settings, object value)
     {
-        if (member is FieldInfo field)
+        switch (member)
         {
-            field.SetValue(settings, value);
-        }
-        else if (member is PropertyInfo property)
-        {
-            property.SetValue(settings, value);
-        }
-        else
-        {
-            throw new InvalidOperationException("You cannot call set value on members that arent fields or properties");
+            case FieldInfo field:
+                field.SetValue(settings, value);
+                break;
+            case PropertyInfo property:
+                property.SetValue(settings, value);
+                break;
+            default:
+                throw new InvalidOperationException("You cannot call set value on members that arent fields or properties");
         }
     }
     
-    protected object GetValue<Settings>(MemberInfo member, Settings settings)
+    /// <summary>
+    /// Used to get value when you have MemberInfo which is either a FieldInfo or PropertyInfo
+    /// </summary>
+    protected static object GetValue<Settings>(MemberInfo member, Settings settings)
     {
-        if (member is FieldInfo field)
+        return member switch
         {
-            return field.GetValue(settings);
-        }
-        else if (member is PropertyInfo property)
-        {
-            return property.GetValue(settings);
-        }
-        else
-        {
-            throw new InvalidOperationException("You cannot call get value on members that arent fields or properties");
-        }
+            FieldInfo field => field.GetValue(settings),
+            PropertyInfo property => property.GetValue(settings),
+            _ => throw new InvalidOperationException(
+                "You cannot call get value on members that arent fields or properties")
+        };
     }
 }
 
