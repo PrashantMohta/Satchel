@@ -4,14 +4,14 @@ using InControl;
 namespace Satchel.BetterMenus.Attributes;
 
 /// <summary>
-/// Add this attribute to a field of the class that contains the PlayerActions as fields for keybinds and button binds to be created.
+/// Add this attribute to a field of the class that contains the <see cref="PlayerAction"/> as fields for keybinds and button binds to be created.
 /// Requires the type this attribute is on to be an inherited class of <see cref="InControl.PlayerActionSet"/>
-/// Requires the fields in the custom class to have either KeyBindAttribute or ButtonBindAttribute
+/// Requires the fields in the custom class to have either <see cref="KeyBindAttribute"/> or <see cref="ButtonBindAttribute"/>
 /// </summary>
-public class KeyAndButtonBindClassAttribute : ElementAttribute
+public class PlayerActionSetAttribute : ElementAttribute
 {
-    /// <inheritdoc cref="KeyAndButtonBindClassAttribute"/>
-    public KeyAndButtonBindClassAttribute() : base("") { }
+    /// <inheritdoc cref="PlayerActionSetAttribute"/>
+    public PlayerActionSetAttribute() : base("") { }
 
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) =>
         memberInfo is FieldInfo fieldInfo && fieldInfo.FieldType.IsSubclassOf(typeof(PlayerActionSet)) ||
@@ -61,5 +61,26 @@ public class ButtonBindAttribute : ElementAttribute
     
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => CheckFieldOrPropertyType(memberInfo, typeof(PlayerAction));
     public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings) => Array.Empty<Element>();
+}
+
+/// <summary>
+/// Add this attribute to create a key and button bind element in the mod menu
+/// Requires the type this attribute is on to be <see cref="KeyAndButtonActionSet"/>
+/// </summary>
+public class KeyAndButtonBindAttribute : ElementAttribute
+{
+    /// <inheritdoc cref="KeyAndButtonBindAttribute"/>
+    public KeyAndButtonBindAttribute(string name) : base(name) { }
+
+    public override bool VerifyCorrectFieldType(MemberInfo memberInfo) =>
+        CheckFieldOrPropertyType(memberInfo, typeof(KeyAndButtonActionSet));
+
+    public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings)
+    {
+        return new Element[]
+        {
+            Blueprints.KeyAndButtonBind(Name, (KeyAndButtonActionSet) GetValue(memberInfo, settings))
+        };
+    }
 }
 
