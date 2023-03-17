@@ -109,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetterMenus\Attributes\*.cs" />
     <Compile Include="BetterMenus\Elements\InputField.cs" />
     <Compile Include="Deprecated\Reflected\GameManagerFields.cs" />
     <Compile Include="Deprecated\Reflected\GameManagerILIEnumerators.cs" />
