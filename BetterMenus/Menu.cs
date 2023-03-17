@@ -1,7 +1,6 @@
 using Modding.Menu;
 using Modding.Menu.Config;
 using System.Linq;
-using System.Reflection;
 using UnityEngine.UI;
 namespace Satchel.BetterMenus
 {
@@ -25,17 +24,10 @@ namespace Satchel.BetterMenus
             Offset = default
         };
 
-        private Mod callingMod;
-        private string _menuButtonName;
-        private string _menuButtonDesc;
-
-        private static FieldInfo modLoadState = Type.GetType("Modding.ModLoader, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null").GetField("LoadState");
-        
-        #endregion
-        
-        
         //list that stores the order.
         public List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
+        #endregion
+        
         
         /// <summary>
         /// the MenuScreen of the Menu
@@ -46,55 +38,7 @@ namespace Satchel.BetterMenus
         /// the "previous" menu screen. It is the screen the game will return to to on back button press or esc
         /// </summary>
         public MenuScreen returnScreen;
-
-        /// <summary>
-        /// Set the name of the menuButton that opens the menu from modlist menu
-        /// <param name="mod">An instance of your modclass. needed to determine the old menu button name</param>
-        /// <param name="menuButtonName">The new menu button name, leave null if you dont want to change</param>
-        /// <param name="menuButtonDesc">The new menu button description, leave null if you dont want to change</param>
-        /// </summary>
-        public void SetMenuButtonNameAndDesc(Mod mod, string menuButtonName = null, string menuButtonDesc = null)
-        {
-            _menuButtonName = menuButtonName;
-            _menuButtonDesc = menuButtonDesc;
-            callingMod = mod;
-            SetMenuButtonNameAndDesc();
-        }
         
-        private void SetMenuButtonNameAndDesc()
-        {
-            if (_menuButtonName == null && _menuButtonDesc == null) return;
-            
-            var buttonsParent = UIManager.instance.UICanvas.transform.Find("ModListMenu/Content/ScrollMask/ScrollingPane");
-            if (buttonsParent != null)
-            {
-                CoroutineHelper.WaitForFramesBeforeInvoke(1, () =>
-                {
-                    foreach (var button in buttonsParent.GetComponentsInChildren<UnityEngine.UI.MenuButton>())
-                    {
-                        var buttonLabel = button.transform.Find("Label").GetComponent<Text>();
-                        if (buttonLabel.text == callingMod.Name ||
-                            buttonLabel.text == $"{callingMod.Name} {Language.Language.Get("MAIN_OPTIONS", "MainMenu")}")
-                        {
-                            if (_menuButtonName != null)
-                            {
-                                buttonLabel.text = _menuButtonName;
-                            }
-
-                            if (_menuButtonDesc != null)
-                            {
-                                var buttonDescObj = button.transform.Find("Description");
-                                if (buttonDescObj != null)
-                                {
-                                    buttonDescObj.GetComponent<Text>().text = _menuButtonDesc;
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-        }
-
         /// <summary>
         /// Adds an element to the menu
         /// </summary>
@@ -129,9 +73,7 @@ namespace Satchel.BetterMenus
             MenuOrder.Clear();
             ResetPositioners();
             On.UIManager.ShowMenu += ShowMenu;
-            UIManager.EditMenus += () => CoroutineHelper.WaitForFramesBeforeInvoke(2, SetMenuButtonNameAndDesc);
         }
-
         private IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
             if(menu == this.menuScreen){
                 menu.screenCanvasGroup.alpha = 0f;
