@@ -1,5 +1,6 @@
 using Modding.Menu;
 using Modding.Menu.Config;
+using Satchel.BetterMenus.Config;
 using UnityEngine.UI;
 
 namespace Satchel.BetterMenus
@@ -28,6 +29,8 @@ namespace Satchel.BetterMenus
         /// The anchor of the text in the TextPanel (default Center).
         /// </summary>
         public TextAnchor Anchor = TextAnchor.MiddleCenter;
+        
+        public AdditionalTextPanelConfig? Config;
 
         /// <summary>
         /// Creates a new TextPanel.
@@ -36,7 +39,7 @@ namespace Satchel.BetterMenus
         /// <param name="width">The width of the TextPanel.</param>
         /// <param name="fontSize">The fontSize of the TextPanel.</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
-        public TextPanel(string name, float width = 1000f,int fontSize = 35,string Id = "__UseName") : base(Id,name)
+        public TextPanel(string name, float width = 1000f, int fontSize = 35, string Id = "__UseName") : base(Id,name)
         {
             Name = name;
             Width = width;
@@ -71,14 +74,14 @@ namespace Satchel.BetterMenus
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
             }
-
+            
             gameObject = option.gameObject;
             
             ((IContainer)Parent).OnBuilt += (_,_) => {
                 OnBuiltInvoke();             
             };
 
-            return new GameObjectRow(option.gameObject);
+            return new GameObjectRow(gameObject);
         }
 
         public override void Update()
@@ -94,6 +97,7 @@ namespace Satchel.BetterMenus
                 _ => MenuResources.TrajanRegular
             };
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Width, 105f);
+            Config?.SetAdditionalTextProperties(gameObject.GetComponent<Text>());
         }
     }
 

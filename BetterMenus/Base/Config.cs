@@ -1,3 +1,5 @@
+using UnityEngine.UI;
+
 namespace Satchel.BetterMenus.Config;
 
 /// <summary>
@@ -64,6 +66,40 @@ public struct InputFieldConfig
         characterValidation = UnityEngine.UI.InputField.CharacterValidation.Decimal,
         saveType = InputFieldSaveType.EditEnd,
     };
+}
+
+/// <summary>
+/// struct for changing additional properties in text panel
+/// </summary>
+public struct AdditionalTextPanelConfig
+{
+    /// <summary>
+    /// The <see cref="FontStyle"/> of the text (bold/italic/normal)
+    /// </summary>
+    public FontStyle? fontStyle;
+    
+    /// <summary>
+    /// The <see cref="HorizontalWrapMode"/> of the text (bold/italic/normal)
+    /// </summary>
+    public HorizontalWrapMode? horizontalOverflow;
+
+    /// <summary>
+    /// The line spacing of the text
+    /// </summary>
+    public float? lineSpacing;
+
+    /// <summary>
+    /// The color of the text
+    /// </summary>
+    public Color? color;
+
+    public void SetAdditionalTextProperties(Text text)
+    {
+        if (fontStyle.HasValue) text.fontStyle = fontStyle.Value;
+        if (horizontalOverflow.HasValue) text.horizontalOverflow = horizontalOverflow.Value;
+        if (lineSpacing.HasValue) text.lineSpacing = lineSpacing.Value;
+        if (color.HasValue) text.color = color.Value;
+    }
 }
 
 public enum SelectableArea
