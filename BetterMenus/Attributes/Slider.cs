@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Satchel.BetterMenus.Attributes;
 
@@ -12,10 +13,10 @@ public class FloatSliderAttribute : ElementAttribute
     public float MaxValue;
 
     /// <inheritdoc cref="FloatSliderAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="minValue">The minimum value of the slider</param>
     /// <param name="maxValue">The maximum value of the slider</param>
-    public FloatSliderAttribute(string name, float minValue, float maxValue) : base(name)
+    public FloatSliderAttribute(string name, float minValue, float maxValue, [CallerLineNumber] int order = 0) : base(name, order)
     {
         MinValue = minValue;
         MaxValue = maxValue;
@@ -45,10 +46,10 @@ public class IntSliderAttribute : ElementAttribute
     public int MaxValue;
 
     /// <inheritdoc cref="IntSliderAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="minValue">The minimum value of the slider</param>
     /// <param name="maxValue">The maximum value of the slider</param>
-    public IntSliderAttribute(string name, int minValue, int maxValue) : base(name)
+    public IntSliderAttribute(string name, int minValue, int maxValue, [CallerLineNumber] int order = 0) : base(name, order)
     {
         MinValue = minValue;
         MaxValue = maxValue;

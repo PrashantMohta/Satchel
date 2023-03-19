@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Satchel.BetterMenus.Attributes;
 
@@ -14,7 +15,7 @@ public class TextPanelAttribute : ElementAttribute
     /// <inheritdoc cref="TextPanelAttribute"/>
     /// <param name="width">The width of the TextPanel.</param>
     /// <param name="fontSize">The fontSize of the TextPanel.</param>
-    public TextPanelAttribute(float width = 1000f, int fontSize = 35) : base("")
+    public TextPanelAttribute(float width = 1000f, int fontSize = 35, [CallerLineNumber] int order = 0) : base("", order)
     {
         Width = width;
         FontSize = fontSize;

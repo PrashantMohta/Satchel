@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using InControl;
 
 namespace Satchel.BetterMenus.Attributes;
@@ -11,56 +13,69 @@ namespace Satchel.BetterMenus.Attributes;
 public class PlayerActionSetAttribute : ElementAttribute
 {
     /// <inheritdoc cref="PlayerActionSetAttribute"/>
-    public PlayerActionSetAttribute() : base("") { }
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
+    public PlayerActionSetAttribute([CallerLineNumber] int order = 0) : base("", order) { }
 
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) =>
         memberInfo is FieldInfo fieldInfo && fieldInfo.FieldType.IsSubclassOf(typeof(PlayerActionSet)) ||
-        memberInfo is PropertyInfo propertyInfo && propertyInfo.PropertyType.IsSubclassOf(typeof(PlayerActionSet)); //TODO: Test
+        memberInfo is PropertyInfo propertyInfo && propertyInfo.PropertyType.IsSubclassOf(typeof(PlayerActionSet));
     
     public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings)
     {
-        List<Element> elements = new List<Element>();
-        var type = memberInfo is FieldInfo fieldInfo ? fieldInfo.FieldType : (memberInfo as PropertyInfo)!.PropertyType; 
-        foreach (var bindField in type.GetFields(flags))
-        {
-            if (bindField.GetCustomAttribute<KeyBindAttribute>() is { } keyBindAttribute)
-            {
-                elements.Add(new KeyBind(keyBindAttribute.Name, bindField.GetValue(GetValue(memberInfo, settings)) as PlayerAction));
-            }
-            if (bindField.GetCustomAttribute<ButtonBindAttribute>() is { } buttonBindAttribute)
-            {
-                elements.Add(new ButtonBind(buttonBindAttribute.Name, bindField.GetValue(GetValue(memberInfo, settings)) as PlayerAction));
-            }
-        }
-
-        return elements.ToArray();
+        return GetMemberType(memberInfo).GetFields(flags)
+            .Where(bindField => bindField.GetCustomAttribute<BindAttribute>() is not null)
+            .OrderBy(bindField => bindField.GetCustomAttribute<BindAttribute>().Order)
+            .Select(bindField => 
+                bindField.GetCustomAttribute<BindAttribute>().CreateBind(bindField, GetValue(memberInfo, settings)))
+            .ToArray();
     }
 }
+
 /// <summary>
-/// The attribute to be used on a field in the custom class to specify its a keybind
+/// Base class for the attribute to be used on a field in the custom class to specify its a keybind bind
 /// Requires the type this attribute is on to be <see cref="InControl.PlayerAction"/>
 /// </summary>
-public class KeyBindAttribute : ElementAttribute
+public abstract class BindAttribute : ElementAttribute
 {
-    /// <inheritdoc cref="KeyBindAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
-    public KeyBindAttribute(string name) : base(name) { }
+    /// <inheritdoc cref="BindAttribute"/>
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
+    public BindAttribute(string name, [CallerLineNumber] int order = 0) : base(name, order) { }
     
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => CheckFieldOrPropertyType(memberInfo, typeof(PlayerAction));
     public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings) => Array.Empty<Element>();
+
+    public abstract Element CreateBind(MemberInfo memberInfo, object playerActionSet);
+}
+
+/// <summary>
+/// The attribute to be used on a field in the custom class to specify its a keybind bind
+/// Requires the type this attribute is on to be <see cref="InControl.PlayerAction"/>
+/// </summary>
+public class KeyBindAttribute : BindAttribute
+{
+    /// <inheritdoc cref="KeyBindAttribute"/>
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
+    public KeyBindAttribute(string name, [CallerLineNumber] int order = 0) : base(name, order) { }
+
+    public override Element CreateBind(MemberInfo memberInfo, object playerActionSet)
+    {
+        return new KeyBind(Name, GetValue(memberInfo, playerActionSet) as PlayerAction);
+    }
 }
 /// <summary>
 /// The attribute to be used on a field in the custom class to specify its a button bind
 /// Requires the type this attribute is on to be <see cref="InControl.PlayerAction"/>
 /// </summary>
-public class ButtonBindAttribute : ElementAttribute
+public class ButtonBindAttribute : BindAttribute
 {
     /// <inheritdoc cref="ButtonBindAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
-    public ButtonBindAttribute(string name) : base(name) { }
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
+    public ButtonBindAttribute(string name, [CallerLineNumber] int order = 0) : base(name, order) { }
     
-    public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => CheckFieldOrPropertyType(memberInfo, typeof(PlayerAction));
-    public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings) => Array.Empty<Element>();
+    public override Element CreateBind(MemberInfo memberInfo, object playerActionSet)
+    {
+        return new ButtonBind(Name, GetValue(memberInfo, playerActionSet) as PlayerAction);
+    }
 }
 
 /// <summary>
@@ -70,7 +85,8 @@ public class ButtonBindAttribute : ElementAttribute
 public class KeyAndButtonBindAttribute : ElementAttribute
 {
     /// <inheritdoc cref="KeyAndButtonBindAttribute"/>
-    public KeyAndButtonBindAttribute(string name) : base(name) { }
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
+    public KeyAndButtonBindAttribute(string name, [CallerLineNumber] int order = 0) : base(name, order) { }
 
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) =>
         CheckFieldOrPropertyType(memberInfo, typeof(KeyAndButtonActionSet));

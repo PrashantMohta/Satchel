@@ -17,10 +17,13 @@ public static class BuildMenuFromAttributes
     {
         var menuRef = new Menu(name);
 
-        foreach (var member in typeof(T).GetMembers())
+        IEnumerable<MemberInfo> members = typeof(T).GetMembers()
+            .Where(member => member.GetCustomAttribute<BetterMenusIgnore>() is null &&
+                             member.GetCustomAttribute<ElementAttribute>() is not null)
+            .OrderBy(member => member.GetCustomAttribute<ElementAttribute>().Order);
+
+        foreach (var member in members)
         {
-            if (member.GetCustomAttribute<BetterMenusIgnore>() != null) continue;
-            
             if (member.GetCustomAttribute<ElementAttribute>() is not { } elementAttribute) continue;
             
             if (elementAttribute.VerifyCorrectFieldType(member))

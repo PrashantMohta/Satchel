@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Satchel.BetterMenus.Attributes;
 
@@ -12,10 +13,11 @@ public class StringInputFieldAttribute : ElementAttribute
     public int CharacterLimit;
 
     /// <inheritdoc cref="StringInputFieldAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="placeHolder">The text that will be shown when the box is empty</param>
     /// <param name="characterLimit">The maximum number of characters allowed in the box. default 10 </param>
-    public StringInputFieldAttribute(string name, string placeHolder = "", int characterLimit = 10) : base(name)
+    public StringInputFieldAttribute(string name, string placeHolder = "", int characterLimit = 10, [CallerLineNumber] int order = 0) 
+        : base(name, order)
     {
         PlaceHolder = placeHolder;
         CharacterLimit = characterLimit;
@@ -48,11 +50,12 @@ public class IntInputFieldAttribute : ElementAttribute
     public int CharacterLimit;
 
     /// <inheritdoc cref="IntInputFieldAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="defaultValue">The value it will be set to when the text box is empty</param>
     /// <param name="placeHolder">The text that will be shown when the box is empty</param>
     /// <param name="characterLimit">The maximum number of characters allowed in the box. default 10 </param>
-    public IntInputFieldAttribute(string name, int defaultValue = 0, string placeHolder = "", int characterLimit = 5) : base(name)
+    public IntInputFieldAttribute(string name, int defaultValue = 0, string placeHolder = "", int characterLimit = 5, [CallerLineNumber] int order = 0) 
+        : base(name, order)
     {
         DefaultValue = defaultValue;
         PlaceHolder = placeHolder;
@@ -88,11 +91,12 @@ public class FloatInputFieldAttribute : ElementAttribute
     public int CharacterLimit;
 
     /// <inheritdoc cref="FloatInputFieldAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="defaultValue">The value it will be set to when the text box is empty</param>
     /// <param name="placeHolder">The text that will be shown when the box is empty</param>
     /// <param name="characterLimit">The maximum number of characters allowed in the box. default 7 </param>
-    public FloatInputFieldAttribute(string name, float defaultValue = 0, string placeHolder = "", int characterLimit = 7) : base(name)
+    public FloatInputFieldAttribute(string name, float defaultValue = 0, string placeHolder = "", int characterLimit = 7, [CallerLineNumber] int order = 0) 
+        : base(name, order)
     {
         DefaultValue = defaultValue;
         PlaceHolder = placeHolder;

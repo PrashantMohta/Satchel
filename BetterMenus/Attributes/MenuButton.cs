@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Satchel.BetterMenus.Attributes;
 
@@ -11,9 +12,9 @@ public class MenuButtonAttribute : ElementAttribute
     public string Description;
     
     /// <inheritdoc cref="MenuButtonAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="description">The description of the element</param>
-    public MenuButtonAttribute(string name, string description) : base(name)
+    public MenuButtonAttribute(string name, string description, [CallerLineNumber] int order = 0) : base(name, order)
     {
         Description = description;
     }

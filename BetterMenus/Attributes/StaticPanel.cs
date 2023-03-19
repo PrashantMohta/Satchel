@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Satchel.BetterMenus.Attributes;
 
@@ -9,8 +10,8 @@ namespace Satchel.BetterMenus.Attributes;
 public class StaticPanelAttribute : ElementAttribute
 {
     /// <inheritdoc cref="StaticPanelAttribute"/>
-    /// <param name="name">The name of the element to show in the menu. Also is the id</param>
-    public StaticPanelAttribute(string name) : base(name) { }
+    /// <inheritdoc cref="ElementAttribute(string, int)"/>
+    public StaticPanelAttribute(string name, [CallerLineNumber] int order = 0) : base(name, order) { }
 
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => memberInfo is MethodInfo methodInfo && 
                                                                           methodInfo.GetParameters().Length == 1 && 
