@@ -7,8 +7,11 @@ namespace Satchel.BetterMenus;
 
 public static class Utils
 {
-    public static MenuBuilder CreateMenuBuilder(string Title)
+    public static MenuBuilder CreateMenuBuilder(string Title) => CreateMenuBuilder(Title, out var _);
+    public static MenuBuilder CreateMenuBuilder(string Title, out GridNavGraph navGraph)
     {
+        navGraph = new GridNavGraph(1);
+        
         return new MenuBuilder(UIManager.instance.UICanvas.gameObject, Title)
             .CreateTitle(Title, MenuTitleStyle.vanillaStyle)
             .CreateContentPane(RectTransformData.FromSizeAndPos(
@@ -27,7 +30,7 @@ public static class Utils
                     new Vector2(0f, -502f)
                 )
             ))
-            .SetDefaultNavGraph(new GridNavGraph(1));
+            .SetDefaultNavGraph(navGraph);
     }
     public static MenuBuilder AddBackButton(this MenuBuilder builder, MenuScreen returnScreen, out UnityEngine.UI.MenuButton backButton)
     {

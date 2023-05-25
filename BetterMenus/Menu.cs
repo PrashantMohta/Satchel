@@ -24,10 +24,12 @@ namespace Satchel.BetterMenus
             Offset = default
         };
 
-        //list that stores the order.
-        public List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
+        private GridNavGraph NavigationGraph;
         #endregion
         
+        
+        //list that stores the order.
+        public List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
         
         /// <summary>
         /// the MenuScreen of the Menu
@@ -107,7 +109,7 @@ namespace Satchel.BetterMenus
             CancelAction = () => { 
                 Utils.GoToMenuScreen(returnScreen); 
             };
-            MenuBuilder Menu = Utils.CreateMenuBuilder(Name); //create main screen
+            MenuBuilder Menu = Utils.CreateMenuBuilder(Name, out NavigationGraph); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
             Menu.AddContent(new NullContentLayout(), c => c.AddScrollPaneContent(
                 new ScrollbarConfig
@@ -137,17 +139,25 @@ namespace Satchel.BetterMenus
             return menuScreen;
         }
 
-        private void ApplyElementVisibility(Element elem){
-            if(elem.gameObject == null){
-                if(elem is IShadowElement){
-                    var elems = ((IShadowElement)elem).GetElements();
-                    foreach(var e in elems){
+        private void ApplyElementVisibility(Element elem)
+        {
+            if (elem.gameObject == null)
+            {
+                if (elem is IShadowElement element)
+                {
+                    var elems = element.GetElements();
+                    foreach(var e in elems)
+                    {
                         ApplyElementVisibility(e);
                     }
-                } else {
+                } 
+                else 
+                {
                     Satchel.Instance.LogError($"No GameObject for {elem.GetType()} {elem.Name}");
                 }
-            } else {
+            } 
+            else 
+            {
                 elem.gameObject.SetActive(elem.isVisible);
             }
         }
@@ -180,7 +190,7 @@ namespace Satchel.BetterMenus
         {
             if (go.gameObject.activeInHierarchy)
             {
-                (Start + ItemAdvance * (Vector2)IndexPos).Reposition(go.gameObject.GetComponent<RectTransform>());
+                (Start + ItemAdvance * IndexPos).Reposition(go.gameObject.GetComponent<RectTransform>());
                 Index++;
             }
         }
@@ -203,13 +213,15 @@ namespace Satchel.BetterMenus
         /// </summary>
         /// <param name="silent">Whether or not to call subscribers to OnReflow.</param>
         /// <returns></returns>
-        public void Reflow(bool silent = false){
-            
+        public void Reflow(bool silent = false)
+        {
             Elements.ForEach(ApplyElementVisibility);
             
             Reorder();
-            if(!silent){
-                OnReflow?.Invoke(this,new ReflowEventArgs{
+            if(!silent)
+            {
+                OnReflow?.Invoke(this,new ReflowEventArgs
+                {
                     Target = this
                 });
             }
@@ -219,22 +231,40 @@ namespace Satchel.BetterMenus
         /// </summary>
         public void Reorder()
         {
+            // reset the nav graph (copied code from ctor)
+            ReflectionHelper.SetField(NavigationGraph,"grid",new List<List<Selectable>>()
+            {
+                new List<Selectable>()
+            });
+            ReflectionHelper.SetProperty(NavigationGraph, nameof(NavigationGraph.Columns), 1);
+            
             foreach (GameObjectRow GoRow in Instance.MenuOrder)
             {
                 var columnCount = GoRow.ActiveCount();
 
                 var l = ItemAdvance;
-                if(columnCount > 1){
+                if(columnCount > 1)
+                {
                     var XDelta = GoRow.Parent != null ? ((MenuRow)GoRow.Parent).XDelta : 750f; 
                     l.x = new RelLength(XDelta); // this breaks shit if not done on Element
                     ChangeColumns(columnCount, 0.5f, l, 0.5f);
                 }
-                foreach( var go in GoRow.Row){
-                    if(go != null){
+                foreach (var go in GoRow.Row)
+                {
+                    if (go != null && go.activeInHierarchy)
+                    {
                         ModifyNext(go);
+                        var selectable = go.GetComponent<Selectable>();
+                        selectable = selectable == null ? go.GetComponentInChildren<Selectable>() : selectable;
+                        if (selectable != null)
+                        {
+                            NavigationGraph.AddNavigationNode(selectable);
+                        }
                     }
                 }
-                if(columnCount > 1){
+                
+                if(columnCount > 1)
+                {
                     var k = ItemAdvance;
                     k.x = new RelLength(0f);
                     ChangeColumns(1, 0.5f - (1f/(2f*columnCount)), k, 0.5f);
@@ -244,6 +274,16 @@ namespace Satchel.BetterMenus
                     // from the center 
                 }
             }
+
+            try
+            {
+                NavigationGraph.BuildNavigation();
+            }
+            catch (Exception e)
+            {
+                Satchel.Instance.LogError(e);
+            }
+            
             ResetPositioners();
         }
 
