@@ -109,6 +109,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation\Animation.cs" />
+    <Compile Include="Animation\CustomAnimation.cs" />
     <Compile Include="BetterMenus\Attributes\*.cs" />
     <Compile Include="BetterMenus\Elements\InputField.cs" />
     <Compile Include="Deprecated\Reflected\GameManagerFields.cs" />
@@ -133,7 +135,7 @@
     <Compile Include="Utils\CoroutineHelper.cs" />
     <Compile Include="Utils\ObjectPoolManager.cs" />
     <Compile Include="Monobehaviour\Unity\*.cs" />
-    <Compile Include="Monobehaviour\CustomAnimationController.cs" />
+    <Compile Include="Animation\CustomAnimationController.cs" />
     <Compile Include="Deprecated\CustomAnimationFrames.cs" />
     <Compile Include="Monobehaviour\CustomArrowPromptBehaviour.cs" />
     <Compile Include="Monobehaviour\CustomEnemy.cs" />

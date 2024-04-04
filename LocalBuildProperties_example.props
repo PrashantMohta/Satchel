@@ -1,7 +1,7 @@
 <Project>
-  <PropertyGroup>
-    <VanillaFiles>..\Vanilla</VanillaFiles>
-    <ModdingAPI>..\HollowKnight.Modding\OutputFinal</ModdingAPI>
-    <HollowKnightModsDirectory>..\linkedtoHKMods</HollowKnightModsDirectory>
-  </PropertyGroup>
+	<PropertyGroup>
+		<VanillaFiles>E:\SteamLibrary\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\</VanillaFiles>
+		<ModdingAPI>$(VanillaFiles)</ModdingAPI>
+		<HollowKnightModsDirectory>$(VanillaFiles)/Mods</HollowKnightModsDirectory>
+	</PropertyGroup>
 </Project>
