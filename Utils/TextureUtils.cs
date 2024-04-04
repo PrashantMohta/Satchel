@@ -100,12 +100,29 @@ namespace Satchel
             flip.Apply();
             return flip;
         }
+
+        /// <summary>
+        /// Get a region cropped from a Texture2D
+        /// </summary>
+        /// <param name="original">original Texture2D</param>
+        /// <param name="region">The region to get</param>
+        /// <returns>The region from original as a Texture2D of the cropped size</returns>
+        public static Texture2D GetCropped(this Texture2D original, Rect region)
+        {
+            var pixData = original.GetPixels((int)region.x, (int)region.y, (int)region.width, (int)region.height);
+            var newTex = new Texture2D((int)region.width, (int)region.height);
+            newTex.SetPixels(pixData);
+            newTex.Apply();
+            return newTex;
+        }
+
         /// <summary>
         /// Get a region from a Texture2D
         /// </summary>
         /// <param name="original">original Texture2D</param>
         /// <param name="region">The region to get</param>
-        /// <returns>The region from original as a Texture2D</returns>
+        /// <returns>The region from original as a Texture2D of the same size</returns>
+        [Obsolete("Use GetCropped instead to get a texture of the new size")]
         public static Texture2D GetRegion(this Texture2D original,Rect region)
         {
             // We create a new texture so we don't change the old one!
