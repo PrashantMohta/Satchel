@@ -1,4 +1,5 @@
 using Modding.Menu;
+using Modding.Menu.Components;
 using Modding.Menu.Config;
 using System.Linq;
 using UnityEngine.UI;
@@ -77,7 +78,7 @@ namespace Satchel.BetterMenus
             On.UIManager.ShowMenu += ShowMenu;
         }
         private IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
-            if(menu == this.menuScreen){
+            if (menu == this.menuScreen){
                 menu.screenCanvasGroup.alpha = 0f;
                 menu.screenCanvasGroup.gameObject.SetActive(true);
                 UpdateInternal();
@@ -237,8 +238,7 @@ namespace Satchel.BetterMenus
                 new List<Selectable>()
             });
             ReflectionHelper.SetProperty(NavigationGraph, nameof(NavigationGraph.Columns), 1);
-            
-            foreach (GameObjectRow GoRow in Instance.MenuOrder)
+            foreach (GameObjectRow GoRow in MenuOrder)
             {
                 var columnCount = GoRow.ActiveCount();
 
@@ -251,7 +251,7 @@ namespace Satchel.BetterMenus
                 }
                 foreach (var go in GoRow.Row)
                 {
-                    if (go != null && go.activeInHierarchy)
+                    if (go != null && go.activeSelf)
                     {
                         ModifyNext(go);
                         var selectable = go.GetComponent<Selectable>();
@@ -274,18 +274,17 @@ namespace Satchel.BetterMenus
                     // from the center 
                 }
             }
-
-            try
-            {
-                NavigationGraph.BuildNavigation();
-            }
-            catch (Exception e)
-            {
-                Satchel.Instance.LogError(e);
-            }
+                try
+                {
+                    menuScreen.gameObject.AddComponent<AutoSelector>().Start = NavigationGraph.BuildNavigation();
+                }
+                catch (Exception e)
+                {
+                    Satchel.Instance.LogError(e);
+                }
             
-            ResetPositioners();
-        }
+                ResetPositioners();
+            }
 
         //from  mapi
         private Vector2Int IndexPos => new Vector2Int(Index % Columns, Index / Columns);
