@@ -3,8 +3,9 @@ namespace Satchel
     /// <summary>
     /// Utilities to work with Animations
     /// </summary>
-    public static class AnimationUtils {
-        
+    public static class AnimationUtils
+    {
+
         /// <summary>
         /// Checks if an animation clip is playing.
         /// </summary>
@@ -75,10 +76,12 @@ namespace Satchel
         /// <summary>
         /// Logs All tk2d animation clips.
         /// </summary>
-        public static void logTk2dAnimationClips(this GameObject go) {
+        public static void logTk2dAnimationClips(this GameObject go)
+        {
             tk2dSpriteAnimator spriteAnimator = go.GetComponent<tk2dSpriteAnimator>();
             Satchel.Instance.Log($"clip.names for {go.name}");
-            foreach(var clip in spriteAnimator.Library.clips){
+            foreach (var clip in spriteAnimator.Library.clips)
+            {
                 Satchel.Instance.Log(clip.name);
             }
         }
@@ -86,18 +89,20 @@ namespace Satchel
         /// <summary>
         /// Plays All tk2d animation clips.
         /// </summary>
-        public static IEnumerator playAllAnim(this GameObject go,int i = 0) {
+        public static IEnumerator playAllAnim(this GameObject go, int i = 0)
+        {
             tk2dSpriteAnimator spriteAnimator = go.GetComponent<tk2dSpriteAnimator>();
             var clips = spriteAnimator.Library.clips;
             i++;
-            if(clips.Length <= i){
-                i=0;
-            } 
+            if (clips.Length <= i)
+            {
+                i = 0;
+            }
             spriteAnimator.PlayFromFrame(clips[i], 0);
             Satchel.Instance.Log(clips[i].name);
             yield return new WaitForSeconds(2f);
             CoroutineHelper.GetRunner().StartCoroutine(go.playAllAnim(i));
         }
-    
-    } 
+
+    }
 }

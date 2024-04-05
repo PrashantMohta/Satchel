@@ -1,4 +1,3 @@
-using Satchel.Futils;
 using TMPro;
 
 namespace Satchel
@@ -6,12 +5,13 @@ namespace Satchel
     /// <summary>
     /// defines a custom mapZone
     /// </summary>
-    public class customMapZone{
+    public class customMapZone
+    {
         public string ZoneName;
         public string mapZoneTitle;
 
         public List<string> sceneNames = new List<string>();
-        public Dictionary<string,customMap> scenes = new Dictionary<string,customMap>();
+        public Dictionary<string, customMap> scenes = new Dictionary<string, customMap>();
         public Func<bool> hasMap;
         public Func<bool> hasFullMap;
         public GameObject areaCustomMap;
@@ -21,7 +21,8 @@ namespace Satchel
     /// <summary>
     /// defines a single custom map n a zone
     /// </summary>
-    public class customMap{
+    public class customMap
+    {
         public string ZoneName;
         public string sceneName;
         public string sceneTitle;
@@ -37,69 +38,80 @@ namespace Satchel
     /// </summary>
     public class CustomMapManager
     {
-        private Dictionary<string,customMap> Maps = new Dictionary<string,customMap>();
-        private Dictionary<string,customMapZone> Zones = new Dictionary<string,customMapZone>();
+        private Dictionary<string, customMap> Maps = new Dictionary<string, customMap>();
+        private Dictionary<string, customMapZone> Zones = new Dictionary<string, customMapZone>();
 
-        private List<string> MapAreas = new List<string>{"mapCrossroads", "mapGreenpath", "mapFogCanyon", "mapRoyalGardens", "mapFungalWastes", "mapCity", "mapWaterways", "mapMines", "mapDeepnest", "mapCliffs", "mapOutskirts", "mapRestingGrounds", "mapAbyss"};
+        private List<string> MapAreas = new List<string> { "mapCrossroads", "mapGreenpath", "mapFogCanyon", "mapRoyalGardens", "mapFungalWastes", "mapCity", "mapWaterways", "mapMines", "mapDeepnest", "mapCliffs", "mapOutskirts", "mapRestingGrounds", "mapAbyss" };
 
         private GameMap gameMapComponent;
 
         private GameObject AreaNameTxt;
 
-        public CustomMapManager(){
-                On.GameManager.SetGameMap += OnGameManagerSetGameMap;
-                On.GameMap.WorldMap += NewWorldMap;
-                On.GameMap.CloseQuickMap += NewCloseQuickMap;
-                On.GameMap.PositionCompass += NewPositionCompass;
-                On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.OnEnter += HandlePlayerDataBoolTest;
-                ModHooks.LanguageGetHook += LanguageGet;
+        public CustomMapManager()
+        {
+            On.GameManager.SetGameMap += OnGameManagerSetGameMap;
+            On.GameMap.WorldMap += NewWorldMap;
+            On.GameMap.CloseQuickMap += NewCloseQuickMap;
+            On.GameMap.PositionCompass += NewPositionCompass;
+            On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.OnEnter += HandlePlayerDataBoolTest;
+            ModHooks.LanguageGetHook += LanguageGet;
         }
         /// <summary>
         /// Add a new customMapZone
         /// </summary>
         /// <param name="newZone"></param>
-        public void AddZone(customMapZone newZone){
-            Zones.Add(newZone.ZoneName,newZone);
+        public void AddZone(customMapZone newZone)
+        {
+            Zones.Add(newZone.ZoneName, newZone);
         }
         /// <summary>
         /// Add a new customMap scene
         /// </summary>
         /// <param name="map"></param>
-        public void AddScene( customMap map){
-            Maps.Add(map.sceneName,map);
-            if(Zones.TryGetValue(map.ZoneName, out var zone)){
+        public void AddScene(customMap map)
+        {
+            Maps.Add(map.sceneName, map);
+            if (Zones.TryGetValue(map.ZoneName, out var zone))
+            {
                 // if zone exists add scene to zone
-                if(!zone.sceneNames.Contains(map.sceneName)){
+                if (!zone.sceneNames.Contains(map.sceneName))
+                {
                     zone.sceneNames.Add(map.sceneName);
                 }
                 zone.scenes[map.sceneName] = map;
-            } else {
+            }
+            else
+            {
                 // if zone does not exist create a zone with the scene map's parameters
-                zone = new customMapZone(){
-                    ZoneName=map.ZoneName,
-                    mapZoneTitle=map.ZoneName,
-                    sceneNames= new List<string>(){map.sceneName},
-                    scenes= new Dictionary<string,customMap>(),
-                    hasMap= map.hasMap,
-                    position= new Vector2(map.position.x,map.position.y),
-                    titleOffset=map.titleOffset,
+                zone = new customMapZone()
+                {
+                    ZoneName = map.ZoneName,
+                    mapZoneTitle = map.ZoneName,
+                    sceneNames = new List<string>() { map.sceneName },
+                    scenes = new Dictionary<string, customMap>(),
+                    hasMap = map.hasMap,
+                    position = new Vector2(map.position.x, map.position.y),
+                    titleOffset = map.titleOffset,
                 };
-                map.position = new Vector2(0,0);
-                zone.scenes.Add(map.sceneName,map);
-                Zones.Add(zone.ZoneName,zone);
+                map.position = new Vector2(0, 0);
+                zone.scenes.Add(map.sceneName, map);
+                Zones.Add(zone.ZoneName, zone);
             }
             CoroutineHelper.GetRunner().StartCoroutine(generateCustomMap(map));
         }
 
 
-        public void Remove(string sceneName){
+        public void Remove(string sceneName)
+        {
             //Maps.TryGetValue(sceneName,out var oldCustomMap);
             //GameObject.Destroy(oldCustomMap.areaCustomMap);
             //Maps.Remove(sceneName);
         }
 
-        private GameObject GetAreaNameTxt(){
-            if(AreaNameTxt== null){
+        private GameObject GetAreaNameTxt()
+        {
+            if (AreaNameTxt == null)
+            {
                 var quickMapGameObject = GameObject.Find("Quick Map");
                 var quickMapFsm = quickMapGameObject.LocateMyFSM("Quick Map");
                 var quickMapFsmVars = quickMapFsm.FsmVariables;
@@ -108,7 +120,8 @@ namespace Satchel
             return AreaNameTxt;
         }
 
-        private void AddSceneToZone(customMapZone Zone,customMap map){
+        private void AddSceneToZone(customMapZone Zone, customMap map)
+        {
             Satchel.Instance.Log($"processing scene {map.sceneName} for map");
             var newZone = Zones[map.ZoneName];
             var tmpChildZ = gameMapComponent.areaCliffs.transform.GetChild(6).localPosition.z;
@@ -117,7 +130,7 @@ namespace Satchel
             var mapSceneObj = new GameObject(map.sceneName);
             mapSceneObj.transform.SetParent(newZone.areaCustomMap.transform);
             mapSceneObj.name = map.sceneName;
-            mapSceneObj.transform.localPosition = new Vector3(map.position.x,map.position.y,tmpChildZ);
+            mapSceneObj.transform.localPosition = new Vector3(map.position.x, map.position.y, tmpChildZ);
             mapSceneObj.layer = 5;
             mapSceneObj.transform.localScale = Vector3.one;
 
@@ -128,14 +141,16 @@ namespace Satchel
             sr.sortingOrder = 0;
             mapSceneObj.SetActive(true);
         }
-        private IEnumerator generateCustomMap(customMap map){
-            yield return new WaitWhile(()=> gameMapComponent == null);
+        private IEnumerator generateCustomMap(customMap map)
+        {
+            yield return new WaitWhile(() => gameMapComponent == null);
             var newZone = Zones[map.ZoneName];
-            if(newZone.areaCustomMap == null){
+            if (newZone.areaCustomMap == null)
+            {
                 //Need to create Mapzone
                 var areaNamePrefab = GameObject.Instantiate(gameMapComponent.areaCliffs.transform.GetChild(0).gameObject);
                 areaNamePrefab.SetActive(false);
-                newZone.areaCustomMap =  GameObject.Instantiate(gameMapComponent.areaCliffs, gameMapComponent.transform);
+                newZone.areaCustomMap = GameObject.Instantiate(gameMapComponent.areaCliffs, gameMapComponent.transform);
                 newZone.areaCustomMap.SetActive(true);
                 for (int i = 0; i < newZone.areaCustomMap.transform.childCount; i++)
                 {
@@ -144,10 +159,10 @@ namespace Satchel
                 newZone.areaCustomMap.name = "dc_custom_mapzone_" + newZone.ZoneName;
                 newZone.areaCustomMap.layer = 5;
                 newZone.areaCustomMap.transform.localScale = Vector3.one;
-                newZone.areaCustomMap.transform.localPosition = new Vector3(newZone.position.x, newZone.position.y , gameMapComponent.areaCliffs.transform.localPosition.z);
-            
+                newZone.areaCustomMap.transform.localPosition = new Vector3(newZone.position.x, newZone.position.y, gameMapComponent.areaCliffs.transform.localPosition.z);
+
                 var zoneCustomName = GameObject.Instantiate(areaNamePrefab, newZone.areaCustomMap.transform);
-                zoneCustomName.transform.position = new Vector3(0,0,0);
+                zoneCustomName.transform.position = new Vector3(0, 0, 0);
                 zoneCustomName.transform.localPosition = new Vector3(5f + newZone.titleOffset.x, -0.5f + newZone.titleOffset.y, zoneCustomName.transform.localPosition.z - 0.002f);
                 zoneCustomName.GetComponent<SetTextMeshProGameText>().convName = "dc_custom_mapzone_" + newZone.ZoneName;
                 zoneCustomName.SetActive(true);
@@ -155,19 +170,20 @@ namespace Satchel
                 GameObject.DontDestroyOnLoad(newZone.areaCustomMap);
             }
             // Map zone will always exist now, so add your scene map
-            AddSceneToZone(newZone,map);
+            AddSceneToZone(newZone, map);
         }
-        
+
         protected void EditQuickMapFsm(GameObject gameMapGameObject)
         {
-            
+
             var quickMapGameObject = GameObject.Find("Quick Map");
             var quickMapFsm = quickMapGameObject.LocateMyFSM("Quick Map");
 
             var quickMapFsmVars = quickMapFsm.FsmVariables;
 
-            var customFsmAction = new CustomFsmAction(){
-                method = ()=>CheckOpenCustomQuickMap(gameMapGameObject)
+            var customFsmAction = new CustomFsmAction()
+            {
+                method = () => CheckOpenCustomQuickMap(gameMapGameObject)
             };
 
             quickMapFsm.InsertAction("Crossroads", customFsmAction, 7);
@@ -187,9 +203,11 @@ namespace Satchel
 
 
         }
-        private void OpenCustomMap(GameMap gm){
+        private void OpenCustomMap(GameMap gm)
+        {
             var currentSceneName = SceneUtils.getCurrentScene().name;
-            if(Maps.TryGetValue(currentSceneName,out var currentScene)){
+            if (Maps.TryGetValue(currentSceneName, out var currentScene))
+            {
                 gm.areaGreenpath.SetActive(false);
                 gm.areaAncientBasin.SetActive(false);
                 gm.areaCity.SetActive(false);
@@ -207,8 +225,10 @@ namespace Satchel
                 gm.areaWaterways.SetActive(false);
 
                 resetMapVisibility();
-                foreach(var kvp in Zones){
-                    if(kvp.Value.sceneNames.Contains(currentSceneName)){
+                foreach (var kvp in Zones)
+                {
+                    if (kvp.Value.sceneNames.Contains(currentSceneName))
+                    {
                         kvp.Value.areaCustomMap.SetActive(true);
                     }
                 }
@@ -216,80 +236,97 @@ namespace Satchel
                 areaTxt.GetComponent<TextMeshPro>().text = Zones[currentScene.ZoneName].mapZoneTitle != "" ? Zones[currentScene.ZoneName].mapZoneTitle : Zones[currentScene.ZoneName].ZoneName;
                 MoveMapTo(gm,
                 new Vector2(
-                    (Zones[currentScene.ZoneName].position.x*(-1.5365f) +currentScene.position.x),
-                    (Zones[currentScene.ZoneName].position.y*(-1.5365f) +currentScene.position.y)
+                    (Zones[currentScene.ZoneName].position.x * (-1.5365f) + currentScene.position.x),
+                    (Zones[currentScene.ZoneName].position.y * (-1.5365f) + currentScene.position.y)
                      ));
             }
         }
-        private void MoveMapTo(GameMap gm, Vector2 point){
-            gm.gameObject.transform.localPosition = new Vector3(point.x,point.y,18);
+        private void MoveMapTo(GameMap gm, Vector2 point)
+        {
+            gm.gameObject.transform.localPosition = new Vector3(point.x, point.y, 18);
         }
         private void CheckOpenCustomQuickMap(GameObject go)
         {
-            OpenCustomMap(go.GetComponent<GameMap>());   
+            OpenCustomMap(go.GetComponent<GameMap>());
         }
 
-        private string LanguageGet( string key, string sheet, string orig){
+        private string LanguageGet(string key, string sheet, string orig)
+        {
             //string orig = Language.Language.GetInternal(key, sheet);
 
-            if(key.StartsWith("dc_custom_map_")){
-                var sceneName = key.Replace("dc_custom_map_","");
-                if(Maps.TryGetValue(sceneName, out var map)){
+            if (key.StartsWith("dc_custom_map_"))
+            {
+                var sceneName = key.Replace("dc_custom_map_", "");
+                if (Maps.TryGetValue(sceneName, out var map))
+                {
                     return map.sceneTitle != "" ? map.sceneTitle : map.sceneName;
                 }
             }
-            if(key.StartsWith("dc_custom_mapzone_")){
-                var ZoneName = key.Replace("dc_custom_mapzone_","");
-                if(Zones.TryGetValue(ZoneName, out var zone)){
+            if (key.StartsWith("dc_custom_mapzone_"))
+            {
+                var ZoneName = key.Replace("dc_custom_mapzone_", "");
+                if (Zones.TryGetValue(ZoneName, out var zone))
+                {
                     return zone.mapZoneTitle != "" ? zone.mapZoneTitle : zone.ZoneName;
                 }
             }
             return orig;
         }
-        private void HandlePlayerDataBoolTest(On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.orig_OnEnter orig, HutongGames.PlayMaker.Actions.PlayerDataBoolTest self){
-            if(MapAreas.Contains(self.boolName.Value) && Maps.TryGetValue(SceneUtils.getCurrentScene().name,out var currentMap)){
-                if(currentMap.hasMap() || Zones[currentMap.ZoneName].hasFullMap())
+        private void HandlePlayerDataBoolTest(On.HutongGames.PlayMaker.Actions.PlayerDataBoolTest.orig_OnEnter orig, HutongGames.PlayMaker.Actions.PlayerDataBoolTest self)
+        {
+            if (MapAreas.Contains(self.boolName.Value) && Maps.TryGetValue(SceneUtils.getCurrentScene().name, out var currentMap))
+            {
+                if (currentMap.hasMap() || Zones[currentMap.ZoneName].hasFullMap())
                 {
                     ((FsmStateAction)self).Fsm.Event(self.isTrue);
-                } else {
+                }
+                else
+                {
                     ((FsmStateAction)self).Fsm.Event(self.isFalse);
                 }
-            } else {
+            }
+            else
+            {
                 orig(self);
             }
         }
         private void OnGameManagerSetGameMap(On.GameManager.orig_SetGameMap orig, GameManager self, GameObject gameMapGo)
-        {   
+        {
             //update FSM here
             GameObject.DontDestroyOnLoad(gameMapGo);
             gameMapComponent = gameMapGo.GetComponent<GameMap>();
-            EditQuickMapFsm(gameMapGo); 
+            EditQuickMapFsm(gameMapGo);
             orig(self, gameMapGo);
         }
 
         protected void NewWorldMap(On.GameMap.orig_WorldMap orig, GameMap self)
-    {
-        orig(self);
+        {
+            orig(self);
 
-        self.panMinX = float.MinValue;
-        self.panMaxX = float.MaxValue;
-        self.panMinY = float.MinValue;
-        self.panMaxY = float.MaxValue;
+            self.panMinX = float.MinValue;
+            self.panMaxX = float.MaxValue;
+            self.panMinY = float.MinValue;
+            self.panMaxY = float.MaxValue;
 
-        var pd = PlayerData.instance;
-        if (pd.GetBool("equippedCharm_2")){
-            foreach(var kvp in Zones){
-                kvp.Value.areaCustomMap.SetActive(kvp.Value.hasMap());
+            var pd = PlayerData.instance;
+            if (pd.GetBool("equippedCharm_2"))
+            {
+                foreach (var kvp in Zones)
+                {
+                    kvp.Value.areaCustomMap.SetActive(kvp.Value.hasMap());
+                }
             }
-        }
-              
-    }
 
-        private void resetMapVisibility(){
-            foreach(var kvp in Zones){
-                foreach(var scene in kvp.Value.sceneNames){
-                   var sceneObj = kvp.Value.areaCustomMap.FindGameObjectInChildren(scene);
-                   sceneObj.SetActive(kvp.Value.scenes[scene].hasMap() || kvp.Value.hasFullMap());
+        }
+
+        private void resetMapVisibility()
+        {
+            foreach (var kvp in Zones)
+            {
+                foreach (var scene in kvp.Value.sceneNames)
+                {
+                    var sceneObj = kvp.Value.areaCustomMap.FindGameObjectInChildren(scene);
+                    sceneObj.SetActive(kvp.Value.scenes[scene].hasMap() || kvp.Value.hasFullMap());
                 }
                 kvp.Value.areaCustomMap.SetActive(false);
             }
@@ -462,6 +499,6 @@ namespace Satchel
                 }
             }
         }
-    
+
     }
 }

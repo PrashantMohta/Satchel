@@ -6,16 +6,18 @@ namespace Satchel.BetterMenus
     /// <summary>
     /// Shows a row of Elements side-by-side.
     /// </summary>
-    public class MenuRow : Element , IShadowElement
+    public class MenuRow : Element, IShadowElement
     {
         public List<Element> Row;
-        
-        public Element[] GetElements(){
+
+        public Element[] GetElements()
+        {
             return Row.ToArray();
         }
 
-        public Element Find(string Id){
-            return Row?.Find( e => e.Id == Id);
+        public Element Find(string Id)
+        {
+            return Row?.Find(e => e.Id == Id);
         }
 
         /// <summary>
@@ -46,17 +48,19 @@ namespace Satchel.BetterMenus
         public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
             var columnCount = Row.Count;
-                        
+
             var layout = c.Layout as RegularGridLayout;
             var l = layout.ItemAdvance;
             List<GameObject> rowGos = new();
 
-            if(columnCount > 1){
+            if (columnCount > 1)
+            {
                 l.x = new RelLength(XDelta); // this breaks shit if not done
                 layout.ChangeColumns(columnCount, newSize: l);
             }
 
-            foreach(var elem in Row){
+            foreach (var elem in Row)
+            {
                 if (elem is IShadowElement)
                 {
                     Satchel.Instance.LogError("[Satchel] - Cannot create an IShadowElement inside another IShadowElement");
@@ -64,35 +68,39 @@ namespace Satchel.BetterMenus
                 }
                 elem.Parent = this.Parent;
                 var gor = elem.Create(c, Instance, false);
-                
-                foreach(var go in gor.Row){
+
+                foreach (var go in gor.Row)
+                {
                     rowGos.Add(go);
                 }
             }
 
-            if(columnCount > 1){
+            if (columnCount > 1)
+            {
                 var k = layout.ItemAdvance;
                 k.x = new RelLength(0f);
-                layout.ChangeColumns(1, 0.5f - (1f/(2f * columnCount)), newSize: k);
+                layout.ChangeColumns(1, 0.5f - (1f / (2f * columnCount)), newSize: k);
             }
-            
+
             var gop = new GameObjectRow(rowGos);
             gop.Parent = this;
             if (AddToList)
             {
                 Instance.MenuOrder.Add(gop);
             }
-            
-            ((IContainer)Parent).OnBuilt += (_,_) => {
-                OnBuiltInvoke();             
+
+            ((IContainer)Parent).OnBuilt += (_, _) =>
+            {
+                OnBuiltInvoke();
             };
-            
+
             return gop;
         }
 
         public override void Update()
         {
-            foreach(var elem in Row){
+            foreach (var elem in Row)
+            {
                 elem?.UpdateInternal();
             }
         }

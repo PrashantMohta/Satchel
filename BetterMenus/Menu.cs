@@ -8,10 +8,11 @@ namespace Satchel.BetterMenus
     /// <summary>
     /// The class that needs to be instantiated to create a better menu
     /// </summary>
-    public class Menu : MenuElement, IContainer{
+    public class Menu : MenuElement, IContainer
+    {
         private readonly List<Element> Elements = new();
-        private readonly Dictionary<String,Element> ElementDict = new();
-        
+        private readonly Dictionary<String, Element> ElementDict = new();
+
         #region Internal Fields
         //some private atributes we need because we intend to reorder the menu
         private int Columns = 1;
@@ -27,11 +28,11 @@ namespace Satchel.BetterMenus
 
         private GridNavGraph NavigationGraph;
         #endregion
-        
-        
+
+
         //list that stores the order.
         public List<GameObjectRow> MenuOrder = new List<GameObjectRow>();
-        
+
         /// <summary>
         /// the MenuScreen of the Menu
         /// </summary>
@@ -41,16 +42,17 @@ namespace Satchel.BetterMenus
         /// the "previous" menu screen. It is the screen the game will return to to on back button press or esc
         /// </summary>
         public MenuScreen returnScreen;
-        
+
         /// <summary>
         /// Adds an element to the menu
         /// </summary>
         /// <param name="elem">the new element to be added</param>
-        public void AddElement(Element elem){
+        public void AddElement(Element elem)
+        {
             Elements.Add(elem);
             ElementDict[elem.Id] = elem;
         }
-        
+
         /// <summary>
         /// Creates a new instance of Menu. This is used to create a better menu
         /// <param name="name">The title of the ModMenu</param>
@@ -58,11 +60,12 @@ namespace Satchel.BetterMenus
         /// </summary>
         public Menu(string name, Element[] elements) : this(name)
         {
-            foreach(var elem in elements){
+            foreach (var elem in elements)
+            {
                 AddElement(elem);
             }
         }
-        
+
         /// <summary>
         /// Creates a new instance of Menu without any elements. use MenuRef.AddElement or the other constructor to add elements
         /// <param name="name">The title of the ModMenu</param>
@@ -77,22 +80,26 @@ namespace Satchel.BetterMenus
             ResetPositioners();
             On.UIManager.ShowMenu += ShowMenu;
         }
-        private IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu){
-            if (menu == this.menuScreen){
+        private IEnumerator ShowMenu(On.UIManager.orig_ShowMenu orig, UIManager self, MenuScreen menu)
+        {
+            if (menu == this.menuScreen)
+            {
                 menu.screenCanvasGroup.alpha = 0f;
                 menu.screenCanvasGroup.gameObject.SetActive(true);
                 UpdateInternal();
                 menu.screenCanvasGroup.gameObject.SetActive(false);
             }
-            yield return orig(self,menu);
+            yield return orig(self, menu);
         }
         /// <summary>
         /// Returns the element with the id given in the Menu. The element found can then be used to edit its properties
         /// </summary>
         /// <param name="ElementId">The id of the element to find. If not specified, id is the name of the element</param>
         /// <returns></returns>
-        public Element Find(string ElementId){
-            if(ElementDict.TryGetValue(ElementId, out var elem)){
+        public Element Find(string ElementId)
+        {
+            if (ElementDict.TryGetValue(ElementId, out var elem))
+            {
                 return elem;
             }
             Satchel.Instance.LogError($"No such Element with id {ElementId}");
@@ -107,8 +114,9 @@ namespace Satchel.BetterMenus
         public MenuScreen GetMenuScreen(MenuScreen _returnScreen)
         {
             returnScreen = _returnScreen;
-            CancelAction = () => { 
-                Utils.GoToMenuScreen(returnScreen); 
+            CancelAction = () =>
+            {
+                Utils.GoToMenuScreen(returnScreen);
             };
             MenuBuilder Menu = Utils.CreateMenuBuilder(Name, out NavigationGraph); //create main screen
             UnityEngine.UI.MenuButton backButton = null; //just so we can use it in scroll bar
@@ -133,7 +141,7 @@ namespace Satchel.BetterMenus
                 RegularGridLayout.CreateVerticalLayout(105f),
                 d => AddModMenuContent(Elements, d)
             ));
-            
+
             Menu.AddBackButton(Instance, out backButton); // add a back button
             menuScreen = Menu.Build();
             TriggerBuiltEvent();
@@ -147,17 +155,17 @@ namespace Satchel.BetterMenus
                 if (elem is IShadowElement element)
                 {
                     var elems = element.GetElements();
-                    foreach(var e in elems)
+                    foreach (var e in elems)
                     {
                         ApplyElementVisibility(e);
                     }
-                } 
-                else 
+                }
+                else
                 {
                     Satchel.Instance.LogError($"No GameObject for {elem.GetType()} {elem.Name}");
                 }
-            } 
-            else 
+            }
+            else
             {
                 elem.gameObject.SetActive(elem.isVisible);
             }
@@ -199,8 +207,10 @@ namespace Satchel.BetterMenus
         /// Event for when the Menu is built
         /// </summary>
         public event EventHandler<ContainerBuiltEventArgs> OnBuilt;
-        public void TriggerBuiltEvent(){
-            OnBuilt?.Invoke(this,new ContainerBuiltEventArgs{
+        public void TriggerBuiltEvent()
+        {
+            OnBuilt?.Invoke(this, new ContainerBuiltEventArgs
+            {
                 Target = this
             });
         }
@@ -208,7 +218,7 @@ namespace Satchel.BetterMenus
         /// Event for when reflow of the container happens
         /// </summary>
         public event EventHandler<ReflowEventArgs> OnReflow;
-        
+
         /// <summary>
         /// Updates visibility of all elements, and updates menu 
         /// </summary>
@@ -217,11 +227,11 @@ namespace Satchel.BetterMenus
         public void Reflow(bool silent = false)
         {
             Elements.ForEach(ApplyElementVisibility);
-            
+
             Reorder();
-            if(!silent)
+            if (!silent)
             {
-                OnReflow?.Invoke(this,new ReflowEventArgs
+                OnReflow?.Invoke(this, new ReflowEventArgs
                 {
                     Target = this
                 });
@@ -233,7 +243,7 @@ namespace Satchel.BetterMenus
         public void Reorder()
         {
             // reset the nav graph (copied code from ctor)
-            ReflectionHelper.SetField(NavigationGraph,"grid",new List<List<Selectable>>()
+            ReflectionHelper.SetField(NavigationGraph, "grid", new List<List<Selectable>>()
             {
                 new List<Selectable>()
             });
@@ -243,9 +253,9 @@ namespace Satchel.BetterMenus
                 var columnCount = GoRow.ActiveCount();
 
                 var l = ItemAdvance;
-                if(columnCount > 1)
+                if (columnCount > 1)
                 {
-                    var XDelta = GoRow.Parent != null ? ((MenuRow)GoRow.Parent).XDelta : 750f; 
+                    var XDelta = GoRow.Parent != null ? ((MenuRow)GoRow.Parent).XDelta : 750f;
                     l.x = new RelLength(XDelta); // this breaks shit if not done on Element
                     ChangeColumns(columnCount, 0.5f, l, 0.5f);
                 }
@@ -262,29 +272,29 @@ namespace Satchel.BetterMenus
                         }
                     }
                 }
-                
-                if(columnCount > 1)
+
+                if (columnCount > 1)
                 {
                     var k = ItemAdvance;
                     k.x = new RelLength(0f);
-                    ChangeColumns(1, 0.5f - (1f/(2f*columnCount)), k, 0.5f);
+                    ChangeColumns(1, 0.5f - (1f / (2f * columnCount)), k, 0.5f);
                     // we assume next row is a single column and same width as our current columns
                     // and set the position of the start of next grid when center aligned in terms of current grid
                     // so we substract half of it's width (in terms of the whole width of our current grid)
                     // from the center 
                 }
             }
-                try
-                {
-                    menuScreen.gameObject.AddComponent<AutoSelector>().Start = NavigationGraph.BuildNavigation();
-                }
-                catch (Exception e)
-                {
-                    Satchel.Instance.LogError(e);
-                }
-            
-                ResetPositioners();
+            try
+            {
+                menuScreen.gameObject.AddComponent<AutoSelector>().Start = NavigationGraph.BuildNavigation();
             }
+            catch (Exception e)
+            {
+                Satchel.Instance.LogError(e);
+            }
+
+            ResetPositioners();
+        }
 
         //from  mapi
         private Vector2Int IndexPos => new Vector2Int(Index % Columns, Index / Columns);
@@ -317,8 +327,8 @@ namespace Satchel.BetterMenus
         /// <returns>The generated MenuScreen.</returns>
         public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions, out Menu betterMenuMod)
         {
-            betterMenuMod = new Menu(Title,MenuOptions);
-            return betterMenuMod.GetMenuScreen(modListMenu); 
+            betterMenuMod = new Menu(Title, MenuOptions);
+            return betterMenuMod.GetMenuScreen(modListMenu);
         }
         /// <summary>
         /// Generates a new MenuScreen.
@@ -327,7 +337,8 @@ namespace Satchel.BetterMenus
         /// <param name="modListMenu">The MenuScreen of the returning screen (when back is pressed)</param>
         /// <param name="MenuOptions">The Elements to add.</param>
         /// <returns>The generated MenuScreen.</returns>
-        public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions) {
+        public static MenuScreen Create(string Title, MenuScreen modListMenu, Element[] MenuOptions)
+        {
             return new Menu(Title, MenuOptions).GetMenuScreen(modListMenu);
         }
         /// <summary>
@@ -337,7 +348,7 @@ namespace Satchel.BetterMenus
         {
             this.menuScreen.gameObject.Find("Title").GetComponent<Text>().text = Name;
             Elements.ForEach(elem => elem.Update());
-            
+
             Reflow();
         }
 

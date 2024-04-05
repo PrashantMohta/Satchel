@@ -9,7 +9,7 @@ public abstract class ElementAttribute : Attribute
 {
     public string Name;
     public int Order;
-    
+
     /// <inheritdoc cref="ElementAttribute"/>
     /// <param name="name">The name of the element to show in the menu. Also is the id</param>
     /// <param name="order">The lower the order the higher up it is on the menu.
@@ -23,7 +23,7 @@ public abstract class ElementAttribute : Attribute
 
     public abstract bool VerifyCorrectFieldType(MemberInfo memberInfo);
     public abstract Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings);
-    
+
     protected const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
 
     /// <summary>
@@ -54,7 +54,7 @@ public abstract class ElementAttribute : Attribute
     }
     protected static Type GetMemberType(MemberInfo memberInfo) =>
         memberInfo is FieldInfo fieldInfo ? fieldInfo.FieldType : (memberInfo as PropertyInfo)!.PropertyType;
-    
+
     /// <summary>
     /// Used to get value when you have MemberInfo which is either a FieldInfo or PropertyInfo
     /// </summary>

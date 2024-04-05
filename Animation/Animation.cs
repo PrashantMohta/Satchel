@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Satchel
+﻿namespace Satchel
 {
     /// <summary>
     /// Holds the serializable parameters for an Animation

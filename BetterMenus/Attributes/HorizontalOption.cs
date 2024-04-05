@@ -13,16 +13,16 @@ namespace Satchel.BetterMenus.Attributes;
 /// <see cref="HorizontalFloatOptionAttribute"/>.
 /// Alternatively create your own child class similar to these.
 /// </summary>
-public abstract class GenericHorizontalOptionAttribute<T> : ElementAttribute 
+public abstract class GenericHorizontalOptionAttribute<T> : ElementAttribute
 {
     public List<string> Options;
     public string Description;
-    
+
     /// <inheritdoc cref="GenericHorizontalOptionAttribute{T}"/>
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="description">The description of the element</param>
     /// <param name="options">The possible options in the horizontal option</param>
-    public GenericHorizontalOptionAttribute(string name, string description, string[] options, [CallerLineNumber] int order = 0) 
+    public GenericHorizontalOptionAttribute(string name, string description, string[] options, [CallerLineNumber] int order = 0)
         : base(name, order)
     {
         Description = description;
@@ -43,7 +43,7 @@ public abstract class GenericHorizontalOptionAttribute<T> : ElementAttribute
     public abstract T FromStringConvertor(string value);
 
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => memberInfo is FieldInfo or PropertyInfo;
-    
+
     public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings)
     {
         return new Element[]
@@ -57,8 +57,8 @@ public abstract class GenericHorizontalOptionAttribute<T> : ElementAttribute
                 },
                 () =>
                 {
-                    var value = (T) GetValue(memberInfo, settings); 
-                    return Options.FindIndex(x => 
+                    var value = (T) GetValue(memberInfo, settings);
+                    return Options.FindIndex(x =>
                         EqualityComparer<T>.Default.Equals(FromStringConvertor(x), value));
                 })
         };
@@ -75,7 +75,7 @@ public class HorizontalStringOptionAttribute : GenericHorizontalOptionAttribute<
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="description">The description of the element</param>
     /// <param name="options">The possible options in the horizontal option</param>
-    public HorizontalStringOptionAttribute(string name, string description, string[] options, [CallerLineNumber] int order = 0) 
+    public HorizontalStringOptionAttribute(string name, string description, string[] options, [CallerLineNumber] int order = 0)
         : base(name, description, options, order) { }
     public override string FromStringConvertor(string value) => value;
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => CheckFieldOrPropertyType(memberInfo, typeof(string));
@@ -90,9 +90,9 @@ public class HorizontalEnumOptionAttribute<T> : GenericHorizontalOptionAttribute
     /// <inheritdoc cref="HorizontalEnumOptionAttribute{T}"/>
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="description">The description of the element</param>
-    public HorizontalEnumOptionAttribute(string name, string description, [CallerLineNumber] int order = 0) 
+    public HorizontalEnumOptionAttribute(string name, string description, [CallerLineNumber] int order = 0)
         : base(name, description, Enum.GetNames(typeof(T)), order) { }
-    public override T FromStringConvertor(string value) => (T) Enum.Parse(typeof(T), value);
+    public override T FromStringConvertor(string value) => (T)Enum.Parse(typeof(T), value);
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) =>
         memberInfo is FieldInfo fieldInfo && fieldInfo.FieldType.IsSubclassOf(typeof(Enum)) ||
         memberInfo is PropertyInfo propertyInfo && propertyInfo.PropertyType.IsSubclassOf(typeof(Enum));
@@ -109,8 +109,8 @@ public class HorizontalBoolOptionAttribute : GenericHorizontalOptionAttribute<bo
     /// <param name="description">The description of the element</param>
     /// <param name="_true">the text that shows when bool is true</param>
     /// <param name="_false">the text that shows when bool is false</param>
-    public HorizontalBoolOptionAttribute(string name, string description, string _true = "True", string _false = "False", [CallerLineNumber] int order = 0) 
-        : base(name, description, new [] {_true, _false}, order) { }
+    public HorizontalBoolOptionAttribute(string name, string description, string _true = "True", string _false = "False", [CallerLineNumber] int order = 0)
+        : base(name, description, new[] { _true, _false }, order) { }
     public override bool FromStringConvertor(string value) => value == Options[0]; // first value of options is the true option
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => CheckFieldOrPropertyType(memberInfo, typeof(bool));
 }
@@ -125,24 +125,24 @@ public class HorizontalIntOptionAttribute : GenericHorizontalOptionAttribute<int
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="description">The description of the element</param>
     /// <param name="options">The possible options in the horizontal option</param>
-    public HorizontalIntOptionAttribute(string name, string description, int[] options, [CallerLineNumber] int order = 0) 
+    public HorizontalIntOptionAttribute(string name, string description, int[] options, [CallerLineNumber] int order = 0)
         : base(name, description, options, order) { }
-    
+
     /// <inheritdoc cref="HorizontalIntOptionAttribute"/>
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="description">The description of the element</param>
     /// <param name="start">The start of the sequence</param>
     /// <param name="stop">The end of the sequence</param>
     /// <param name="step">The amount increased between 2 elements in the sequence</param>
-    public HorizontalIntOptionAttribute(string name, string description, int start, int stop, int step = 1, [CallerLineNumber] int order = 0) 
+    public HorizontalIntOptionAttribute(string name, string description, int start, int stop, int step = 1, [CallerLineNumber] int order = 0)
         : base(name, description, GetOptions(start, stop, step), order) { }
     public override int FromStringConvertor(string value) => int.Parse(value);
     private static int[] GetOptions(int start, int stop, int step)
     {
         List<int> options = new();
-        for (int i = start; i < stop; i += step) 
+        for (int i = start; i < stop; i += step)
         {
-			options.Add(i); 
+            options.Add(i);
         }
         return options.ToArray();
     }
@@ -160,7 +160,7 @@ public class HorizontalFloatOptionAttribute : GenericHorizontalOptionAttribute<f
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="description">The description of the element</param>
     /// <param name="options">The possible options in the horizontal option</param>
-    public HorizontalFloatOptionAttribute(string name, string description, float[] options, [CallerLineNumber] int order = 0) 
+    public HorizontalFloatOptionAttribute(string name, string description, float[] options, [CallerLineNumber] int order = 0)
         : base(name, description, options, order) { }
 
     /// <inheritdoc cref="HorizontalFloatOptionAttribute"/>
@@ -169,22 +169,22 @@ public class HorizontalFloatOptionAttribute : GenericHorizontalOptionAttribute<f
     /// <param name="start">The start of the sequence</param>
     /// <param name="stop">The end of the sequence</param>
     /// <param name="step">The amount increased between 2 elements in the sequence</param>
-    public HorizontalFloatOptionAttribute(string name, string description, float start, float stop, float step = 1, [CallerLineNumber] int order = 0) 
+    public HorizontalFloatOptionAttribute(string name, string description, float start, float stop, float step = 1, [CallerLineNumber] int order = 0)
         : base(name, description, GetOptions(start, stop, step), order) { }
     public override float FromStringConvertor(string value) => float.Parse(value);
     private static float[] GetOptions(float start, float stop, float step)
     {
         List<float> options = new();
 
-		decimal decimalStop = (decimal) stop, decimalStep = (decimal) step;
-		for (decimal i = (decimal) start; i < decimalStop; i += decimalStep) 
+        decimal decimalStop = (decimal)stop, decimalStep = (decimal)step;
+        for (decimal i = (decimal)start; i < decimalStop; i += decimalStep)
         {
-			options.Add(decimal.ToSingle(i));
+            options.Add(decimal.ToSingle(i));
         }
 
-		options.Add(stop);
+        options.Add(stop);
 
-		return options.ToArray();
+        return options.ToArray();
     }
 
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => CheckFieldOrPropertyType(memberInfo, typeof(float));

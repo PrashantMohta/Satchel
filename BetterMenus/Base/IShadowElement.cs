@@ -3,7 +3,8 @@ namespace Satchel.BetterMenus
     /// <summary>
     /// An interface for elements that can contain other elements
     /// </summary>
-    public interface IShadowElement {
+    public interface IShadowElement
+    {
         /// <summary>
         /// Gets an array of all elements in the ShadowElement.
         /// </summary>

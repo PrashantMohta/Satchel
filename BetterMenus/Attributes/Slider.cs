@@ -56,7 +56,7 @@ public class IntSliderAttribute : ElementAttribute
     }
 
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => CheckFieldOrPropertyType(memberInfo, typeof(int));
-    
+
     public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings)
     {
         return new Element[]

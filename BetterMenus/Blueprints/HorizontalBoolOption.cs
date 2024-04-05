@@ -15,19 +15,19 @@ namespace Satchel.BetterMenus
         /// <param name="_false">the text that shows when bool is false</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
         /// <returns>The Horizontal Option to add to the menu</returns>
-        public static HorizontalOption HorizontalBoolOption(string name, 
-            string description, 
-            Action<bool> applySetting, 
-            Func<bool> loadSetting, 
+        public static HorizontalOption HorizontalBoolOption(string name,
+            string description,
+            Action<bool> applySetting,
+            Func<bool> loadSetting,
             [CanBeNull] string _true = null,
             [CanBeNull] string _false = null,
             string Id = "__UseName")
         {
             return new HorizontalOption(name,
                 description,
-                new []
+                new[]
                 {
-                    _true ?? Language.Language.Get("MOH_ON","MainMenu"), 
+                    _true ?? Language.Language.Get("MOH_ON","MainMenu"),
                     _false ?? Language.Language.Get("MOH_OFF","MainMenu")
                 },
                 (i) => applySetting(i == 0),

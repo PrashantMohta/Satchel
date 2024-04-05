@@ -5,7 +5,7 @@ namespace Satchel.BetterMenus
     /// <summary>
     /// A static panel.
     /// </summary>
-    public class StaticPanel: Element
+    public class StaticPanel : Element
     {
         //the paramater that will be passed in is the static panel that you'll have to make the new object the parent of
         /// <summary>
@@ -16,7 +16,7 @@ namespace Satchel.BetterMenus
         /// The width of the panel (default 1000f).
         /// </summary>
         public float Width;
-        
+
 
         /// <summary>
         /// Creates a new StaticPanel.
@@ -27,9 +27,9 @@ namespace Satchel.BetterMenus
         /// <param name="Id">the id of the element that can be used to search for it</param>
         public StaticPanel(
             string name,
-            Action<GameObject> createCustomItem, 
+            Action<GameObject> createCustomItem,
             float width = 1000f,
-            string Id = "__UseName") : base(Id,name)
+            string Id = "__UseName") : base(Id, name)
         {
             Name = name;
             CreateCustomItem = createCustomItem;
@@ -46,22 +46,23 @@ namespace Satchel.BetterMenus
         public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
             _ = CreateCustomItem ?? throw new ArgumentNullException(nameof(CreateCustomItem), "CreateCustomItem cannot be null");
-             
+
             c.AddStaticPanel(
                 Name,
                 new RelVector2(new Vector2(Width, 105f)),
                 out var option);
             CreateCustomItem.Invoke(option);
-            
+
             if (AddToList)
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option));
             }
 
             gameObject = option;
-            
-            ((IContainer)Parent).OnBuilt += (_,_) => {
-                OnBuiltInvoke();             
+
+            ((IContainer)Parent).OnBuilt += (_, _) =>
+            {
+                OnBuiltInvoke();
             };
 
             return new GameObjectRow(option);

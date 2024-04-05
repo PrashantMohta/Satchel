@@ -13,9 +13,9 @@ namespace Satchel.BetterMenus
         /// <param name="loadSetting">The Func(bool) to Invoke to load the current setting.</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
         /// <returns></returns>
-        public static MenuButton ToggleButton(string name, 
-            string description, 
-            Action<bool> applySetting, 
+        public static MenuButton ToggleButton(string name,
+            string description,
+            Action<bool> applySetting,
             Func<bool> loadSetting,
             string Id = "__UseName")
         {
@@ -23,17 +23,17 @@ namespace Satchel.BetterMenus
             {
                 Id = name;
             }
-            
+
             Color ON = Color.white;
             Color OFF = Color.grey;
-            
-            MenuButton toggleButton =  new MenuButton(name,
+
+            MenuButton toggleButton = new MenuButton(name,
                 description,
                 button =>
                 {
                     //get the current state of the button
                     bool newValue = !loadSetting();
-                    
+
                     //change text color of button to show on or off
                     button.transform.Find("Label").GetComponent<Text>().color = newValue ? ON : OFF;
 
@@ -49,7 +49,7 @@ namespace Satchel.BetterMenus
                 toggleButton.gameObject.transform.Find("Label").GetComponent<Text>().color = loadSetting() ? ON : OFF;
 
             };
-            
+
             return toggleButton;
         }
     }

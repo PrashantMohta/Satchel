@@ -394,9 +394,9 @@
             get => ReflectionHelper.GetField<GameManager, UIManager>(GameManager.instance, "_uiInstance");
             set => ReflectionHelper.SetField(GameManager.instance, "_uiInstance", value);
         }
-        
+
         //static fields
-        
+
         public static InControl.InControlManager _spawnedInControlManager
         {
             get => ReflectionHelper.GetField<GameManager, InControl.InControlManager>("_spawnedInControlManager");

@@ -3,8 +3,9 @@ namespace Satchel
     /// <summary>
     /// Handles custom shinies
     /// </summary>
-    public class CustomShinyManager{
-        public GameObject standPrefab,prefab; 
+    public class CustomShinyManager
+    {
+        public GameObject standPrefab, prefab;
         public static readonly string languageKey = $"SATCHEL_SHINY_";
         private List<CustomShiny> shinies = new();
         private Dictionary<string, string> lang = new();
@@ -29,21 +30,26 @@ namespace Satchel
             bool isTrinket,
             Action Callback,
             Func<bool> ShouldSpawn,
-            Sprite sprite = null){
-                CustomShiny shiny = new CustomShiny(ItemName,sceneName,position,isStand,isTrinket,Callback,ShouldSpawn,sprite);
-                shinies.Add(shiny);
-                lang.Add($"{languageKey}_{shiny.ItemName}",shiny.ItemName);
-                return shiny;
+            Sprite sprite = null)
+        {
+            CustomShiny shiny = new CustomShiny(ItemName, sceneName, position, isStand, isTrinket, Callback, ShouldSpawn, sprite);
+            shinies.Add(shiny);
+            lang.Add($"{languageKey}_{shiny.ItemName}", shiny.ItemName);
+            return shiny;
         }
-        public CustomShinyManager(){
+        public CustomShinyManager()
+        {
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SpawnOnSceneLoad;
             ModHooks.LanguageGetHook += LanguageGet;
         }
 
-        private IEnumerator SpawnCoro(Scene scene){
+        private IEnumerator SpawnCoro(Scene scene)
+        {
             yield return null;
-            foreach(var shiny in shinies){
-                if(scene.name == shiny.sceneName && shiny.ShouldSpawn()){
+            foreach (var shiny in shinies)
+            {
+                if (scene.name == shiny.sceneName && shiny.ShouldSpawn())
+                {
                     shiny.Spawn(shiny.isStand ? standPrefab : prefab);
                 }
             }
@@ -53,8 +59,10 @@ namespace Satchel
         {
             CoroutineHelper.GetRunner().StartCoroutine(SpawnCoro(newScene));
         }
-        private string LanguageGet( string key, string sheet, string orig){ 
-            if(sheet == $"{languageKey}UI" && key.StartsWith(languageKey)){
+        private string LanguageGet(string key, string sheet, string orig)
+        {
+            if (sheet == $"{languageKey}UI" && key.StartsWith(languageKey))
+            {
                 return lang[key];
             }
             return orig;

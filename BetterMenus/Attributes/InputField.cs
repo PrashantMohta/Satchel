@@ -8,7 +8,7 @@ namespace Satchel.BetterMenus.Attributes;
 /// Requires the type this attribute is on to be <see cref="string"/>
 /// </summary>
 public class StringInputFieldAttribute : ElementAttribute
-{    
+{
     public string PlaceHolder;
     public int CharacterLimit;
 
@@ -16,7 +16,7 @@ public class StringInputFieldAttribute : ElementAttribute
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="placeHolder">The text that will be shown when the box is empty</param>
     /// <param name="characterLimit">The maximum number of characters allowed in the box. default 10 </param>
-    public StringInputFieldAttribute(string name, string placeHolder = "", int characterLimit = 10, [CallerLineNumber] int order = 0) 
+    public StringInputFieldAttribute(string name, string placeHolder = "", int characterLimit = 10, [CallerLineNumber] int order = 0)
         : base(name, order)
     {
         PlaceHolder = placeHolder;
@@ -33,7 +33,7 @@ public class StringInputFieldAttribute : ElementAttribute
                 () => (string) GetValue(memberInfo, settings),
                 PlaceHolder,
                 CharacterLimit)
-            
+
         };
     }
 }
@@ -43,7 +43,7 @@ public class StringInputFieldAttribute : ElementAttribute
 /// Requires the type this attribute is on to be <see cref="int"/>
 /// </summary>
 public class IntInputFieldAttribute : ElementAttribute
-{    
+{
 
     public int DefaultValue;
     public string PlaceHolder;
@@ -54,7 +54,7 @@ public class IntInputFieldAttribute : ElementAttribute
     /// <param name="defaultValue">The value it will be set to when the text box is empty</param>
     /// <param name="placeHolder">The text that will be shown when the box is empty</param>
     /// <param name="characterLimit">The maximum number of characters allowed in the box. default 10 </param>
-    public IntInputFieldAttribute(string name, int defaultValue = 0, string placeHolder = "", int characterLimit = 5, [CallerLineNumber] int order = 0) 
+    public IntInputFieldAttribute(string name, int defaultValue = 0, string placeHolder = "", int characterLimit = 5, [CallerLineNumber] int order = 0)
         : base(name, order)
     {
         DefaultValue = defaultValue;
@@ -84,7 +84,7 @@ public class IntInputFieldAttribute : ElementAttribute
 /// Requires the type this attribute is on to be <see cref="float"/>
 /// </summary>
 public class FloatInputFieldAttribute : ElementAttribute
-{    
+{
 
     public float DefaultValue;
     public string PlaceHolder;
@@ -95,7 +95,7 @@ public class FloatInputFieldAttribute : ElementAttribute
     /// <param name="defaultValue">The value it will be set to when the text box is empty</param>
     /// <param name="placeHolder">The text that will be shown when the box is empty</param>
     /// <param name="characterLimit">The maximum number of characters allowed in the box. default 7 </param>
-    public FloatInputFieldAttribute(string name, float defaultValue = 0, string placeHolder = "", int characterLimit = 7, [CallerLineNumber] int order = 0) 
+    public FloatInputFieldAttribute(string name, float defaultValue = 0, string placeHolder = "", int characterLimit = 7, [CallerLineNumber] int order = 0)
         : base(name, order)
     {
         DefaultValue = defaultValue;

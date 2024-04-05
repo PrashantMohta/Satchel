@@ -1,5 +1,4 @@
 ﻿using Modding.Menu;
-using Modding.Menu.Config;
 using Satchel.BetterMenus.Config;
 using UnityEngine.UI;
 
@@ -8,34 +7,34 @@ namespace Satchel.BetterMenus;
 public class InputField : Element
 {
     public GameObject currentField;
-    
+
     private static GameObject _prefab;
     private string _userInput = string.Empty;
     private Text _label;
     private Text _placeholderText;
     private UnityEngine.UI.InputField _inputField;
     private RectTransform _underLine;
-    
+
     /// <summary>
     /// The amount of characters that the input field can accept. default 10 
     /// </summary>
     public int characterLimit;
-    
+
     /// <summary>
     /// The text that shows when input text box is empty.
     /// </summary>
     public string placeholder;
-    
+
     /// <summary>
     /// The Action that will be invoked when text is inputted. Use the string parameter to save the value to use in mod.
     /// </summary>
     public Action<string> storeValue;
-    
+
     /// <summary>
     /// The initial value that you need the field to be, probably from previous session or a default. 
     /// </summary>
     public Func<string> loadValue;
-    
+
     /// <summary>
     /// Configurations for the input text. If left null, defaults to InputFieldConfig.DefaultText. Config includes fontSize (default: 46), inputBoxWidth (default: 300f) and contentType (default: Alphanumeric).
     /// </summary>
@@ -51,7 +50,7 @@ public class InputField : Element
     /// <param name="_characterLimit">the maximum number of characters allowed in the box. default 10 </param>
     /// <param name="_config">Configurations for the input text. If left null, defaults to InputFieldConfig.DefaultText. Config includes fontSize (default: 46), inputBoxWidth (default: 300f) and contentType (default: Standard).</param>
     /// <param name="Id">the id of the element that can be used to search for it</param>
-    public InputField(string name, Action<string> _storeValue, Func<string> _loadValue, string _placeholder = "", int _characterLimit = 10, Config.InputFieldConfig? _config = null,  string Id = "__Usename") : base(Id, name)
+    public InputField(string name, Action<string> _storeValue, Func<string> _loadValue, string _placeholder = "", int _characterLimit = 10, Config.InputFieldConfig? _config = null, string Id = "__Usename") : base(Id, name)
     {
         config = _config ?? Config.InputFieldConfig.DefaultText;
         Name = name;
@@ -60,7 +59,7 @@ public class InputField : Element
         placeholder = _placeholder;
         characterLimit = _characterLimit;
     }
-    
+
     private GameObject AddField(GameObject fieldParent)
     {
         currentField = UnityEngine.Object.Instantiate(prefab, fieldParent.transform);
@@ -93,30 +92,31 @@ public class InputField : Element
         _ = storeValue ?? throw new ArgumentNullException(nameof(storeValue), "StoreValue cannot be null");
         _ = loadValue ?? throw new ArgumentNullException(nameof(loadValue), "LoadValue cannot be null");
         _ = placeholder ?? throw new ArgumentNullException(nameof(placeholder), "PlaceHolder cannot be null");
-        
+
         c.AddStaticPanel(Name + "panel", new RelVector2(new Vector2(1000f, 60f)), out var panel);
         AddField(panel);
 
         //no idea how you'd cancel this input honestly
         c.NavGraph.AddNavigationNode(inputField);
         currentField.GetComponent<MenuSelectable>().customCancelAction = _ => Instance.CancelAction();
-        
+
         if (AddToList)
         {
             Instance.MenuOrder.Add(new GameObjectRow(panel));
         }
         gameObject = panel;
-        
+
         //to set value of fields
         OnBuilt += Update;
-        
-        ((IContainer)Parent).OnBuilt += (_,_) => {
-            OnBuiltInvoke();             
+
+        ((IContainer)Parent).OnBuilt += (_, _) =>
+        {
+            OnBuiltInvoke();
         };
         return new GameObjectRow(panel);
 
     }
-    
+
 
     /// <inheritdoc />
     public override void Update()
@@ -135,10 +135,10 @@ public class InputField : Element
 
         inputFieldRt.sizeDelta = inputFieldRt.sizeDelta with { x = config.inputBoxWidth };
         inputFieldRt.transform.localPosition = inputFieldRt.transform.localPosition with { x = 500 - config.inputBoxWidth * 0.45f };
-        underLine.sizeDelta = underLine.sizeDelta with { x = config.inputBoxWidth * 0.9f }; 
+        underLine.sizeDelta = underLine.sizeDelta with { x = config.inputBoxWidth * 0.9f };
         underLine.transform.localPosition = underLine.transform.localPosition with { x = 500 - config.inputBoxWidth * 0.45f };
     }
-    
+
     public static GameObject prefab
     {
         get
@@ -155,8 +155,8 @@ public class InputField : Element
                 inputFieldObj.name = "InputField";
                 inputFieldObj.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 60f); //to be set on build
                 inputFieldObj.RemoveComponent<Image>();
-                inputFieldObj.transform.localPosition = new Vector3(375f,0f); //to be set on build
-                
+                inputFieldObj.transform.localPosition = new Vector3(375f, 0f); //to be set on build
+
                 var field = inputFieldObj.GetComponent<UnityEngine.UI.InputField>();
                 field.textComponent.font = MenuResources.TrajanRegular;
                 field.textComponent.color = Color.white;
@@ -167,7 +167,7 @@ public class InputField : Element
                 field.textComponent.fontSize = 46;
                 field.contentType = UnityEngine.UI.InputField.ContentType.Standard;
                 field.characterLimit = 10;
-                
+
                 var placeHolder = inputFieldObj.Find("Placeholder").GetComponent<Text>();
                 placeHolder.font = MenuResources.TrajanRegular;
                 placeHolder.color = Color.grey;
@@ -182,10 +182,10 @@ public class InputField : Element
                 undLineImg.color = Color.white;
                 underlineObj.transform.SetParent(inputFieldPrefab.transform, false);
                 underlineObj.transform.position += new Vector3(375f, -25f); //to be set on build
-                
+
                 var undLineRect = underlineObj.GetAddComponent<RectTransform>();
                 undLineRect.sizeDelta = new Vector2(125f, 3f); //to be set on build
-                
+
                 // Label object
                 var label = DefaultControls.CreateText(new DefaultControls.Resources());
                 var text = label.GetComponentInChildren<Text>();
@@ -210,7 +210,7 @@ public class InputField : Element
             return _prefab;
         }
     }
-    
+
     public string userInput
     {
         get => _userInput;
@@ -233,7 +233,7 @@ public class InputField : Element
             return _label;
         }
     }
-    
+
     public Text placeholderText
     {
         get
@@ -246,7 +246,7 @@ public class InputField : Element
             return _placeholderText;
         }
     }
-    
+
     public UnityEngine.UI.InputField inputField
     {
         get
@@ -258,7 +258,7 @@ public class InputField : Element
             return _inputField;
         }
     }
-    
+
     public RectTransform underLine
     {
         get

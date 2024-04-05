@@ -610,21 +610,21 @@
         public static System.Collections.IEnumerator PauseToggleDynamicMenu(MenuScreen screen,
             bool allowUnpause = false) =>
             GameManager.instance.PauseToggleDynamicMenu(screen, allowUnpause);
-        
+
         //static methods
-        public static string GetBaseSceneName (string fullSceneName) =>
+        public static string GetBaseSceneName(string fullSceneName) =>
             GameManager.GetBaseSceneName(fullSceneName);
 
-        public static tk2dTileMap GetTileMap (UnityEngine.GameObject gameObject) =>
-            ReflectionHelper.CallMethod<GameManager,tk2dTileMap>("GetTileMap", gameObject);
+        public static tk2dTileMap GetTileMap(UnityEngine.GameObject gameObject) =>
+            ReflectionHelper.CallMethod<GameManager, tk2dTileMap>("GetTileMap", gameObject);
 
-        public static string GetSceneZoneName (string str) =>
-            ReflectionHelper.CallMethod<GameManager,string>("GetSceneZoneName", str);
+        public static string GetSceneZoneName(string str) =>
+            ReflectionHelper.CallMethod<GameManager, string>("GetSceneZoneName", str);
 
-        public static int CountBits (int val) =>
-            ReflectionHelper.CallMethod<GameManager,int>("CountBits", val);
+        public static int CountBits(int val) =>
+            ReflectionHelper.CallMethod<GameManager, int>("CountBits", val);
 
-        public static string ModdedSavePath (int slot) =>
-            ReflectionHelper.CallMethod<GameManager,string>("ModdedSavePath", slot);
+        public static string ModdedSavePath(int slot) =>
+            ReflectionHelper.CallMethod<GameManager, string>("ModdedSavePath", slot);
     }
 }

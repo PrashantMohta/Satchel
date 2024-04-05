@@ -32,11 +32,11 @@ namespace Satchel.BetterMenus
         /// <param name="proceed">Will this button navigate to another menu?</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
         public MenuButton(
-            string name, 
-            string description, 
+            string name,
+            string description,
             Action<UnityEngine.UI.MenuButton> submitAction,
             bool proceed = false,
-            string Id = "__UseName") : base(Id,name)
+            string Id = "__UseName") : base(Id, name)
         {
             Name = name;
             Description = description;
@@ -53,7 +53,7 @@ namespace Satchel.BetterMenus
         /// <returns>The created GameObjectRow which can be used to add to the corresponding Lists.</returns>
         public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
-            
+
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = SubmitAction ?? throw new ArgumentNullException(nameof(SubmitAction), "SubmitAction cannot be null");
             _ = Description ?? throw new ArgumentNullException(nameof(Description), "Description cannot be null");
@@ -78,11 +78,12 @@ namespace Satchel.BetterMenus
             }
 
             gameObject = option.gameObject;
-            
-            ((IContainer)Parent).OnBuilt += (_,_) => {
-                OnBuiltInvoke();             
+
+            ((IContainer)Parent).OnBuilt += (_, _) =>
+            {
+                OnBuiltInvoke();
             };
-            
+
             return new GameObjectRow(option.gameObject);
         }
 

@@ -678,82 +678,82 @@
         //removed some MonoBehaviour methods
     }
 
-//code that can be used to reproduce this with small edits
-/*
-Log("Starting Methods");
-var methods =
-    typeof(HeroController).GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-foreach (var method in methods)
-{
-    bool noreturn = false;
+    //code that can be used to reproduce this with small edits
+    /*
+    Log("Starting Methods");
+    var methods =
+        typeof(HeroController).GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+    foreach (var method in methods)
+    {
+        bool noreturn = false;
 
 
-    var parameters = method.GetParameters();
-    StringBuilder paramsInputString = new StringBuilder();
-    StringBuilder paramsOutputString = new StringBuilder();
-    if (parameters.Length == 0)
-    {
-        paramsInputString.Append("()");
-        paramsOutputString.Append("");
-    }
-    else
-    {
-        paramsInputString.Append("(");
-        if (!method.IsPublic) paramsOutputString.Append(", ");
-        foreach (var param in parameters)
+        var parameters = method.GetParameters();
+        StringBuilder paramsInputString = new StringBuilder();
+        StringBuilder paramsOutputString = new StringBuilder();
+        if (parameters.Length == 0)
         {
-            paramsOutputString.Append($"{param.Name}");
-
-            paramsInputString.Append($"{removeSystemType(param.ParameterType.ToString())} {param.Name}");
-            if (param.HasDefaultValue)
+            paramsInputString.Append("()");
+            paramsOutputString.Append("");
+        }
+        else
+        {
+            paramsInputString.Append("(");
+            if (!method.IsPublic) paramsOutputString.Append(", ");
+            foreach (var param in parameters)
             {
-                paramsInputString.Append(param.DefaultValue == null
-                    ? " = null"
-                    : $" = {Convert.ChangeType(param.DefaultValue, param.ParameterType)}");
+                paramsOutputString.Append($"{param.Name}");
+
+                paramsInputString.Append($"{removeSystemType(param.ParameterType.ToString())} {param.Name}");
+                if (param.HasDefaultValue)
+                {
+                    paramsInputString.Append(param.DefaultValue == null
+                        ? " = null"
+                        : $" = {Convert.ChangeType(param.DefaultValue, param.ParameterType)}");
+                }
+
+                if (parameters.ToList().IndexOf(param) != parameters.Length - 1)
+                {
+                    paramsInputString.Append(", ");
+                    paramsOutputString.Append(", ");
+                }
             }
 
-            if (parameters.ToList().IndexOf(param) != parameters.Length - 1)
-            {
-                paramsInputString.Append(", ");
-                paramsOutputString.Append(", ");
-            }
+            paramsInputString.Append(")");
         }
 
-        paramsInputString.Append(")");
+        if (method.ReturnType.ToString() == "System.Void") noreturn = true;
+
+        StringBuilder methodString = new StringBuilder();
+        methodString.AppendLine(
+            $"public static {removeSystemType(method.ReturnType.ToString())} {method.Name} {paramsInputString} =>");
+
+        if (method.IsPublic)
+        {
+            methodString.AppendLine($"HeroController.instance.{method.Name}({paramsOutputString});");
+        }
+        else
+        {
+            methodString.AppendLine(noreturn
+                ? $"ReflectionHelper.CallMethod<HeroController>(HeroController.instance, \"{method.Name}\"{paramsOutputString});"
+                : $"ReflectionHelper.CallMethod<HeroController,{removeSystemType(method.ReturnType.ToString())}>(HeroController.instance, \"{method.Name}\"{paramsOutputString});");
+        }
+
+        Log(methodString);
     }
 
-    if (method.ReturnType.ToString() == "System.Void") noreturn = true;
-
-    StringBuilder methodString = new StringBuilder();
-    methodString.AppendLine(
-        $"public static {removeSystemType(method.ReturnType.ToString())} {method.Name} {paramsInputString} =>");
-
-    if (method.IsPublic)
+    string removeSystemType(string type)
     {
-        methodString.AppendLine($"HeroController.instance.{method.Name}({paramsOutputString});");
-    }
-    else
-    {
-        methodString.AppendLine(noreturn
-            ? $"ReflectionHelper.CallMethod<HeroController>(HeroController.instance, \"{method.Name}\"{paramsOutputString});"
-            : $"ReflectionHelper.CallMethod<HeroController,{removeSystemType(method.ReturnType.ToString())}>(HeroController.instance, \"{method.Name}\"{paramsOutputString});");
+        return type switch
+        {
+            "System.Int32" => "int",
+            "System.Boolean" => "bool",
+            "System.Single" => "float",
+            "System.String" => "string",
+            "System.Void" => "void",
+            _ => type
+        };
     }
 
-    Log(methodString);
-}
-
-string removeSystemType(string type)
-{
-    return type switch
-    {
-        "System.Int32" => "int",
-        "System.Boolean" => "bool",
-        "System.Single" => "float",
-        "System.String" => "string",
-        "System.Void" => "void",
-        _ => type
-    };
-}
-        
-*/
+    */
 }

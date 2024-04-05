@@ -11,7 +11,7 @@ public static class Utils
     public static MenuBuilder CreateMenuBuilder(string Title, out GridNavGraph navGraph)
     {
         navGraph = new GridNavGraph(1);
-        
+
         return new MenuBuilder(UIManager.instance.UICanvas.gameObject, Title)
             .CreateTitle(Title, MenuTitleStyle.vanillaStyle)
             .CreateContentPane(RectTransformData.FromSizeAndPos(
@@ -110,7 +110,7 @@ public static class Utils
         var cursorRt = cursor.AddComponent<RectTransform>();
         Vector2 sizeDelta, pivot, anchorMin, anchorMax, anchoredPosition;
         Vector3 localScale;
-        
+
         // from mapi code
         if (leftSide)
         {
@@ -130,15 +130,15 @@ public static class Utils
             anchoredPosition = new Vector2(65f, 0f);
             localScale = new Vector3(-0.4f, 0.4f, 0.4f);
         }
-        
+
         cursorRt.sizeDelta = sizeDelta;
         cursorRt.pivot = pivot;
         cursorRt.anchorMin = anchorMin;
         cursorRt.anchorMax = anchorMax;
         cursorRt.anchoredPosition = anchoredPosition;
         cursorRt.localScale = localScale;
-         
-        
+
+
         // Animator
         var cursorAnimator = cursor.AddComponent<Animator>();
         cursorAnimator.runtimeAnimatorController = MenuResources.MenuCursorAnimator;

@@ -3,7 +3,8 @@ namespace Satchel.Futils
     /// <summary>
     /// An FsmStateAction that executes a method when used
     /// </summary>
-    public class CustomFsmAction : FsmStateAction{
+    public class CustomFsmAction : FsmStateAction
+    {
         public Action method;
 
         public CustomFsmAction(Action method)
@@ -25,7 +26,7 @@ namespace Satchel.Futils
         }
     }
 
-    public class CustomFsmActionUpdate: FsmStateAction
+    public class CustomFsmActionUpdate : FsmStateAction
     {
         public Action method;
 
@@ -49,7 +50,7 @@ namespace Satchel.Futils
         public override void OnUpdate()
         {
             method?.Invoke();
-            
+
         }
     }
 

@@ -168,8 +168,8 @@ namespace Satchel.BetterMenus
             GameObject.DontDestroyOnLoad(throbber);
             throbber.transform.SetParent(keymap.transform, false);
             mapButton.listeningThrobber = throbber.AddComponent<Throbber>();
-            ReflectionHelper.SetField( mapButton.listeningThrobber,"sprites",new Sprite[0]);
-            
+            ReflectionHelper.SetField(mapButton.listeningThrobber, "sprites", new Sprite[0]);
+
             mapButton.GetBindingPublic();
             mapButton.ShowCurrentBinding();
             mappableControllerButton = mapButton;
@@ -186,10 +186,11 @@ namespace Satchel.BetterMenus
             );
             return content;
         }
-    
-        public static void ApplySelectableArea(MappableControllerButton mapButton,ButtonBindConfig config){
+
+        public static void ApplySelectableArea(MappableControllerButton mapButton, ButtonBindConfig config)
+        {
             GameObject buttonBind = mapButton.gameObject;
-            GameObject keymap  = buttonBind.Find("Keymap");
+            GameObject keymap = buttonBind.Find("Keymap");
             GameObject cursorL = buttonBind.Find("CursorLeft");
             GameObject cursorR = buttonBind.Find("CursorRight");
             RectTransform keymapRt = keymap.GetComponent<RectTransform>();
@@ -218,31 +219,36 @@ namespace Satchel.BetterMenus
             RectTransform buttonmapTextRt,
             RectTransform textRt,
             Text buttonmapTextText
-            ){
-                var selectableArea = config.selectableArea ?? SelectableArea.Full;
-                if(selectableArea == SelectableArea.ButtonOnly ){
-                    cursorL.transform.SetParent(keymap.transform, false);
-                    cursorR.transform.SetParent(keymap.transform, false);
-                    keymapRt.pivot = new Vector2(0.5f, 0.5f);
-                    buttonmapTextRt.anchoredPosition = new Vector2(0f, 0f);
-                    buttonmapTextText.alignment = TextAnchor.MiddleCenter;
-                    if(config.Label.Length == 0){
-                        textRt.anchorMin = new Vector2(0f, 0f);
-                        textRt.anchorMax = new Vector2(0f, 0f);
-                    }
-                } else {
-                    cursorL.transform.SetParent(buttonBind.transform, false);
-                    cursorR.transform.SetParent(buttonBind.transform, false);
-                    keymapRt.pivot = new Vector2(1f, 0.5f);
-                    buttonmapTextRt.anchoredPosition = new Vector2(32f, 0f);
-                    buttonmapTextText.alignment = TextAnchor.MiddleCenter;
+            )
+        {
+            var selectableArea = config.selectableArea ?? SelectableArea.Full;
+            if (selectableArea == SelectableArea.ButtonOnly)
+            {
+                cursorL.transform.SetParent(keymap.transform, false);
+                cursorR.transform.SetParent(keymap.transform, false);
+                keymapRt.pivot = new Vector2(0.5f, 0.5f);
+                buttonmapTextRt.anchoredPosition = new Vector2(0f, 0f);
+                buttonmapTextText.alignment = TextAnchor.MiddleCenter;
+                if (config.Label.Length == 0)
+                {
                     textRt.anchorMin = new Vector2(0f, 0f);
-                    textRt.anchorMax = new Vector2(1f, 1f);
+                    textRt.anchorMax = new Vector2(0f, 0f);
                 }
+            }
+            else
+            {
+                cursorL.transform.SetParent(buttonBind.transform, false);
+                cursorR.transform.SetParent(buttonBind.transform, false);
+                keymapRt.pivot = new Vector2(1f, 0.5f);
+                buttonmapTextRt.anchoredPosition = new Vector2(32f, 0f);
+                buttonmapTextText.alignment = TextAnchor.MiddleCenter;
+                textRt.anchorMin = new Vector2(0f, 0f);
+                textRt.anchorMax = new Vector2(1f, 1f);
+            }
         }
 
 
     }
 
-  
+
 }

@@ -1,9 +1,10 @@
-using System.Text;
 using System.IO;
+using System.Text;
 
-namespace Satchel.Futils.Serialiser{
+namespace Satchel.Futils.Serialiser
+{
     internal static class ActionReader
-    { 
+    {
         public static object GetFsmObject(this ActionData actionData, int index, int dataVersion)
         {
             var byteData = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<byte>>(actionData, "byteData");
@@ -13,13 +14,13 @@ namespace Satchel.Futils.Serialiser{
             var fsmEnumParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmEnum>>(actionData, "fsmEnumParams");
             var fsmBoolParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmBool>>(actionData, "fsmBoolParams");
             var fsmIntParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmInt>>(actionData, "fsmIntParams");
-            var fsmFloatParams= ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmFloat>>(actionData, "fsmFloatParams");
-            var fsmVector2Params= ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmVector2>>(actionData, "fsmVector2Params");
-            var fsmVector3Params= ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmVector3>>(actionData, "fsmVector3Params");
-            var fsmQuaternionParams= ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmQuaternion>>(actionData, "fsmQuaternionParams");
-            var fsmColorParams= ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmColor>>(actionData, "fsmColorParams");
+            var fsmFloatParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmFloat>>(actionData, "fsmFloatParams");
+            var fsmVector2Params = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmVector2>>(actionData, "fsmVector2Params");
+            var fsmVector3Params = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmVector3>>(actionData, "fsmVector3Params");
+            var fsmQuaternionParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmQuaternion>>(actionData, "fsmQuaternionParams");
+            var fsmColorParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmColor>>(actionData, "fsmColorParams");
             var fsmRectParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmRect>>(actionData, "fsmRectParams");
-            
+
             var fsmGameObjectParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmGameObject>>(actionData, "fsmGameObjectParams");
             var fsmOwnerDefaultParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmOwnerDefault>>(actionData, "fsmOwnerDefaultParams");
             var fsmObjectParams = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<FsmObject>>(actionData, "fsmObjectParams");
@@ -160,7 +161,7 @@ namespace Satchel.Futils.Serialiser{
                 case ParamDataType.Array:
                     ret = "[Array]";
                     break;
-                
+
                 default:
                     ret = $"[{paramDataType.ToString()} not implemented]";
                     break;

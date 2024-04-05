@@ -1,7 +1,6 @@
-﻿using static Satchel.SpriteUtils;
-using static Satchel.TextureUtils;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.IO;
+using static Satchel.TextureUtils;
 
 namespace Satchel
 {

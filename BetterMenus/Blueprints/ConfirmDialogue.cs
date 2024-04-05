@@ -35,7 +35,8 @@ namespace Satchel.BetterMenus
         /// <param name="OnButtonPress">Action that is invoked with the user's selection</param>
         /// <param name="optionsPerRow"> Number of options to show in a single row</param>
         /// <returns>The Dialog Menu</returns>
-        public static Menu CreateDialogMenu(string title, string subTitle, string[] Options, Action<string> OnButtonPress, int optionsPerRow = 2) { 
+        public static Menu CreateDialogMenu(string title, string subTitle, string[] Options, Action<string> OnButtonPress, int optionsPerRow = 2)
+        {
             var menu = new Menu("");
             if (title != string.Empty)
             {
@@ -51,7 +52,7 @@ namespace Satchel.BetterMenus
                     Font = TextPanelConfig.TextFont.TrajanBold
                 });
             }
-            for(var i = 0; i < Options.Length; i += optionsPerRow)
+            for (var i = 0; i < Options.Length; i += optionsPerRow)
             {
                 List<Element> optionList = new List<Element>();
                 for (var j = 0; (j < optionsPerRow && i + j < Options.Length); j++)
@@ -69,7 +70,7 @@ namespace Satchel.BetterMenus
                     XDelta = optionList.Count > 2 ? 250 : 500,
                 });
             }
-            
+
             menu.OnBuilt += (_, _) =>
             {
                 var mobj = menu.menuScreen.gameObject;
@@ -101,9 +102,9 @@ namespace Satchel.BetterMenus
         /// <returns>The Dialog Menu</returns>
         public static Menu AddConfirmDialog(
             this Menu initialMenu,
-            string title, 
-            string subTitle, 
-            string[] Options, 
+            string title,
+            string subTitle,
+            string[] Options,
             Action<string> OnButtonPress
             , int optionsPerRow = 2)
         {

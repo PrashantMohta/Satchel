@@ -13,12 +13,12 @@ namespace Satchel.BetterMenus
         /// The PlayerAction connected to this ButtonBind.
         /// </summary>
         public InControl.PlayerAction PlayerAction;
-        
+
         /// <summary>
         /// decides whether the full element is selectable or only the button part is selectable
         /// </summary>
         public SelectableArea SelectableArea = SelectableArea.Full;
-        
+
         private ButtonBindConfig buttonBindConfig;
         /// <summary>
         /// Creates a new ButtonBind.
@@ -26,7 +26,7 @@ namespace Satchel.BetterMenus
         /// <param name="name">The name to be displayed.</param>
         /// <param name="playerAction">The PlayerAction connected to this ButtonBind.</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
-        public ButtonBind(string name, InControl.PlayerAction playerAction,string Id = "__UseName") : base(Id,name)
+        public ButtonBind(string name, InControl.PlayerAction playerAction, string Id = "__UseName") : base(Id, name)
         {
             Name = name;
             PlayerAction = playerAction;
@@ -43,11 +43,12 @@ namespace Satchel.BetterMenus
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
             _ = PlayerAction ?? throw new ArgumentNullException(nameof(PlayerAction), "PlayerAction cannot be null");
-            buttonBindConfig = new ButtonBindConfig{
-                    CancelAction = _ => Instance.CancelAction(),
-                    Label = Name,
-                    selectableArea = SelectableArea
-                };
+            buttonBindConfig = new ButtonBindConfig
+            {
+                CancelAction = _ => Instance.CancelAction(),
+                Label = Name,
+                selectableArea = SelectableArea
+            };
             //todo add support for keybind styles
             c.AddCustomButtonBind(
                 Name,
@@ -56,14 +57,15 @@ namespace Satchel.BetterMenus
                 out var option);
 
             gameObject = option.gameObject;
-            
+
             if (AddToList)
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
             }
-            
-            ((IContainer)Parent).OnBuilt += (_,_) => {
-                OnBuiltInvoke();             
+
+            ((IContainer)Parent).OnBuilt += (_, _) =>
+            {
+                OnBuiltInvoke();
             };
             return new GameObjectRow(option.gameObject);
         }
@@ -73,7 +75,7 @@ namespace Satchel.BetterMenus
             var mappableControllerButton = gameObject.GetComponent<MappableControllerButton>();
             mappableControllerButton.InitCustomActions(PlayerAction.Owner, PlayerAction);
             gameObject.transform.Find("Text").GetComponent<Text>().text = Name;
-            KeybindContent.ApplySelectableArea(mappableControllerButton,buttonBindConfig);
+            KeybindContent.ApplySelectableArea(mappableControllerButton, buttonBindConfig);
             mappableControllerButton.ShowCurrentBinding();
         }
     }

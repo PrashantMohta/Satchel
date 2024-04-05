@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using Satchel.BetterMenus.Config;
+using System.Linq;
 using System.Reflection;
-using Satchel.BetterMenus.Config;
 
 namespace Satchel.BetterMenus.Attributes;
 
@@ -25,7 +25,7 @@ public static class BuildMenuFromAttributes
         foreach (var member in members)
         {
             if (member.GetCustomAttribute<ElementAttribute>() is not { } elementAttribute) continue;
-            
+
             if (elementAttribute.VerifyCorrectFieldType(member))
             {
                 elementAttribute.CreateElement(member, settings).ToList().ForEach(menuRef.AddElement);
@@ -41,7 +41,7 @@ public static class BuildMenuFromAttributes
                     }
                 });
             }
-            
+
         }
 
         return menuRef;

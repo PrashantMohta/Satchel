@@ -10,10 +10,11 @@ namespace Satchel
         public void Start()
         {
             MeshRenderer Mr = gameObject.GetComponent<MeshRenderer>();
-            if(Mr != null){
+            if (Mr != null)
+            {
                 mat = new Material(Shader.Find("tk2d/BlendVertexColor"));
-                mat.SetTexture(Shader.PropertyToID("_MainTex"), TextureUtils.createTextureOfColor(2,2,color));
-                Mr.material = mat;       
+                mat.SetTexture(Shader.PropertyToID("_MainTex"), TextureUtils.createTextureOfColor(2, 2, color));
+                Mr.material = mat;
             }
         }
     }

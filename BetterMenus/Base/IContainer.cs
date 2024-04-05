@@ -3,7 +3,8 @@ namespace Satchel.BetterMenus
     /// <summary>
     /// An interface for classes that contain elements. 
     /// </summary>
-    public interface IContainer{
+    public interface IContainer
+    {
         /// <summary>
         /// Find an Element that is in the Container.
         /// </summary>

@@ -10,7 +10,7 @@ namespace Satchel.BetterMenus
         /// The list of GameObjects that make up a Row.
         /// </summary>
         public List<GameObject> Row;
-        
+
         /// <summary>
         /// The Parent Element (only not null for MenuRow)
         /// </summary>
@@ -31,7 +31,7 @@ namespace Satchel.BetterMenus
         /// <param name="FirstGo">The first GameObject to add.</param>
         public GameObjectRow(GameObject FirstGo)
         {
-            this.Row = new List<GameObject>{FirstGo};
+            this.Row = new List<GameObject> { FirstGo };
         }
         /// <summary>
         /// Generates a new GameObjectRow from the provided GameObjectRow.
@@ -64,10 +64,13 @@ namespace Satchel.BetterMenus
         /// a function to give the number of active elements in the GameObject row
         /// </summary>
         /// <returns>the number of active elements</returns>
-        public int ActiveCount(){
+        public int ActiveCount()
+        {
             var count = 0;
-            foreach(var go in Row){
-                if(go != null && go.activeInHierarchy){
+            foreach (var go in Row)
+            {
+                if (go != null && go.activeInHierarchy)
+                {
                     count++;
                 }
             }

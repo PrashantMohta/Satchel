@@ -4,12 +4,13 @@ using GatewayParams = Satchel.SceneUtils.GatewayParams;
 //playerData.respawnScene
 namespace Satchel
 {
-    public class SceneLoadedEventArgs : EventArgs {
+    public class SceneLoadedEventArgs : EventArgs
+    {
     }
     /// <summary>
     /// Handles custom scenes
     /// </summary>
-    public class CustomScene 
+    public class CustomScene
     {
 
         public string sceneName = "unknown";
@@ -19,7 +20,7 @@ namespace Satchel
         public GameObject TileMap;
         public GameObject SceneManager;
 
-        public SceneManager sceneManagerComponent;        
+        public SceneManager sceneManagerComponent;
 
         public CustomSceneManagerSettings settings;
 
@@ -27,7 +28,7 @@ namespace Satchel
         public List<GatewayParams> gatesToScene = new List<GatewayParams>();
         public List<GatewayParams> gatesFromScene = new List<GatewayParams>();
 
-        
+
         /// <summary>
         /// Event that is triggered when the scene has loaded
         /// </summary>
@@ -40,41 +41,50 @@ namespace Satchel
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnSceneChanged;
 
         }
-        
+
         /// <summary>
         /// Load the scene configuration
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="settings"></param>
-        public void Config(float width, float height, CustomSceneManagerSettings settings){
+        public void Config(float width, float height, CustomSceneManagerSettings settings)
+        {
             this.width = width;
             this.height = height;
             this.settings = settings;
         }
-        
+
         /// <summary>
         /// Add gateways to the scene
         /// </summary>
         /// <param name="gateway"></param>
-        public void AddGateway(GatewayParams gateway){
-            if(gateway.fromScene == sceneName){
+        public void AddGateway(GatewayParams gateway)
+        {
+            if (gateway.fromScene == sceneName)
+            {
                 gatesFromScene.Add(gateway);
-            } else if(gateway.toScene == sceneName){
+            }
+            else if (gateway.toScene == sceneName)
+            {
                 gatesToScene.Add(gateway);
-            } else {
+            }
+            else
+            {
                 Satchel.Instance.Log("Tried to add a Gateway that does not connect to this scene");
             }
         }
-        
+
         /// <summary>
         /// Add a bench using prefab
         /// </summary>
         /// <param name="prefab">A preload of a bench</param>
         /// <param name="benchName"></param>
         /// <param name="pos"></param>
-        public void AddBenchFromPrefab(GameObject prefab,string benchName, Vector3 pos){
-            Benches.Add(new BenchParams{
+        public void AddBenchFromPrefab(GameObject prefab, string benchName, Vector3 pos)
+        {
+            Benches.Add(new BenchParams
+            {
                 prefab = prefab,
                 benchName = benchName,
                 pos = pos,
@@ -92,7 +102,8 @@ namespace Satchel
                 self.sceneWidth = width;
                 self.sceneHeight = height;
                 var map = UnityEngine.Object.FindObjectOfType<GameMap>();
-                if(map != null){
+                if (map != null)
+                {
                     map.SetManualTilemap(0, 0, width, height);
                 }
             }
@@ -101,18 +112,23 @@ namespace Satchel
         private void OnGameManagerEnterHero(On.GameManager.orig_EnterHero orig, GameManager self, bool additivegatesearch)
         {
             var currentScene = self.sceneName;
-            foreach(GatewayParams gate in gatesToScene){
-                if(currentScene == gate.fromScene){
+            foreach (GatewayParams gate in gatesToScene)
+            {
+                if (currentScene == gate.fromScene)
+                {
                     SceneUtils.CreateGateway(gate);
                 }
             }
-            if(currentScene == sceneName){
+            if (currentScene == sceneName)
+            {
                 //set background music
 
-                if(settings.backgroundMusic == null && settings.backgroundMusicGet != null){
+                if (settings.backgroundMusic == null && settings.backgroundMusicGet != null)
+                {
                     settings.backgroundMusic = settings.backgroundMusicGet();
                 }
-                if(settings.backgroundMusic != null){
+                if (settings.backgroundMusic != null)
+                {
                     SceneUtils.PlayBackgroundMusicForScene(settings.backgroundMusic);
                 }
 
@@ -123,24 +139,31 @@ namespace Satchel
         private void OnSceneChanged(Scene from, Scene to)
         {
             var currentScene = to.name;
-            if(currentScene == sceneName){
-                foreach(GatewayParams gate in gatesFromScene){   
+            if (currentScene == sceneName)
+            {
+                foreach (GatewayParams gate in gatesFromScene)
+                {
                     SceneUtils.CreateGateway(gate);
                 }
-                foreach(BenchParams bench in Benches){   
+                foreach (BenchParams bench in Benches)
+                {
                     SceneUtils.CreateBenchFromPrefab(bench);
                 }
-            } else {
+            }
+            else
+            {
                 var benchesInScene = GameObject.FindGameObjectsWithTag("RespawnPoint");
-                foreach(var bench in benchesInScene){
+                foreach (var bench in benchesInScene)
+                {
                     var benchFsm = bench.LocateMyFSM("Bench Control");
-                    if(benchFsm != null && benchFsm.FsmVariables.FindFsmString("Scene Name").Value == sceneName){
+                    if (benchFsm != null && benchFsm.FsmVariables.FindFsmString("Scene Name").Value == sceneName)
+                    {
                         GameObject.Destroy(bench);
                     }
                 }
             }
             if (currentScene == sceneName)
-            {       
+            {
                 var tm = SceneUtils.FakeTileMapFromPrefab(TileMap);
                 var sm = SceneUtils.getSceneManagerFromPrefab(SceneManager);
                 sm.gameObject.name = "_SceneManager";
@@ -155,11 +178,11 @@ namespace Satchel
                 sm.noParticles = settings.noParticles;
                 sm.overrideParticlesWith = settings.overrideParticlesWith;
                 sm.defaultColor = settings.defaultColor;
-                sm.defaultIntensity = settings.defaultIntensity;;
+                sm.defaultIntensity = settings.defaultIntensity; ;
                 sm.heroLightColor = settings.heroLightColor;
                 sm.gameObject.SetActive(true);
-            
-                OnLoaded?.Invoke(this,new SceneLoadedEventArgs());
+
+                OnLoaded?.Invoke(this, new SceneLoadedEventArgs());
             }
         }
     }

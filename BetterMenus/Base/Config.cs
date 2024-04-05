@@ -25,7 +25,7 @@ public struct InputFieldConfig
     /// when should the data be saved into the settings field, on submit or on change
     /// </summary>
     public InputFieldSaveType saveType;
-    
+
     /// <summary>
     /// the expected type of input, can be none, integer, or decimal
     /// </summary>
@@ -42,7 +42,7 @@ public struct InputFieldConfig
         characterValidation = UnityEngine.UI.InputField.CharacterValidation.None,
         saveType = InputFieldSaveType.ValueChanged,
     };
-    
+
     /// <summary>
     /// the default config for integer inputs
     /// </summary>
@@ -54,7 +54,7 @@ public struct InputFieldConfig
         characterValidation = UnityEngine.UI.InputField.CharacterValidation.Integer,
         saveType = InputFieldSaveType.EditEnd,
     };
-    
+
     /// <summary>
     /// the default config for floats
     /// </summary>
@@ -77,7 +77,7 @@ public struct AdditionalTextPanelConfig
     /// The <see cref="FontStyle"/> of the text (bold/italic/normal)
     /// </summary>
     public FontStyle? fontStyle;
-    
+
     /// <summary>
     /// The <see cref="HorizontalWrapMode"/> of the text (bold/italic/normal)
     /// </summary>
@@ -146,7 +146,7 @@ public struct ButtonBindConfig
     /// The action to run when pressing the menu cancel key while selecting this item.
     /// </summary>
     public Action<MappableControllerButton> CancelAction;
-    
+
     public SelectableArea? selectableArea;
 }
 

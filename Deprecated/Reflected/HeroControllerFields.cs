@@ -791,7 +791,7 @@
             set => ReflectionHelper.SetField(HeroController.instance, "runPuffTimer", value);
         }
 
-//manual edit
+        //manual edit
         public static float fallTimer
         {
             get => HeroController.instance.fallTimer;
@@ -2147,44 +2147,44 @@
         }
     }
 
-//code that can be used to reproduce these results (with some manual edits)
-/*
-var fields =
-    typeof(HeroController).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-foreach (var field in fields)
-{
-    string fieldType = removeSystemType(field.FieldType.ToString());
-    StringBuilder fieldString = new StringBuilder();
-    fieldString.AppendLine($"public static {fieldType} {field.Name}");
-    fieldString.AppendLine("{");
-    if (field.IsPublic)
+    //code that can be used to reproduce these results (with some manual edits)
+    /*
+    var fields =
+        typeof(HeroController).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+    foreach (var field in fields)
     {
-        fieldString.AppendLine($"get => HeroController.instance.{field.Name};");
-        fieldString.AppendLine($"set => HeroController.instance.{field.Name} = value;");
-    }
-    else
-    {
-        fieldString.AppendLine(
-            $"get => ReflectionHelper.GetField<HeroController, {fieldType}>(HeroController.instance, \"{field.Name}\");");
-        fieldString.AppendLine(
-            $"set => ReflectionHelper.SetField(HeroController.instance, \"{field.Name}\", value);");
-    }
-
-    fieldString.AppendLine("}");
-    Log(fieldString);
-
-    string removeSystemType(string type)
-    {
-        return type switch
+        string fieldType = removeSystemType(field.FieldType.ToString());
+        StringBuilder fieldString = new StringBuilder();
+        fieldString.AppendLine($"public static {fieldType} {field.Name}");
+        fieldString.AppendLine("{");
+        if (field.IsPublic)
         {
-            "System.Int32" => "int",
-            "System.Boolean" => "bool",
-            "System.Single" => "float",
-            "System.String" => "string",
-            "System.Void" => "void",
-            _ => type
-        };
+            fieldString.AppendLine($"get => HeroController.instance.{field.Name};");
+            fieldString.AppendLine($"set => HeroController.instance.{field.Name} = value;");
+        }
+        else
+        {
+            fieldString.AppendLine(
+                $"get => ReflectionHelper.GetField<HeroController, {fieldType}>(HeroController.instance, \"{field.Name}\");");
+            fieldString.AppendLine(
+                $"set => ReflectionHelper.SetField(HeroController.instance, \"{field.Name}\", value);");
+        }
+
+        fieldString.AppendLine("}");
+        Log(fieldString);
+
+        string removeSystemType(string type)
+        {
+            return type switch
+            {
+                "System.Int32" => "int",
+                "System.Boolean" => "bool",
+                "System.Single" => "float",
+                "System.String" => "string",
+                "System.Void" => "void",
+                _ => type
+            };
+        }
     }
-}
-*/
+    */
 }

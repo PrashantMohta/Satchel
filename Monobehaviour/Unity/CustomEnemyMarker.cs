@@ -3,7 +3,8 @@ namespace Satchel
     /// <summary>
     /// Mark this gameObject to be an Enemy after loading from an asset bundle
     /// </summary>
-    public class CustomEnemyMarker : MonoBehaviour{
+    public class CustomEnemyMarker : MonoBehaviour
+    {
         //this script just marks the go as one to add a custom enemy to
 
         // damage hero
@@ -22,18 +23,20 @@ namespace Satchel
 
         // recoil
         public bool hasRecoil = false;
-        public bool freezeInPlace = false ,stopVelocityXWhenRecoilingUp  = false ,preventRecoilUp  = false ;
-        public float recoilSpeedBase = 15f ,recoilDuration = 0.1f;
+        public bool freezeInPlace = false, stopVelocityXWhenRecoilingUp = false, preventRecoilUp = false;
+        public float recoilSpeedBase = 15f, recoilDuration = 0.1f;
 
         // dont show in editer
         private bool processed = false;
 
-        public bool isProcessed(){
+        public bool isProcessed()
+        {
             return processed;
         }
-        public void setProcessed(){
+        public void setProcessed()
+        {
             processed = true;
         }
-    
+
     }
 }

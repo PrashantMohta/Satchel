@@ -14,12 +14,12 @@ namespace Satchel.BetterMenus
         /// The width of the TextPanel (default 1000f).
         /// </summary>
         public float Width;
-        
+
         /// <summary>
         /// The fontSize of the TextPanel (default 35).
         /// </summary>
         public int FontSize;
-        
+
         /// <summary>
         /// The font used in the TextPanel (default TrajanBold).
         /// </summary>
@@ -29,7 +29,7 @@ namespace Satchel.BetterMenus
         /// The anchor of the text in the TextPanel (default Center).
         /// </summary>
         public TextAnchor Anchor = TextAnchor.MiddleCenter;
-        
+
         public AdditionalTextPanelConfig? Config;
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Satchel.BetterMenus
         /// <param name="width">The width of the TextPanel.</param>
         /// <param name="fontSize">The fontSize of the TextPanel.</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
-        public TextPanel(string name, float width = 1000f, int fontSize = 35, string Id = "__UseName") : base(Id,name)
+        public TextPanel(string name, float width = 1000f, int fontSize = 35, string Id = "__UseName") : base(Id, name)
         {
             Name = name;
             Width = width;
@@ -57,8 +57,8 @@ namespace Satchel.BetterMenus
         public override GameObjectRow Create(ContentArea c, Menu Instance, bool AddToList = true)
         {
             _ = Name ?? throw new ArgumentNullException(nameof(Name), "Name cannot be null");
-           //todo add support for TextFont & TextAnchor
-           //todo also add support for height
+            //todo add support for TextFont & TextAnchor
+            //todo also add support for height
             c.AddTextPanel(
                 Name,
                 new RelVector2(new Vector2(Width, 105f)),
@@ -74,11 +74,12 @@ namespace Satchel.BetterMenus
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
             }
-            
+
             gameObject = option.gameObject;
-            
-            ((IContainer)Parent).OnBuilt += (_,_) => {
-                OnBuiltInvoke();             
+
+            ((IContainer)Parent).OnBuilt += (_, _) =>
+            {
+                OnBuiltInvoke();
             };
 
             return new GameObjectRow(gameObject);

@@ -1,5 +1,3 @@
-using System.Reflection;
-using System.Runtime.InteropServices;
 using Modding.Menu;
 using UnityEngine.UI;
 
@@ -8,9 +6,9 @@ namespace Satchel.BetterMenus
     public class CustomSlider : Element //should be renamed to slider probs and probably needs to be remade slider needs to be added to nav graph
     {
         public GameObject currentSlider;
-        
+
         private bool isReady = false;
-        
+
         public float minValue = 0f;
         public float maxValue = 5f;
         public bool wholeNumbers = false;
@@ -25,23 +23,23 @@ namespace Satchel.BetterMenus
         /// The Action that will be invoked when the slider is moved. Use the float paramter to save the value to use in mod.
         /// </summary>
         public Action<float> StoreValue;
-        
+
         /// <summary>
         /// The initial value that you need the volume slider to be, probably from previous session or a default
         /// </summary>
         public Func<float> LoadValue;
-        
+
 
         public GameObject AddSlider(GameObject SliderParent)
         {
-            currentSlider = UnityEngine.Object.Instantiate(prefab,SliderParent.transform);
+            currentSlider = UnityEngine.Object.Instantiate(prefab, SliderParent.transform);
             currentSlider.name = Name;
-            currentSlider.transform.parent= SliderParent.transform;
+            currentSlider.transform.parent = SliderParent.transform;
 
 
             Action<float> updateOnEvent = newValue =>
             {
-                if(isReady &&
+                if (isReady &&
 
                    //dont set value when faulty min/max/wholeNumber value
                    Math.Abs(minValue - slider.minValue) < Mathf.Epsilon &&
@@ -50,8 +48,8 @@ namespace Satchel.BetterMenus
                   )
                 {
                     value = newValue;
-                    label.text = Name; 
-                    
+                    label.text = Name;
+
                     // call the StoreValue action with float
                     StoreValue?.Invoke(newValue);
                 }
@@ -68,7 +66,7 @@ namespace Satchel.BetterMenus
 
         private void FixSliderNavigation()
         {
-            slider.navigation =  new Navigation
+            slider.navigation = new Navigation
             {
                 mode = Navigation.Mode.Explicit,
                 selectOnUp = slider.navigation.selectOnUp,
@@ -123,11 +121,11 @@ namespace Satchel.BetterMenus
 
             c.AddStaticPanel(Name + "panel", new RelVector2(new Vector2(200f, 105f)), out GameObject panel);
             AddSlider(panel);
-            
+
             c.NavGraph.AddNavigationNode(slider);
             var mpd = slider.GetComponent<MenuPreventDeselect>();
             mpd.customCancelAction = _ => Instance.CancelAction();
-            
+
             if (AddToList)
             {
                 Instance.MenuOrder.Add(new GameObjectRow(panel));
@@ -135,9 +133,10 @@ namespace Satchel.BetterMenus
             gameObject = panel;
 
             OnBuilt += Update;
-            
-            ((IContainer)Parent).OnBuilt += (_,_) => {
-                OnBuiltInvoke();             
+
+            ((IContainer)Parent).OnBuilt += (_, _) =>
+            {
+                OnBuiltInvoke();
             };
             return new GameObjectRow(panel);
         }
@@ -156,7 +155,7 @@ namespace Satchel.BetterMenus
 
             FixSliderNavigation(); // just in case the nav graph was changed
         }
-        
+
         public static GameObject prefab
         {
             get
@@ -194,10 +193,10 @@ namespace Satchel.BetterMenus
 
                     _prefab = newPrefab;
                 }
-                return _prefab; 
+                return _prefab;
             }
         }
-        
+
         public float value
         {
             get => _value;
@@ -222,24 +221,25 @@ namespace Satchel.BetterMenus
         {
             get
             {
-                if(_valueLabel == null)
+                if (_valueLabel == null)
                 {
                     _valueLabel = currentSlider.Find("MusicValue")?.GetComponent<Text>();
                 }
                 return _valueLabel;
-            }   
+            }
         }
         public Slider slider
         {
             get
             {
-                if(_slider == null){
+                if (_slider == null)
+                {
                     _slider = currentSlider.GetComponent<Slider>();
                 }
                 return _slider;
             }
         }
-        
+
         private void UpdateValueLabel()
         {
             valueLabel.text = wholeNumbers ? $"{value}" : $"{value:0.0}";

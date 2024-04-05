@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using MonoMod.Cil;
+﻿using MonoMod.Cil;
 using MonoMod.RuntimeDetour.HookGen;
 using MonoMod.Utils;
+using System.Reflection;
 
 namespace Satchel.Reflected
 {

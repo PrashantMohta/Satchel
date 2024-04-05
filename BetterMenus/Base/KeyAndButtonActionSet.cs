@@ -12,16 +12,16 @@ public class KeyAndButtonActionSet : PlayerActionSet
     public readonly PlayerAction ButtonBind;
 
     /// <inheritdoc cref="KeyAndButtonActionSet"/>
-    public KeyAndButtonActionSet() 
+    public KeyAndButtonActionSet()
     {
         KeyBind = CreatePlayerAction("KeyBind");
         ButtonBind = CreatePlayerAction("ButtonBind");
     }
-    
+
     /// <inheritdoc cref="KeyAndButtonActionSet"/>
     /// <param name="defaultKeyBind">The default <see cref="Key"/> for the key bind</param>
     /// <param name="defaultButtonBind">The default <see cref="InputControlType"/> for the button bind</param>
-    public KeyAndButtonActionSet(Key defaultKeyBind, InputControlType defaultButtonBind) : this() 
+    public KeyAndButtonActionSet(Key defaultKeyBind, InputControlType defaultButtonBind) : this()
     {
         KeyBind.AddDefaultBinding(defaultKeyBind);
         ButtonBind.AddDefaultBinding(defaultButtonBind);

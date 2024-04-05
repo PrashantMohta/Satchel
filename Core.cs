@@ -3,7 +3,8 @@ namespace Satchel
     /// <summary>
     /// The class that gives access to custom In-game UI and game elements
     /// </summary>
-    public class Core{
+    public class Core
+    {
 
         public static AssetBundle shaderBundle;
         public static Shader spriteFlash;
@@ -14,7 +15,8 @@ namespace Satchel
         /// <summary>
         /// Method to load the shaders required for Certain satchel features, runs automatically when constructing a Core instance
         /// </summary>
-        public static void LoadShaders(){
+        public static void LoadShaders()
+        {
             switch (SystemInfo.operatingSystemFamily)
             {
                 case OperatingSystemFamily.MacOSX:
@@ -31,16 +33,18 @@ namespace Satchel
                     spriteExtractBundle = AssemblyUtils.GetAssetBundleFromResources("win.spriteextract");
                     break;
             }
-            if(spriteFlash == null){
+            if (spriteFlash == null)
+            {
                 spriteFlash = shaderBundle.GetShader("spriteflash.shader");
             }
-            if(spriteExtractBundle != null)
+            if (spriteExtractBundle != null)
             {
                 spriteExtract = spriteExtractBundle.GetShader("SpriteExtract");
                 spriteMask = spriteExtractBundle.GetShader("SpriteMaskMaker");
             }
         }
-        static Core(){
+        static Core()
+        {
             LoadShaders();
         }
 
@@ -50,8 +54,10 @@ namespace Satchel
         /// Gets the instance of CustomSaveSlotManager or creates if null
         /// </summary>
         /// <returns>Instance of CustomSaveSlotManager</returns>
-        public CustomSaveSlotsManager GetCustomSaveSlotsManager(){
-            if(customSaveSlotsManager == null){
+        public CustomSaveSlotsManager GetCustomSaveSlotsManager()
+        {
+            if (customSaveSlotsManager == null)
+            {
                 customSaveSlotsManager = new CustomSaveSlotsManager();
             }
             return customSaveSlotsManager;
@@ -63,8 +69,10 @@ namespace Satchel
         /// </summary>
         /// <param name="CardPrefab">A preload of Cornifer's Card</param>
         /// <returns>Instance of CustomDialogueManager</returns>
-        public CustomDialogueManager GetCustomDialogueManager(GameObject CardPrefab){
-            if(customDialogueManager == null){
+        public CustomDialogueManager GetCustomDialogueManager(GameObject CardPrefab)
+        {
+            if (customDialogueManager == null)
+            {
                 customDialogueManager = new CustomDialogueManager(CardPrefab);
             }
             return customDialogueManager;
@@ -75,8 +83,10 @@ namespace Satchel
         /// Gets the instance of CustomMapManager or creates if null
         /// </summary>
         /// <returns>Instance of CustomMapManager</returns>
-        public CustomMapManager GetCustomMapManager(){
-            if(customMapManager == null){
+        public CustomMapManager GetCustomMapManager()
+        {
+            if (customMapManager == null)
+            {
                 customMapManager = new CustomMapManager();
             }
             return customMapManager;
@@ -87,8 +97,10 @@ namespace Satchel
         /// Gets the instance of CustomEnemyManager or creates if null
         /// </summary>
         /// <returns>Instance of CustomEnemyManager</returns>
-        public CustomEnemyManager GetCustomEnemyManager(){
-            if(customEnemyManager == null){
+        public CustomEnemyManager GetCustomEnemyManager()
+        {
+            if (customEnemyManager == null)
+            {
                 customEnemyManager = new CustomEnemyManager();
             }
             return customEnemyManager;
@@ -98,22 +110,26 @@ namespace Satchel
         /// Gets the instance of CustomDreamNailManager or creates if null
         /// </summary>
         /// <returns>Instance of CustomDreamNailManager</returns>
-        public CustomDreamNailManager GetCustomDreamNailManager(){
-            if(customDreamNailManager == null){
+        public CustomDreamNailManager GetCustomDreamNailManager()
+        {
+            if (customDreamNailManager == null)
+            {
                 customDreamNailManager = new CustomDreamNailManager();
             }
             return customDreamNailManager;
         }
 
-        
+
         public CustomShinyManager customShinyManager;
 
         /// <summary>
         /// Gets the instance of CustomShinyManager or creates if null
         /// </summary>
         /// <returns>Instance of CustomShinyManager</returns>
-        public CustomShinyManager GetCustomShinyManager(){
-            if(customShinyManager == null){
+        public CustomShinyManager GetCustomShinyManager()
+        {
+            if (customShinyManager == null)
+            {
                 customShinyManager = new CustomShinyManager();
             }
             return customShinyManager;
@@ -124,8 +140,10 @@ namespace Satchel
         /// Gets the instance of CustomBigItemGetManager or creates if null
         /// </summary>
         /// <returns>Instance of CustomBigItemGetManager</returns>
-        public CustomBigItemGetManager GetCustomBigItemGetManager(){
-            if(customBigItemGetManager == null){
+        public CustomBigItemGetManager GetCustomBigItemGetManager()
+        {
+            if (customBigItemGetManager == null)
+            {
                 customBigItemGetManager = new CustomBigItemGetManager();
             }
             return customBigItemGetManager;
@@ -134,15 +152,17 @@ namespace Satchel
         /// <summary>
         /// All custom scenes being managed by Satchel for this mod
         /// </summary>
-        public Dictionary<string,CustomScene> customScenes = new Dictionary<string,CustomScene>();
+        public Dictionary<string, CustomScene> customScenes = new Dictionary<string, CustomScene>();
 
         /// <summary>
         /// Get custom Scene by sceneName
         /// </summary>
         /// <param name="sceneName">Name of the scene</param>
         /// <returns>The customScene or null</returns>
-        public CustomScene GetCustomScene(string sceneName){
-            if(customScenes.TryGetValue(sceneName, out var customScene)){
+        public CustomScene GetCustomScene(string sceneName)
+        {
+            if (customScenes.TryGetValue(sceneName, out var customScene))
+            {
                 return customScene;
             }
             return null;
@@ -154,16 +174,21 @@ namespace Satchel
         /// <param name="TileMap">A preload of a TileMap from an existing scene</param>
         /// <param name="SceneManager">A preload of a SceneManager from an existin scene</param>
         /// <returns>The customScene or null</returns>
-        public CustomScene GetCustomScene(string sceneName,GameObject TileMap,GameObject SceneManager){
-            if(!customScenes.TryGetValue(sceneName, out var customScene)){
+        public CustomScene GetCustomScene(string sceneName, GameObject TileMap, GameObject SceneManager)
+        {
+            if (!customScenes.TryGetValue(sceneName, out var customScene))
+            {
                 customScene = new CustomScene();
             }
 
-            if(customScene != null){
+            if (customScene != null)
+            {
                 customScene.sceneName = sceneName;
                 customScene.TileMap = TileMap;
                 customScene.SceneManager = SceneManager;
-            } else {
+            }
+            else
+            {
                 Satchel.Instance.Log("Error Creating scene : " + sceneName + " probably a scene with the same name already exists");
             }
             return customScene;

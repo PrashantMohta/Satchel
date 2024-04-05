@@ -54,7 +54,7 @@ namespace Satchel.BetterMenus
             var keybindRt = keybind.AddComponent<RectTransform>();
             new RelVector2(new Vector2(650f, 100f)).GetBaseTransformData().Apply(keybindRt);
             content.Layout.ModifyNext(keybindRt);
-            
+
 
             // Text object
             var text = new GameObject("Text");
@@ -183,7 +183,7 @@ namespace Satchel.BetterMenus
             mapKey.GetBinding();
             mapKey.ShowCurrentBinding();
             mappableKey = mapKey;
-            
+
             ApplySelectableArea(
              config,
              keybind,
@@ -198,9 +198,10 @@ namespace Satchel.BetterMenus
             );
             return content;
         }
-        public static void ApplySelectableArea(MappableKey mapKey,KeybindConfig config){
+        public static void ApplySelectableArea(MappableKey mapKey, KeybindConfig config)
+        {
             GameObject keybind = mapKey.gameObject;
-            GameObject keymap  = keybind.Find("Keymap");
+            GameObject keymap = keybind.Find("Keymap");
             GameObject cursorL = keybind.Find("CursorLeft");
             GameObject cursorR = keybind.Find("CursorRight");
             RectTransform keymapRt = keymap.GetComponent<RectTransform>();
@@ -232,44 +233,49 @@ namespace Satchel.BetterMenus
             RectTransform textRt,
             Text keymapTextText,
             MappableKey mapKey
-        ){
-             var selectableArea = config.selectableArea ?? SelectableArea.Full;
-             if(selectableArea == SelectableArea.ButtonOnly ){
+        )
+        {
+            var selectableArea = config.selectableArea ?? SelectableArea.Full;
+            if (selectableArea == SelectableArea.ButtonOnly)
+            {
                 cursorL.transform.SetParent(keymap.transform, false);
                 cursorR.transform.SetParent(keymap.transform, false);
 
                 keymapRt.pivot = new Vector2(0.5f, 0.5f);
                 keymapTextRt.anchoredPosition = new Vector2(0f, 0f);
                 keymapTextText.alignment = TextAnchor.MiddleCenter;
-                ReflectionHelper.SetField( mapKey,"sqrX",0f);
-                ReflectionHelper.SetField( mapKey,"blankWidth",70f);
+                ReflectionHelper.SetField(mapKey, "sqrX", 0f);
+                ReflectionHelper.SetField(mapKey, "blankWidth", 70f);
 
-                ReflectionHelper.SetField( mapKey,"blankFontSize",36);
-                ReflectionHelper.SetField( mapKey,"sqrMaxFont",36);
-                ReflectionHelper.SetField( mapKey,"sqrFontSize",36);
+                ReflectionHelper.SetField(mapKey, "blankFontSize", 36);
+                ReflectionHelper.SetField(mapKey, "sqrMaxFont", 36);
+                ReflectionHelper.SetField(mapKey, "sqrFontSize", 36);
 
-                ReflectionHelper.SetField( mapKey,"blankBestFit",true);
-                ReflectionHelper.SetField( mapKey,"blankAlignment",TextAnchor.MiddleCenter);
+                ReflectionHelper.SetField(mapKey, "blankBestFit", true);
+                ReflectionHelper.SetField(mapKey, "blankAlignment", TextAnchor.MiddleCenter);
 
-                if(config.Label.Length == 0){
+                if (config.Label.Length == 0)
+                {
                     textRt.anchorMin = new Vector2(0f, 0f);
                     textRt.anchorMax = new Vector2(0f, 0f);
                 }
 
-            } else {
+            }
+            else
+            {
                 cursorL.transform.SetParent(keybind.transform, false);
                 cursorR.transform.SetParent(keybind.transform, false);
 
                 keymapRt.pivot = new Vector2(1f, 0.5f);
-                keymapTextRt.anchoredPosition =  new Vector2(0f, 0f);
+                keymapTextRt.anchoredPosition = new Vector2(0f, 0f);
                 keymapTextText.alignment = TextAnchor.MiddleCenter;
-                ReflectionHelper.SetField( mapKey,"sqrX",32f);
-                ReflectionHelper.SetField( mapKey,"blankWidth",165f);
-                ReflectionHelper.SetField( mapKey,"blankBestFit",false);
-                ReflectionHelper.SetField( mapKey,"blankFontSize",36);
-                ReflectionHelper.SetField( mapKey,"sqrMaxFont",36);
-                ReflectionHelper.SetField( mapKey,"sqrFontSize",36);
-                ReflectionHelper.SetField( mapKey,"blankAlignment",TextAnchor.MiddleRight);
+                ReflectionHelper.SetField(mapKey, "sqrX", 32f);
+                ReflectionHelper.SetField(mapKey, "blankWidth", 165f);
+                ReflectionHelper.SetField(mapKey, "blankBestFit", false);
+                ReflectionHelper.SetField(mapKey, "blankFontSize", 36);
+                ReflectionHelper.SetField(mapKey, "sqrMaxFont", 36);
+                ReflectionHelper.SetField(mapKey, "sqrFontSize", 36);
+                ReflectionHelper.SetField(mapKey, "blankAlignment", TextAnchor.MiddleRight);
                 textRt.anchorMin = new Vector2(0f, 0f);
                 textRt.anchorMax = new Vector2(1f, 1f);
             }

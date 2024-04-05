@@ -10,7 +10,7 @@ namespace Satchel.BetterMenus
     /// </summary>
     public class HorizontalOption : Element
     {
-        
+
         /// <summary>
         /// The description to be displayed.
         /// </summary>
@@ -39,18 +39,18 @@ namespace Satchel.BetterMenus
         /// <param name="loadSetting">The Func(int) to Invoke to load the current setting.</param>
         /// <param name="Id">the id of the element that can be used to search for it</param>
         public HorizontalOption(
-            string name, 
+            string name,
             string description,
-            string[] values, 
-            Action<int> applySetting, 
+            string[] values,
+            Action<int> applySetting,
             Func<int> loadSetting,
-            string Id = "__UseName") : base(Id,name)
+            string Id = "__UseName") : base(Id, name)
         {
             Name = name;
             Description = description;
             Values = values;
             ApplySetting = applySetting;
-            LoadSetting= loadSetting;
+            LoadSetting = loadSetting;
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace Satchel.BetterMenus
             {
                 Instance.MenuOrder.Add(new GameObjectRow(option.gameObject));
             }
-			
-			gameObject = option.gameObject;
+
+            gameObject = option.gameObject;
 
             Action loadSettingOnBuild = () =>
             {
@@ -100,21 +100,24 @@ namespace Satchel.BetterMenus
             };
 
             OnBuilt += loadSettingOnBuild;
-            
-            ((IContainer)Parent).OnBuilt += (_,_) => {
-                OnBuiltInvoke();             
+
+            ((IContainer)Parent).OnBuilt += (_, _) =>
+            {
+                OnBuiltInvoke();
             };
             return new GameObjectRow(option.gameObject);
         }
-        
+
         public override void Update()
         {
             var option = gameObject.GetComponent<MenuOptionHorizontal>();
             option.optionList = Values;
             option.menuSetting.customApplySetting = (_, i) => ApplySetting(i);
-            option.menuSetting.customRefreshSetting = (s, _) => {
+            option.menuSetting.customRefreshSetting = (s, _) =>
+            {
                 var setting = LoadSetting();
-                if(setting >= 0 && setting < option.optionList.Length){
+                if (setting >= 0 && setting < option.optionList.Length)
+                {
                     s.optionList.SetOptionTo(setting);
                 }
             };

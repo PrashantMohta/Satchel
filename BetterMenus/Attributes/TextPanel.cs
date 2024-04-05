@@ -11,7 +11,7 @@ public class TextPanelAttribute : ElementAttribute
 {
     public float Width;
     public int FontSize;
-    
+
     /// <inheritdoc cref="TextPanelAttribute"/>
     /// <param name="width">The width of the TextPanel.</param>
     /// <param name="fontSize">The fontSize of the TextPanel.</param>

@@ -3,21 +3,25 @@ namespace Satchel
     /// <summary>
     /// dummy MonoBehaviour
     /// </summary>
-    public class CoroutineRunner : MonoBehaviour{}
+    public class CoroutineRunner : MonoBehaviour { }
 
     /// <summary>
     /// Coroutine Helper to make sure coroutines have a GameObject to run on
     /// </summary>
-    public static class CoroutineHelper{
+    public static class CoroutineHelper
+    {
         private static GameObject gameObject;
         private static CoroutineRunner runner;
         /// <summary>
         /// Get the current runner singleton
         /// </summary>
         /// <returns></returns>
-        public static CoroutineRunner GetRunner(){
-            if(runner == null){
-                if(gameObject == null){
+        public static CoroutineRunner GetRunner()
+        {
+            if (runner == null)
+            {
+                if (gameObject == null)
+                {
                     gameObject = new GameObject();
                     GameObject.DontDestroyOnLoad(gameObject);
                 }
@@ -25,7 +29,7 @@ namespace Satchel
             }
             return runner;
         }
-        
+
         /// <summary>
         /// Run some code after some frames
         /// </summary>
@@ -45,7 +49,7 @@ namespace Satchel
         {
             return GetRunner().StartCoroutine(WaitBeforeInvokeRoutine(seconds, codeToRun));
         }
-    
+
         private static IEnumerator WaitBeforeInvokeRoutine(int numFrames, Action codeToRun)
         {
             for (int i = 0; i < numFrames; i++)

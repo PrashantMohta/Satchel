@@ -15,12 +15,12 @@ namespace Satchel.BetterMenus
         /// <param name="Id">the id of the element that can be used to search for it</param>
         /// <returns>The Horizontal Option to add to the menu</returns>
         /// <typeparam name="T">The type that the values will be. The type must be able to formattable in a string representation</typeparam>
-        public static HorizontalOption GenericHorizontalOption<T>(string name, 
+        public static HorizontalOption GenericHorizontalOption<T>(string name,
             string description,
             T[] values,
-            Action<T> applySetting, 
-            Func<T> loadSetting, 
-            string Id = "__UseName") where T: IFormattable //to ensure ToString
+            Action<T> applySetting,
+            Func<T> loadSetting,
+            string Id = "__UseName") where T : IFormattable //to ensure ToString
         {
             if (Id == "__UseName")
             {
@@ -34,7 +34,7 @@ namespace Satchel.BetterMenus
                 () =>
                 {
                     T val = loadSetting();
-                    if(!values.Contains(val))
+                    if (!values.Contains(val))
                     {
                         throw new IndexOutOfRangeException($"Your provided array for the horizontal option: {name} did not include {val} in it");
                     }

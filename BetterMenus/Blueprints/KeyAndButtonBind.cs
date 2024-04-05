@@ -2,7 +2,8 @@ using Satchel.BetterMenus.Config;
 
 namespace Satchel.BetterMenus
 {
-    public static partial class Blueprints{
+    public static partial class Blueprints
+    {
         /// <summary>
         /// A blueprint to create a row with keybind and a button bind where only the binding area of them are selectable
         /// </summary>
@@ -15,8 +16,10 @@ namespace Satchel.BetterMenus
             string name,
             InControl.PlayerAction keyBindAction,
             InControl.PlayerAction buttonBindAction,
-            string Id = "__UseName"){
-            if(Id == "__UseName"){
+            string Id = "__UseName")
+        {
+            if (Id == "__UseName")
+            {
                 Id = name;
             }
             return new MenuRow(
@@ -24,12 +27,12 @@ namespace Satchel.BetterMenus
                     new KeyBind(name ,keyBindAction,Id:Id+"key"){SelectableArea = SelectableArea.ButtonOnly},
                     new ButtonBind("",buttonBindAction,Id:Id+"button"){SelectableArea = SelectableArea.ButtonOnly}
                 },
-                Id:Id)
+                Id: Id)
             {
                 XDelta = 200f,
             };
         }
-        
+
         /// <summary>
         /// A blueprint to create a row with keybind and a button bind where only the binding area of them are selectable
         /// </summary>
@@ -40,7 +43,7 @@ namespace Satchel.BetterMenus
         public static MenuRow KeyAndButtonBind(
             string name,
             KeyAndButtonActionSet keyAndButtonActionSet,
-            string Id = "__UseName") 
+            string Id = "__UseName")
             => KeyAndButtonBind(name, keyAndButtonActionSet.KeyBind, keyAndButtonActionSet.ButtonBind, Id);
-        }
+    }
 }

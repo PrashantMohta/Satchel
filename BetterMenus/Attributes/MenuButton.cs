@@ -10,7 +10,7 @@ namespace Satchel.BetterMenus.Attributes;
 public class MenuButtonAttribute : ElementAttribute
 {
     public string Description;
-    
+
     /// <inheritdoc cref="MenuButtonAttribute"/>
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     /// <param name="description">The description of the element</param>
@@ -19,9 +19,9 @@ public class MenuButtonAttribute : ElementAttribute
         Description = description;
     }
 
-    public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => memberInfo is MethodInfo methodInfo && 
-                                                                          methodInfo.GetParameters().Length == 0 && 
-                                                                          !methodInfo.IsGenericMethod && 
+    public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => memberInfo is MethodInfo methodInfo &&
+                                                                          methodInfo.GetParameters().Length == 0 &&
+                                                                          !methodInfo.IsGenericMethod &&
                                                                           !methodInfo.IsStatic;
 
     public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings)
@@ -30,7 +30,7 @@ public class MenuButtonAttribute : ElementAttribute
         return new Element[]
         {
             new MenuButton(Name,
-                Description, 
+                Description,
                 _ => methodInfo!.Invoke(settings, null)),
         };
     }

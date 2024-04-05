@@ -20,16 +20,20 @@ namespace Satchel
         /// <returns>index of the save slot</returns>
         public static int ConvertSlotToNumber(SaveSlotButton.SaveSlot saveSlot)
         {
-            if(saveSlot == SaveSlotButton.SaveSlot.SLOT_1) {
+            if (saveSlot == SaveSlotButton.SaveSlot.SLOT_1)
+            {
                 return 1;
             }
-            if(saveSlot == SaveSlotButton.SaveSlot.SLOT_2) {
+            if (saveSlot == SaveSlotButton.SaveSlot.SLOT_2)
+            {
                 return 2;
             }
-            if(saveSlot == SaveSlotButton.SaveSlot.SLOT_3) {
+            if (saveSlot == SaveSlotButton.SaveSlot.SLOT_3)
+            {
                 return 3;
             }
-            if(saveSlot == SaveSlotButton.SaveSlot.SLOT_4) {
+            if (saveSlot == SaveSlotButton.SaveSlot.SLOT_4)
+            {
                 return 4;
             }
             return 0;
@@ -41,11 +45,11 @@ namespace Satchel
         /// <param name="callback">Method to be called after data is loaded</param>
         public static void GetPlayerDataForSlot(int saveSlot, Action<PlayerData> callback)
         {
-        
+
             Platform.Current.ReadSaveSlot
             (
                 saveSlot,
-                delegate(byte[] fileBytes)
+                delegate (byte[] fileBytes)
                 {
                     if (fileBytes == null)
                     {
@@ -65,7 +69,7 @@ namespace Satchel
                         {
                             BinaryFormatter binaryFormatter = new BinaryFormatter();
                             MemoryStream serializationStream = new MemoryStream(fileBytes);
-                            string encryptedString = (string) binaryFormatter.Deserialize(serializationStream);
+                            string encryptedString = (string)binaryFormatter.Deserialize(serializationStream);
                             json = Encryption.Decrypt(encryptedString);
                         }
                         else
@@ -82,17 +86,17 @@ namespace Satchel
                                 ObjectCreationHandling = ObjectCreationHandling.Replace,
                                 Converters = JsonConverterTypes.ConverterTypes
                             });
-                        } 
+                        }
                         catch (Exception)
                         {
                             // Not a huge deal, this happens on saves with mod data which haven't been converted yet.
                             Satchel.Instance.LogWarn($"Failed to get save stats for slot {saveSlot} using Json.NET, falling back");
-                            
+
                             saveGameData = JsonUtility.FromJson<SaveGameData>(json);
                         }
-                        
+
                         PlayerData playerData = saveGameData.playerData;
-                        
+
                         if (callback != null)
                         {
                             CoreLoop.InvokeNext(delegate { callback(playerData); });
@@ -121,8 +125,8 @@ namespace Satchel
                 }
             );
         }
-    
-    
+
+
     }
-    
+
 }

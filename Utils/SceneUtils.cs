@@ -4,15 +4,18 @@ namespace Satchel
     /// <summary>
     /// Utilities to work with scenes
     /// </summary>
-    public static class SceneUtils{
+    public static class SceneUtils
+    {
 
         internal static GameObject DontDestroyOnLoadObj;
         /// <summary>
         /// Get access to DontDestroyOnLoad scene
         /// </summary>
         /// <returns>DontDestroyOnLoad scene</returns>
-        public static Scene GetDontDestroyOnLoadScene(){
-            if(DontDestroyOnLoadObj == null){
+        public static Scene GetDontDestroyOnLoadScene()
+        {
+            if (DontDestroyOnLoadObj == null)
+            {
                 DontDestroyOnLoadObj = new GameObject();
                 GameObject.DontDestroyOnLoad(DontDestroyOnLoadObj);
             }
@@ -21,7 +24,8 @@ namespace Satchel
         /// <summary>
         /// Parameters for creating a CustomSaveSlot
         /// </summary>
-        public struct CustomSaveSlotParams {
+        public struct CustomSaveSlotParams
+        {
             public string sceneName;
             public string sceneTitle;
             public Sprite background;
@@ -29,7 +33,8 @@ namespace Satchel
         /// <summary>
         /// Settings for SceneManager used by CustomScene
         /// </summary>
-        public class CustomSceneManagerSettings{
+        public class CustomSceneManagerSettings
+        {
             public SceneType sceneType;
             public MapZone mapZone;
             public int darknessLevel;
@@ -46,7 +51,8 @@ namespace Satchel
             public UnityEngine.AudioClip backgroundMusic;
             public Func<UnityEngine.AudioClip> backgroundMusicGet;
 
-            public CustomSceneManagerSettings(SceneManager prefab){
+            public CustomSceneManagerSettings(SceneManager prefab)
+            {
                 sceneType = prefab.sceneType;
                 mapZone = prefab.mapZone;
                 darknessLevel = prefab.darknessLevel;
@@ -62,11 +68,12 @@ namespace Satchel
                 heroLightColor = prefab.heroLightColor;
             }
         }
-        
+
         /// <summary>
         /// Parameters for creating a CustomBench in a CustomScene
         /// </summary>
-        public struct BenchParams{
+        public struct BenchParams
+        {
 
             public GameObject prefab;
             public string benchName;
@@ -76,7 +83,8 @@ namespace Satchel
         /// <summary>
         /// Parameters for creatng custom gateways between scenes
         /// </summary>
-        public struct GatewayParams{
+        public struct GatewayParams
+        {
             public string gateName;
             public Vector2 pos;
             public Vector2 size;
@@ -91,7 +99,8 @@ namespace Satchel
         /// Gets the current scene
         /// </summary>
         /// <returns>current scene</returns>
-        public static UnityEngine.SceneManagement.Scene getCurrentScene(){
+        public static UnityEngine.SceneManagement.Scene getCurrentScene()
+        {
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
         /// <summary>
@@ -99,15 +108,17 @@ namespace Satchel
         /// </summary>
         /// <param name="includeDontDestroyScene">boolean indicating if DontDestroyOnLoadScene should be included</param>
         /// <returns>The loaded scenes</returns>
-        public static List<UnityEngine.SceneManagement.Scene> GetAllLoadedScenes(bool includeDontDestroyScene = false){
+        public static List<UnityEngine.SceneManagement.Scene> GetAllLoadedScenes(bool includeDontDestroyScene = false)
+        {
             List<UnityEngine.SceneManagement.Scene> scenes = new();
-        
+
             for (int n = 0; n < UnityEngine.SceneManagement.SceneManager.sceneCount; ++n)
             {
                 Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(n);
                 scenes.Add(scene);
             }
-            if(includeDontDestroyScene){
+            if (includeDontDestroyScene)
+            {
                 scenes.Add(GetDontDestroyOnLoadScene());
             }
             return scenes;
@@ -117,7 +128,8 @@ namespace Satchel
         /// Creat a Gateway using GatewayParams
         /// </summary>
         /// <param name="gateway">parameters for this gate</param>
-        public static void CreateGateway(GatewayParams gateway){
+        public static void CreateGateway(GatewayParams gateway)
+        {
             CreateGateway(
                 gateway.gateName,
                 gateway.pos,
@@ -141,16 +153,16 @@ namespace Satchel
         /// <param name="onlyOut">Boolean indicating if this gate can only be used as an entrance to current scene</param>
         /// <param name="vis">The type of loading visualisation to use</param>
         public static void CreateGateway(
-            string gateName, 
-            Vector2 pos, 
-            Vector2 size, 
+            string gateName,
+            Vector2 pos,
+            Vector2 size,
             string toScene,
             string entryGate,
             Vector2 respawnPoint,
-            bool onlyOut, 
+            bool onlyOut,
             GameManager.SceneLoadVisualizations vis)
         {
-            if(GameObject.Find(gateName) != null) { return; }
+            if (GameObject.Find(gateName) != null) { return; }
             GameObject gate = new GameObject(gateName);
             gate.transform.SetPosition2D(pos);
             var tp = gate.AddComponent<TransitionPoint>();
@@ -172,16 +184,17 @@ namespace Satchel
             tmp.respawnFacingRight = tp.alwaysEnterRight;
             tp.respawnMarker = rm.GetComponent<HazardRespawnMarker>();
             tp.sceneLoadVisualization = vis;
-            
+
         }
-        
+
         /// <summary>
         /// Create a bench using BenchParams
         /// </summary>
         /// <param name="bench">Parameters for this bench</param>
         /// <returns>The Bench GameObject</returns>
-        public static GameObject CreateBenchFromPrefab(BenchParams bench){
-            return CreateBenchFromPrefab(bench.prefab,bench.benchName,bench.pos,bench.sceneName);
+        public static GameObject CreateBenchFromPrefab(BenchParams bench)
+        {
+            return CreateBenchFromPrefab(bench.prefab, bench.benchName, bench.pos, bench.sceneName);
         }
 
         //iTween retrieve args break
@@ -193,10 +206,11 @@ namespace Satchel
         /// <param name="pos">Position of the new bench</param>
         /// <param name="sceneName">Scene in which the bench is placed (used for saves)</param>
         /// <returns>The Bench GameObject</returns>
-        public static GameObject CreateBenchFromPrefab(GameObject benchPrefab,string benchName, Vector3 pos, string sceneName)
+        public static GameObject CreateBenchFromPrefab(GameObject benchPrefab, string benchName, Vector3 pos, string sceneName)
         {
-            if(GameObject.Find(benchName) != null) { 
-                return null; 
+            if (GameObject.Find(benchName) != null)
+            {
+                return null;
             }
             /*GameObject marker = new GameObject();
             marker.transform.position = new Vector3(pos.x, pos.y, 7.4f);
@@ -221,7 +235,8 @@ namespace Satchel
         /// </summary>
         /// <param name="TileMapPrefab">A Preload of the tilemap of any existing scene</param>
         /// <returns>A tk2dTileMap with dummy data</returns>
-        public static tk2dTileMap FakeTileMapFromPrefab(GameObject TileMapPrefab){
+        public static tk2dTileMap FakeTileMapFromPrefab(GameObject TileMapPrefab)
+        {
             GameObject go = GameObject.Instantiate(TileMapPrefab);
             go.SetActive(false);
             tk2dTileMap tm = go.GetComponent<tk2dTileMap>();
@@ -234,7 +249,8 @@ namespace Satchel
         /// </summary>
         /// <param name="SceneManagerPrefab">A preload of a SceneManager GameObject</param>
         /// <returns>A shallow copy of SceneManager component</returns>
-        public static SceneManager getSceneManagerFromPrefab(GameObject SceneManagerPrefab){
+        public static SceneManager getSceneManagerFromPrefab(GameObject SceneManagerPrefab)
+        {
             GameObject _sm = GameObject.Instantiate(SceneManagerPrefab);
             _sm.SetActive(false);
             SceneManager sm = _sm.GetComponent<SceneManager>();
@@ -246,22 +262,24 @@ namespace Satchel
         /// </summary>
         /// <param name="clip">The AudioClip to play</param>
         public static void PlayBackgroundMusicForScene(AudioClip clip)
-        {   
+        {
             MusicCue musicCue = ScriptableObject.CreateInstance<MusicCue>();
             List<MusicCue.MusicChannelInfo> channelInfos = new List<MusicCue.MusicChannelInfo>();
             MusicCue.MusicChannelInfo channelInfo = new MusicCue.MusicChannelInfo();
 
-            ReflectionHelper.SetField(channelInfo,"clip", clip);
+            ReflectionHelper.SetField(channelInfo, "clip", clip);
             channelInfos.Add(channelInfo);
             channelInfos.Add(null);
             channelInfos.Add(null);
             channelInfos.Add(null);
             channelInfos.Add(null);
             channelInfos.Add(null);
-            ReflectionHelper.SetField(musicCue,"channelInfos", channelInfos.ToArray());
+            ReflectionHelper.SetField(musicCue, "channelInfos", channelInfos.ToArray());
             var objs = Resources.FindObjectsOfTypeAll<AudioMixer>();
-            foreach(var x in objs){
-                if(x.name == "Music"){
+            foreach (var x in objs)
+            {
+                if (x.name == "Music")
+                {
                     var yoursnapshot = x.FindSnapshot("Main Only");
                     yoursnapshot.TransitionTo(1f);
                     GameManager.instance.AudioManager.ApplyMusicCue(musicCue, 0, 0, false);

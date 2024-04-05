@@ -1,7 +1,7 @@
+using InControl;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using InControl;
 
 namespace Satchel.BetterMenus.Attributes;
 
@@ -19,13 +19,13 @@ public class PlayerActionSetAttribute : ElementAttribute
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) =>
         memberInfo is FieldInfo fieldInfo && fieldInfo.FieldType.IsSubclassOf(typeof(PlayerActionSet)) ||
         memberInfo is PropertyInfo propertyInfo && propertyInfo.PropertyType.IsSubclassOf(typeof(PlayerActionSet));
-    
+
     public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings)
     {
         return GetMemberType(memberInfo).GetFields(flags)
             .Where(bindField => bindField.GetCustomAttribute<BindAttribute>() is not null)
             .OrderBy(bindField => bindField.GetCustomAttribute<BindAttribute>().Order)
-            .Select(bindField => 
+            .Select(bindField =>
                 bindField.GetCustomAttribute<BindAttribute>().CreateBind(bindField, GetValue(memberInfo, settings)))
             .ToArray();
     }
@@ -40,7 +40,7 @@ public abstract class BindAttribute : ElementAttribute
     /// <inheritdoc cref="BindAttribute"/>
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     public BindAttribute(string name, [CallerLineNumber] int order = 0) : base(name, order) { }
-    
+
     public override bool VerifyCorrectFieldType(MemberInfo memberInfo) => CheckFieldOrPropertyType(memberInfo, typeof(PlayerAction));
     public override Element[] CreateElement<Settings>(MemberInfo memberInfo, Settings settings) => Array.Empty<Element>();
 
@@ -71,7 +71,7 @@ public class ButtonBindAttribute : BindAttribute
     /// <inheritdoc cref="ButtonBindAttribute"/>
     /// <inheritdoc cref="ElementAttribute(string, int)"/>
     public ButtonBindAttribute(string name, [CallerLineNumber] int order = 0) : base(name, order) { }
-    
+
     public override Element CreateBind(MemberInfo memberInfo, object playerActionSet)
     {
         return new ButtonBind(Name, GetValue(memberInfo, playerActionSet) as PlayerAction);

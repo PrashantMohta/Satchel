@@ -1,13 +1,17 @@
 
-namespace Satchel.Futils.Serialiser{
+namespace Satchel.Futils.Serialiser
+{
 
-    public static class utils{
-        internal static ActionScriptEntry GetActionData(HutongGames.PlayMaker.FsmState state,ActionScriptEntry ase, int i, int dataVersion){
+    public static class utils
+    {
+        internal static ActionScriptEntry GetActionData(HutongGames.PlayMaker.FsmState state, ActionScriptEntry ase, int i, int dataVersion)
+        {
             var ActionData = state.ActionData;
             var _actionNames = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<string>>(ActionData, "actionNames");
-            Satchel.Instance.Log(_actionNames[i] + " | " + ase.Name );
-            if(ase.Name != _actionNames[i]){ 
-                return ase; 
+            Satchel.Instance.Log(_actionNames[i] + " | " + ase.Name);
+            if (ase.Name != _actionNames[i])
+            {
+                return ase;
             }
             var _paramName = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<string>>(ActionData, "paramName");
             var _actionStartIndex = ReflectionHelper.GetField<HutongGames.PlayMaker.ActionData, List<int>>(ActionData, "actionStartIndex");
@@ -24,11 +28,11 @@ namespace Satchel.Futils.Serialiser{
             {
                 string paramName = _paramName[j];
                 object obj = ActionReader.GetFsmObject(ActionData, j, dataVersion);
-            
+
                 ase.Values.Add(new Tuple<string, object>(paramName, obj));
             }
             return ase;
-            
+
         }
 
         /*private static void GetActionData(List<ActionScriptEntry> list, ActionData actionData, int dataVersion)
@@ -74,7 +78,8 @@ namespace Satchel.Futils.Serialiser{
         public bool isSequence;
         public bool hideUnused;
 
-        public FsmState(HutongGames.PlayMaker.FsmState state){
+        public FsmState(HutongGames.PlayMaker.FsmState state)
+        {
             name = state.Name;
             description = state.Description;
             colorIndex = (byte)state.ColorIndex;
@@ -84,7 +89,8 @@ namespace Satchel.Futils.Serialiser{
             hideUnused = state.HideUnused;
             transitions = new FsmTransition[state.Transitions.Length];
             var i = 0;
-            foreach(var transition in state.Transitions){
+            foreach (var transition in state.Transitions)
+            {
                 transitions[i] = new FsmTransition(transition);
                 i++;
             }
@@ -92,7 +98,8 @@ namespace Satchel.Futils.Serialiser{
 
             //create action data based on actual actions list
             i = 0;
-            foreach(var action in state.Actions){
+            foreach (var action in state.Actions)
+            {
                 var ase = new ActionScriptEntry();
                 ase.Name = action.GetType().ToString();
                 ase.Enabled = action.Enabled;
@@ -100,7 +107,7 @@ namespace Satchel.Futils.Serialiser{
                 actionData.Add(ase);
                 i++;
             }
-            
+
             //state.ActionData;
         }
         public override string ToString()
@@ -110,17 +117,19 @@ namespace Satchel.Futils.Serialiser{
     }
     public class FsmEvent
     {
-            public string name;
-            public bool isSystemEvent;
-            public bool isGlobal;
-        public FsmEvent(){
+        public string name;
+        public bool isSystemEvent;
+        public bool isGlobal;
+        public FsmEvent()
+        {
 
         }
-        public FsmEvent( HutongGames.PlayMaker.FsmEvent ev) {
+        public FsmEvent(HutongGames.PlayMaker.FsmEvent ev)
+        {
             name = ev.Name;
             isSystemEvent = ev.IsSystemEvent;
             isGlobal = ev.IsGlobal;
-         }
+        }
 
         public override string ToString()
         {
@@ -134,14 +143,15 @@ namespace Satchel.Futils.Serialiser{
         public int linkStyle;
         public int linkConstraint;
         public byte colorIndex;
-        public FsmTransition(HutongGames.PlayMaker.FsmTransition transition) {
+        public FsmTransition(HutongGames.PlayMaker.FsmTransition transition)
+        {
             toState = transition.ToState;
             fsmEvent = new FsmEvent(transition.FsmEvent);
             linkStyle = (int)transition.LinkStyle;
             linkConstraint = (int)transition.LinkConstraint;
             colorIndex = (byte)transition.ColorIndex;
-         }
-       
+        }
+
         public override string ToString()
         {
             return $"Transition({fsmEvent.name} -> {toState})";
@@ -160,47 +170,54 @@ namespace Satchel.Futils.Serialiser{
         public List<FsmNodeData> globalTransitions = new List<FsmNodeData>();
         public int dataVersion;
 
-        public FsmDataInstance(PlayMakerFSM fsm){
+        public FsmDataInstance(PlayMakerFSM fsm)
+        {
             this.fsmName = fsm.Fsm.Name;
             dataVersion = fsm.Fsm.DataVersion;
             this.goName = fsm.gameObject.name;
             var i = 0;
             fsm.GiveStatesPosition();
-            foreach(var state in fsm.Fsm.States){
+            foreach (var state in fsm.Fsm.States)
+            {
                 states.Add(new FsmState(state));
                 //add action data for existing actions from serialised data
                 var j = 0;
-                foreach(var ase in states[i].actionData){
-                    try{
-                       utils.GetActionData(state,ase,j,dataVersion);
-                    } catch(Exception e){
+                foreach (var ase in states[i].actionData)
+                {
+                    try
+                    {
+                        utils.GetActionData(state, ase, j, dataVersion);
+                    }
+                    catch (Exception e)
+                    {
                         Satchel.Instance.Log(e.ToString());
                     }
                     j++;
                 }
-                
+
                 i++;
             }
-            foreach(var ev in fsm.Fsm.Events){
+            foreach (var ev in fsm.Fsm.Events)
+            {
                 events.Add(new FsmEvent(ev));
-            }   
+            }
             var V = fsm.Fsm.Variables;
 
-            variables.Add(new FsmVariableData("Floats",(NamedVariable[])V.FloatVariables));
-            variables.Add(new FsmVariableData("Ints",(NamedVariable[])V.IntVariables));
-            variables.Add(new FsmVariableData("Bools",(NamedVariable[])V.BoolVariables));
-            variables.Add(new FsmVariableData("Strings",(NamedVariable[])V.StringVariables));
+            variables.Add(new FsmVariableData("Floats", (NamedVariable[])V.FloatVariables));
+            variables.Add(new FsmVariableData("Ints", (NamedVariable[])V.IntVariables));
+            variables.Add(new FsmVariableData("Bools", (NamedVariable[])V.BoolVariables));
+            variables.Add(new FsmVariableData("Strings", (NamedVariable[])V.StringVariables));
 
-            variables.Add(new FsmVariableData("Vector2s",(NamedVariable[])V.Vector2Variables));
-            variables.Add(new FsmVariableData("Vector3s",(NamedVariable[])V.Vector3Variables));
-            variables.Add(new FsmVariableData("Colors",(NamedVariable[])V.ColorVariables));
-            variables.Add(new FsmVariableData("Rects",(NamedVariable[])V.RectVariables));
-            variables.Add(new FsmVariableData("Quaternions",(NamedVariable[])V.QuaternionVariables));
+            variables.Add(new FsmVariableData("Vector2s", (NamedVariable[])V.Vector2Variables));
+            variables.Add(new FsmVariableData("Vector3s", (NamedVariable[])V.Vector3Variables));
+            variables.Add(new FsmVariableData("Colors", (NamedVariable[])V.ColorVariables));
+            variables.Add(new FsmVariableData("Rects", (NamedVariable[])V.RectVariables));
+            variables.Add(new FsmVariableData("Quaternions", (NamedVariable[])V.QuaternionVariables));
 
-            variables.Add(new FsmVariableData("GameObjects",(NamedVariable[])V.GameObjectVariables));
-            variables.Add(new FsmVariableData("Objects",(NamedVariable[])V.ObjectVariables));
-            variables.Add(new FsmVariableData("Materials",(NamedVariable[])V.MaterialVariables));
-            variables.Add(new FsmVariableData("Textures",(NamedVariable[])V.TextureVariables));
+            variables.Add(new FsmVariableData("GameObjects", (NamedVariable[])V.GameObjectVariables));
+            variables.Add(new FsmVariableData("Objects", (NamedVariable[])V.ObjectVariables));
+            variables.Add(new FsmVariableData("Materials", (NamedVariable[])V.MaterialVariables));
+            variables.Add(new FsmVariableData("Textures", (NamedVariable[])V.TextureVariables));
 
         }
     }
@@ -208,13 +225,15 @@ namespace Satchel.Futils.Serialiser{
     {
         public string Type { get; set; }
         public List<Tuple<string, object>> Values { get; set; }
-        public FsmVariableData(string type,NamedVariable[] Vars){
+        public FsmVariableData(string type, NamedVariable[] Vars)
+        {
             Type = type;
             Values = new List<Tuple<string, object>>();
-            foreach(var v in Vars){
-                Values.Add(new Tuple<string,object>(v.Name,v.RawValue));
+            foreach (var v in Vars)
+            {
+                Values.Add(new Tuple<string, object>(v.Name, v.RawValue));
             }
-            
+
         }
     }
     public class FsmGlobalTransition
@@ -227,19 +246,19 @@ namespace Satchel.Futils.Serialiser{
     }
     public class ActionScriptEntry
     {
-        public string Name ;
-        public List<Tuple<string, object>> Values ;
-        public bool Enabled ;
+        public string Name;
+        public List<Tuple<string, object>> Values;
+        public bool Enabled;
     }
     public class FsmNodeData
     {
         public bool isGlobal;
         public string name;
         public FsmTransition[] transitions;
-        
+
         public Rect transform;
         public Color stateColor;
         public Color transitionColor;
-        
+
     }
 }
