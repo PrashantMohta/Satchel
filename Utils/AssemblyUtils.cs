@@ -127,6 +127,10 @@ namespace Satchel
         {
             Texture2D tex = new Texture2D(2, 2);
             byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
+            if(buffer == null)
+            {
+                return null;
+            }
             tex.LoadImage(buffer);
             tex.Apply();
             Sprite sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 64f);
@@ -143,6 +147,10 @@ namespace Satchel
         {
             Texture2D tex = new Texture2D(2, 2);
             byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
+            if (buffer == null)
+            {
+                return null;
+            }
             tex.LoadImage(buffer);
             tex.Apply();
             Sprite sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), pixelsPerUnit);
@@ -157,6 +165,10 @@ namespace Satchel
         {
             Texture2D tex = new Texture2D(2, 2);
             byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
+            if (buffer == null)
+            {
+                return null;
+            }
             tex.LoadImage(buffer);
             tex.Apply();
             return tex;
@@ -170,6 +182,10 @@ namespace Satchel
         public static AssetBundle GetAssetBundleFromResources(string fileName)
         {
             byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
+            if (buffer == null)
+            {
+                return null;
+            }
             AssetBundle bundle = AssetBundle.LoadFromMemory(buffer);
             return bundle;
         }
