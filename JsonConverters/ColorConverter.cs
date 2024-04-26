@@ -28,14 +28,21 @@ namespace Satchel.JsonConverters
         {
             try
             {
-                ColorUtility.TryParseHtmlString("#" + reader.Value, out Color loadedColor);
-                return loadedColor;
+                if(ColorUtility.TryParseHtmlString("#" + reader.Value, out Color loadedColor))
+                {
+                    return loadedColor;
+                }
+                else
+                {
+                    Debug.LogError($"Failed to parse color : {reader.Value}");
+                }
             }
             catch (Exception ex)
             {
                 Debug.LogError($"Failed to parse color {objectType} : {ex.Message}");
-                return new Color(1, 1, 1, 1);
             }
+
+            return new Color(1, 1, 1, 1);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

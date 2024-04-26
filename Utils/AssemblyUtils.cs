@@ -13,10 +13,12 @@ namespace Satchel
         /// Name of this Assembly
         /// </summary>
         public static string name = "Satchel";
+
         /// <summary>
         /// Version of this Assembly
         /// </summary>
-        public static string ver = "0.9.0";
+        public static string ver = "0.9.1";
+
         /// <summary>
         /// Gets Version string
         /// </summary>
