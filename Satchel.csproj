@@ -33,7 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Satchel.xml</DocumentationFile>
-    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <!-- Create a LocalBuildProperties.props file which defines references directories
   and OutputDirectory (where the post-build event sends the dll to) -->

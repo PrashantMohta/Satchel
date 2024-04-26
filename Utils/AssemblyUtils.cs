@@ -16,7 +16,7 @@ namespace Satchel
         /// <summary>
         /// Version of this Assembly
         /// </summary>
-        public static string ver = "0.8.12";
+        public static string ver = "0.9.0";
         /// <summary>
         /// Gets Version string
         /// </summary>
