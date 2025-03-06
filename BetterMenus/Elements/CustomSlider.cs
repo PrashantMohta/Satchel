@@ -240,7 +240,7 @@ namespace Satchel.BetterMenus
             }
         }
 
-        private void UpdateValueLabel()
+        protected virtual void UpdateValueLabel()
         {
             valueLabel.text = wholeNumbers ? $"{value}" : $"{value:0.0}";
         }
