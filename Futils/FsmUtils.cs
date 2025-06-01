@@ -225,7 +225,7 @@ namespace Satchel
         /// <param name="onEventName"></param>
         public static void RemoveTransition(this PlayMakerFSM fsm, string fromStateName, string onEventName)
         {
-            var state = fsm.Fsm.GetState(fromStateName);
+            var state = fsm.GetValidState(fromStateName);
             state.RemoveTransition(onEventName);
         }
 
