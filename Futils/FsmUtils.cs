@@ -84,7 +84,7 @@ namespace Satchel
 
         public static FsmState GetValidState(this PlayMakerFSM fsm, string stateName)
         {
-            if (fsm.TryGetState(stateName,out var state))
+            if (fsm.TryGetState(stateName, out var state))
             {
                 return state;
             }

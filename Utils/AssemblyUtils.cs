@@ -82,9 +82,19 @@ namespace Satchel
         /// Get the directory path of the Calling Assembly
         /// </summary>
         /// <returns></returns>
-        public static string getCurrentDirectory()
+        public static string GetCurrentDirectory()
         {
             return Path.GetDirectoryName(System.Reflection.Assembly.GetCallingAssembly().Location);
+        }
+
+        /// <summary>
+        /// Get the directory path of the Calling Assembly
+        /// </summary>
+        /// <returns></returns>
+        [Obsolete("use GetCurrentDirectory instead")]
+        public static string getCurrentDirectory()
+        {
+            return GetCurrentDirectory();
         }
 
         /// <summary>
@@ -129,7 +139,7 @@ namespace Satchel
         {
             Texture2D tex = new Texture2D(2, 2);
             byte[] buffer = Assembly.GetCallingAssembly().GetBytesFromResources(fileName);
-            if(buffer == null)
+            if (buffer == null)
             {
                 return null;
             }

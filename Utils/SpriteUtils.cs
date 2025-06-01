@@ -230,7 +230,8 @@ namespace Satchel
             {
                 horizontal = (originalSprite.packingRotation == SpritePackingRotation.FlipHorizontal || originalSprite.packingRotation == SpritePackingRotation.Rotate180);
                 vertical = (originalSprite.packingRotation == SpritePackingRotation.FlipVertical || originalSprite.packingRotation == SpritePackingRotation.Rotate180);
-            };
+            }
+            ;
 
             // render on a new texture such that pivot is always at (50%,50%)
             pivot = originalSprite.pivot;
@@ -371,7 +372,8 @@ namespace Satchel
             {
                 horizontal = (originalSprite.packingRotation == SpritePackingRotation.FlipHorizontal || originalSprite.packingRotation == SpritePackingRotation.Rotate180);
                 vertical = (originalSprite.packingRotation == SpritePackingRotation.FlipVertical || originalSprite.packingRotation == SpritePackingRotation.Rotate180);
-            };
+            }
+            ;
 
             if (horizontal || vertical)
             {

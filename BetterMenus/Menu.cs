@@ -1,7 +1,7 @@
+using System.Linq;
 using Modding.Menu;
 using Modding.Menu.Components;
 using Modding.Menu.Config;
-using System.Linq;
 using UnityEngine.UI;
 namespace Satchel.BetterMenus
 {

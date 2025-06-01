@@ -1,6 +1,6 @@
-﻿using Satchel.BetterMenus.Config;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
+using Satchel.BetterMenus.Config;
 
 namespace Satchel.BetterMenus.Attributes;
 

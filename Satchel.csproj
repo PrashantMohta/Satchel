@@ -122,6 +122,7 @@
     <Compile Include="GlobalUsings.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="Monobehaviour\UniqueTk2d.cs" />
     <Compile Include="Utils\AnimationUtils.cs" />
     <Compile Include="Utils\AssemblyUtils.cs" />
     <Compile Include="Utils\EnemyUtils.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Futils\FsmVariables.cs" />
     <Compile Include="Futils\Interceptor.cs" />
     <Compile Include="Deprecated\FsmUtils.cs" />
+    <Compile Include="Utils\Tk2dUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Build\mac\shaders" />

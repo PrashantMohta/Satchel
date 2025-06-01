@@ -1,6 +1,6 @@
 
-using Newtonsoft.Json;
 using System.IO;
+using Newtonsoft.Json;
 namespace Satchel.Futils.Serialiser
 {
     public static class Serialiser

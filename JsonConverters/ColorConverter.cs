@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Satchel.JsonConverters
 {
@@ -28,7 +23,7 @@ namespace Satchel.JsonConverters
         {
             try
             {
-                if(ColorUtility.TryParseHtmlString("#" + reader.Value, out Color loadedColor))
+                if (ColorUtility.TryParseHtmlString("#" + reader.Value, out Color loadedColor))
                 {
                     return loadedColor;
                 }

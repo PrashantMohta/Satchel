@@ -1,7 +1,7 @@
-using InControl;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using InControl;
 
 namespace Satchel.BetterMenus.Attributes;
 

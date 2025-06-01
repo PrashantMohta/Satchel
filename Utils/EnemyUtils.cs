@@ -49,7 +49,8 @@ namespace Satchel
             Companion.DisableChildren();
             Companion.SetActive(false);
             // remove extra things that the prefab might have
-            while (Companion.RemoveComponent<PlayMakerFSM>()) { };
+            while (Companion.RemoveComponent<PlayMakerFSM>()) { }
+            ;
             Companion.RemoveComponent<PlayMakerUnity2DProxy>();
             Companion.RemoveComponent<PlayMakerFixedUpdate>();
             Companion.RemoveComponent<Recoil>();
