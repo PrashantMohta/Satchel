@@ -65,7 +65,7 @@ namespace Satchel
         {
             state.Position = new Rect(x, y, w, h);
         }
-        
+
         /// <summary>
         /// Add an empty state
         /// </summary>
@@ -609,6 +609,7 @@ namespace Satchel
         {
             fsm.GetValidState(stateName).InsertAction(new CustomFsmAction() { method = method }, index);
         }
+
         /// <summary>
         /// Add a custom action at index that takes the current state as argument
         /// </summary>
@@ -619,6 +620,7 @@ namespace Satchel
         {
             state.InsertAction(new CustomFsmAction() { method = () => method(state) }, index);
         }
+
         /// <summary>
         /// Add a custom action at index that takes the current fsm as argument
         /// </summary>
@@ -629,6 +631,18 @@ namespace Satchel
         public static void InsertCustomAction(this PlayMakerFSM fsm, string stateName, Action<PlayMakerFSM> method, int index)
         {
             fsm.GetValidState(stateName).InsertAction(new CustomFsmAction() { method = () => method(fsm) }, index);
+        }
+
+
+        /// <summary>
+        /// Remove state from fsm
+        /// </summary>
+        /// <param name="fsm"></param>
+        /// <param name="stateName"></param>
+        public static void RemoveState(this PlayMakerFSM fsm, string stateName)
+        {
+            var currStates = fsm.Fsm.States;
+            fsm.Fsm.States = [.. currStates.Where(state => state.Name != stateName)];
         }
     }
 
