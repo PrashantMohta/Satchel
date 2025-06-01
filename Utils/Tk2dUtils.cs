@@ -3,8 +3,10 @@ using UObject = UnityEngine.Object;
 
 namespace Satchel
 {
+
     /// <summary>
     /// Utilities to Work with a tk2d system
+    /// Based on https://github.com/RedFrog6002/FrogCore/ See original repo for license 
     /// </summary>
     public static class Tk2dUtils
     {
