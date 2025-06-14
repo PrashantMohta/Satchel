@@ -111,6 +111,9 @@
     <Compile Include="Animation\CustomAnimation.cs" />
     <Compile Include="BetterMenus\Attributes\*.cs" />
     <Compile Include="BetterMenus\Elements\InputField.cs" />
+    <Compile Include="Futils\Interceptors\EventInterceptor.cs" />
+    <Compile Include="Futils\Interceptors\InterceptorAction.cs" />
+    <Compile Include="Futils\Interceptors\TransitionInterceptor.cs" />
     <Compile Include="JsonConverters\ColorConverter.cs" />
     <Compile Include="Deprecated\Reflected\GameManagerFields.cs" />
     <Compile Include="Deprecated\Reflected\GameManagerILIEnumerators.cs" />
@@ -170,7 +173,7 @@
     <Compile Include="Futils\CustomAction.cs" />
     <Compile Include="Futils\FsmUtils.cs" />
     <Compile Include="Futils\FsmVariables.cs" />
-    <Compile Include="Futils\Interceptor.cs" />
+    <Compile Include="Futils\Interceptors\Interceptor.cs" />
     <Compile Include="Deprecated\FsmUtils.cs" />
     <Compile Include="Utils\Tk2dUtils.cs" />
   </ItemGroup>
