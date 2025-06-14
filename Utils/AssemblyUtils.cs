@@ -94,7 +94,7 @@ namespace Satchel
         [Obsolete("use GetCurrentDirectory instead")]
         public static string getCurrentDirectory()
         {
-            return GetCurrentDirectory();
+            return Path.GetDirectoryName(System.Reflection.Assembly.GetCallingAssembly().Location);
         }
 
         /// <summary>
